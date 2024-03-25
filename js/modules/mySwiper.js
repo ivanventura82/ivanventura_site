@@ -88,7 +88,6 @@ export default class MySwiper {
       observer: true,
       observeParents: true,
       slidesPerView: 1,
-      lazy: true, // Ativa o lazy loading
       preloadImages: false, // Desabilita o carregamento automático de todas as imagens
       watchSlidesVisibility: true, // Assegura que o lazy loading considere a visibilidade dos slides
       lazy: {
