@@ -497,7 +497,7 @@ export default class MySwiper {
     this.updateProjectMenu(currentSlideIndex);
     this.updatePaginationAndMenuVisibility(this.swiper.realIndex);
   }
-  
+
   /**
   * Updates pagination and menu based on the current slide index.
   * @param {number} currentSlideIndex - The index of the current slide.
@@ -537,6 +537,11 @@ export default class MySwiper {
     }
   }
 
+  function isEstudioPage() {
+    return window.location.pathname.endsWith('estudio.html');
+  }
+  
+  // Supondo que menuElements já esteja definido e acessível aqui
   if (isEstudioPage()) {
     menuElements.forEach(el => {
       el.classList.remove('white-color');
@@ -648,7 +653,7 @@ export default class MySwiper {
       easing: 'easeInOutQuad', // Easing function
       delay: anime.stagger(200), // Delay between animations for each element
     });
-  } 
+  }
 
   hideProjectMenu() {
     // Verifica se a largura da tela é maior que 800px
