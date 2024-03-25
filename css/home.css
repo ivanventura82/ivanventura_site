@@ -1,0 +1,271 @@
+
+.slide-content-position {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+.slide-content, .slide1-content  {
+ width: 71.4285714286vw;
+ margin-left: 6rem;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ z-index: 2;
+}
+
+.main__title span {
+  color: var(--text);
+  font: 500 6rem/1.125 "Inter", sans-serif;
+  display: flex;
+  flex-flow: column;
+}
+
+.home__button {
+  margin-top: 4rem;
+}
+
+.home__button p {
+  font: 300 1.25rem/1 "Inter", sans-serif;
+}
+
+.projects_link {
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--text);
+  position: relative;
+}
+
+.projects_link::after {
+  content: '';
+  height: 2px;
+  width: 100%;
+  background-color: var(--text);
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  display: block;
+  transition: transform 0.5s ease-out;
+  transform-origin: right center;
+}
+
+.slide__title__link {
+  color: var(--bg);
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  opacity: 1;
+}
+
+.slide__title__arrow {
+  width: 100%;
+  height: auto;
+  max-width: 40px;
+}
+
+.slide__title {
+  color: var(--bg);
+  font: 2.4rem/1.25 "Inter", sans-serif;
+  text-transform: capitalize;
+}
+
+
+.slide__title__link:hover * {
+  opacity: 0.6 !important;
+}
+
+.subtitle__part1, .subtitle__part2 {
+  color: var(--bg);
+  font: 6rem/1.2 "Inter", sans-serif;
+  margin: 0;
+  display: block;
+}
+
+.swiper-pagination.swiper-pagination-bullets.swiper-pagination-vertical {
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-end;
+  width: 240px;
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  padding-right: 40px;
+}
+
+@keyframes icon-pagination {
+  from {
+      opacity: 0;
+      transform: scalex(0);
+  }
+  to {
+      opacity: 1;
+      transform: scalex(1);
+  }
+}
+
+.swiper-pagination-bullet {
+  background-color: rgba(255,255,255,.3);
+  opacity: 1;
+  height: 2px;
+  width: calc(19px + calc(23 - 19) * ((100vw - 360px) / calc(1920 - 360)));
+  border-radius: 0;
+  animation: icon-pagination 2s ease-out;
+  transform-origin: right;
+  position: relative;
+}
+
+.swiper-pagination-bullet::after {
+  content: ''; 
+  position: absolute; 
+  top: -10px;
+  left: -10px; 
+  right: -10px; 
+  bottom: -10px; 
+  background-color: transparent; 
+  cursor: pointer; 
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--bg);
+  width: calc(30.8462px + 0.320513vw);
+  height: 2px;
+  transition: 1s;
+  position: relative;
+}
+
+.swiper-pagination-bullet-active::after {
+  content: '';
+  position: absolute; 
+  top: -10px; 
+  left: -10px; 
+  right: -10px; 
+  bottom: -10px; 
+  background-color: transparent; 
+  cursor: pointer; 
+  transition: inherit; 
+}
+
+.swiper-pagination-bullet, .swiper-pagination-bullet-active {
+  outline: none; 
+}
+
+
+.menu-lateral {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 260px;
+}
+
+.project-menu-hover  {
+  display: flex;
+  flex-flow: column;
+  margin-right: 50px;
+  gap: 8px;
+  align-items: flex-end;
+  cursor: pointer;
+  transition: 5s;
+}
+
+.project-menu-hover a {
+  color: var(--bg);
+  font: 1rem/1.2 "Inter", sans-serif;
+  cursor: pointer;
+}
+
+.project-menu-hover a:hover {
+  opacity: 60%;
+}
+
+.project-menu-hover a.active {
+  color: var(--textcontrast);
+}
+
+.transition-element {
+  opacity: 0;
+  transform: translatex(10px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.transition-element.show-element {
+  opacity: 1;
+  transform: translatex(0);
+  pointer-events: all;
+}
+
+@media (max-width: 800px) {
+
+ .menu-lateral {
+    display: none !important;
+  }
+  .swiper-pagination.swiper-pagination-bullets.swiper-pagination-vertical {
+    width: 14vw;
+  }
+  .slide-content-position {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100vw;
+  }
+  
+  .swiper-pagination.swiper-pagination-bullets.swiper-pagination-vertical {
+    padding-right: 0.6rem;
+    z-index: 1;
+    gap: 20px;
+  }
+  
+  .main__title span {
+    font: 500 3rem/1.2 "Inter", sans-serif;
+    max-width: 60ch;
+  }
+
+  .slide__title__link  {
+   column-gap: 4px;
+  }
+
+  .slide__title__link img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .slide__title {
+    font: 1.2rem/1.25 "Inter", sans-serif;
+  }
+  
+  .subtitle__part1, .subtitle__part2 {
+    color: var(--bg);
+    font: 2.6rem/1.2 "Inter", sans-serif;
+    margin: 0;
+    display: block;
+  }
+  
+  
+  .slide-content  {
+    width: 76vw;
+    margin-left: 1.2rem;
+    position: absolute;
+    left: 0;
+   }
+
+   .page__title {
+    font: bold 3.5rem/1 "Akzidenz-Grotesk Pro Bold Cnd", sans-serif;
+    margin-bottom: 0.5rem;
+    max-width: 10ch;
+   }
+  
+  .project-menu-hover  {
+    margin-right: 20px;
+  }
+  
+  .swiper-pagination, .swiper-pagination-bullets, .swiper-pagination-vertical {
+  padding-right: 20px;
+  }
+}

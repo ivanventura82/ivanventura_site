@@ -1,0 +1,138 @@
+.slide-content-project {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 70vw;
+  z-index: 2;
+}
+
+.subtitle__part1.project__name {
+  color: var(--bg);
+  font: 10rem/1 "Inter", sans-serif;
+}
+
+.bio__project {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.bio__project ul {
+  font: 1rem/1.6 "Inter", sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100px
+}
+
+.bio__project li {
+  display: flex;
+  flex-direction: column;  
+  align-items: flex-start;
+  max-width: 20ch;
+}
+
+.bio__project p {
+  font: 1rem/1.6 "Inter", sans-serif;
+  max-width: 100ch;
+}
+
+.detalhes__project ul {
+  font: 1rem/1.6 "Inter", sans-serif;
+}
+
+.detalhes__project li {
+  margin-bottom: 0.8rem;}
+
+.photos__grid__2  {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.photos__grid, .photos__grid__2 {
+  height: 100vh;
+  width: 100vw;
+}
+
+.photos__grid__2 img{
+  width: 50vw;
+  height: 100vh;
+  object-fit: cover; 
+
+}
+
+.photos__grid img {
+  width: 100vw; 
+  height: 100vh;
+  object-fit: cover; 
+}
+
+.photos__grid::before, .photos__grid__2::before {
+  content: "";
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--text20);
+  z-index: 999;
+}
+
+
+
+@media (max-width: 800px) {
+
+  .slide-content-project {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 80vw;
+  }
+
+  .bio__project, .detalhes__project {
+   justify-content: center;
+   gap: 40px;
+   width: 78vw;
+   margin-left: 1rem;
+   margin-top: 40px;
+  }
+
+  .subtitle__part1.project__name {
+    font: 4rem/1 "Inter", sans-serif;
+    max-width: 20ch;
+    margin-left: 1.2rem;
+  }
+
+  .bio__project ul {
+    flex-direction: column;
+    gap: 4px;  
+  }
+
+  .bio__project li {
+    flex-direction: row;
+    gap: 8px;  
+    max-width: none;
+
+  }
+
+  .bio__project p {
+    padding-bottom: 15px;
+  }
+
+  .photos__grid__2 {
+    flex-wrap: wrap;
+    height: 100vh;
+  }
+
+  .photos__grid__2 img {
+    height: 50vh;
+    width: 100vw;
+    object-fit: cover; 
+  }
+
+}

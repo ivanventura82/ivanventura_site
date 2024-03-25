@@ -1,0 +1,219 @@
+.header {
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+.menu-principal {
+  position: relative;
+  z-index: 3;
+}
+
+[data-menu="logo"] {
+  background-image: url(/img/LOGO\ IVAN.svg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  height: 80px;
+  width: 80px;
+}
+
+[data-menu="logo"].white-color, .nav__button.nav__button__home.white {
+  background-image: url(/img/LOGO\ IVAN\ white.svg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  height: 80px;
+  width: 80px;
+  z-index: 9999;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.nav__button {
+  position: fixed;
+  padding: 10px;
+  margin: -10px;
+  display: flex;
+  align-items: center;
+}
+
+.nav__button.nav__button__home {
+  top: var(--nav-b-mg1);
+  left: var(--nav-b-mg2);
+}
+
+.nav__button__mobile {
+  display: none;
+}
+
+.nav__button.nav__button__estudio {
+  bottom: var(--nav-b-mg1);
+  left: var(--nav-b-mg2);
+}
+
+.nav__button[data-menu="email"] {
+ display: none
+}
+
+.nav__button.nav__button__contato {
+  right: var(--nav-b-mg2);
+  bottom: var(--nav-b-mg1);
+}
+
+.nav__button.nav__button__arrow {
+  display: none;
+}
+
+.nav__button[data-menu="instagram"]  {
+  display: none
+}
+
+.nav__button {
+  font: 1.25rem/1.2 "Inter", sans-serif;
+  color: var(--text);
+}
+
+.nav__button.nav__button__estudio:hover, .nav__button.nav__button__contato:hover {
+ opacity: 0.6;
+}
+
+.nav__button.nav__button__estudio.white-color:hover, .nav__button.nav__button__contato.white-color:hover { 
+  opacity: 0.6 !important;
+ }
+
+ #botao-voltar, #botao-down {
+  display: none;
+}
+
+.header_menu {
+  box-sizing: border-box;
+  height: 60px;
+  padding: 2.4rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu  li {
+  font-family: "Inter", Arial, sans-serif;
+  align-self: center;
+}
+
+.menu a {
+  color: var(--text);
+  font-size: 1.2rem;
+  line-height: 1.3;
+  display: flex;
+  justify-content: flex-start;
+  text-decoration: none;
+  padding: 12px 2px;
+  position: relative;     
+  width: 7rem;
+  }
+
+ .white-color {
+    color: var(--bg) !important;
+    animation: changecolor 2s ease forwards;
+    animation-delay: 0.5s;
+    /* opacity: 0; */
+    }
+
+  .logo.white-color .st0 {
+    fill: #fff !important;
+  }
+
+  .rodape {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 1000;
+  }
+
+ .menu-bottom {
+    box-sizing: border-box;
+    height: 60px;
+    padding: 2.4rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+ .menu-bottom a {
+  color: var(--text);
+  font-size: 1.2rem;
+  line-height: 1.3;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+@media (max-width: 700px) {
+
+  .nav__button__mobile {
+    display: block;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    position: fixed;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav__button__projetos, .nav__button.nav__button__estudio, .nav__button.nav__button__contato {
+    display: none;
+  }
+  
+  #botao-voltar {
+    display: flex; 
+    position: fixed;
+    align-items: center;
+    right: 0;
+    bottom: 0;
+    background: none; 
+    border: none; 
+    padding: 10px; 
+    margin: 0; 
+    width: auto; 
+    cursor: pointer; 
+    outline: none; 
+}
+
+  #botao-down {
+    display: flex; 
+    position: fixed;
+    align-items: center;
+    right: 0;
+    bottom: 0;
+    background: none; 
+    border: none; 
+    padding: 10px; 
+    margin: 0; 
+    width: auto; 
+    cursor: pointer; 
+    outline: none; 
+    z-index: -1;
+  }
+
+  #botao-voltar.white-color svg path, #botao-down.white-color svg path {
+    fill: #FFFFFF; 
+  }
+
+  .header_menu {
+    padding: 2.4rem 20px;
+  }
+  .menu a:hover::before {
+    display: none;
+  }
+  .menu a:hover::after {
+    display: none;
+  }
+  .menu-bottom {
+    display: none;
+  }
+}

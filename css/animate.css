@@ -1,0 +1,321 @@
+.subtitle__part1 {
+  animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn  {
+  from {
+    opacity: 0;
+    transform: translate(0px, 0.7em) rotate(4deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0px, 0%);
+  }
+}
+
+.subtitle__part2 {
+  animation: slideIn2 0.9s ease-in-out;
+}
+
+@keyframes slideIn2  {
+  from {
+    opacity: 0;
+    transform: translate(0px, 0.6em) rotate(3deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0px, 0%);
+  }
+}
+
+.subtitle__part3 {
+  animation: slideIn3 0.8s ease-in-out;
+}
+
+@keyframes slideIn3  {
+  from {
+    opacity: 0;
+    transform: translate(0px, 0.5em) rotate(2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0px, 0%);
+  }
+}
+
+
+.main-title h1 > span.subtitle__part2.anime-up-active-sub-intro{
+  animation: anime-title-part2 10s ease-in both !important;
+  animation-delay: 800ms !important;
+}
+
+@keyframes anime-title-part2 {
+  from {
+    opacity: 0;
+    transform: translate(0px, 0.6em) rotate(3deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0px, 0%);
+  }
+}
+
+.swiper-initialized .slide-content span.subtitle__part3.anime-down-active-sub-intro {
+  animation: anime-title-part3 0.6s ease-in both;
+  animation-delay: 800ms;
+}
+
+@keyframes anime-title-part3 {
+  from {
+    opacity: 0;
+    transform: translate(0px, 0.5em) rotate(2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0px, 0%);
+  }
+}
+
+.anime-text-active-title .anime-down-text-active-title .anime-down-text-active-title {
+  animation: anime-down-title 1s ease-in both;
+}
+
+@keyframes anime-up-title {
+  from {
+    opacity: 0;
+    transform: translate(0px, -0.7em) rotate(-3deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0px, 0%);
+  }
+}
+
+.swiper-slide-active .slide-content  a.slide__title__link.anime-down-active-title
+{
+  animation: down-title-active 1.4s ease-in both !important;
+}
+
+@keyframes down-title-active {
+  from {
+    opacity: 0;
+    transform: translateY(-0.7em) rotate(-4deg)
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%) rotate(0deg)
+  }
+}
+
+.swiper-slide-active .slide-content span.subtitle__part1.anime-down-active-sub
+{
+  animation: down-sub1-active 1.3s ease-in both !important;
+}
+
+@keyframes down-sub1-active {
+  from {
+    opacity: 0;
+    transform: translateY(-0.6em) rotate(-3deg)
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%) rotate(0deg)
+  }
+}
+
+.swiper-slide-active .slide-content span.subtitle__part2.anime-down-active-sub
+{
+  animation: down-sub2-active 1.2s ease-in both !important;
+}
+
+@keyframes down-sub2-active {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5em) rotate(-2deg)
+  }
+  to {
+    opacity: 1;
+  ;
+    transform: translateY(0%) rotate(0deg)
+  }
+} 
+
+
+
+.swiper-slide-active .slide-content span.subtitle__part3.anime-down-active-sub
+{
+  animation: down-sub3-active 1.1s ease-in both !important;
+}
+
+@keyframes down-sub3-active {
+  from {
+    opacity: 0;
+    transform: translateY(-0.4em) rotate(-1deg)
+  }
+  to {
+    opacity: 1;
+  ;
+    transform: translateY(0%) rotate(0deg)
+  }
+} 
+
+.swiper-slide-active .slide-content a.slide__title__link.anime-up-active-title {
+  animation: up-title-active 1.2s ease-in both !important;
+}
+
+@keyframes up-title-active {
+  from {
+    opacity: 0;
+    transform: translateY(0.5em) rotate(1deg)
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%) rotate(0deg)
+  }
+}
+
+.swiper-slide-active .slide-content span.subtitle__part1.anime-up-active-sub {
+  animation: up-sub1-active 1.3s ease-in both !important;
+}
+
+@keyframes up-sub1-active {
+  from {
+    opacity: 0;
+    transform: translateY(0.6em) rotate(2deg)
+  }
+  to {
+    opacity: 1;
+  ;
+    transform: translateY(0%) rotate(0deg)
+  }
+}
+
+
+.swiper-slide-active .slide-content .slide__title__link  {
+  animation: up-sub2-active 1.4s ease-in both !important;
+}
+
+
+
+@keyframes up-sub2-active {
+  from {
+    opacity: 0;
+    transform: translateY(0.7em) rotate(3deg)
+  }
+  to {
+    opacity: 1;
+  ;
+    transform: translateY(0%) rotate(0deg)
+  }
+}
+
+
+.swiper-slide-prev .slide-content .slide__title__link {
+  animation: prev-title 0.6s ease-in both !important;
+}
+
+  @keyframes prev-title {
+    from {
+      opacity: 1;
+      transform: translateY(0%) rotate(0deg); 
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-0.7em) rotate(-4deg);
+    }
+  }
+
+
+.swiper-slide-prev .slide-content span.subtitle__part1 {
+  animation: prev-sub-1 0.7s ease-in both !important;
+}
+
+@keyframes prev-sub-1 {
+  from {
+    opacity: 1;
+    transform: translateY(0%) rotate(0deg); /* Use translateY for vertical movement */
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-0.6em) rotate(-3deg);
+  }
+}
+
+.swiper-slide-prev .slide-content span.subtitle__part2 {
+  animation: prev-sub-2 0.8s ease-in both !important;
+}
+
+@keyframes prev-sub-2 {
+  from {
+    opacity: 1;
+    transform: translateY(0%) rotate(0deg); 
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-0.5em) rotate(-2deg);
+  }
+}
+
+.swiper-slide-prev .slide-content span.subtitle__part3 {
+  animation: prev-sub-2 0.9s ease-in both !important;
+}
+
+@keyframes prev-sub-2 {
+  from {
+    opacity: 1;
+    transform: translateY(0%) rotate(0deg); 
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-0.4em) rotate(-1deg);
+  }
+}
+
+
+.swiper-slide-next .slide-content h2 {
+  animation: next-title 0.8s ease-in both !important;
+}
+
+  @keyframes next-title {
+    from {
+      opacity: 1;
+      transform: translateY(0%) rotate(0deg); 
+    }
+    to {
+      opacity: 0;
+      transform: translateY(0.7em) rotate(3deg);
+    }
+  }
+
+.swiper-slide-next .slide-content span.subtitle__part1 {
+  animation: next-sub-1 0.7s ease-in both !important;
+}
+
+@keyframes next-sub-1 {
+  from {
+    opacity: 1;
+    transform: translateY(0%) rotate(0deg); 
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0.6em) rotate(2deg);
+  }
+}
+
+.swiper-slide-next .slide-content span.subtitle__part2 {
+  animation: next-sub-2 0.6s ease-in both !important;
+}
+
+@keyframes next-sub-2 {
+  from {
+    opacity: 1;
+    transform: translateY(0%) rotate(0deg);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0.5em) rotate(1deg);
+  }
+}
+
+
+

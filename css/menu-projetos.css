@@ -1,0 +1,89 @@
+
+.nav__button.menu__projetos {
+  top: var(--nav-b-mg1);
+  right: var(--nav-b-mg2);
+}
+
+.nav__menu__projetos {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  top: var(--nav-b-mg1);
+  right: var(--nav-b-mg2);
+}
+
+.js [data-menu-projetos="button"]   {
+  background: none;
+  border: none;
+  font: 1.25rem/1.2 "Inter", sans-serif;
+  color: var(--text);
+  cursor: pointer;
+  position: relative;
+  z-index: 300;
+  order: 2;
+  display: block;
+}
+
+/* .js [data-menu-projetos="button"].active {
+display:none;
+} */
+
+
+.js [data-menu-projetos="list"] {
+  display:none;
+}
+
+.js [data-menu-projetos="list"].active {
+  display: flex;  
+  order: 1;
+  gap: 20px;
+  font: 1.25rem/1.2 "Inter", sans-serif;
+}
+
+
+.js [data-menu-projetos="list"]  a {
+  text-decoration: none !important;
+  color: var(--text65);
+}
+
+.js [data-menu-projetos="list"] a.active li {
+  color: var(--textcontrast)!important;
+}
+
+.js [data-menu-projetos="list"] li, .js [data-menu-projetos="list"] a.white-color {
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .js [data-menu-projetos="list"] a:hover {
+    opacity: 0.6 !important; 
+    color: var(--text65); 
+  }
+  
+    .js [data-menu-projetos="list"] a.active-link {
+      color: var(--textcontrast) !important; /* Substitua var(--highlight-color) pela cor desejada para o link ativo */
+    }
+
+@media (max-width: 700px) {
+
+
+.nav__button.menu__projetos {
+  display: none;
+}
+
+[data-menu="button"] {
+  display: none;
+}
+}

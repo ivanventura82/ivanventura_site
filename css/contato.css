@@ -1,0 +1,61 @@
+
+.slide-content.container__contato  {
+  width: 71.4285714286vw;
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  align-items: flex-start;  
+ }
+
+.contato {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 80px;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+  animation-delay: 1.2s;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translate3d(0,10px,0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0,0,0);
+    }
+  }
+
+
+.contato p {
+  font: 300 1rem/1.6 "Inter", sans-serif;
+  opacity: 1;
+}
+
+.contato a {
+  font: 300 1rem/1.6 "Inter", sans-serif;
+  opacity: 1;
+}
+
+.contato a:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 800px) {
+
+
+  .slide-content.container__contato  {
+    width: 100vw;
+    margin-left: 1rem; 
+    gap: 60px;
+    margin-top: 40px;
+   }
+
+  .contato {
+    display: flex;
+    flex-wrap: wrap;
+    gap:40px;
+  }
+}

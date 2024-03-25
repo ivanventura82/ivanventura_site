@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivan Ventura Arquitetura - Excelência Global em Design | São Paulo</title>
+    <meta name="description" content="Ivan Ventura: Arquitetura premiada em São Paulo com reconhecimento no Brasil e exterior. Explore nosso portfólio">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"> -->
+    <link href="./css/style.css" rel="stylesheet">  
+    <script>document.documentElement.classList.add('js');</script>
+  </head>
+  <body id="index-page">
+
+    <header class="menu-principal">
+      <a class="nav__button nav__button__home" data-menu="logo" href="./index.html">
+        <span class="visually-hidden">Voltar para a página inicial</span>
+      </a>
+      <div class="nav__button menu__projetos"> 
+        <nav class="nav__menu__projetos">
+          <button data-menu-projetos="button" aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
+            Projetos
+          </button>
+          <ul data-menu-projetos="list">
+            <li><a href="#quadritone" data-filter="residencias">Residências</a></li>
+            <li><a href="#viw" data-filter="edificios">Edifícios</a></li>
+            <li><a href="#templodocafe" data-filter="comerciais">Comerciais</a></li>
+            <li><a href="#apartamentokvp" data-filter="interiores">Interiores</a></li>
+            <li><a href="#teatrosescatalaia" data-filter="institucionais">Intitucionais</a></li>
+            <li><a href="#papacama" data-filter="design">Design</a></li>
+          </ul>
+        </nav>
+      </div>    
+      <a class="nav__button nav__button__estudio" href="/estudio.html">Estudio</a>
+      <a class="nav__button nav__button__contato" href="/contato.html">Contato</a>
+      <a href="#viw" id="botao-down" aria-label="Voltar para a página anterior">
+        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4v13m0 0l-8-8m8 8l8-8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>    
+        </svg>
+    </a>
+    
+    </header>
+
+    <div class="nav__button__mobile">
+      <nav class="menu" data-menu="suave">
+        <button data-menu="button" aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
+          <span id="hamburguer"></span>
+        </button>
+        <ul data-menu="list">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./index.html#view">Projetos</a></li>
+            <ul class="nav__menu__projetos sub__projetos">
+              <li><a href="#quadritone" data-filter="residencias">Residências</a></li>
+              <li><a href="#viw" data-filter="edificios">Edifícios</a></li>
+              <li><a href="#templodocafe" data-filter="comerciais">Comerciais</a></li>
+              <li><a href="#apartamentokvp" data-filter="interiores">Interiores</a></li>
+              <li><a href="#teatrosescatalaia" data-filter="institucionais">Intitucionais</a></li>
+              <li><a href="#papacama" data-filter="design">Design</a></li>
+            </ul>
+          <li><a href="./estudio.html">Estudio</a></li>
+          <li><a href="./contato.html">Contato</a></li>
+        </ul>
+        <div class="menu__mobile__footer">
+          <a data-menu="email" href="mailto:contato@ivanventura.com.br target="_blank">contato@ivanventura.com.br</a>
+          <a data-menu="instagram" href="https://www.instagram.com/ivanventura/" target="_blank">
+            <img src="./img/instagram.svg">
+          </a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" data-hash='slide1' selecionado=true
+        style="background-color: #fff">          
+          <div class="slide-content-position">
+            <div class="slide-content">
+              <h1 class="main__title">
+                <span class="subtitle__part1 black">Somos um estudio</span>
+                <span class="subtitle__part2 black">de arquitetura</span>
+                <span class="subtitle__part3 black">baseado no Brasil</span>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div class="swiper-pagination">
+        </div>
+      </div>
+
+      <nav class="menu-lateral">
+        <ul class="project-menu-hover transition-element">
+        </ul>
+      </nav>
+    </div>
+
+    <script src="./dist/main.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
+  </body>
+</html>
+
