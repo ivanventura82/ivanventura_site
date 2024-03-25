@@ -14,7 +14,7 @@ scrollSuave.init();
 const scrollAnima = new ScrollAnima('[data-anime="scroll"]');
 scrollAnima.init();
 
-const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]', '[data-menu="logo"]', '[data-menu="email"]', '[data-menu="instagram"]', '[data-menu="arrow"]');
+const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]', '[data-menu="logo"]', '[data-menu="email"]', '[data-menu="instagram"]');
 menuMobile.init();
 
 const menuProjetos = new MenuProjetos('[data-menu-projetos="button"]', '[data-menu-projetos="list"]');
