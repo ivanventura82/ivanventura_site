@@ -231,6 +231,10 @@ export default class MySwiper {
     });
   }
 
+  isEstudioPage() {
+    return window.location.pathname.endsWith('estudio.html');
+  }
+
   isProjetosPage() {
     return window.location.pathname.includes('/projeto.html');
   }
@@ -533,14 +537,11 @@ export default class MySwiper {
     }
   }
 
-  function isEstudioPage() {
-    return window.location.pathname.endsWith('estudio.html');
-  }
-
   // Supondo que menuElements já esteja definido e acessível aqui
-  if (isEstudioPage()) {
+  if (this.isEstudioPage()) {
     menuElements.forEach(el => {
-      el.classList.remove('white-color');
+      const classNameAction = 'remove';
+      el.classList[classNameAction]('white-color');
     });
   } else {
     menuElements.forEach(el => {
