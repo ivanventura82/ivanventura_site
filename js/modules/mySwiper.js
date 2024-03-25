@@ -231,10 +231,6 @@ export default class MySwiper {
     });
   }
 
-  isEstudioPage() {
-    return window.location.pathname.endsWith('estudio.html');
-  }
-
   isProjetosPage() {
     return window.location.pathname.includes('/projeto.html');
   }
@@ -540,7 +536,7 @@ export default class MySwiper {
   function isEstudioPage() {
     return window.location.pathname.endsWith('estudio.html');
   }
-  
+
   // Supondo que menuElements já esteja definido e acessível aqui
   if (isEstudioPage()) {
     menuElements.forEach(el => {
