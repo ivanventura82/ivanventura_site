@@ -118,7 +118,7 @@ export default class MySwiper {
 
         slideChangeTransitionStart: function() {
           carregarImagemDoProximoSlide(this);
-      },
+        },
 
         slideChange: this.slideChange.bind(this),
         slideChangeTransitionStart: this.slideChangeTransitionStart.bind(this), 
@@ -142,7 +142,8 @@ export default class MySwiper {
         
             paginationBullets.forEach((bullet) => {
                 bullet.classList.add('black');
-            });          }
+            });
+          }
         },
 
         init: () => {
@@ -156,49 +157,17 @@ export default class MySwiper {
           if (!this.isNotIndexPage()) { // Se for a página index
             this.applyDisplayNoneToFirstBullet();
           }
-          
         },
       },
     });
-
-    // this.swiper2 = new Swiper(".mySwiper2", {
-    //   mousewheel: true,
-    //   spaceBetween: 10,
-    //   grabCursor: true,
-    //   slidesPerView: 1,
-    //   navigation: {
-    //     nextEl: ".swiper-button-next",
-    //     prevEl: ".swiper-button-prev",
-    //   },
-    //   breakpoints: {
-    //     800: {
-    //       slidesPerView: 3,
-    //       spaceBetween: 20,
-    //     },
-    //   },
-    // });
-
-    // this.swiper3 = new Swiper(".mySwiper3", {
-    //   mousewheel: false,
-    //   slidesPerView: 1,
-    //   grabCursor: true,
-    //   pagination: {
-    //     el: '.swiper-pagination-2',
-    //     bulletClass: 'custom-pagination-bullet-2',
-    //     clickable: true,
-    //   },
-    // });
-
     
     this.allSlides = Array.from(document.querySelectorAll('.swiper-slide'));
     this.allMenuItems = Array.from(document.querySelectorAll('.project-menu-item'));
 
     this.setupFilterLinks();
  
-    
     console.log("Swiper inicializado:", this.swiper);
     document.dispatchEvent(new CustomEvent('SwiperReady')); // Dispara um evento indicando que o Swiper está pronto
-
   }
 
   initializeSwiper2() {
@@ -260,7 +229,7 @@ export default class MySwiper {
             img.removeAttribute('data-src'); // Opcional: remover o atributo data-src após o carregamento
         }
     });
-}
+  }
 
   isEstudioPage() {
     return window.location.pathname.endsWith('estudio.html');
@@ -384,7 +353,6 @@ export default class MySwiper {
         this.navigateToFirstSlideOfCategory(category); // Navega para o primeiro slide da categoria
         this.markActiveLink(category); // Marca o link como ativo ao clicar
 
-  
         if (this.isNotIndexPage()) {
           // Se não estiver na página index, redireciona para a index com o parâmetro de filtragem
           window.location.href = `/index.html?filter=${category}`;
@@ -505,7 +473,6 @@ export default class MySwiper {
   }
 
   slideChange() {
-    
     // First, check if swiper is defined and initialized
     if (!this.swiper || !this.swiper.slides) return;
   
@@ -570,17 +537,16 @@ export default class MySwiper {
     }
   }
 
-    if (this.isEstudioPage()) {
-      menuElements.forEach(el => {
-        const classNameAction = 'remove';
-        el.classList[classNameAction]('white-color');
-      });
-    } else {
-      menuElements.forEach(el => {
-        const classNameAction = currentSlideIndex >= 1 ? 'add' : 'remove';
-        el.classList[classNameAction]('white-color');
-      });
-    }
+  if (isEstudioPage()) {
+    menuElements.forEach(el => {
+      el.classList.remove('white-color');
+    });
+  } else {
+    menuElements.forEach(el => {
+      const classNameAction = currentSlideIndex >= 1 ? 'add' : 'remove';
+      el.classList[classNameAction]('white-color');
+    });
+  }
 
     // Specific logic for pages with "projetos" in the URL
   if (this.isProjetosPage()) {
@@ -683,6 +649,7 @@ export default class MySwiper {
       delay: anime.stagger(200), // Delay between animations for each element
     });
   } 
+
   hideProjectMenu() {
     // Verifica se a largura da tela é maior que 800px
     if (window.innerWidth > 800) {
