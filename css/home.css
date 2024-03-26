@@ -76,7 +76,7 @@
   opacity: 0.6 !important;
 }
 
-.subtitle__part1, .subtitle__part2 {
+.subtitle__part2, .subtitle__part3 {
   color: var(--bg);
   font: 6rem/1.2 "Inter", sans-serif;
   margin: 0;
