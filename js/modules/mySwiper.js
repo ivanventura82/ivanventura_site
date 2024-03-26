@@ -110,8 +110,8 @@ export default class MySwiper {
         clickable: true,
       },
       on: {
-        animateSubtitleParts: function () {
-        },       
+        // animateSubtitleParts: function () {
+        // },       
 
         slideChangeTransitionStart: function() {
           carregarImagemDoProximoSlide(this);
@@ -488,7 +488,7 @@ export default class MySwiper {
     
     // Update UI elements based on the current slide index
     this.updatePaginationAndMenu(currentSlideIndex);
-    this.updateSlideTitlesAndSubtitles(currentSlideIndex, previousSlideIndex);
+    // this.updateSlideTitlesAndSubtitles(currentSlideIndex, previousSlideIndex);
     this.updateProjectMenu(currentSlideIndex);
     this.updatePaginationAndMenuVisibility(this.swiper.realIndex);
   }
@@ -597,55 +597,55 @@ export default class MySwiper {
   * @param {number} currentSlideIndex - The index of the current slide.
   * @param {number} previousSlideIndex - The index of the previous slide.
   */
-  updateSlideTitlesAndSubtitles(currentSlideIndex, previousSlideIndex) {
-    // Handling titles and subtitles animation
-    const allTitlesAndSubtitles = document.querySelectorAll('.page__title, .page__subtitle');
-    this.clearAnimationClasses(allTitlesAndSubtitles);
+  // updateSlideTitlesAndSubtitles(currentSlideIndex, previousSlideIndex) {
+  //   // Handling titles and subtitles animation
+  //   const allTitlesAndSubtitles = document.querySelectorAll('.page__title, .page__subtitle');
+  //   this.clearAnimationClasses(allTitlesAndSubtitles);
 
-    // If there are no slides, return early
-    const activeSlide = this.swiper.slides[currentSlideIndex];
-    const previousSlide = this.swiper.slides[previousSlideIndex];
-    if (!activeSlide || !previousSlide) return;
+  //   // If there are no slides, return early
+  //   const activeSlide = this.swiper.slides[currentSlideIndex];
+  //   const previousSlide = this.swiper.slides[previousSlideIndex];
+  //   if (!activeSlide || !previousSlide) return;
 
-    // Adding animation classes to active slide's titles and subtitles
-    this.addAnimationClassesToSlide(activeSlide, currentSlideIndex > previousSlideIndex);
-    this.clearAnimationClasses(previousSlide.querySelectorAll('.slide__title, .subtitle__part1, .subtitle__part2, .subtitle__part3'));
-  }
+  //   // Adding animation classes to active slide's titles and subtitles
+  //   this.addAnimationClassesToSlide(activeSlide, currentSlideIndex > previousSlideIndex);
+  //   this.clearAnimationClasses(previousSlide.querySelectorAll('.slide__title, .subtitle__part1, .subtitle__part2, .subtitle__part3'));
+  // }
 
   /**
   * Clears animation classes from the given elements.
   * @param {NodeListOf<Element>} elements - The elements to clear classes from.
   */
-  clearAnimationClasses(elements) {
-    elements.forEach(el => {
-        el.classList.remove('anime-up-text-active', 'anime-up-text-down', 'anime-up-active-title', 'anime-down-active-title', 'anime-up-active-sub', 'anime-down-active-sub');
-    });
-  }
+  // clearAnimationClasses(elements) {
+  //   elements.forEach(el => {
+  //       el.classList.remove('anime-up-text-active', 'anime-up-text-down', 'anime-up-active-title', 'anime-down-active-title', 'anime-up-active-sub', 'anime-down-active-sub');
+  //   });
+  // }
 
   /**
   * Adds animation classes to titles and subtitles in a slide.
   * @param {Element} slide - The slide to add animation classes to.
   * @param {boolean} isScrollingDown - Indicates if the slide is scrolling down.
   */
-  addAnimationClassesToSlide(slide, isScrollingDown) {
-    const animationClass = isScrollingDown ? 'anime-up-active' : 'anime-down-active';
-    slide.querySelectorAll('.slide__title, .subtitle__part1, .subtitle__part2, .subtitle__part3').forEach(el => {
-        el.classList.add(`${animationClass}-${el.classList.contains('slide__title') ? 'title' : 'sub'}`);
-    });
-  }
+  // addAnimationClassesToSlide(slide, isScrollingDown) {
+  //   const animationClass = isScrollingDown ? 'anime-up-active' : 'anime-down-active';
+  //   slide.querySelectorAll('.slide__title, .subtitle__part1, .subtitle__part2, .subtitle__part3').forEach(el => {
+  //       el.classList.add(`${animationClass}-${el.classList.contains('slide__title') ? 'title' : 'sub'}`);
+  //   });
+  // }
   
-  animateSubtitleParts() {
-    var subtitleParts = document.querySelectorAll('.subtitle__part1, .subtitle__part2, .subtitle__part3');
+  // animateSubtitleParts() {
+  //   var subtitleParts = document.querySelectorAll('.subtitle__part1, .subtitle__part2, .subtitle__part3');
 
-    anime ({
-      targets: subtitleParts,
-      translateY: [100, 0], // Slide in from the bottom
-      opacity: [0, 1], // Fade-in effect
-      duration: 1000, // Animation duration in milliseconds
-      easing: 'easeInOutQuad', // Easing function
-      delay: anime.stagger(200), // Delay between animations for each element
-    });
-  }
+  //   anime ({
+  //     targets: subtitleParts,
+  //     translateY: [100, 0], // Slide in from the bottom
+  //     opacity: [0, 1], // Fade-in effect
+  //     duration: 1000, // Animation duration in milliseconds
+  //     easing: 'easeInOutQuad', // Easing function
+  //     delay: anime.stagger(200), // Delay between animations for each element
+  //   });
+  // }
 
   hideProjectMenu() {
     // Verifica se a largura da tela é maior que 800px
