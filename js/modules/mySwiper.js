@@ -7,7 +7,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/effect-cards';
 import 'swiper/css/mousewheel';
-import 'swiper/css/hash-navigation';
+// import 'swiper/css/hash-navigation';
 
 export default class MySwiper {
   constructor(carregaProjetosInstance = null) {
@@ -78,12 +78,12 @@ export default class MySwiper {
       modules: [Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation],
       direction: "vertical",
       speed: 1000,
-      simulateTouch: true,
+      // simulateTouch: true,
       touchRatio: 1,
-      touchAngle: 45,
-      threshold: 20,
+      // touchAngle: 45,
+      // threshold: 20,
       allowTouchMove: true,
-      followFinger: true,
+      // followFinger: true,
       mousewheel: true,
       passiveListeners: true,
       observer: true,
@@ -109,9 +109,6 @@ export default class MySwiper {
         el: '.swiper-pagination',
         clickable: true,
       },
-      breakpoints: {
-        mousewheel:false,
-      },
       on: {
         animateSubtitleParts: function () {
         },       
@@ -124,12 +121,11 @@ export default class MySwiper {
         slideChangeTransitionStart: this.slideChangeTransitionStart.bind(this), 
 
         slideChangeTransitionStart: function () {
-        
-          this.allowTouchMove = false; // Disable touch move during transition start
+          // this.allowTouchMove = false; 
         },
-        
+  
         slideChangeTransitionEnd: function () {
-          this.allowTouchMove = true; // Enable touch move after transition ends
+          // this.allowTouchMove = true; 
           let currentSlideIndex = this.realIndex;
           if (currentSlideIndex === this.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
             const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
@@ -147,7 +143,6 @@ export default class MySwiper {
         },
 
         init: () => {
-          
           // This code runs after the Swiper instance is initialized
           if (this.isEstudioPage()) {
               const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
