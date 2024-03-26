@@ -9,8 +9,6 @@ import 'swiper/css/effect-cards';
 import 'swiper/css/mousewheel';
 import 'swiper/css/hash-navigation';
 
-
-
 export default class MySwiper {
   constructor(carregaProjetosInstance = null) {
     this.swiper = null;
@@ -234,7 +232,7 @@ export default class MySwiper {
   }
 
   isEstudioPage() {
-    return window.location.pathname.endsWith('estudio.html');
+    return window.location.pathname.endsWith('estudio');
   }
 
   isProjetosPage() {
