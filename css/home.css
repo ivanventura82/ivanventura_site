@@ -205,9 +205,12 @@
  .menu-lateral {
     display: none !important;
   }
+  
   .swiper-pagination.swiper-pagination-bullets.swiper-pagination-vertical {
     width: 14vw;
+    margin-top: 40px;
   }
+
   .slide-content-position {
     display: flex;
     flex-direction: column;
