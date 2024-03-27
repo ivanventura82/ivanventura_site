@@ -89,8 +89,6 @@
   }
 }
 
-
-/* 
 .swiper-slide-prev .slide-content .slide__title__link.subtitle__part1 {
   animation: prev-sub-1 0.7s ease-in both !important;
 }
@@ -134,5 +132,5 @@
     opacity: 0;
     transform: translateY(-0.4em) rotate(-1deg);
   }
-} */
+} 
 
