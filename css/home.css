@@ -151,7 +151,6 @@
   outline: none; 
 }
 
-
 .menu-lateral {
   display: flex;
   align-items: center;
@@ -230,8 +229,11 @@
     max-width: 60ch;
   }
 
-  .slide__title__link  {
-   column-gap: 4px;
+  .slide__title__link.subtitle__part1  {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    column-gap: 4px;
   }
 
   .slide__title__link img {
@@ -243,9 +245,9 @@
     font: 1.2rem/1.25 "Inter", sans-serif;
   }
   
-  .subtitle__part1, .subtitle__part2 {
+  .subtitle__part1, .subtitle__part2, .subtitle__part3 {
     color: var(--bg);
-    font: 2.6rem/1.2 "Inter", sans-serif;
+    font: 2.4rem/1.2 "Inter", sans-serif;
     margin: 0;
     display: block;
   }
