@@ -51,7 +51,8 @@ export default class MySwiper {
       paginationBullets.forEach(bullet => bullet.classList.add('black'));
 
     } else {
-      pagination.style.opacity = '0'; // Hide pagination initially
+      // pagination.style.opacity = '0'; 
+      pagination.style.display = 'none'; // Esconde inicialmente a paginação usando display none
     }
   }  
 
@@ -79,7 +80,7 @@ export default class MySwiper {
       direction: "vertical",
       speed: 1000,
       // simulateTouch: true,
-      touchRatio: 1,
+      touchRatio: 1.5,
       // touchAngle: 45,
       // threshold: 20,
       allowTouchMove: true,
