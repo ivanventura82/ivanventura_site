@@ -207,7 +207,6 @@
   
   .swiper-pagination.swiper-pagination-bullets.swiper-pagination-vertical {
     width: 14vw;
-    margin-top: 40px;
   }
 
   .slide-content-position {
@@ -217,11 +216,24 @@
     align-items: flex-start;
     width: 100vw;
   }
+
+  .swiper-pagination-vertical.swiper-pagination-bullets {
+    right: 1rem;
+  }
   
   .swiper-pagination.swiper-pagination-bullets.swiper-pagination-vertical {
-    padding-right: 0.6rem;
+    padding-right: 0px;
     z-index: 1;
     gap: 20px;
+  }
+
+  .swiper-pagination-bullet {
+    width: 30px;
+    height: 3px;
+  }
+
+  .swiper-pagination-bullet-active {
+    width: 40px; 
   }
   
   .main__title span {
@@ -252,10 +264,9 @@
     display: block;
   }
   
-  
   .slide-content  {
     width: 76vw;
-    margin-left: 1.2rem;
+    margin-left: 1rem;
     position: absolute;
     left: 0;
    }
