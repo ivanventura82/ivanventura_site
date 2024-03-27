@@ -222,7 +222,7 @@
   }
   
   .swiper-pagination.swiper-pagination-bullets.swiper-pagination-vertical {
-    padding-right: 0px;
+    padding: 30px 0px 0px 0px;
     z-index: 1;
     gap: 20px;
   }
