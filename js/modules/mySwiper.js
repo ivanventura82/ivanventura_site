@@ -45,6 +45,7 @@ export default class MySwiper {
 
   if (pagination) {
     this.initializePagination(pagination, !!menuLateral);
+    pagination.style.display = 'none'; // Inicia com a paginação escondida.
     if (this.isEstudioPage() || this.isProjetosPage() ) {
       pagination.style.opacity = '1';
       pagination.style.display = 'flex';
