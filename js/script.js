@@ -2,6 +2,7 @@ import ScrollSuave from './modules/scroll-suave.js';
 import MenuMobile from './modules/menu-mobile.js';
 import MenuProjetos from './modules/menu-projetos.js';
 import ScrollAnima from './modules/scroll-anima.js';
+import HeaderAnimation from './modules/headerAnimation.js';
 import MySwiper from './modules/mySwiper.js';
 import HoverInteraction  from './modules/premios-content.js';
 import CarregaProjetos from './modules/carregaProjetos.js';
@@ -14,8 +15,22 @@ scrollSuave.init();
 const scrollAnima = new ScrollAnima('[data-anime="scroll"]');
 scrollAnima.init();
 
+
 const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]', '[data-menu="logo"]', '[data-menu="email"]', '[data-menu="instagram"]');
 menuMobile.init();
+
+const elementsToAnimate = [
+    document.querySelector('.nav__button__home'),
+    document.querySelector('.menu__projetos'),
+    document.querySelector('.nav__button__mobile'),
+    document.querySelector('.nav__button__contato'),
+    document.querySelector('.nav__button__estudio'),
+    document.getElementById('botao-down'),
+    document.getElementById('botao-voltar'),
+    ].filter(element => element !== null); 
+    
+const headerAnim = new HeaderAnimation(elementsToAnimate, 400, 1200);
+headerAnim.animate();
 
 const menuProjetos = new MenuProjetos('[data-menu-projetos="button"]', '[data-menu-projetos="list"]');
 menuProjetos.init();
