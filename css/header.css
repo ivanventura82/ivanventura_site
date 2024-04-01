@@ -38,8 +38,8 @@
 
 .nav__button {
   position: fixed;
-  /* padding: 10px;
-  margin: -10px; */
+  padding: 10px;
+  margin: -10px;
   display: flex;
   align-items: center;
 }
@@ -154,6 +154,12 @@
 
 @media (max-width: 700px) {
 
+
+  .nav__button.nav__button__home {
+    top: var(--nav-b-mg1);
+    left: var(--nav-b-mg1);
+  }
+
   .nav__button__mobile {
     display: block;
     top: 0;
@@ -177,8 +183,7 @@
     bottom: 0;
     background: none; 
     border: none; 
-    padding: 10px; 
-    margin: 0; 
+    padding: 0.6rem; 
     width: auto; 
     cursor: pointer; 
     outline: none; 
@@ -192,8 +197,7 @@
     bottom: 0;
     background: none; 
     border: none; 
-    padding: 10px; 
-    margin: 0; 
+    padding: 0.6rem; 
     width: auto; 
     cursor: pointer; 
     outline: none; 
