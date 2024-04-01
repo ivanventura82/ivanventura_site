@@ -32,40 +32,6 @@
     color: var(--bg);
   }
   
-  /* #hamburguer {
-    width: 30px;
-    border-top: 2px solid var(--text);
-  }
-
-  #hamburguer.white-color {
-    width: 30px;
-    border-top: 2px solid var(--bg);
-  } 
-
-  #hamburguer::after,
-  #hamburguer::before {
-    content: "";
-    display: block;
-    width: 30px;
-    height: 2px;
-    background: currentColor;
-    margin-top: 5px;
-    position: relative;
-  }
-  
-  .js [data-menu="button"].active #hamburguer {
-    border-top: transparent;
-  }
-
-  .js [data-menu="button"].active #hamburguer::before {
-    transform: rotate(135deg);
-  }
-
-  .js [data-menu="button"].active #hamburguer::after {
-    transform: rotate(-135deg);
-    top: -7px;
-  } */
-
   #hamburguer {
     width: 30px;   
     height: 30px;    
@@ -99,17 +65,6 @@
   .js [data-menu="button"].active #hamburguer {
     background-color: var(--bg); 
   }
-
-  /* .js [data-menu="button"].active #hamburguer::before {
-    transform: rotate(135deg);
-    opacity: 1;
-  }
-
-  .js [data-menu="button"].active #hamburguer::after {
-    transform: rotate(-135deg);
-    top: -7px;
-    opacity: 1;
-  } */
 
   .js [data-menu="list"]  {
     display: none;
@@ -185,17 +140,23 @@
     animation-delay: 0.6s; /* Adjust the delay for the third item */
   }
 
-  .menu__mobile__footer {
+  .js [data-menu="email"]  {
     position: fixed;
+    display: block;
     bottom: 0;
     left: 0;
-    right: 0;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
     z-index: 99;
     padding: 10px;
-   
+    margin: 10px;
+  }
+
+  .js [data-menu="instagram"]  {
+    position: fixed;
+    display: block;
+    bottom: var(--nav-b-mg1);
+    right: var(--nav-b-mg1);
+    z-index: 99;
+    padding: 30px;
   }
 
   .menu__mobile__footer a {
@@ -203,7 +164,6 @@
   }
   
   .js [data-menu="email"].active {
-    display: block;
     opacity: 0;
     color: var(--bg);
     font: 400 1.085rem/1.2 "Inter", sans-serif;
@@ -212,7 +172,6 @@
     }
   
   .js [data-menu="instagram"].active  {
-    display: block;
     height: 31px;
     width: 31px;
     opacity: 0;
@@ -220,9 +179,6 @@
     animation-delay: 1.4s; /* Adjust the delay for the second link */
   }
 
-  .js [data-menu="arrow"].active  {
-    display: none;
-  }
 
   @keyframes fadeIn {
     from {
