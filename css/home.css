@@ -228,12 +228,12 @@
   }
 
   .swiper-pagination-bullet {
-    width: 30px;
+    width: 24px;
     height: 3px;
   }
 
   .swiper-pagination-bullet-active {
-    width: 40px; 
+    width: 36px; 
   }
   
   .main__title span {
@@ -245,7 +245,7 @@
     display: flex;
     column-gap: 10px;
     align-items: center;
-    column-gap: 4px;
+    column-gap: 6px;
   }
 
   .slide__title__arrow {
@@ -258,14 +258,14 @@
   
   .subtitle__part1, .subtitle__part2, .subtitle__part3 {
     color: var(--bg);
-    font: 2.4rem/1.2 "Inter", sans-serif;
+    font: 2.6rem/1.2 "Inter", sans-serif;
     margin: 0;
     display: block;
   }
   
   .slide-content  {
     width: 76vw;
-    margin-left: 1.2rem;
+    margin-left: 0.6rem;
     position: absolute;
     left: 0;
    }

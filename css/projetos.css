@@ -105,7 +105,7 @@
   .subtitle__part1.project__name {
     font: 4rem/1 "Inter", sans-serif;
     max-width: 20ch;
-    margin-left: 1.2rem;
+    margin-left: 0.6rem;
   }
 
   .bio__project ul {
