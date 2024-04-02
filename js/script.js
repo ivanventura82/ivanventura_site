@@ -29,7 +29,7 @@ const elementsToAnimate = [
     document.getElementById('botao-voltar'),
     ].filter(element => element !== null); 
     
-const headerAnim = new HeaderAnimation(elementsToAnimate, 400, 1200);
+const headerAnim = new HeaderAnimation(elementsToAnimate, 300, 1200);
 headerAnim.animate();
 
 const menuProjetos = new MenuProjetos('[data-menu-projetos="button"]', '[data-menu-projetos="list"]');

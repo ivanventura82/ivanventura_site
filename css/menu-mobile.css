@@ -32,6 +32,40 @@
     color: var(--bg);
   }
   
+  /* #hamburguer {
+    width: 30px;
+    border-top: 2px solid var(--text);
+  }
+
+  #hamburguer.white-color {
+    width: 30px;
+    border-top: 2px solid var(--bg);
+  } 
+
+  #hamburguer::after,
+  #hamburguer::before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: currentColor;
+    margin-top: 5px;
+    position: relative;
+  }
+  
+  .js [data-menu="button"].active #hamburguer {
+    border-top: transparent;
+  }
+
+  .js [data-menu="button"].active #hamburguer::before {
+    transform: rotate(135deg);
+  }
+
+  .js [data-menu="button"].active #hamburguer::after {
+    transform: rotate(-135deg);
+    top: -7px;
+  } */
+
   #hamburguer {
     width: 30px;   
     height: 30px;    
@@ -65,6 +99,17 @@
   .js [data-menu="button"].active #hamburguer {
     background-color: var(--bg); 
   }
+
+  /* .js [data-menu="button"].active #hamburguer::before {
+    transform: rotate(135deg);
+    opacity: 1;
+  }
+
+  .js [data-menu="button"].active #hamburguer::after {
+    transform: rotate(-135deg);
+    top: -7px;
+    opacity: 1;
+  } */
 
   .js [data-menu="list"]  {
     display: none;
@@ -140,45 +185,66 @@
     animation-delay: 0.6s; /* Adjust the delay for the third item */
   }
 
-  .js [data-menu="email"]  {
+  .menu__mobile__footer {
     position: fixed;
-    display: block;
     bottom: 0;
     left: 0;
+    right: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
     z-index: 99;
     padding: 10px;
-    margin: 10px;
-  }
-
-  .js [data-menu="instagram"]  {
-    position: fixed;
-    display: block;
-    bottom: var(--nav-b-mg1);
-    right: var(--nav-b-mg1);
-    z-index: 99;
-    padding: 30px;
+   
   }
 
   .menu__mobile__footer a {
     padding: 0;
   }
-  
-  .js [data-menu="email"].active {
-    opacity: 0;
-    color: var(--bg);
-    font: 400 1.085rem/1.2 "Inter", sans-serif;
-    animation: fadeIn 0.5s ease forwards;
-    animation-delay: 1.2s; /* Adjust the delay for the first link */
+
+  .js [data-menu="email"].active, .js [data-menu="email"].active {
+    display: none;
     }
   
   .js [data-menu="instagram"].active  {
+    background-image: url(/img/instagram.svg);
+    background-repeat: no-repeat;
+    background-size: auto;
+    display: block;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    padding: 1.2rem;
     height: 31px;
     width: 31px;
     opacity: 0;
     animation: fadeIn 0.5s ease forwards;
-    animation-delay: 1.4s; /* Adjust the delay for the second link */
+    animation-delay: 1.4s; 
   }
-
+  
+  .js [data-menu="email"].active {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 0.6rem;
+    margin: 0;
+    opacity: 0;
+    color: var(--bg);
+    font: 400 1.085rem/1.2 "Inter", sans-serif;
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: 1.2s; 
+    }
+  
+  .js [data-menu="instagram"].active  {
+    display: block;
+    height: 31px;
+    width: 31px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: 1.4s; 
+  }
 
   @keyframes fadeIn {
     from {
