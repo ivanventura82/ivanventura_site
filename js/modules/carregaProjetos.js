@@ -116,12 +116,13 @@ export default class CarregaProjetos {
             const slideContent = `
                 <div class="slide-content">
                     <a class="link__title" href="/projeto.html?datahash=${projeto.datahash}">
+                        
+                        <span class="subtitle__part2">${projeto.subtitulo1}</span>
+                        <span class="subtitle__part3">${projeto.subtitulo2}</span>
                         <div class="slide__title__link subtitle__part1">
                             <h2 class="slide__title">${projeto.title}</h2>
                             <img src="./img/logo-r.svg" class="slide__title__arrow" alt="Seta apontando para a direita, indicando link para a página do projeto.">
                         </div>
-                        <span class="subtitle__part2">${projeto.subtitulo1}</span>
-                        <span class="subtitle__part3">${projeto.subtitulo2}</span>
                     </a>
                 </div>
             `;
