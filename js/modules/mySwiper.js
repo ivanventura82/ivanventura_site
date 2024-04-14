@@ -1,4 +1,5 @@
 // Import Swiper and modules
+import gsap from 'gsap';
 import Swiper from 'swiper';
 import { Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation } from 'swiper/modules';
 import 'swiper/css';
@@ -91,12 +92,12 @@ export default class MySwiper {
       observer: true,
       observeParents: true,
       slidesPerView: 1,
-      preloadImages: false, // Desabilita o carregamento automático de todas as imagens
-      watchSlidesVisibility: true, // Assegura que o lazy loading considere a visibilidade dos slides
+      preloadImages: false,
+      watchSlidesVisibility: true,
       lazy: {
-        loadPrevNext: true, // Ativa o pré-carregamento das imagens dos slides adjacentes
-        loadPrevNextAmount: 3, // Altere este valor conforme necessário para pré-carregar mais slides
-        loadOnTransitionStart: true, // Garante que o carregamento comece assim que a transição iniciar
+        loadPrevNext: true,
+        loadPrevNextAmount: 3,
+        loadOnTransitionStart: true,
       },
       scrollbar: {
         el: '.swiper-scrollbar',
@@ -112,60 +113,161 @@ export default class MySwiper {
         clickable: true,
       },
       on: {
-        // animateSubtitleParts: function () {
-        // },       
-
-        slideChangeTransitionStart: function() {
-          carregarImagemDoProximoSlide(this);
-        },
-
+        slideChangeTransitionStart: this.handleSlideChangeStart.bind(this),
+        slideChangeTransitionEnd: this.handleSlideChangeEnd.bind(this),
         slideChange: this.slideChange.bind(this),
-        slideChangeTransitionStart: this.slideChangeTransitionStart.bind(this), 
-
-        slideChangeTransitionStart: function () {
-          // this.allowTouchMove = false; 
-        },
-  
-        slideChangeTransitionEnd: function () {
-          // this.allowTouchMove = true; 
-          let currentSlideIndex = this.realIndex;
-          if (currentSlideIndex === this.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
-            const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
-            const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-        
-            // Correção aplicada aqui: garantindo que 'el' é definido como o elemento atual do loop
-            menuElements.forEach((el) => {
-                el.classList.remove('white-color');
-            });
-        
-            paginationBullets.forEach((bullet) => {
-                bullet.classList.add('black');
-            });
-          }
-        },
-
-        init: () => {
-          // This code runs after the Swiper instance is initialized
-          if (this.isEstudioPage()) {
-              const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-              paginationBullets.forEach(bullet => bullet.classList.add('black'));
-          }
-        // Este código é executado após a instância do Swiper ser inicializada
-          if (!this.isNotIndexPage()) { // Se for a página index
-            this.applyDisplayNoneToFirstBullet();
-          }
-        },
+        init: this.handleSwiperInit.bind(this),
       },
     });
-    
-    this.allSlides = Array.from(document.querySelectorAll('.swiper-slide'));
-    this.allMenuItems = Array.from(document.querySelectorAll('.project-menu-item'));
 
-    this.setupFilterLinks();
- 
     console.log("Swiper inicializado:", this.swiper);
-    document.dispatchEvent(new CustomEvent('SwiperReady')); // Dispara um evento indicando que o Swiper está pronto
+    document.dispatchEvent(new CustomEvent('SwiperReady')); // Event indicating Swiper is ready
+}
+
+  handleSwiperInit() {
+    console.log("Swiper instance initialization complete.");
+
+    if (this.isEstudioPage()) {
+      const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
+      paginationBullets.forEach(bullet => bullet.classList.add('black'));
+    }
+    if (!this.isNotIndexPage()) { // Assuming this method checks if it's not the index page
+      this.applyDisplayNoneToFirstBullet();
+    }
+
+    this.animateInitialLoad()
+
   }
+
+
+  handleSlideChangeStart() {
+    let currentSlide = this.swiper.slides[this.swiper.activeIndex];
+    this.clearSlideAnimations(currentSlide); // Limpeza opcional de animações anteriores
+    this.animateSlideElements(currentSlide); // Inicia a animação dos elementos
+    this.clearImageAnimations(currentSlide); // Limpeza opcional de animações anteriores
+    this.animateSlideImage(currentSlide); 
+}
+
+  handleSlideChangeEnd() {
+
+    let currentSlideIndex = this.swiper.realIndex;
+    if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
+      this.updateUIForLastSlide();
+    }
+    // let currentSlide = this.swiper.slides[this.swiper.activeIndex];
+    // this.clearImageAnimations(currentSlide); // Limpeza opcional de animações anteriores
+    // this.animateSlideImage(currentSlide); 
+
+  }
+
+  animateSlideElements(slide) {
+    const subtitle1 = slide.querySelector('.subtitle__part2');
+    const subtitle2 = slide.querySelector('.subtitle__part3');
+    const titleLinkDiv = slide.querySelector('.slide__title__link');
+
+      // Verificação se os elementos existem antes de prosseguir com a animação
+      if (!subtitle1 || !subtitle2 || !titleLinkDiv) {
+        return; // Interrompe a execução da função se algum elemento for null
+    }
+
+    gsap.set([titleLinkDiv, subtitle1, subtitle2], {opacity: 0, y: 20});
+// Exemplo simples de parallax para quando o slide entra em foco
+// Certifique-se de que seu CSS inclua `filter: blur(5px);` inicialmente na `.slide-background-img`
+
+    const tl = gsap.timeline({defaults: {duration: 0.4, ease: "power2.out"}});
+
+    tl.to(subtitle1, {opacity: 1, y: 0}, "+=0.3")  // Certifique-se de adicionar um pequeno delay se necessário
+      .to(subtitle2, {opacity: 1, y: 0})
+      .to(titleLinkDiv, {opacity: 1, y: 0});
+}
+
+  animateSlideImage(slide) {
+    const bgImage = slide.querySelector('.slide-background-img');
+    if (!bgImage) {
+      return; // Interrompe a execução da função se o elemento for null
+    }
+
+    gsap.fromTo(bgImage, {scale: 1}, {scale: 1.05, duration: 1.5, ease: 'power2.inOut'});
+  }
+
+
+  clearSlideAnimations(slide) {
+    const elements = slide.querySelectorAll('.slide__title, .slide__title__arrow, .subtitle__part2, .subtitle__part3');
+    elements.forEach(el => {
+      gsap.set(el, { clearProps: "all" });
+    });
+  }
+
+  clearImageAnimations(slide) {
+    const bgImage = slide.querySelector('.slide-background-img');
+    if (!bgImage) {
+      return; // Interrompe a execução se o elemento for null
+  }
+    gsap.set(bgImage, { clearProps: "scale" });
+}
+
+
+  carregarImagemDoProximoSlide(swiper) {
+    // Obter o índice do próximo slide
+    let proximoSlideIndex = swiper.realIndex + 1;
+    
+    // Ajustar caso seja o último slide e você queira voltar ao início
+    if (proximoSlideIndex >= swiper.slides.length) {
+        proximoSlideIndex = 0;
+    }
+
+    // Obter o próximo slide usando o índice
+    const proximoSlide = swiper.slides[proximoSlideIndex];
+    
+    // Encontrar todas as imagens dentro do próximo slide com data-src
+    const imagensLazy = proximoSlide.querySelectorAll('img[data-src]');
+    
+    // Alterar data-src para src para cada imagem
+    imagensLazy.forEach(img => {
+        const src = img.getAttribute('data-src');
+        if (src) {
+            img.setAttribute('src', src);
+            img.removeAttribute('data-src'); // Opcional: remover o atributo data-src após o carregamento
+        }
+    });
+  }
+
+  animateInitialLoad() {
+    // Selecionar elementos
+    const titles = document.querySelectorAll('.main__title span');
+    const buttons = document.querySelectorAll('.nav__button');
+
+    // Configurações iniciais para os elementos
+    gsap.set(titles, {opacity: 0, y: 400}); // Começam mais abaixo na página
+    gsap.set(buttons, {opacity: 0, y: 0}); // Pronto para animar de baixo para cima
+
+    // Timeline para animações
+    const tl = gsap.timeline({defaults: {ease: "power2.out"}});
+
+    // Animar títulos em sequência
+    titles.forEach(title => {
+        tl.to(title, {opacity: 1, y: 360, duration: 0.8, }, "+=0.1");
+    });
+
+    // Após a animação completa dos títulos, mover para uma posição um pouco acima
+    tl.to(titles, {y: 0, duration: 0.5, stagger: 0.1});
+
+    // Animar botões de navegação todos juntos, após completar a animação dos títulos
+    tl.to(buttons, {opacity: 1, y: 0, duration: 0.5, stagger: 0.1}, "+=0.5");
+}
+
+
+
+  
+  updateUIForLastSlide() {
+    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
+    const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
+  
+    menuElements.forEach(el => el.classList.remove('white-color'));
+    paginationBullets.forEach(bullet => bullet.classList.add('black'));
+  }
+  
+
 
   initializeSwiper2() {
     // Lógica para inicializar swiper2 aqui
@@ -203,33 +305,10 @@ export default class MySwiper {
     });
   }
 
-  carregarImagemDoProximoSlide(swiper) {
-    // Obter o índice do próximo slide
-    let proximoSlideIndex = swiper.realIndex + 1;
-    
-    // Ajustar caso seja o último slide e você queira voltar ao início
-    if (proximoSlideIndex >= swiper.slides.length) {
-        proximoSlideIndex = 0;
-    }
 
-    // Obter o próximo slide usando o índice
-    const proximoSlide = swiper.slides[proximoSlideIndex];
-    
-    // Encontrar todas as imagens dentro do próximo slide com data-src
-    const imagensLazy = proximoSlide.querySelectorAll('img[data-src]');
-    
-    // Alterar data-src para src para cada imagem
-    imagensLazy.forEach(img => {
-        const src = img.getAttribute('data-src');
-        if (src) {
-            img.setAttribute('src', src);
-            img.removeAttribute('data-src'); // Opcional: remover o atributo data-src após o carregamento
-        }
-    });
-  }
 
   isEstudioPage() {
-    return window.location.pathname.endsWith('estudio');
+    return window.location.pathname.includes('/estudio.html');
   }
 
   isProjetosPage() {
