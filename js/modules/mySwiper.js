@@ -8,7 +8,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/effect-cards';
 import 'swiper/css/mousewheel';
-// import 'swiper/css/hash-navigation';
 
 export default class MySwiper {
   constructor(carregaProjetosInstance = null) {
