@@ -89,7 +89,7 @@ export default class CarregaPaginaProjeto {
 
     const mainTitle = document.createElement('h1');
     mainTitle.className = 'main__title';
-    mainTitle.innerHTML = `<span class="subtitle__part1 project__name">${projeto.title}</span>`;
+    mainTitle.innerHTML = `<span class="project__name">${projeto.title}</span>`;
 
     slideContentProject.appendChild(mainTitle);
     slideContentPosition.appendChild(slideContentProject);

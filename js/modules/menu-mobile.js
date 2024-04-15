@@ -18,6 +18,7 @@ export default class MenuMobile {
   }
 
   openMenu(event) {
+    this.menuOpened = true; // Flag de controle
     console.log('Menu button clicked');
     if (this.menuButton.contains(event.target)) {
       event.preventDefault();
@@ -37,6 +38,7 @@ export default class MenuMobile {
   }
 
   closeMenu() {
+    this.menuOpened = false; // Resetar a flag
     console.log('Closing menu');
     this.menuList.classList.remove(this.activeClass);
     this.menuButton.classList.remove(this.activeClass);

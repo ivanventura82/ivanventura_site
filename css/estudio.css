@@ -300,7 +300,7 @@
 @media (max-width: 800px) {
 
   .slide-content.studio {
-    margin: 0 18px;
+    margin: 0 12px;
   }
 
   .estudio__onde {
@@ -324,7 +324,7 @@
 
   .texto__ivan p {
     margin-bottom: 0.6rem;
-    font: 300 1rem/1 "Inter", sans-serif;
+    font: 300 0.9rem/1.1 "Inter", sans-serif;
     margin-left: 0;
   }
   
