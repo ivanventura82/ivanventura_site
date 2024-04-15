@@ -267,8 +267,6 @@ export default class MySwiper {
     paginationBullets.forEach(bullet => bullet.classList.add('black'));
   }
   
-
-
   initializeSwiper2() {
     // Lógica para inicializar swiper2 aqui
     this.swiper2 = new Swiper(".mySwiper2", {
@@ -304,8 +302,6 @@ export default class MySwiper {
       },
     });
   }
-
-
 
   isEstudioPage() {
     return window.location.pathname.includes('/estudio.html');
