@@ -153,10 +153,6 @@ export default class MySwiper {
     if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
       this.updateUIForLastSlide();
     }
-    // let currentSlide = this.swiper.slides[this.swiper.activeIndex];
-    // this.clearImageAnimations(currentSlide); // Limpeza opcional de animações anteriores
-    // this.animateSlideImage(currentSlide); 
-
   }
 
   animateSlideElements(slide) {
@@ -170,15 +166,15 @@ export default class MySwiper {
     }
 
     gsap.set([titleLinkDiv, subtitle1, subtitle2], {opacity: 0, y: 20});
-// Exemplo simples de parallax para quando o slide entra em foco
-// Certifique-se de que seu CSS inclua `filter: blur(5px);` inicialmente na `.slide-background-img`
+    // Exemplo simples de parallax para quando o slide entra em foco
+    // Certifique-se de que seu CSS inclua `filter: blur(5px);` inicialmente na `.slide-background-img`
 
     const tl = gsap.timeline({defaults: {duration: 0.4, ease: "power2.out"}});
 
     tl.to(subtitle1, {opacity: 1, y: 0}, "+=0.3")  // Certifique-se de adicionar um pequeno delay se necessário
       .to(subtitle2, {opacity: 1, y: 0})
       .to(titleLinkDiv, {opacity: 1, y: 0});
-}
+  }
 
   animateSlideImage(slide) {
     const bgImage = slide.querySelector('.slide-background-img');
@@ -233,31 +229,55 @@ export default class MySwiper {
 
   animateInitialLoad() {
     // Selecionar elementos
-    const titles = document.querySelectorAll('.main__title span');
-    const buttons = document.querySelectorAll('.nav__button');
+    const subtitle1 = document.querySelector('.subtitle__part1');
+    const subtitle2 = document.querySelector('.subtitle__part2');
+    const subtitle3 = document.querySelector('.subtitle__part3');
+
+    const botaoLogo = document.querySelector('.nav__button__home');
+    const botaoProjetos = document.querySelector('.menu__projetos');
+    const botaoMobile = document.querySelector('.nav__button__mobile');
+    const botaoEstudio = document.querySelector('.nav__button__estudio');
+    const botaoContato = document.querySelector('.nav__button__contato');
+    const botaoDown = document.getElementById('botao-down');
+    const botaoVoltar = document.getElementById('botao-voltar');
+
+    // Coletar todos os botões em um array, excluindo quaisquer elementos nulos
+    const buttons = [botaoLogo, botaoProjetos, botaoMobile, botaoEstudio, botaoContato, botaoDown, botaoVoltar].filter(btn => btn !== null);
 
     // Configurações iniciais para os elementos
-    gsap.set(titles, {opacity: 0, y: 400}); // Começam mais abaixo na página
-    gsap.set(buttons, {opacity: 0, y: 0}); // Pronto para animar de baixo para cima
+    const subtitles = [subtitle1, subtitle2, subtitle3].filter(sub => sub !== null);
+    gsap.set(subtitles, {opacity: 0, y: 400});
+    gsap.set(buttons, {opacity: 0, y: 0});
+
+    // Verificar se existem subtítulos e botões antes de prosseguir
+    if (subtitles.length === 0 || buttons.length === 0) {
+        console.error('Required elements not found');
+        return; // Encerra a função se não houver elementos suficientes
+    }
 
     // Timeline para animações
     const tl = gsap.timeline({defaults: {ease: "power2.out"}});
 
-    // Animar títulos em sequência
-    titles.forEach(title => {
-        tl.to(title, {opacity: 1, y: 360, duration: 0.8, }, "+=0.1");
+    // Animar subtítulos em sequência
+    subtitles.forEach(subtitle => {
+        tl.to(subtitle, {opacity: 1, y: 360, duration: 0.8}, "+=0.1");
     });
 
-    // Após a animação completa dos títulos, mover para uma posição um pouco acima
-    tl.to(titles, {y: 0, duration: 0.5, stagger: 0.1});
+    // Após a animação completa dos subtítulos, mover para uma posição um pouco acima
+    tl.to(subtitles, {y: 0, duration: 0.5, stagger: 0.1});
 
-    // Animar botões de navegação todos juntos, após completar a animação dos títulos
-    tl.to(buttons, {opacity: 1, y: 0, duration: 0.5, stagger: 0.1}, "+=0.5");
+    // Animar botões de navegação todos juntos, após completar a animação dos subtítulos
+    tl.to(buttons, {opacity: 1, y: 0, duration: 0.5, stagger: 0.1}, "+=0.1");
 }
 
 
 
-  
+
+
+
+
+
+
   updateUIForLastSlide() {
     const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
     const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');

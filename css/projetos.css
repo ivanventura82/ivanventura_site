@@ -96,16 +96,17 @@
 
   .bio__project, .detalhes__project {
    justify-content: center;
-   gap: 40px;
+   gap: 20px;
    width: 78vw;
    margin-left: 1rem;
    margin-top: 40px;
   }
 
-  .subtitle__part1.project__name {
+  .project__name {
     font: 4rem/1 "Inter", sans-serif;
     max-width: 20ch;
     margin-left: 0.6rem;
+    color: var(--bg);
   }
 
   .bio__project ul {
