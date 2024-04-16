@@ -133,11 +133,9 @@ export default class MySwiper {
     if (!this.isNotIndexPage()) { // Assuming this method checks if it's not the index page
       this.applyDisplayNoneToFirstBullet();
     }
-
-    this.animateInitialLoad()
-
+    this.animateSubtitles();
+    this.animateButtons();
   }
-
 
   handleSlideChangeStart() {
     let currentSlide = this.swiper.slides[this.swiper.activeIndex];
@@ -145,7 +143,7 @@ export default class MySwiper {
     this.animateSlideElements(currentSlide); // Inicia a animação dos elementos
     this.clearImageAnimations(currentSlide); // Limpeza opcional de animações anteriores
     this.animateSlideImage(currentSlide); 
-}
+  }
 
   handleSlideChangeEnd() {
 
@@ -153,6 +151,56 @@ export default class MySwiper {
     if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
       this.updateUIForLastSlide();
     }
+  }
+
+  selectSubtitles() {
+    // Selecionar elementos
+    const subtitle1 = document.querySelector('.subtitle__part1');
+    const subtitle2 = document.querySelector('.subtitle__part2');
+    const subtitle3 = document.querySelector('.subtitle__part3');
+  
+    return [subtitle1, subtitle2, subtitle3].filter(sub => sub !== null);
+  }
+  
+  selectButtons() {
+    const botaoLogo = document.querySelector('.nav__button__home');
+    const botaoProjetos = document.querySelector('.menu__projetos');
+    const botaoMobile = document.querySelector('.nav__button__mobile');
+    const botaoEstudio = document.querySelector('.nav__button__estudio');
+    const botaoContato = document.querySelector('.nav__button__contato');
+    const botaoDown = document.getElementById('botao-down');
+    const botaoVoltar = document.getElementById('botao-voltar');
+  
+    return [botaoLogo, botaoProjetos, botaoMobile, botaoEstudio, botaoContato, botaoDown, botaoVoltar].filter(btn => btn !== null);
+  }
+  
+  animateSubtitles() {
+    const subtitles = this.selectSubtitles();
+    gsap.set(subtitles, {opacity: 0, y: 400});
+  
+    if (subtitles.length === 0) {
+        console.error('Required subtitle elements not found');
+        return; // Encerra a função se não houver elementos suficientes
+    }
+  
+    const tl = gsap.timeline({defaults: {ease: "power2.out"}});
+    subtitles.forEach(subtitle => {
+        tl.to(subtitle, {opacity: 1, y: "30vh", duration: 0.5}, "+=0.1");
+    });
+    tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
+  }
+  
+  animateButtons() {
+    const buttons = this.selectButtons();
+    gsap.set(buttons, {opacity: 0, y: 0});
+  
+    if (buttons.length === 0) {
+        console.error('Required button elements not found');
+        return; // Encerra a função se não houver elementos suficientes
+    }
+  
+    const tl = gsap.timeline({defaults: {ease: "power2.out"}, delay: 2});
+    tl.to(buttons, {opacity: 1, y: 0, duration: 0.3, stagger: 0.1}, "+=0.1");
   }
 
   animateSlideElements(slide) {
@@ -185,7 +233,6 @@ export default class MySwiper {
     gsap.fromTo(bgImage, {scale: 1}, {scale: 1.05, duration: 1.5, ease: 'power2.inOut'});
   }
 
-
   clearSlideAnimations(slide) {
     const elements = slide.querySelectorAll('.slide__title, .slide__title__arrow, .subtitle__part2, .subtitle__part3');
     elements.forEach(el => {
@@ -199,8 +246,7 @@ export default class MySwiper {
       return; // Interrompe a execução se o elemento for null
   }
     gsap.set(bgImage, { clearProps: "scale" });
-}
-
+  }
 
   carregarImagemDoProximoSlide(swiper) {
     // Obter o índice do próximo slide
@@ -226,57 +272,6 @@ export default class MySwiper {
         }
     });
   }
-
-  animateInitialLoad() {
-    // Selecionar elementos
-    const subtitle1 = document.querySelector('.subtitle__part1');
-    const subtitle2 = document.querySelector('.subtitle__part2');
-    const subtitle3 = document.querySelector('.subtitle__part3');
-
-    const botaoLogo = document.querySelector('.nav__button__home');
-    const botaoProjetos = document.querySelector('.menu__projetos');
-    const botaoMobile = document.querySelector('.nav__button__mobile');
-    const botaoEstudio = document.querySelector('.nav__button__estudio');
-    const botaoContato = document.querySelector('.nav__button__contato');
-    const botaoDown = document.getElementById('botao-down');
-    const botaoVoltar = document.getElementById('botao-voltar');
-
-    // Coletar todos os botões em um array, excluindo quaisquer elementos nulos
-    const buttons = [botaoLogo, botaoProjetos, botaoMobile, botaoEstudio, botaoContato, botaoDown, botaoVoltar].filter(btn => btn !== null);
-
-    // Configurações iniciais para os elementos
-    const subtitles = [subtitle1, subtitle2, subtitle3].filter(sub => sub !== null);
-    gsap.set(subtitles, {opacity: 0, y: 400});
-    gsap.set(buttons, {opacity: 0, y: 0});
-
-    // Verificar se existem subtítulos e botões antes de prosseguir
-    if (subtitles.length === 0 || buttons.length === 0) {
-        console.error('Required elements not found');
-        return; // Encerra a função se não houver elementos suficientes
-    }
-
-    // Timeline para animações
-    const tl = gsap.timeline({defaults: {ease: "power2.out"}});
-
-    // Animar subtítulos em sequência
-    subtitles.forEach(subtitle => {
-        tl.to(subtitle, {opacity: 1, y: 360, duration: 0.8}, "+=0.1");
-    });
-
-    // Após a animação completa dos subtítulos, mover para uma posição um pouco acima
-    tl.to(subtitles, {y: 0, duration: 0.5, stagger: 0.1});
-
-    // Animar botões de navegação todos juntos, após completar a animação dos subtítulos
-    tl.to(buttons, {opacity: 1, y: 0, duration: 0.5, stagger: 0.1}, "+=0.1");
-}
-
-
-
-
-
-
-
-
 
   updateUIForLastSlide() {
     const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
@@ -797,6 +792,26 @@ export default class MySwiper {
     return this.swiper;
   }
 }
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
  
 
 
