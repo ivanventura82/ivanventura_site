@@ -2,7 +2,7 @@ import ScrollSuave from './modules/scroll-suave.js';
 import MenuMobile from './modules/menu-mobile.js';
 import MenuProjetos from './modules/menu-projetos.js';
 import ScrollAnima from './modules/scroll-anima.js';
-import HeaderAnimation from './modules/headerAnimation.js';
+// import HeaderAnimation from './modules/headerAnimation.js';
 import MySwiper from './modules/mySwiper.js';
 import HoverInteraction  from './modules/premios-content.js';
 import CarregaProjetos from './modules/carregaProjetos.js';
@@ -29,8 +29,8 @@ const elementsToAnimate = [
     document.getElementById('botao-voltar'),
     ].filter(element => element !== null); 
     
-const headerAnim = new HeaderAnimation(elementsToAnimate, 300, 1200);
-headerAnim.animate();
+// const headerAnim = new HeaderAnimation(elementsToAnimate, 300, 1200);
+// headerAnim.animate();
 
 const menuProjetos = new MenuProjetos('[data-menu-projetos="button"]', '[data-menu-projetos="list"]');
 menuProjetos.init();

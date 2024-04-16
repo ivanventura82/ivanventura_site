@@ -1,3 +1,5 @@
+import gsap from 'gsap';
+
 export default class CarregaPaginaProjeto {
     constructor(jsonURL, mySwiperInstance) {
         this.jsonURL = jsonURL;
@@ -25,28 +27,8 @@ export default class CarregaPaginaProjeto {
           // Chama o método para adicionar o slide final
     }
 
-    // criarSlides(projeto) {
-    //     const swiperWrapper = document.querySelector('.swiper-wrapper');
-    //     swiperWrapper.innerHTML = ''; // Limpa os slides existentes
-        
-
-    //     // Cria o slide com o título e a imagem de fundo
-    //     swiperWrapper.innerHTML += `
-    //     <div class="swiper-slide lazy-background com-imagem-de-fundo" 
-    //     data-hash="${projeto.datahash}" 
-    //     data-imagem1="${projeto.imagem1}" 
-    //     data-bg="./img/${projeto.datahash}/${projeto.imagem1}.webp" 
-    //     data-bg-mobile="./img/${projeto.datahash}/mobile/${projeto.imagem1}-mobile.webp"
-    //     style="background-color:#f8f8f8;">
-
-
-    //     <div class="slide-content-position">
-    //                 <div class="slide-content-project">
-    //                     <h1 class="main__title"><span class="subtitle__part1 project__name">${projeto.title}</span></h1>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     `;
+ 
+    
 
     criarSlides(projeto) {
     const swiperWrapper = document.querySelector('.swiper-wrapper');
@@ -89,7 +71,7 @@ export default class CarregaPaginaProjeto {
 
     const mainTitle = document.createElement('h1');
     mainTitle.className = 'main__title';
-    mainTitle.innerHTML = `<span class="project__name">${projeto.title}</span>`;
+    mainTitle.innerHTML = `<span class="subtitle__part1 project__name">${projeto.title}</span>`;
 
     slideContentProject.appendChild(mainTitle);
     slideContentPosition.appendChild(slideContentProject);
@@ -199,47 +181,7 @@ export default class CarregaPaginaProjeto {
         document.dispatchEvent(new CustomEvent('slideDetalhesCriado'));
       }
 
-    //   criarSlideDetalhes(projeto) {
-    //     // Verifica se projeto.detalhes é um array e tem itens
-    //     if (!Array.isArray(projeto.detalhes) || !projeto.detalhes.length) {
-    //       // Se não for um array ou estiver vazio, apenas atualiza o Swiper e Lazy Loader e retorna
-    //       this.atualizarSwiperELazyLoader();
-    //       return;
-    //     }
-      
-    //     const swiperWrapper = document.querySelector('.swiper-wrapper');
-      
-    //     // Inicia o HTML do slide de detalhes
-    //     let slideDetalhesHtml = `
-    //       <div class="swiper-slide" data-hash="ficha-tecnica" style="background-color: #f8f8f8">
-    //         <div class="slide-content-position">
-    //           <div class="slide-content-project">
-    //             <div class="detalhes__project">
-    //               <ul>`;
-      
-    //     // Itera sobre os detalhes do projeto para adicionar cada item na lista
-    //     projeto.detalhes.forEach(detalhe => {
-    //       slideDetalhesHtml += `<li>${detalhe.titulo}: <strong>${detalhe.valor}</strong></li>`;
-    //     });
-      
-    //     // Finaliza o HTML do slide de detalhes
-    //     slideDetalhesHtml += `
-    //               </ul>
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>`;
-      
-    //     // Adiciona o slide de detalhes ao swiper
-    //     swiperWrapper.innerHTML += slideDetalhesHtml;
-        
-    //     // Atualiza o Swiper e Lazy Loader independentemente
-    //     this.atualizarSwiperELazyLoader();  
-    //       // Após atualizar o Swiper, chame a função para modificar elementos externos
-    //     this.modificarElementosExternos();
-
-
-    //   }
+ 
 
     criarBotaoVoltar() {
         const botaoVoltar = document.getElementById('botao-voltar');
@@ -254,32 +196,6 @@ export default class CarregaPaginaProjeto {
             });
         }
       }
-      
-
-    //   atualizarImagemDeFundo() {
-    //     // Seleciona todos os elementos .swiper-slide
-    //     const slides = document.querySelectorAll('.swiper-slide.com-imagem-de-fundo');
-    
-    //     slides.forEach(slide => {
-    //         const datahash = slide.getAttribute('data-hash');
-    //         let imagePath;
-    
-    //         // Verifica a largura da tela para definir o caminho da imagem
-    //         if (window.innerWidth <= 768) {
-    //             // Caminho para imagens otimizadas para mobile
-    //             // Certifique-se de que projeto.imagem1 está definido e possui um valor válido
-    //             imagePath = `./img/${datahash}/mobile/${slide.getAttribute('data-imagem1')}-mobile.webp`;
-    //         } else {
-    //             // Caminho para imagens otimizadas para desktop
-    //             imagePath = `./img/${datahash}/${slide.getAttribute('data-imagem1')}.webp`;
-    //         }
-    
-    //         // Atualiza o estilo de fundo do slide, se aplicável
-    //         slide.style.backgroundImage = `url('${imagePath}')`;
-    //     });
-    // }
-
-      // Função dedicada para atualizar Swiper e Lazy Loader
       
       atualizarSwiperELazyLoader() {
         this.mySwiper.update();

@@ -182,7 +182,7 @@
     color: #B4B4B4;
     text-align: left;  
     margin: 0;
-    animation-delay: 0.6s; /* Adjust the delay for the third item */
+    animation-delay: 0.6s; 
   }
 
   .menu__mobile__footer {
