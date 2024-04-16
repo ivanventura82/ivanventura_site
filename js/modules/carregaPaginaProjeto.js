@@ -1,5 +1,3 @@
-import gsap from 'gsap';
-
 
 // export default class CarregaPaginaProjeto {
 //     constructor(jsonURL, mySwiperInstance) {
@@ -206,7 +204,7 @@ import gsap from 'gsap';
 //       }
 // }
 
-
+import gsap from 'gsap';
 
 export default class CarregaPaginaProjeto {
     constructor(jsonURL, mySwiperInstance) {
