@@ -8,6 +8,11 @@
   z-index: 2;
 }
 
+li span {
+  white-space: nowrap; /* Isso evita quebra de linha e espaço indesejado */
+}
+
+
 .subtitle__part1.project__name {
   color: var(--bg);
   font: 10rem/1 "Inter", sans-serif;

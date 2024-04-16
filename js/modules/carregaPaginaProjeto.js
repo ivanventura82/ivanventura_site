@@ -213,7 +213,6 @@ export default class CarregaPaginaProjeto {
         this.jsonURL = jsonURL;
         this.mySwiper = mySwiperInstance; // Referência à instância do Swiper
         this.slideDetalhesCriado = false; // Estado para rastrear a criação do slide de detalhes
-
     }
 
     carregarConteudo(datahash) {
@@ -259,7 +258,6 @@ export default class CarregaPaginaProjeto {
         swiperWrapper.innerHTML = ''; // Limpa os slides existentes
     }
 
-    // Cria o slide principal com uma imagem de fundo e título
     criarSlidePrincipal(projeto) {
         const slideElement = document.createElement('div');
         slideElement.className = 'swiper-slide com-imagem-de-fundo';
@@ -344,17 +342,23 @@ export default class CarregaPaginaProjeto {
         propriedadesBio.forEach(propriedade => {
             if (projeto[propriedade]) {
                 const li = document.createElement('li');
-                li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span>: <strong>${projeto[propriedade]}</strong>`;
+                li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${projeto[propriedade]}</strong>`;
                 ul.appendChild(li);
             }
         });
 
+        const descricao = document.createElement('p');
+        descricao.textContent = projeto.description;
+
+
         bioProject.appendChild(ul);
+        bioProject.appendChild(descricao); // Adiciona a descrição ao projeto
         slideContentProject.appendChild(bioProject);
         slideContentPosition.appendChild(slideContentProject);
         slideElement.appendChild(slideContentPosition);
         return slideElement;
     }
+
 
     criarSlideSecundario(projeto, slide) {
         const slideElement = document.createElement('div');
@@ -398,7 +402,6 @@ export default class CarregaPaginaProjeto {
         return image;
     }
     
-
     criarSlideDetalhes(projeto) {
         const swiperWrapper = document.querySelector('.swiper-wrapper');
 
@@ -438,8 +441,6 @@ export default class CarregaPaginaProjeto {
         this.mySwiper.update();
     }
 
-  
-    // Adiciona um botão de retorno ao projeto
     criarBotaoVoltar() {
         const botaoVoltar = document.getElementById('botao-voltar');
         if (botaoVoltar) {
