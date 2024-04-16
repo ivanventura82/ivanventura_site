@@ -137,6 +137,7 @@ export default class MySwiper {
     this.animateButtons();
   }
 
+
   handleSlideChangeStart() {
     let currentSlide = this.swiper.slides[this.swiper.activeIndex];
     this.clearSlideAnimations(currentSlide); // Limpeza opcional de animações anteriores
@@ -178,10 +179,9 @@ export default class MySwiper {
     const subtitles = this.selectSubtitles();
     gsap.set(subtitles, {opacity: 0, y: 400});
   
-    if (subtitles.length === 0) {
-        console.error('Required subtitle elements not found');
-        return; // Encerra a função se não houver elementos suficientes
-    }
+    // if (subtitles.length === 0) {
+    //     return; // Encerra a função se não houver elementos suficientes
+    // }
   
     const tl = gsap.timeline({defaults: {ease: "power2.out"}});
     subtitles.forEach(subtitle => {

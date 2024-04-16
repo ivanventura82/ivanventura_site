@@ -1,4 +1,4 @@
-import ScrollSuave from './modules/scroll-suave.js';
+// import ScrollSuave from './modules/scroll-suave.js';
 import MenuMobile from './modules/menu-mobile.js';
 import MenuProjetos from './modules/menu-projetos.js';
 import ScrollAnima from './modules/scroll-anima.js';
@@ -9,8 +9,8 @@ import CarregaProjetos from './modules/carregaProjetos.js';
 import CarregaPaginaProjeto from './modules/carregaPaginaProjeto.js';
 import LazyLoader from './modules/lazyloader.js';
 
-const scrollSuave = new ScrollSuave('[data-menu="suave"] a[href^="#"]');
-scrollSuave.init();
+// const scrollSuave = new ScrollSuave('[data-menu="suave"] a[href^="#"]');
+// scrollSuave.init();
 
 const scrollAnima = new ScrollAnima('[data-anime="scroll"]');
 scrollAnima.init();
