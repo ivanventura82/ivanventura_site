@@ -227,6 +227,12 @@ export default class CarregaPaginaProjeto {
             .catch(error => console.error("Erro ao carregar o conteúdo do projeto:", error));
     }
 
+
+    limparSlidesExistentes() {
+        const swiperWrapper = document.querySelector('.swiper-wrapper');
+        swiperWrapper.innerHTML = ''; // Limpa os slides existentes
+    }
+
     processarProjeto(projeto) {
         this.limparSlidesExistentes();
         const swiperWrapper = document.querySelector('.swiper-wrapper');
@@ -234,57 +240,99 @@ export default class CarregaPaginaProjeto {
         // Criar e adicionar o slide principal primeiro
         const slidePrincipal = this.criarSlidePrincipal(projeto);
         swiperWrapper.appendChild(slidePrincipal);
-
+        this.animarSlide(slidePrincipal);  // Aplica a animação apenas ao primeiro slide
+    
         // Criar e adicionar o slide bio como segundo slide
         const slideBio = this.criarSlideBio(projeto);
         swiperWrapper.appendChild(slideBio);
-
+    
         // Criar e adicionar os slides secundários
         projeto.slides.forEach(slide => {
             swiperWrapper.appendChild(this.criarSlideSecundario(projeto, slide));
         });
-
+    
         // Adicionar slides de detalhes, se houver
         this.criarSlideDetalhes(projeto);
         this.criarBotaoVoltar();
-
+    
         this.mySwiper.update(); // Atualiza o Swiper após todos os slides serem adicionados
     }
-
-    limparSlidesExistentes() {
-        const swiperWrapper = document.querySelector('.swiper-wrapper');
-        swiperWrapper.innerHTML = ''; // Limpa os slides existentes
-    }
-
+  
     criarSlidePrincipal(projeto) {
         const slideElement = document.createElement('div');
         slideElement.className = 'swiper-slide com-imagem-de-fundo';
-        slideElement.style.backgroundColor = '#f8f8f8';
-        slideElement.appendChild(this.criarElementoImagem(projeto));
+        slideElement.style.backgroundColor = '#000000';
+    
+        // Cortina Preta para animação
+        const blackCurtain = document.createElement('div');
+        blackCurtain.style.position = 'absolute';
+        blackCurtain.style.left = 0;
+        blackCurtain.style.top = 0;
+        blackCurtain.style.width = '100%';
+        blackCurtain.style.height = '100%';
+        blackCurtain.style.backgroundColor = '#1c1c1c';
+        blackCurtain.style.transform = 'translateX(-100%)';
+        slideElement.appendChild(blackCurtain);
+    
+        // Adiciona a imagem de fundo e o conteúdo do slide
+        const backgroundImage = this.criarElementoImagem(projeto);
+        slideElement.appendChild(backgroundImage);
         slideElement.appendChild(this.criarConteudoSlide(projeto.title));
+    
+        // Animação após a montagem completa do slide
+        requestAnimationFrame(() => {
+            this.animarSlide(slideElement, blackCurtain, backgroundImage);
+        });
+    
         return slideElement;
     }
 
+    
+    animarSlide(slideElement, blackCurtain, backgroundImage) {
+        const mainTitle = slideElement.querySelector('.main__title');
+    
+        // Animação da Cortina Preta
+        gsap.to(blackCurtain, {
+            x: '100%',
+            duration: 1,
+            ease: 'power2.inOut',
+            onComplete: () => {
+                if (blackCurtain && blackCurtain.style) {
+                    blackCurtain.style.display = 'none';
+                }
+            }
+        });
+    
+        // Animações de Zoom para a Imagem e Fade In para o Texto
+        gsap.fromTo(backgroundImage, {
+            scale: 1.1,
+            autoAlpha: 0
+        }, {
+            scale: 1,
+            autoAlpha: 1,
+            duration: 1.5,
+            ease: 'power2.out',
+            delay: 0.5
+        });
+    
+        // Animação para o título
+        gsap.fromTo(mainTitle, {
+            y: 30,
+            autoAlpha: 0
+        }, {
+            y: 0,
+            autoAlpha: 1,
+            duration: 1,
+            delay: 1,
+            ease: 'power2.out'
+        });
+    } 
+    
     criarElementoImagem(projeto) {
         const backgroundImage = document.createElement('img');
         backgroundImage.className = 'slide-background-img';
         backgroundImage.alt = `Capa do projeto ${projeto.title}`;
         backgroundImage.loading = "lazy";
-        backgroundImage.onload = () => {
-            gsap.fromTo(backgroundImage, {
-                scale: 1.1,
-                x: 20,
-                opacity: 0
-            }, {
-                scale: 1,
-                x: 0,
-                opacity: 1,
-                duration: 1.5,
-                ease: 'power2.out'
-            });
-        };
-        
-        
         backgroundImage.src = `./img/${projeto.datahash}/${projeto.imagem1}.webp`;
         backgroundImage.srcset = `
             ./img/${projeto.datahash}/${projeto.imagem1}-720w.webp 720w,
@@ -292,6 +340,7 @@ export default class CarregaPaginaProjeto {
             ./img/${projeto.datahash}/${projeto.imagem1}-1920w.webp 1920w
         `;
         backgroundImage.sizes = "(max-width: 720px) 100vw, (max-width: 1024px) 100vw, 100vw";
+
         return backgroundImage;
     }
 
@@ -309,17 +358,8 @@ export default class CarregaPaginaProjeto {
         slideContentProject.appendChild(mainTitle);
         slideContentPosition.appendChild(slideContentProject);
 
-        // Adicionar GSAP Animation
-    gsap.from(mainTitle, {
-        opacity: 0, // Inicia transparente
-        y: 20, // Começa um pouco abaixo da posição final
-        duration: 1, // Duração da animação
-        ease: 'power2.out', // Tipo de easing para a animação
-        delay: 0.5 // Delay para começar a animação após o carregamento da imagem
-    });
         return slideContentPosition;
     }
-
 
     criarSlideBio(projeto) {
         const slideElement = document.createElement('div');
@@ -356,7 +396,6 @@ export default class CarregaPaginaProjeto {
         slideElement.appendChild(slideContentPosition);
         return slideElement;
     }
-
 
     criarSlideSecundario(projeto, slide) {
         const slideElement = document.createElement('div');

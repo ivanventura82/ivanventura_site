@@ -38,28 +38,7 @@
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  /* animation: fadeInBackground 1.5s ease-out forwards; */
 }
 
-@keyframes fadeInBackground {
-  0% {
-    opacity: 0;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-}
 
-@keyframes fadeOutBackground {
-  0% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1);
-  }
-}
 
