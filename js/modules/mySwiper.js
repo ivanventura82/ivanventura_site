@@ -146,7 +146,7 @@ export default class MySwiper {
     this.animateSlideElements(currentSlide); // Inicia a animação dos elementos
     this.clearImageAnimations(currentSlide); // Limpeza opcional de animações anteriores
     this.animateSlideImage(currentSlide); 
-
+    this.precarregarImagens(this.swiper);
   }
 
   handleSlideChangeEnd() {
