@@ -95,7 +95,7 @@ export default class MySwiper {
       watchSlidesVisibility: true,
       lazy: {
         loadPrevNext: true,
-        loadPrevNextAmount: 3,
+        loadPrevNextAmount: 5,
         loadOnTransitionStart: true,
       },
       scrollbar: {
@@ -116,6 +116,11 @@ export default class MySwiper {
         slideChangeTransitionEnd: this.handleSlideChangeEnd.bind(this),
         slideChange: this.slideChange.bind(this),
         init: this.handleSwiperInit.bind(this),
+        imagesReady: function() {
+          console.log("All images have loaded.");
+          // Call the function to pre-load images for next slides
+          this.carregarImagensDosProximosSlides(this, 3);
+        }.bind(this) // Ensure 'this' context is preserved
       },
     });
 
@@ -248,30 +253,45 @@ export default class MySwiper {
     gsap.set(bgImage, { clearProps: "scale" });
   }
 
-  carregarImagemDoProximoSlide(swiper) {
-    // Obter o índice do próximo slide
-    let proximoSlideIndex = swiper.realIndex + 1;
-    
-    // Ajustar caso seja o último slide e você queira voltar ao início
-    if (proximoSlideIndex >= swiper.slides.length) {
-        proximoSlideIndex = 0;
-    }
-
-    // Obter o próximo slide usando o índice
-    const proximoSlide = swiper.slides[proximoSlideIndex];
-    
-    // Encontrar todas as imagens dentro do próximo slide com data-src
-    const imagensLazy = proximoSlide.querySelectorAll('img[data-src]');
-    
-    // Alterar data-src para src para cada imagem
-    imagensLazy.forEach(img => {
-        const src = img.getAttribute('data-src');
-        if (src) {
-            img.setAttribute('src', src);
-            img.removeAttribute('data-src'); // Opcional: remover o atributo data-src após o carregamento
+  carregarImagensDosProximosSlides(swiper, quantidadeSlides = 3) {
+    for (let i = 1; i <= quantidadeSlides; i++) {
+        let proximoSlideIndex = swiper.realIndex + i;
+        
+        // Ajustar caso ultrapasse o número total de slides e queira voltar ao início
+        if (proximoSlideIndex >= swiper.slides.length) {
+            proximoSlideIndex -= swiper.slides.length;  // Volta ao início se passar do último slide
         }
-    });
-  }
+
+        // Verificar se o slide existe antes de tentar acessar suas imagens
+        const proximoSlide = swiper.slides[proximoSlideIndex];
+        if (!proximoSlide) {
+            console.warn(`Slide de índice ${proximoSlideIndex} não encontrado.`);
+            continue;
+        }
+        
+        // Encontrar todas as imagens dentro do próximo slide que ainda não começaram a carregar
+        const imagensParaCarregar = proximoSlide.querySelectorAll('img[loading="lazy"]:not([srcset])');
+        
+        // Definir src e srcset para cada imagem para iniciar o carregamento
+        imagensParaCarregar.forEach(img => {
+            const src = img.dataset.src || img.getAttribute('data-src');
+            const srcset = img.dataset.srcset || img.getAttribute('data-srcset');
+            if (src) {
+                img.src = src;  // Define src se disponível
+                img.removeAttribute('data-src'); // Remove data-src se necessário
+            }
+            if (srcset) {
+                img.srcset = srcset; // Define srcset se disponível
+                img.removeAttribute('data-srcset'); // Remove data-srcset se necessário
+            }
+        });
+    }
+}
+
+
+
+
+
 
   updateUIForLastSlide() {
     const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
@@ -559,6 +579,8 @@ export default class MySwiper {
   }
 
   slideChange() {
+    // this.carregarImagensDosProximosSlides(this.swiper, 3);
+
     // First, check if swiper is defined and initialized
     if (!this.swiper || !this.swiper.slides) return;
   

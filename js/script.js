@@ -7,7 +7,7 @@ import MySwiper from './modules/mySwiper.js';
 import HoverInteraction  from './modules/premios-content.js';
 import CarregaProjetos from './modules/carregaProjetos.js';
 import CarregaPaginaProjeto from './modules/carregaPaginaProjeto.js';
-import LazyLoader from './modules/lazyloader.js';
+// import LazyLoader from './modules/lazyloader.js';
 
 // const scrollSuave = new ScrollSuave('[data-menu="suave"] a[href^="#"]');
 // scrollSuave.init();
@@ -69,10 +69,10 @@ const mySwiper = new MySwiper();
     });
 
     
-    document.addEventListener('DOMContentLoaded', () => {
-        const lazyLoader = new LazyLoader();
-        window.lazyLoaderInstance = lazyLoader; // Torna acessível globalmente ou gerencia de outra forma
-      });
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     const lazyLoader = new LazyLoader();
+    //     window.lazyLoaderInstance = lazyLoader; // Torna acessível globalmente ou gerencia de outra forma
+    //   });
 
 
 

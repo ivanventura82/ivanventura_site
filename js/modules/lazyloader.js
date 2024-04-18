@@ -29,26 +29,6 @@ export default class LazyLoader {
     this.images = this.images.concat(unobservedImages);
   }
 
-  // addResizeListener() {
-  //   window.addEventListener('resize', this.handleResize.bind(this));
-  // }
-
-  // handleResize() {
-  //   console.log("Evento de redimensionamento detectado.");
-  //   clearTimeout(this.resizeTimeout);
-  //   this.resizeTimeout = setTimeout(() => {
-  //       console.log("Atualizando imagens para o tamanho atual.");
-  //       this.atualizarImagensParaTamanhoAtual();
-  //   }, 250);
-  // }
-
-  // atualizarImagensParaTamanhoAtual() {
-  //   document.querySelectorAll('img[data-src], img[data-src-mobile]').forEach(img => {
-  //       const src = window.innerWidth <= 768 && img.getAttribute('data-src-mobile') ? img.getAttribute('data-src-mobile') : img.getAttribute('data-src');
-  //       img.setAttribute('src', src);
-  //   });
-  // }
-
   onIntersection(entries) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
