@@ -333,7 +333,7 @@ export default class CarregaProjetos {
 
         setTimeout(() => {
             this.swiperInstance.update();
-            window.lazyLoaderInstance.update();
+            // window.lazyLoaderInstance.update();
             this.gerenciarPrimeiroBullet(ocultarPrimeiroBullet);
         }, 50);
     }
@@ -386,6 +386,56 @@ export default class CarregaProjetos {
     
         return slideElement;
     }
+
+//     criarSlide(projeto) {
+//     const slideElement = document.createElement('div');
+//     slideElement.className = 'swiper-slide com-imagem-de-fundo'; 
+//     slideElement.setAttribute('data-hash', projeto.datahash);
+
+//     // Cria o elemento img para a imagem de fundo com lazy loading
+//     const backgroundImage = document.createElement('img');
+//     backgroundImage.className = 'slide-background-img lazy';
+//     backgroundImage.setAttribute('data-src', `./img/${projeto.datahash}/${projeto.imagemhome}.webp`);
+//     backgroundImage.setAttribute('data-srcset', `
+//         ./img/${projeto.datahash}/${projeto.imagemhome}-720w.webp 720w,
+//         ./img/${projeto.datahash}/${projeto.imagemhome}-1024w.webp 1024w,
+//         ./img/${projeto.datahash}/${projeto.imagemhome}-1920w.webp 1920w
+//     `);
+//     backgroundImage.sizes = "(max-width: 720px) 100vw, (max-width: 1024px) 100vw, 100vw";
+//     backgroundImage.alt = `Projeto ${projeto.title}`;
+//     backgroundImage.loading = "lazy";
+
+//     // Cortina Preta para animação
+//     const blackCurtain = document.createElement('div');
+//     blackCurtain.style.position = 'absolute';
+//     blackCurtain.style.left = 0;
+//     blackCurtain.style.top = 0;
+//     blackCurtain.style.width = '100%';
+//     blackCurtain.style.height = '100%';
+//     blackCurtain.style.backgroundColor = 'black';
+//     blackCurtain.style.transform = 'translateX(-100%)';
+
+//     // Conteúdo do Slide
+//     const slideContent = document.createElement('div');
+//     slideContent.className = 'slide-content';
+//     slideContent.innerHTML = `
+//         <a class="link__title" href="/projeto.html?datahash=${projeto.datahash}">
+//             <span class="subtitle__part2">${projeto.subtitulo1}</span>
+//             <span class="subtitle__part3">${projeto.subtitulo2}</span>
+//             <div class="slide__title__link subtitle__part1">
+//             <h2 class="slide__title">${projeto.title}</h2>
+//             <img src="./img/logo-r.svg" class="slide__title__arrow" alt="Seta apontando para a direita">
+//         </div>
+//         </a>`;
+
+//     // Montagem do slide
+//     slideElement.appendChild(backgroundImage);
+//     slideElement.appendChild(blackCurtain);
+//     slideElement.appendChild(slideContent);
+
+//     return slideElement;
+// }
+
     
     animarSlide(slideElement) {
         const blackCurtain = slideElement.querySelector('div');
