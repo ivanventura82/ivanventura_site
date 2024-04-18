@@ -185,7 +185,7 @@ export default class MySwiper {
   
     const tl = gsap.timeline({defaults: {ease: "power2.out"}});
     subtitles.forEach(subtitle => {
-        tl.to(subtitle, {opacity: 1, y: "30vh", duration: 0.5}, "+=0.1");
+        tl.to(subtitle, {opacity: 1, y: "25vh", duration: 0.5}, "+=0.1");
     });
     tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
   }
@@ -317,9 +317,10 @@ export default class MySwiper {
     });
   }
 
-  isEstudioPage() {
-    return window.location.pathname.includes('/estudio.html');
+  isStudioPage() {
+    return window.location.pathname.toLowerCase().endsWith('/studio');
   }
+  
 
   isProjetosPage() {
     return window.location.pathname.includes('/projeto.html');
