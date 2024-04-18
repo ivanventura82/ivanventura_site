@@ -317,10 +317,9 @@ export default class MySwiper {
     });
   }
 
-  isStudioPage() {
-    return window.location.pathname.toLowerCase().endsWith('/studio');
+  isEstudioPage() {
+    return window.location.pathname.includes('/estudio');
   }
-  
 
   isProjetosPage() {
     return window.location.pathname.includes('/projeto.html');
