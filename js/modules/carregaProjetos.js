@@ -15,10 +15,12 @@ export default class CarregaProjetos {
             const projetos = await response.json();
             this.todosProjetos = projetos;
             this.filtrarEExibirProjetos(categoriaInicial, categoriaInicial === 'selecionado');
+
         } catch (error) {
             console.error("Erro ao carregar projetos:", error);
         }
     }
+
 
     filtrarEExibirProjetos(categoria, ocultarPrimeiroBullet = false) {
         this.projetosFiltrados = this.todosProjetos.filter(projeto =>
