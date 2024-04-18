@@ -551,9 +551,8 @@ export default class CarregaPaginaProjeto {
         slideElement.className = 'swiper-slide com-imagem-de-fundo';
         slideElement.style.backgroundColor = '#000000';
     
-        // Cortina Preta para animação
         const blackCurtain = document.createElement('div');
-        blackCurtain.className = 'black-curtain'; // Adicionando uma classe para facilitar a seleção
+        blackCurtain.className = 'black-curtain';
         blackCurtain.style.position = 'absolute';
         blackCurtain.style.left = 0;
         blackCurtain.style.top = 0;
@@ -564,69 +563,15 @@ export default class CarregaPaginaProjeto {
         slideElement.appendChild(blackCurtain);
     
         const backgroundImage = this.criarElementoImagem(projeto);
-        // backgroundImage.onload = () => {
-            this.animarSlide(slideElement, blackCurtain, backgroundImage);
-        // };
+        backgroundImage.onload = () => {
+            this.animarSlide(slideElement); // Chama animação somente após a imagem carregar
+        };
         slideElement.appendChild(backgroundImage);
         slideElement.appendChild(this.criarConteudoSlide(projeto.title));
     
         return slideElement;
     }
     
-    animarSlide(slideElement, blackCurtain, backgroundImage) {
-        const mainTitle = slideElement.querySelector('.main__title');
-        if (!mainTitle) {
-            console.error("mainTitle não encontrado.");
-            return;
-        }
-    
-        gsap.to(blackCurtain, {
-            x: '100%',
-            duration: 1,
-            ease: 'power2.inOut',
-            onComplete: () => blackCurtain.remove() // Remover cortina após animação
-        });
-    
-        gsap.fromTo(backgroundImage, { scale: 1.1, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 1.5, ease: 'power2.out', delay: 0.5 });
-        gsap.fromTo(mainTitle, { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1, delay: 1, ease: 'power2.out' });
-    }
-    
-    // criarSlidePrincipal(projeto) {
-    //     const slideElement = document.createElement('div');
-    //     slideElement.className = 'swiper-slide com-imagem-de-fundo';
-    //     slideElement.style.backgroundColor = '#000'; // Fundo preto para melhor contraste
-
-    //     const blackCurtain = document.createElement('div');
-    //     blackCurtain.style = `position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: #1c1c1c; transform: translateX(-100%);`;
-    //     slideElement.appendChild(blackCurtain);
-
-    //     const backgroundImage = this.criarElementoImagem(projeto);
-    //     slideElement.appendChild(backgroundImage);
-    //     slideElement.appendChild(this.criarConteudoSlide(projeto.title));
-
-    //     return slideElement;
-    // }
-
-    // animarSlide(slideElement) {
-     
-    //     const blackCurtain = slideElement.querySelector('div');
-    //     const backgroundImage = slideElement.querySelector('.slide-background-img');
-    //     const mainTitle = slideElement.querySelector('.main__title');
-     
-
-    //     gsap.to(blackCurtain, {
-    //         x: '100%',
-    //         duration: 1,
-    //         ease: 'power2.inOut',
-    //         onComplete: () => blackCurtain.remove() // Remover cortina após animação
-    //     });
-
-    //     gsap.fromTo(backgroundImage, { scale: 1.1, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 1.5, ease: 'power2.out', delay: 0.5 });
-    //     gsap.fromTo(mainTitle, { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1, delay: 1, ease: 'power2.out' });
-    // }
-
-    // Outros métodos como criarElementoImagem, criarConteudoSlide, criarSlideBio, etc., permanecem inalterados
-      
     animarSlide(slideElement) {
         // Primeiro, vamos confirmar que o slideElement foi passado
         if (!slideElement) {
@@ -736,12 +681,19 @@ export default class CarregaPaginaProjeto {
 
         const propriedadesBio = ["área", "local", "co-autor", "ano", "estado"];
         propriedadesBio.forEach(propriedade => {
-            if (projeto[propriedade]) {
-                const li = document.createElement('li');
+        if (projeto[propriedade]) {
+            const li = document.createElement('li');
+            // Verifica se a propriedade é 'área' para adicionar 'm²'
+            if (propriedade === "área") {
+                li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${projeto[propriedade]} m²</strong>`;
+            } else {
                 li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${projeto[propriedade]}</strong>`;
-                ul.appendChild(li);
             }
-        });
+            ul.appendChild(li); 
+        }
+    });
+
+        
 
         const descricao = document.createElement('p');
         descricao.textContent = projeto.description;
@@ -793,7 +745,7 @@ export default class CarregaPaginaProjeto {
         image.src = `${basePath}.webp`;
         image.srcset = `${basePath}-720w.webp 720w, ${basePath}-1024w.webp 1024w, ${basePath}-1920w.webp 1920w`;
         image.sizes = "100vw";
-        image.alt = "Projeto Imagem";
+        image.alt = `${imgName}`;
         return image;
     }
     
