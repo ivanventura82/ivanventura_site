@@ -74,57 +74,88 @@ export default class MySwiper {
   }
 
   initializeSwiperInstance() {
-    console.log("Inicializando Swiper...");
+      console.log("Inicializando Swiper...");
 
-    this.swiper = new Swiper(".mySwiper", {
-      modules: [Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation],
-      direction: "vertical",
-      speed: 1000,
-      simulateTouch: true,
-      touchRatio: 1.5,
-      touchAngle: 45,
-      threshold: 20,
-      allowTouchMove: true,
-      followFinger: true,
-      mousewheel: true,
-      passiveListeners: true,
-      observer: true,
-      observeParents: true,
-      slidesPerView: 1,
-      preloadImages: false,
-      watchSlidesVisibility: true,
-      watchSlidesProgress: true, 
-      lazy: {
-        loadPrevNext: true,
-        loadPrevNextAmount: 5,
-        loadOnTransitionStart: true,
-      },
-      scrollbar: {
-        el: '.swiper-scrollbar',
-        draggable: true,
-      },
-      effect: 'slide',
-      preventClicksPropagation: false,
-      hashNavigation: {
-        watchState: true,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      on: {
-        slideChangeTransitionStart: this.handleSlideChangeStart.bind(this),
-        slideChangeTransitionEnd: this.handleSlideChangeEnd.bind(this),
-        slideChange: this.slideChange.bind(this),
-        init: this.handleSwiperInit.bind(this),
-        imagesReady: this.handleImagesReady.bind(this)
-      },
-    });
+      this.swiper = new Swiper(".mySwiper", {
+        modules: [Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation],
+        direction: "vertical",
+        speed: 1000,
+        simulateTouch: true,
+        touchRatio: 1.5,
+        touchAngle: 45,
+        threshold: 20,
+        allowTouchMove: true,
+        followFinger: true,
+        mousewheel: true,
+        passiveListeners: true,
+        observer: true,
+        observeParents: true,
+        slidesPerView: 1,
+        preloadImages: false,
+        watchSlidesVisibility: true,
+        watchSlidesProgress: true, 
+        lazy: {
+          loadPrevNext: true,
+          loadPrevNextAmount: 5,
+          loadOnTransitionStart: true,
+        },
+        scrollbar: {
+          el: '.swiper-scrollbar',
+          draggable: true,
+        },
+        effect: 'slide',
+        preventClicksPropagation: false,
+        hashNavigation: {
+          watchState: true,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        on: {
+          slideChangeTransitionStart: this.handleSlideChangeStart.bind(this),
+          slideChangeTransitionEnd: this.handleSlideChangeEnd.bind(this),
+          slideChange: this.slideChange.bind(this),
+          init: this.handleSwiperInit.bind(this),
+          imagesReady: this.handleImagesReady.bind(this)
+        },
+      });
 
-    console.log("Swiper inicializado:", this.swiper);
-    document.dispatchEvent(new CustomEvent('SwiperReady')); // Event indicating Swiper is ready
-}
+      console.log("Swiper inicializado:", this.swiper);
+      document.dispatchEvent(new CustomEvent('SwiperReady')); // Event indicating Swiper is ready
+  }
 
+  handleImagesReady() {
+    console.log("All images have loaded.");
+    this.precarregarImagens(this.swiper);
+  }
+
+  precarregarImagens(swiper) {
+    const connectionType = navigator.connection && navigator.connection.effectiveType;
+    if (['4g', 'wifi'].includes(connectionType)) {
+      const slidesToPreload = 2; // Ajuste conforme necessário
+      for (let i = 1; i <= slidesToPreload; i++) {
+        let nextSlideIndex = swiper.realIndex + i;
+        if (nextSlideIndex >= swiper.slides.length) {
+          nextSlideIndex -= swiper.slides.length; // Considerar looping
+        }
+  
+        let nextSlideElement = swiper.slides[nextSlideIndex];
+        if (nextSlideElement) {
+          const images = nextSlideElement.querySelectorAll('.slide-background-img');
+          images.forEach(img => {
+            if (img.loading === "lazy") {
+              img.loading = "eager"; // Forçar o carregamento imediato
+              console.log(`Alterando carregamento para eager: ${img.src}`);
+            }
+          });
+        }
+      }
+    } else {
+      console.log("Condições de rede não favorecem carregamento antecipado.");
+    }
+  }
+  
   handleSwiperInit() {
     console.log("Swiper instance initialization complete.");
 
@@ -139,13 +170,13 @@ export default class MySwiper {
     this.animateButtons();
   }
 
-
   handleSlideChangeStart() {
     let currentSlide = this.swiper.slides[this.swiper.activeIndex];
     this.clearSlideAnimations(currentSlide); // Limpeza opcional de animações anteriores
     this.animateSlideElements(currentSlide); // Inicia a animação dos elementos
     this.clearImageAnimations(currentSlide); // Limpeza opcional de animações anteriores
     this.animateSlideImage(currentSlide); 
+    console.log("Evento de início de transição de slide disparado.");
     this.precarregarImagens(this.swiper);
   }
 
@@ -250,68 +281,6 @@ export default class MySwiper {
   }
     gsap.set(bgImage, { clearProps: "scale" });
   }
-
-  handleImagesReady() {
-    console.log("All images have loaded.");
-    this.precarregarImagens(this.swiper);
-  }
-
-// carregarImagensDosProximosSlides(swiper, quantidadeSlides = 3) {
-//   for (let i = 1; i <= quantidadeSlides; i++) {
-//       let proximoSlideIndex = swiper.realIndex + i;
-//       if (proximoSlideIndex >= swiper.slides.length) {
-//           proximoSlideIndex -= swiper.slides.length; 
-//       }
-
-//       const proximoSlide = swiper.slides[proximoSlideIndex];
-//       if (!proximoSlide) {
-//           console.warn(`Slide de índice ${proximoSlideIndex} não encontrado.`);
-//           continue;
-//       }
-
-//       const imagensParaCarregar = proximoSlide.querySelectorAll('img[loading="lazy"]:not([src], [srcset])');
-//       imagensParaCarregar.forEach(img => {
-//           const src = img.dataset.src;
-//           const srcset = img.dataset.srcset;
-//           if (src) {
-//               img.src = src;
-//               img.removeAttribute('data-src');
-//           }
-//           if (srcset) {
-//               img.srcset = srcset;
-//               img.removeAttribute('data-srcset');
-//           }
-//       });
-//   }
-// }
-
-precarregarImagens(swiper) {
-  const slidesToPreload = 3;
-  for (let i = 1; i <= slidesToPreload; i++) {
-    let nextSlideIndex = swiper.realIndex + i;
-    if (nextSlideIndex >= swiper.slides.length) {
-      nextSlideIndex -= swiper.slides.length; // Considerar looping se seu swiper for circular
-    }
-
-    let nextSlideElement = swiper.slides[nextSlideIndex];
-    if (nextSlideElement) {
-      const images = nextSlideElement.querySelectorAll('img');
-      images.forEach(img => {
-        if (!img.src) {
-          const src = img.dataset.src || img.src; // Usa data-src se existir, senão usa src
-          if (src) {
-            img.src = src;
-          }
-        }
-        if (!img.srcset && img.dataset.srcset) {
-          img.srcset = img.dataset.srcset; // Define srcset se disponível e ainda não definido
-        }
-      });
-    }
-  }
-}
-
-
 
   updateUIForLastSlide() {
     const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
