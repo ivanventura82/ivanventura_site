@@ -63,7 +63,7 @@ export default class CarregaProjetos {
         `;
         backgroundImage.sizes = "(max-width: 720px) 100vw, (max-width: 1024px) 100vw, 100vw";
         backgroundImage.alt = `Projeto ${projeto.title}`;
-        // backgroundImage.loading = "lazy";
+        backgroundImage.loading = "lazy";
     
         // Cortina Preta para animação
         const blackCurtain = document.createElement('div');
