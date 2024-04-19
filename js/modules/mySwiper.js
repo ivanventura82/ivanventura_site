@@ -155,7 +155,8 @@ export default class MySwiper {
       console.log("Condições de rede não favorecem carregamento antecipado.");
     }
   }
-  
+
+
   handleSwiperInit() {
     console.log("Swiper instance initialization complete.");
 
@@ -168,7 +169,29 @@ export default class MySwiper {
     }
     this.animateSubtitles();
     this.animateButtons();
+    
+    if (this.slides && this.slides.length > 1) {
+      this.preload(this);
+    }
   }
+
+  preload(swiper) {
+    // Verifica se o segundo slide existe e tem uma imagem
+    const secondSlideImage = swiper.slides[1] ? swiper.slides[1].querySelector('.slide-background-img') : null;
+    if (secondSlideImage) {
+      const preloadLink = document.createElement('link');
+      preloadLink.rel = 'preload';
+      preloadLink.as = 'image';
+      preloadLink.href = secondSlideImage.src;  // Usa o src da imagem
+      preloadLink.imagesrcset = secondSlideImage.srcset;  // Usa o srcset da imagem
+      preloadLink.imagesizes = secondSlideImage.sizes;  // Usa os sizes da imagem
+  
+      document.head.appendChild(preloadLink);
+      console.log(`Preloading first visible image: ${secondSlideImage.src}`);
+    }
+  }
+  
+  
 
   handleSlideChangeStart() {
     let currentSlide = this.swiper.slides[this.swiper.activeIndex];
