@@ -130,6 +130,73 @@ export default class MySwiper {
     this.precarregarImagens(this.swiper);
   }
 
+
+  handleSwiperInit() {
+    console.log("Swiper instance initialization complete.");
+
+    if (this.isEstudioPage()) {
+      const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
+      paginationBullets.forEach(bullet => bullet.classList.add('black'));
+    }
+    if (!this.isNotIndexPage()) { // Assuming this method checks if it's not the index page
+      this.applyDisplayNoneToFirstBullet();
+    }
+    this.animateSubtitles();
+    this.animateButtons();
+    
+    if (this.slides && this.slides.length > 1) {
+      this.preload(this);
+    }
+  }
+
+  // preload(swiper) {
+    
+  //   // Verifica se o segundo slide existe e tem uma imagem
+  //   if (swiper.slides.length > 1 && swiper.slides[1]) {
+  //     const secondSlideImage = swiper.slides[1].querySelector('.slide-background-img');
+  //     console.log("Preparando para adicionar preload link");
+
+  //     if (secondSlideImage) {
+  //       if (secondSlideImage.src) {  // Garante que src está definido
+  //         const preloadLink = document.createElement('link');
+  //         preloadLink.rel = 'preload';
+  //         preloadLink.as = 'image';
+  //         preloadLink.href = secondSlideImage.src;  // Usa o src da imagem
+  //         preloadLink.imagesrcset = secondSlideImage.srcset || '';  // Usa o srcset da imagem, ou string vazia se não definido
+  //         preloadLink.imagesizes = secondSlideImage.sizes || '100vw';  // Usa os sizes da imagem, ou '100vw' se não definido
+
+  //         document.head.appendChild(preloadLink);
+  //         console.log("Preload link adicionado:", preloadLink.href);
+  //       } else {
+  //         console.log("A imagem no segundo slide não tem um src definido.");
+  //       }
+  //     } else {
+  //       console.log("Nenhuma imagem de background encontrada no segundo slide.");
+  //     }
+  //   } else {
+  //     console.log("Segundo slide não disponível ou ainda não carregado.");
+  //   }
+  // }
+
+
+  handleSlideChangeStart() {
+    let currentSlide = this.swiper.slides[this.swiper.activeIndex];
+    this.clearSlideAnimations(currentSlide); // Limpeza opcional de animações anteriores
+    this.animateSlideElements(currentSlide); // Inicia a animação dos elementos
+    this.clearImageAnimations(currentSlide); // Limpeza opcional de animações anteriores
+    this.animateSlideImage(currentSlide); 
+    console.log("Evento de início de transição de slide disparado.");
+    this.precarregarImagens(this.swiper);
+  }
+
+  handleSlideChangeEnd() {
+
+    let currentSlideIndex = this.swiper.realIndex;
+    if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
+      this.updateUIForLastSlide();
+    }
+  }
+
   precarregarImagens(swiper) {
     const connectionType = navigator.connection && navigator.connection.effectiveType;
     if (['4g', 'wifi'].includes(connectionType)) {
@@ -156,60 +223,6 @@ export default class MySwiper {
     }
   }
 
-
-  handleSwiperInit() {
-    console.log("Swiper instance initialization complete.");
-
-    if (this.isEstudioPage()) {
-      const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-      paginationBullets.forEach(bullet => bullet.classList.add('black'));
-    }
-    if (!this.isNotIndexPage()) { // Assuming this method checks if it's not the index page
-      this.applyDisplayNoneToFirstBullet();
-    }
-    this.animateSubtitles();
-    this.animateButtons();
-    
-    if (this.slides && this.slides.length > 1) {
-      this.preload(this);
-    }
-  }
-
-  preload(swiper) {
-    // Verifica se o segundo slide existe e tem uma imagem
-    const secondSlideImage = swiper.slides[1] ? swiper.slides[1].querySelector('.slide-background-img') : null;
-    if (secondSlideImage) {
-      const preloadLink = document.createElement('link');
-      preloadLink.rel = 'preload';
-      preloadLink.as = 'image';
-      preloadLink.href = secondSlideImage.src;  // Usa o src da imagem
-      preloadLink.imagesrcset = secondSlideImage.srcset;  // Usa o srcset da imagem
-      preloadLink.imagesizes = secondSlideImage.sizes;  // Usa os sizes da imagem
-  
-      document.head.appendChild(preloadLink);
-      console.log(`Preloading first visible image: ${secondSlideImage.src}`);
-    }
-  }
-  
-  
-
-  handleSlideChangeStart() {
-    let currentSlide = this.swiper.slides[this.swiper.activeIndex];
-    this.clearSlideAnimations(currentSlide); // Limpeza opcional de animações anteriores
-    this.animateSlideElements(currentSlide); // Inicia a animação dos elementos
-    this.clearImageAnimations(currentSlide); // Limpeza opcional de animações anteriores
-    this.animateSlideImage(currentSlide); 
-    console.log("Evento de início de transição de slide disparado.");
-    this.precarregarImagens(this.swiper);
-  }
-
-  handleSlideChangeEnd() {
-
-    let currentSlideIndex = this.swiper.realIndex;
-    if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
-      this.updateUIForLastSlide();
-    }
-  }
 
   selectSubtitles() {
     // Selecionar elementos
