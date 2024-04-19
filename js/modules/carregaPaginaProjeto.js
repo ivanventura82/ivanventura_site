@@ -1,5 +1,3 @@
-
-
 import gsap from 'gsap';
 
 // export default class CarregaPaginaProjeto {
@@ -359,7 +357,6 @@ export default class CarregaPaginaProjeto {
         }
     }
     
-
     limparSlidesExistentes() {
         const swiperWrapper = document.querySelector('.swiper-wrapper');
         swiperWrapper.innerHTML = '';
