@@ -1,6 +1,5 @@
 import gsap from 'gsap';
 
-
 export default class CarregaProjetos {
     constructor(jsonURL, swiperInstance) {
         this.jsonURL = jsonURL;
@@ -20,7 +19,6 @@ export default class CarregaProjetos {
             console.error("Erro ao carregar projetos:", error);
         }
     }
-
 
     filtrarEExibirProjetos(categoria, ocultarPrimeiroBullet = false) {
         this.projetosFiltrados = this.todosProjetos.filter(projeto =>
@@ -65,7 +63,7 @@ export default class CarregaProjetos {
         `;
         backgroundImage.sizes = "(max-width: 720px) 100vw, (max-width: 1024px) 100vw, 100vw";
         backgroundImage.alt = `Projeto ${projeto.title}`;
-        backgroundImage.loading = "lazy";
+        // backgroundImage.loading = "lazy";
     
         // Cortina Preta para animação
         const blackCurtain = document.createElement('div');
