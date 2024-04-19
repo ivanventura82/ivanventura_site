@@ -84,7 +84,7 @@ export default class CarregaProjetos {
                 <span class="subtitle__part3">${projeto.subtitulo2}</span>
                 <div class="slide__title__link subtitle__part1">
                 <h2 class="slide__title">${projeto.title}</h2>
-                <img src="./img/logo-r.svg" class="slide__title__arrow" alt="Seta apontando para a direita" width="9" height="9">
+                <img src="./img/logo-r.svg" class="slide__title__arrow" alt="Seta apontando para a direita">
             </div>
             </a>`;
     

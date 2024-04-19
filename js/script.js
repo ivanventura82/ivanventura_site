@@ -2,19 +2,13 @@
 import MenuMobile from './modules/menu-mobile.js';
 import MenuProjetos from './modules/menu-projetos.js';
 import ScrollAnima from './modules/scroll-anima.js';
-// import HeaderAnimation from './modules/headerAnimation.js';
 import MySwiper from './modules/mySwiper.js';
 import HoverInteraction  from './modules/premios-content.js';
 import CarregaProjetos from './modules/carregaProjetos.js';
 import CarregaPaginaProjeto from './modules/carregaPaginaProjeto.js';
-// import LazyLoader from './modules/lazyloader.js';
-
-// const scrollSuave = new ScrollSuave('[data-menu="suave"] a[href^="#"]');
-// scrollSuave.init();
 
 const scrollAnima = new ScrollAnima('[data-anime="scroll"]');
 scrollAnima.init();
-
 
 const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]', '[data-menu="logo"]', '[data-menu="email"]', '[data-menu="instagram"]');
 menuMobile.init();
@@ -29,50 +23,43 @@ const elementsToAnimate = [
     document.getElementById('botao-voltar'),
     ].filter(element => element !== null); 
     
-// const headerAnim = new HeaderAnimation(elementsToAnimate, 300, 1200);
-// headerAnim.animate();
-
 const menuProjetos = new MenuProjetos('[data-menu-projetos="button"]', '[data-menu-projetos="list"]');
 menuProjetos.init();
 
 new HoverInteraction();
 
 const mySwiper = new MySwiper();
-    mySwiper.initialize();
+mySwiper.initialize();
     
 
+const urlParams = new URLSearchParams(window.location.search);
+const categoriaInicial = urlParams.get('filter') || 'selecionado'; // Usa 'selecionado' como padrão, se não houver filtro
+
+if (document.body.id === "index-page") {
+    const carregaProjetos = new CarregaProjetos('./projetos.json', mySwiper);
+    carregaProjetos.carregarProjetos(categoriaInicial); // Passa a categoriaInicial
+    mySwiper.setCarregaProjetosInstance(carregaProjetos);
+}   
+
+document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const categoriaInicial = urlParams.get('filter') || 'selecionado'; // Usa 'selecionado' como padrão, se não houver filtro
+    const datahash = urlParams.get('datahash');
 
-    if (document.body.id === "index-page") {
-        const carregaProjetos = new CarregaProjetos('./projetos.json', mySwiper);
-        carregaProjetos.carregarProjetos(categoriaInicial); // Passa a categoriaInicial
-        mySwiper.setCarregaProjetosInstance(carregaProjetos);
-    }   
+    if (document.body.id === "pagina-projeto") {
+        // Captura o ID do projeto da URL
+        const projectId = urlParams.get('datahash'); // 'id' é o nome do parâmetro na URL
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const datahash = urlParams.get('datahash');
-
-        if (document.body.id === "pagina-projeto") {
-            // Captura o ID do projeto da URL
-            const projectId = urlParams.get('datahash'); // 'id' é o nome do parâmetro na URL
-    
-            // Verifica se o projectId foi capturado corretamente
-            if (projectId) {
-                const carregaPaginaProjeto = new CarregaPaginaProjeto('./projetos.json', mySwiper);
-                carregaPaginaProjeto.carregarConteudo(datahash); // Passa o projectId para carregar o conteúdo específico
-            } else {
-                console.error("ID do projeto não especificado na URL.");
-            }
+        // Verifica se o projectId foi capturado corretamente
+        if (projectId) {
+            const carregaPaginaProjeto = new CarregaPaginaProjeto('./projetos.json', mySwiper);
+            carregaPaginaProjeto.carregarConteudo(datahash); // Passa o projectId para carregar o conteúdo específico
+        } else {
+            console.error("ID do projeto não especificado na URL.");
         }
-    });
+    }
+});
 
     
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     const lazyLoader = new LazyLoader();
-    //     window.lazyLoaderInstance = lazyLoader; // Torna acessível globalmente ou gerencia de outra forma
-    //   });
 
 
 
