@@ -12,7 +12,6 @@ li span {
   white-space: nowrap; /* Isso evita quebra de linha e espaço indesejado */
 }
 
-
 .subtitle__part1.project__name {
   color: var(--bg);
   font: 10rem/1 "Inter", sans-serif;
@@ -22,13 +21,15 @@ li span {
   display: flex;
   flex-direction: column;
   gap: 60px;
+  position: relative;
+
 }
 
 .bio__project ul {
   font: 1rem/1.6 "Inter", sans-serif;
   display: flex;
   flex-wrap: wrap;
-  gap: 100px
+  gap: 20px 60px;
 }
 
 .bio__project li {
@@ -41,7 +42,8 @@ li span {
 .bio__project p {
   font: 1rem/1.6 "Inter", sans-serif;
   max-width: 100ch;
-}
+  margin-left: 0;}
+
 
 .detalhes__project ul {
   font: 1rem/1.6 "Inter", sans-serif;
@@ -87,6 +89,22 @@ li span {
 }
 
 
+.bio__project ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.bio__project li {
+  margin-bottom: 10px;
+}
+
+
+.expand-btn, .collapse-btn {
+  display: none; /* Esconde os botões em telas não móveis */
+}
+
+
 
 @media (max-width: 800px) {
 
@@ -103,8 +121,7 @@ li span {
    justify-content: center;
    gap: 20px;
    width: 78vw;
-   margin-left: 1rem;
-   margin-top: 40px;
+   margin-left: 0.8rem;
   }
 
   .subtitle__part1.project__name {
@@ -126,10 +143,6 @@ li span {
 
   }
 
-  .bio__project p {
-    padding-bottom: 15px;
-  }
-
   .photos__grid__2 {
     flex-wrap: wrap;
     height: 100vh;
@@ -140,5 +153,46 @@ li span {
     width: 100vw;
     object-fit: cover; 
   }
+
+  .bio__project p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* -webkit-line-clamp: 6; */
+    cursor: pointer;
+}
+
+.expand-btn {
+  font: 1rem/1.6 "Inter", sans-serif;
+    display: block;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.collapse-btn {
+   color: var(--text);
+   border: none;
+   background-color: rgba(0,0,0,.1);
+   padding: 4px 8px;
+   border-radius: 4px;
+  display: none; /* Inicialmente escondido */
+}
+
+.bio__project.expanded p {
+    -webkit-line-clamp: none;
+    cursor: default;
+}
+
+.bio__project.expanded .expand-btn {
+    display: none;
+}
+
+.bio__project.expanded .collapse-btn {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
 
 }
