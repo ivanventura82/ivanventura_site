@@ -164,18 +164,18 @@ li span {
 }
 
 .expand-btn {
-  font: 1rem/1.6 "Inter", sans-serif;
-    display: block;
-    cursor: pointer;
-    text-decoration: underline;
+  font: 0.9rem/1.1 "Inter", sans-serif;
+  display: block;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .collapse-btn {
-   color: var(--text);
-   border: none;
-   background-color: rgba(0,0,0,.1);
-   padding: 4px 8px;
-   border-radius: 4px;
+  color: var(--text);
+  border: none;
+  background-color: #fff;
+  padding: 4px 8px;
+  border: solid 1px var(--text);
   display: none; /* Inicialmente escondido */
 }
 
@@ -191,7 +191,7 @@ li span {
 .bio__project.expanded .collapse-btn {
     display: block;
     position: absolute;
-    bottom: 0;
+    bottom: -20px;
     right: 0;
 }
 

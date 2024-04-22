@@ -4,9 +4,10 @@ export default class CarregaPaginaProjeto {
     constructor(jsonURL, mySwiperInstance) {
         this.jsonURL = jsonURL;
         this.mySwiper = mySwiperInstance;
+
     }
 
-    async carregarConteudo(datahash) {
+        async carregarConteudo(datahash) {
         try {
             const response = await fetch(this.jsonURL);
             const data = await response.json();
@@ -14,6 +15,7 @@ export default class CarregaPaginaProjeto {
             if (projeto) {
                 await this.processarProjeto(projeto);
                 this.mySwiper.update(); // Atualiza o Swiper após todos os slides serem adicionados
+
             } else {
                 console.error("Projeto com datahash " + datahash + " não encontrado.");
             }
@@ -43,6 +45,8 @@ export default class CarregaPaginaProjeto {
         this.criarBotaoVoltar();
         this.atualizarMetaTags(projeto);
     }
+
+    
 
     atualizarMetaTags(projeto) {
         if (projeto) {
@@ -231,70 +235,6 @@ export default class CarregaPaginaProjeto {
     //     return slideElement;
     // }
 
-    // criarSlideBio(projeto) {
-    //     const slideElement = document.createElement('div');
-    //     slideElement.className = 'swiper-slide';
-    //     slideElement.style.backgroundColor = '#f8f8f8';
-    
-    //     const slideContentPosition = document.createElement('div');
-    //     slideContentPosition.className = 'slide-content-position';
-    
-    //     const slideContentProject = document.createElement('div');
-    //     slideContentProject.className = 'slide-content-project';
-    
-    //     const bioProject = document.createElement('div');
-    //     bioProject.className = 'bio__project';
-    //     const ul = document.createElement('ul');
-    
-    //     const propriedadesBio = ["área", "local", "co-autor", "ano", "estado"];
-    //     propriedadesBio.forEach(propriedade => {
-    //         const li = document.createElement('li');
-    //         li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${projeto[propriedade]}</strong>`;
-    //         ul.appendChild(li);
-    //     });
-    
-    //     const descricao = document.createElement('p');
-    //     descricao.textContent = projeto.description;
-    
-    //     const expandBtn = document.createElement('span');
-    //     expandBtn.textContent = '... mais';
-    //     expandBtn.className = 'expand-btn';
-    
-    //     const collapseBtn = document.createElement('button');
-    //     collapseBtn.textContent = 'Voltar';
-    //     collapseBtn.className = 'collapse-btn';
-    
-    //     // Ajuste para verificar se a tela é móvel
-    //     if (window.innerWidth <= 800) {
-    //         descricao.textContent = projeto.description.substring(0, 500) + '...';
-    //         expandBtn.addEventListener('click', () => {
-    //             descricao.textContent = projeto.description;
-    //             ul.style.display = 'none';
-    //             expandBtn.style.display = 'none';
-    //             collapseBtn.style.display = 'block';
-    //             bioProject.classList.add('expanded');
-    //         });
-    
-    //         collapseBtn.addEventListener('click', () => {
-    //             descricao.textContent = projeto.description.substring(0, 100) + '...';
-    //             ul.style.display = 'block';
-    //             expandBtn.style.display = 'block';
-    //             collapseBtn.style.display = 'none';
-    //             bioProject.classList.remove('expanded');
-    //         });
-    //     }
-    
-    //     bioProject.appendChild(ul);
-    //     bioProject.appendChild(descricao);
-    //     bioProject.appendChild(expandBtn);
-    //     bioProject.appendChild(collapseBtn);
-    //     slideContentProject.appendChild(bioProject);
-    //     slideContentPosition.appendChild(slideContentProject);
-    //     slideElement.appendChild(slideContentPosition);
-    
-    //     return slideElement;
-    // }
-    
     criarSlideBio(projeto) {
         const slideElement = document.createElement('div');
         slideElement.className = 'swiper-slide';
@@ -323,11 +263,42 @@ export default class CarregaPaginaProjeto {
         const expandBtn = document.createElement('span');
         expandBtn.textContent = '... mais';
         expandBtn.className = 'expand-btn';
+        expandBtn.style.display = 'none'; // Inicialmente escondido
     
         const collapseBtn = document.createElement('button');
         collapseBtn.textContent = 'Voltar';
         collapseBtn.className = 'collapse-btn';
         collapseBtn.style.display = 'none'; // Inicialmente escondido
+    
+        // Medir a altura do parágrafo após o carregamento
+        descricao.style.visibility = 'hidden';
+        document.body.appendChild(descricao); // Temporariamente adiciona ao body para medir
+        const lineHeight = parseInt(window.getComputedStyle(descricao).lineHeight);
+        const descHeight = descricao.clientHeight;
+        document.body.removeChild(descricao); // Remove após medir
+        descricao.style.visibility = '';
+    
+        const lineCount = descHeight / lineHeight;
+        if (lineCount > 6 && window.innerWidth <= 800) { // Ajusta conforme necessidade de linhas
+            descricao.textContent = projeto.description.substring(0, 100) + '...';
+            expandBtn.style.display = 'block';
+        }
+    
+        expandBtn.addEventListener('click', () => {
+            descricao.textContent = projeto.description;
+            ul.style.display = 'none';
+            expandBtn.style.display = 'none';
+            collapseBtn.style.display = 'block';
+            bioProject.classList.add('expanded');
+        });
+    
+        collapseBtn.addEventListener('click', () => {
+            descricao.textContent = projeto.description.substring(0, 100) + '...';
+            ul.style.display = 'block';
+            expandBtn.style.display = 'block';
+            collapseBtn.style.display = 'none';
+            bioProject.classList.remove('expanded');
+        });
     
         bioProject.appendChild(ul);
         bioProject.appendChild(descricao);
@@ -337,46 +308,9 @@ export default class CarregaPaginaProjeto {
         slideContentPosition.appendChild(slideContentProject);
         slideElement.appendChild(slideContentPosition);
     
-        // Função para verificar a altura e ajustar a visibilidade do texto
-        function checkAndAdjustTextVisibility() {
-            const alturaLimite = window.innerHeight * 0.9;
-            console.log(`Altura de slideContentProject: ${slideContentProject.clientHeight}, Altura limite: ${alturaLimite}`);
-    
-            if (slideContentProject.clientHeight > alturaLimite && window.innerWidth <= 800) {
-                descricao.textContent = projeto.description.substring(0, 200) + '...'; // Limita a descrição
-                expandBtn.style.display = 'block';
-                expandBtn.addEventListener('click', () => {
-                    descricao.textContent = projeto.description; // Mostra a descrição completa
-                    ul.style.display = 'none'; // Esconde a lista
-                    expandBtn.style.display = 'none'; // Esconde o botão de expandir
-                    collapseBtn.style.display = 'block'; // Mostra o botão de voltar
-                    bioProject.classList.add('expanded');
-                });
-    
-                collapseBtn.addEventListener('click', () => {
-                    descricao.textContent = projeto.description.substring(0, 100) + '...'; // Volta ao texto resumido
-                    ul.style.display = 'block'; // Mostra a lista
-                    expandBtn.style.display = 'block'; // Mostra o botão de expandir
-                    collapseBtn.style.display = 'none'; // Esconde o botão de voltar
-                    bioProject.classList.remove('expanded');
-                });
-            } else {
-                descricao.textContent = projeto.description; // Mostra todo o texto
-                expandBtn.style.display = 'none';
-                collapseBtn.style.display = 'none';
-            }
-        }
-    
-        // Verifica e ajusta a visibilidade do texto ao carregar e ao redimensionar a janela
-        window.addEventListener('load', checkAndAdjustTextVisibility);
-        window.addEventListener('resize', checkAndAdjustTextVisibility);
-    
         return slideElement;
     }
     
-    
-    
-      
 
     criarSlideSecundario(projeto, slide) {
         const slideElement = document.createElement('div');
