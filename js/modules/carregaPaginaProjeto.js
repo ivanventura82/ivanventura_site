@@ -333,7 +333,7 @@ export default class CarregaPaginaProjeto {
         expandBtn.className = 'expand-btn';
     
         const collapseBtn = document.createElement('button');
-        collapseBtn.textContent = '< Voltar';
+        collapseBtn.textContent = 'Voltar';
         collapseBtn.className = 'collapse-btn';
         collapseBtn.style.display = 'none'; // Escondido por padrão
     
@@ -353,7 +353,7 @@ export default class CarregaPaginaProjeto {
             const lineCount = boxHeight / lineHeight;
     
             if (lineCount > 10) {
-                descricao.textContent = projeto.description.substring(0, 400) + '...'; // Ajuste conforme necessário
+                descricao.textContent = projeto.description.substring(0, 380) + '...'; // Ajuste conforme necessário
                 expandBtn.style.display = 'inline'; // Mostra o botão de expandir
     
                 expandBtn.addEventListener('click', function() {
@@ -365,7 +365,7 @@ export default class CarregaPaginaProjeto {
                 });
     
                 collapseBtn.addEventListener('click', function() {
-                    descricao.textContent = projeto.description.substring(0, 400) + '...';
+                    descricao.textContent = projeto.description.substring(0, 380) + '...';
                     ul.style.display = 'block';
                     expandBtn.style.display = 'inline';
                     collapseBtn.style.display = 'none';
@@ -380,7 +380,7 @@ export default class CarregaPaginaProjeto {
         return slideElement;
     }
     
-    
+
     criarSlideSecundario(projeto, slide) {
         const slideElement = document.createElement('div');
         slideElement.className = 'swiper-slide';
