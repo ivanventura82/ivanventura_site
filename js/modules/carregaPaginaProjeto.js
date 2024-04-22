@@ -235,6 +235,73 @@ export default class CarregaPaginaProjeto {
     //     return slideElement;
     // }
 
+    // criarSlideBio(projeto) {
+    //     const slideElement = document.createElement('div');
+    //     slideElement.className = 'swiper-slide';
+    //     slideElement.style.backgroundColor = '#f8f8f8';
+    
+    //     const slideContentPosition = document.createElement('div');
+    //     slideContentPosition.className = 'slide-content-position';
+    
+    //     const slideContentProject = document.createElement('div');
+    //     slideContentProject.className = 'slide-content-project';
+    
+    //     const bioProject = document.createElement('div');
+    //     bioProject.className = 'bio__project';
+    //     const ul = document.createElement('ul');
+    
+    //     const propriedadesBio = ["área", "local", "co-autor", "ano", "estado"];
+    //     propriedadesBio.forEach(propriedade => {
+    //         const li = document.createElement('li');
+    //         li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${projeto[propriedade]}</strong>`;
+    //         ul.appendChild(li);
+    //     });
+    
+    //     const descricao = document.createElement('p');
+    //     descricao.textContent = projeto.description;
+    
+    //     const expandBtn = document.createElement('span');
+    //     expandBtn.textContent = '... mais';
+    //     expandBtn.className = 'expand-btn';
+    
+    //     const collapseBtn = document.createElement('button');
+    //     collapseBtn.textContent = 'Voltar';
+    //     collapseBtn.className = 'collapse-btn';
+    //     collapseBtn.style.display = 'none'; // Inicialmente escondido
+    
+    //     descricao.style.maxHeight = "10em"; // Altura para 6 linhas aproximadamente
+    //     descricao.style.overflow = 'hidden';
+    
+    //     expandBtn.addEventListener('click', function() {
+    //         descricao.style.maxHeight = 'none'; // Remove o limite de altura
+    //         descricao.style.overflow = 'visible';
+    //         expandBtn.style.display = 'none';
+    //         collapseBtn.style.display = 'block';
+    //         console.log('Expandir clicado');
+    //     });
+    
+    //     collapseBtn.addEventListener('click', function() {
+    //         descricao.style.maxHeight = "10em";
+    //         descricao.style.overflow = 'hidden';
+    //         expandBtn.style.display = 'block';
+    //         collapseBtn.style.display = 'none';
+    //         console.log('Colapsar clicado');
+    //     });
+    
+    //     bioProject.appendChild(ul);
+    //     bioProject.appendChild(descricao);
+    //     bioProject.appendChild(expandBtn);
+    //     bioProject.appendChild(collapseBtn);
+    //     slideContentProject.appendChild(bioProject);
+    //     slideContentPosition.appendChild(slideContentProject);
+    //     slideElement.appendChild(slideContentPosition);
+    
+    //     // Log inicial
+    //     console.log('SlideBio criado com descrição de tamanho:', descricao.scrollHeight, 'px');
+    
+    //     return slideElement;
+    // }
+    
     criarSlideBio(projeto) {
         const slideElement = document.createElement('div');
         slideElement.className = 'swiper-slide';
@@ -259,47 +326,18 @@ export default class CarregaPaginaProjeto {
     
         const descricao = document.createElement('p');
         descricao.textContent = projeto.description;
+        descricao.style.display = 'block'; // Garante que o elemento está visível para cálculo
     
         const expandBtn = document.createElement('span');
         expandBtn.textContent = '... mais';
         expandBtn.className = 'expand-btn';
-        expandBtn.style.display = 'none'; // Inicialmente escondido
     
         const collapseBtn = document.createElement('button');
-        collapseBtn.textContent = 'Voltar';
+        collapseBtn.textContent = '< Voltar';
         collapseBtn.className = 'collapse-btn';
-        collapseBtn.style.display = 'none'; // Inicialmente escondido
+        collapseBtn.style.display = 'none'; // Escondido por padrão
     
-        // Medir a altura do parágrafo após o carregamento
-        descricao.style.visibility = 'hidden';
-        document.body.appendChild(descricao); // Temporariamente adiciona ao body para medir
-        const lineHeight = parseInt(window.getComputedStyle(descricao).lineHeight);
-        const descHeight = descricao.clientHeight;
-        document.body.removeChild(descricao); // Remove após medir
-        descricao.style.visibility = '';
-    
-        const lineCount = descHeight / lineHeight;
-        if (lineCount > 6 && window.innerWidth <= 800) { // Ajusta conforme necessidade de linhas
-            descricao.textContent = projeto.description.substring(0, 100) + '...';
-            expandBtn.style.display = 'block';
-        }
-    
-        expandBtn.addEventListener('click', () => {
-            descricao.textContent = projeto.description;
-            ul.style.display = 'none';
-            expandBtn.style.display = 'none';
-            collapseBtn.style.display = 'block';
-            bioProject.classList.add('expanded');
-        });
-    
-        collapseBtn.addEventListener('click', () => {
-            descricao.textContent = projeto.description.substring(0, 100) + '...';
-            ul.style.display = 'block';
-            expandBtn.style.display = 'block';
-            collapseBtn.style.display = 'none';
-            bioProject.classList.remove('expanded');
-        });
-    
+        // Adiciona elementos ao DOM para cálculos
         bioProject.appendChild(ul);
         bioProject.appendChild(descricao);
         bioProject.appendChild(expandBtn);
@@ -308,10 +346,41 @@ export default class CarregaPaginaProjeto {
         slideContentPosition.appendChild(slideContentProject);
         slideElement.appendChild(slideContentPosition);
     
+        // Ajusta o conteúdo baseado na contagem de linhas
+        requestAnimationFrame(() => {
+            const lineHeight = parseFloat(getComputedStyle(descricao).lineHeight);
+            const boxHeight = descricao.clientHeight;
+            const lineCount = boxHeight / lineHeight;
+    
+            if (lineCount > 10) {
+                descricao.textContent = projeto.description.substring(0, 400) + '...'; // Ajuste conforme necessário
+                expandBtn.style.display = 'inline'; // Mostra o botão de expandir
+    
+                expandBtn.addEventListener('click', function() {
+                    descricao.textContent = projeto.description;
+                    ul.style.display = 'none';
+                    expandBtn.style.display = 'none';
+                    collapseBtn.style.display = 'inline';
+                    bioProject.classList.add('expanded');
+                });
+    
+                collapseBtn.addEventListener('click', function() {
+                    descricao.textContent = projeto.description.substring(0, 400) + '...';
+                    ul.style.display = 'block';
+                    expandBtn.style.display = 'inline';
+                    collapseBtn.style.display = 'none';
+                    bioProject.classList.remove('expanded');
+                });
+            } else {
+                expandBtn.style.display = 'none'; // Não mostra botões se o texto for curto
+                collapseBtn.style.display = 'none';
+            }
+        });
+    
         return slideElement;
     }
     
-
+    
     criarSlideSecundario(projeto, slide) {
         const slideElement = document.createElement('div');
         slideElement.className = 'swiper-slide';
