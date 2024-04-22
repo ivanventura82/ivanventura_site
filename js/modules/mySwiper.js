@@ -15,6 +15,7 @@ export default class MySwiper {
     this.allSlides = [];
     this.allMenuItems = [];
     this.filtroAtivo = false; // Adiciona a flag de controle de filtro
+    this.setupResizeListener();
   }
 
   initialize() {
@@ -602,6 +603,71 @@ export default class MySwiper {
     this.carregaProjetosInstance = carregaProjetosInstance;
     // Agora você pode usar this.carregaProjetosInstance dentro de MySwiper
   }
+
+  setupResizeListener() {
+    // Associa o listener de resize ao método da classe, garantindo o contexto correto com bind
+    window.addEventListener('resize', this.handleResize.bind(this));
+}
+
+handleResize() {
+    // Método chamado em cada evento de redimensionamento da janela
+    // Atualizar a visibilidade do texto conforme necessário
+    const bioProject = document.querySelector('.bio__project');
+    if (bioProject) {
+        this.adjustTextVisibility(bioProject);
+    }
+}
+
+adjustTextVisibility(bioProject) {
+    const descricao = bioProject.querySelector('p');
+    const expandBtn = bioProject.querySelector('.expand-btn');
+    const collapseBtn = bioProject.querySelector('.collapse-btn');
+    const ul = bioProject.querySelector('ul');
+
+    // Adiciona verificações para garantir que os elementos existem
+    if (!descricao || !expandBtn || !collapseBtn || !ul) {
+        console.error('Um ou mais elementos necessários não foram encontrados!');
+        return; // Encerra a função se algum elemento não for encontrado
+    }
+
+    const viewportHeight = window.innerHeight;
+    const heightLimit = viewportHeight * 0.9;
+    const bioHeight = bioProject.offsetHeight;
+
+    if (window.innerWidth <= 800) {
+        if (bioHeight > heightLimit) {
+            descricao.textContent = descricao.textContent.substring(0, 100) + '...';
+            expandBtn.style.display = 'block';
+            collapseBtn.style.display = 'none';
+
+            expandBtn.addEventListener('click', () => {
+                descricao.textContent = descricao.textContent;
+                ul.style.display = 'none';
+                expandBtn.style.display = 'none';
+                collapseBtn.style.display = 'block';
+                bioProject.classList.add('expanded');
+            });
+
+            collapseBtn.addEventListener('click', () => {
+                descricao.textContent = descricao.textContent.substring(0, 100) + '...';
+                ul.style.display = 'block';
+                expandBtn.style.display = 'block';
+                collapseBtn.style.display = 'none';
+                bioProject.classList.remove('expanded');
+            });
+        } else {
+            expandBtn.style.display = 'none';
+            collapseBtn.style.display = 'none';
+            descricao.textContent = descricao.textContent;
+        }
+    } else {
+        descricao.textContent = descricao.textContent;
+        expandBtn.style.display = 'none';
+        collapseBtn.style.display = 'none';
+        ul.style.display = 'block';
+    }
+}
+
 
   slideChange() {
     // this.carregarImagensDosProximosSlides(this.swiper, 3);
