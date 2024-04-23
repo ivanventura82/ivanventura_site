@@ -144,48 +144,20 @@ export default class MySwiper {
     }
     this.animateSubtitles();
     this.animateButtons();
+    this.setupEventListeners();
+
     
     if (this.slides && this.slides.length > 1) {
       this.preload(this);
     }
   }
 
-  // preload(swiper) {
-    
-  //   // Verifica se o segundo slide existe e tem uma imagem
-  //   if (swiper.slides.length > 1 && swiper.slides[1]) {
-  //     const secondSlideImage = swiper.slides[1].querySelector('.slide-background-img');
-  //     console.log("Preparando para adicionar preload link");
-
-  //     if (secondSlideImage) {
-  //       if (secondSlideImage.src) {  // Garante que src está definido
-  //         const preloadLink = document.createElement('link');
-  //         preloadLink.rel = 'preload';
-  //         preloadLink.as = 'image';
-  //         preloadLink.href = secondSlideImage.src;  // Usa o src da imagem
-  //         preloadLink.imagesrcset = secondSlideImage.srcset || '';  // Usa o srcset da imagem, ou string vazia se não definido
-  //         preloadLink.imagesizes = secondSlideImage.sizes || '100vw';  // Usa os sizes da imagem, ou '100vw' se não definido
-
-  //         document.head.appendChild(preloadLink);
-  //         console.log("Preload link adicionado:", preloadLink.href);
-  //       } else {
-  //         console.log("A imagem no segundo slide não tem um src definido.");
-  //       }
-  //     } else {
-  //       console.log("Nenhuma imagem de background encontrada no segundo slide.");
-  //     }
-  //   } else {
-  //     console.log("Segundo slide não disponível ou ainda não carregado.");
-  //   }
-  // }
-
-
   handleSlideChangeStart() {
     let currentSlide = this.swiper.slides[this.swiper.activeIndex];
     this.clearSlideAnimations(currentSlide); // Limpeza opcional de animações anteriores
     this.animateSlideElements(currentSlide); // Inicia a animação dos elementos
     this.clearImageAnimations(currentSlide); // Limpeza opcional de animações anteriores
-    this.animateSlideImage(currentSlide); 
+    // this.animateSlideImage(currentSlide); 
     console.log("Evento de início de transição de slide disparado.");
     this.precarregarImagens(this.swiper);
   }
@@ -295,14 +267,14 @@ export default class MySwiper {
       .to(titleLinkDiv, {opacity: 1, y: 0});
   }
 
-  animateSlideImage(slide) {
-    const bgImage = slide.querySelector('.slide-background-img');
-    if (!bgImage) {
-      return; // Interrompe a execução da função se o elemento for null
-    }
+  // animateSlideImage(slide) {
+  //   const bgImage = slide.querySelector('.slide-background-img');
+  //   if (!bgImage) {
+  //     return; // Interrompe a execução da função se o elemento for null
+  //   }
 
-    gsap.fromTo(bgImage, {scale: 1}, {scale: 1.05, duration: 1.5, ease: 'power2.inOut'});
-  }
+  //   gsap.fromTo(bgImage, {scale: 1}, {scale: 1.05, duration: 1.5, ease: 'power2.inOut'});
+  // }
 
   clearSlideAnimations(slide) {
     const elements = slide.querySelectorAll('.slide__title, .slide__title__arrow, .subtitle__part2, .subtitle__part3');
@@ -326,6 +298,20 @@ export default class MySwiper {
     menuElements.forEach(el => el.classList.remove('white-color'));
     paginationBullets.forEach(bullet => bullet.classList.add('black'));
   }
+
+  navegarParaProximoSlide() {
+    if (this.swiper) {
+      this.swiper.slideNext();
+    }
+  }
+  
+  setupEventListeners() {
+    const botaoProximo = document.getElementById('botao-down');
+    if (botaoProximo) {
+      botaoProximo.addEventListener('click', () => this.navegarParaProximoSlide());
+    }
+  }
+  
   
   initializeSwiper2() {
     // Lógica para inicializar swiper2 aqui

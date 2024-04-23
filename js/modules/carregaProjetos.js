@@ -144,8 +144,7 @@ export default class CarregaProjetos {
 
 //     return slideElement;
 // }
-
-    
+ 
     animarSlide(slideElement) {
         const blackCurtain = slideElement.querySelector('div');
         const bgImage = slideElement.querySelector('.slide-background-img');

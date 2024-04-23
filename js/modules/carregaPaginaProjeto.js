@@ -46,8 +46,6 @@ export default class CarregaPaginaProjeto {
         this.atualizarMetaTags(projeto);
     }
 
-    
-
     atualizarMetaTags(projeto) {
         if (projeto) {
             // Atualiza o título da página usando a propriedade 'title' do projeto
@@ -235,73 +233,6 @@ export default class CarregaPaginaProjeto {
     //     return slideElement;
     // }
 
-    // criarSlideBio(projeto) {
-    //     const slideElement = document.createElement('div');
-    //     slideElement.className = 'swiper-slide';
-    //     slideElement.style.backgroundColor = '#f8f8f8';
-    
-    //     const slideContentPosition = document.createElement('div');
-    //     slideContentPosition.className = 'slide-content-position';
-    
-    //     const slideContentProject = document.createElement('div');
-    //     slideContentProject.className = 'slide-content-project';
-    
-    //     const bioProject = document.createElement('div');
-    //     bioProject.className = 'bio__project';
-    //     const ul = document.createElement('ul');
-    
-    //     const propriedadesBio = ["área", "local", "co-autor", "ano", "estado"];
-    //     propriedadesBio.forEach(propriedade => {
-    //         const li = document.createElement('li');
-    //         li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${projeto[propriedade]}</strong>`;
-    //         ul.appendChild(li);
-    //     });
-    
-    //     const descricao = document.createElement('p');
-    //     descricao.textContent = projeto.description;
-    
-    //     const expandBtn = document.createElement('span');
-    //     expandBtn.textContent = '... mais';
-    //     expandBtn.className = 'expand-btn';
-    
-    //     const collapseBtn = document.createElement('button');
-    //     collapseBtn.textContent = 'Voltar';
-    //     collapseBtn.className = 'collapse-btn';
-    //     collapseBtn.style.display = 'none'; // Inicialmente escondido
-    
-    //     descricao.style.maxHeight = "10em"; // Altura para 6 linhas aproximadamente
-    //     descricao.style.overflow = 'hidden';
-    
-    //     expandBtn.addEventListener('click', function() {
-    //         descricao.style.maxHeight = 'none'; // Remove o limite de altura
-    //         descricao.style.overflow = 'visible';
-    //         expandBtn.style.display = 'none';
-    //         collapseBtn.style.display = 'block';
-    //         console.log('Expandir clicado');
-    //     });
-    
-    //     collapseBtn.addEventListener('click', function() {
-    //         descricao.style.maxHeight = "10em";
-    //         descricao.style.overflow = 'hidden';
-    //         expandBtn.style.display = 'block';
-    //         collapseBtn.style.display = 'none';
-    //         console.log('Colapsar clicado');
-    //     });
-    
-    //     bioProject.appendChild(ul);
-    //     bioProject.appendChild(descricao);
-    //     bioProject.appendChild(expandBtn);
-    //     bioProject.appendChild(collapseBtn);
-    //     slideContentProject.appendChild(bioProject);
-    //     slideContentPosition.appendChild(slideContentProject);
-    //     slideElement.appendChild(slideContentPosition);
-    
-    //     // Log inicial
-    //     console.log('SlideBio criado com descrição de tamanho:', descricao.scrollHeight, 'px');
-    
-    //     return slideElement;
-    // }
-    
     criarSlideBio(projeto) {
         const slideElement = document.createElement('div');
         slideElement.className = 'swiper-slide';
@@ -319,11 +250,18 @@ export default class CarregaPaginaProjeto {
     
         const propriedadesBio = ["área", "local", "co-autor", "ano", "estado"];
         propriedadesBio.forEach(propriedade => {
+        if (projeto[propriedade]) {
             const li = document.createElement('li');
-            li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${projeto[propriedade]}</strong>`;
-            ul.appendChild(li);
+            // Verifica se a propriedade é 'área' para adicionar 'm²'
+            if (propriedade === "área") {
+                li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${projeto[propriedade]} m²</strong>`;
+            } else {
+                li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${projeto[propriedade]}</strong>`;
+            }
+            ul.appendChild(li); 
+        }
         });
-    
+
         const descricao = document.createElement('p');
         descricao.textContent = projeto.description;
         descricao.style.display = 'block'; // Garante que o elemento está visível para cálculo
@@ -379,7 +317,6 @@ export default class CarregaPaginaProjeto {
     
         return slideElement;
     }
-    
 
     criarSlideSecundario(projeto, slide) {
         const slideElement = document.createElement('div');

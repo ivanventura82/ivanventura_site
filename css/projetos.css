@@ -88,7 +88,6 @@ li span {
   z-index: 999;
 }
 
-
 .bio__project ul {
   margin: 0;
   padding: 0;
@@ -99,12 +98,9 @@ li span {
   margin-bottom: 10px;
 }
 
-
 .expand-btn, .collapse-btn {
   display: none; /* Esconde os botões em telas não móveis */
 }
-
-
 
 @media (max-width: 800px) {
 
@@ -121,7 +117,7 @@ li span {
    justify-content: center;
    gap: 10px;
    width: 78vw;
-   margin-left: 0.8rem;
+   margin-left: 0.6rem;
   }
 
   .subtitle__part1.project__name {
@@ -160,38 +156,37 @@ li span {
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
-}
+  }
 
-.expand-btn {
-  font: 0.9rem/1.1 "Inter", sans-serif;
-  display: block;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.collapse-btn {
-  color: var(--text);
-  border: none;
-  background-color: #f8f8f8;
-  padding: 4px 8px;
-  border: solid 1px var(--text);
-  display: none; /* Inicialmente escondido */
-}
-
-.bio__project.expanded p {
-    -webkit-line-clamp: none;
-    cursor: default;
-}
-
-.bio__project.expanded .expand-btn {
-    display: none;
-}
-
-.bio__project.expanded .collapse-btn {
+  .expand-btn {
+    font: 0.9rem/1.1 "Inter", sans-serif;
     display: block;
-    position: absolute;
-    bottom: -5vh;
-    right: 0;
-}
+    cursor: pointer;
+    text-decoration: underline;
+  }
 
+  .collapse-btn {
+    color: var(--text);
+    border: none;
+    background-color: #f8f8f8;
+    padding: 4px 8px;
+    border: solid 1px var(--text);
+    display: none; /* Inicialmente escondido */
+  }
+
+  .bio__project.expanded p {
+      -webkit-line-clamp: none;
+      cursor: default;
+  }
+
+  .bio__project.expanded .expand-btn {
+      display: none;
+  }
+
+  .bio__project.expanded .collapse-btn {
+      display: block;
+      position: absolute;
+      bottom: -5vh;
+      right: 0;
+  }
 }

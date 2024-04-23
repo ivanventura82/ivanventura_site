@@ -154,11 +154,16 @@
 
 @media (max-width: 700px) {
 
-
-  .nav__button.nav__button__home {
-    top: var(--nav-b-mg1);
-    left: var(--nav-b-mg1);
+  .nav__button {
+    padding: 1.6rem;
+    margin: 0.6rem;
   }
+  
+  .nav__button.nav__button__home {
+    top: 0;
+    left: 0;
+  }
+
 
   .nav__button__mobile {
     display: block;
@@ -187,6 +192,7 @@
     width: auto; 
     cursor: pointer; 
     outline: none; 
+    margin: 0;
 }
 
   #botao-down {
@@ -202,6 +208,7 @@
     cursor: pointer; 
     outline: none; 
     z-index: -1;
+    margin: 0;
   }
 
   #botao-voltar.white-color svg path, #botao-down.white-color svg path {
