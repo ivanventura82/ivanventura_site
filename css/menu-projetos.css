@@ -23,12 +23,6 @@
   order: 2;
   display: block;
 }
-
-/* .js [data-menu-projetos="button"].active {
-display:none;
-} */
-
-
 .js [data-menu-projetos="list"] {
   display:none;
 }
@@ -40,44 +34,26 @@ display:none;
   font: 1.25rem/1.2 "Inter", sans-serif;
 }
 
-
 .js [data-menu-projetos="list"]  a {
   text-decoration: none !important;
-  color: var(--text65);
+  color: var(--text70);
 }
 
 .js [data-menu-projetos="list"] a.active li {
   color: var(--textcontrast)!important;
 }
 
-.js [data-menu-projetos="list"] li, .js [data-menu-projetos="list"] a.white-color {
-  opacity: 0;
-  animation: fadeIn 0.3s ease forwards;
+
+.js [data-menu-projetos="list"] a:hover {
+  opacity: 0.6;
+  color: var(--text65); 
 }
 
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  .js [data-menu-projetos="list"] a.active-link {
+    color: var(--textcontrast) !important; /* Substitua var(--highlight-color) pela cor desejada para o link ativo */
   }
-
-  .js [data-menu-projetos="list"] a:hover {
-    opacity: 0.6 !important; 
-    color: var(--text65); 
-  }
-  
-    .js [data-menu-projetos="list"] a.active-link {
-      color: var(--textcontrast) !important; /* Substitua var(--highlight-color) pela cor desejada para o link ativo */
-    }
 
 @media (max-width: 700px) {
-
 
 .nav__button.menu__projetos {
   display: none;
