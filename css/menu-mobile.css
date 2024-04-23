@@ -16,13 +16,13 @@
     display: flex;
     background: none;
     border: none;
-    padding: 0.6rem;
     border-radius: 8px;
     text-transform: uppercase;
     font-family: 300 'Inter', sans;
     color: var(--text);
     cursor: pointer;
-    /* margin: 4px 0; */
+    padding: 1.2rem;
+    margin: -0.6rem;
     align-items: center;
     position: relative;
     z-index: 300;
@@ -32,40 +32,6 @@
     color: var(--bg);
   }
   
-  /* #hamburguer {
-    width: 30px;
-    border-top: 2px solid var(--text);
-  }
-
-  #hamburguer.white-color {
-    width: 30px;
-    border-top: 2px solid var(--bg);
-  } 
-
-  #hamburguer::after,
-  #hamburguer::before {
-    content: "";
-    display: block;
-    width: 30px;
-    height: 2px;
-    background: currentColor;
-    margin-top: 5px;
-    position: relative;
-  }
-  
-  .js [data-menu="button"].active #hamburguer {
-    border-top: transparent;
-  }
-
-  .js [data-menu="button"].active #hamburguer::before {
-    transform: rotate(135deg);
-  }
-
-  .js [data-menu="button"].active #hamburguer::after {
-    transform: rotate(-135deg);
-    top: -7px;
-  } */
-
   #hamburguer {
     width: 30px;   
     height: 30px;    

@@ -218,11 +218,11 @@
   }
 
   .swiper-pagination-vertical.swiper-pagination-bullets {
-    right: 1rem;
+    right: 0;
   }
   
   .swiper-pagination.swiper-pagination-bullets.swiper-pagination-vertical {
-    padding: 0.6rem 0px 0px 0px;
+    padding: 0.6rem;
     z-index: 1;
     gap: 20px;
   }
