@@ -1,14 +1,18 @@
 #!/bin/bash
 
-# Diretório onde estão localizadas as imagens originais
-DIR_ORIGEM="./img/docol2004"
-
-# Loop através de subpastas e imagens dentro de /img
-find "$DIR_ORIGEM" -type f -name "*.png" | while read imagem; do
+# Loop através das imagens passadas como argumentos
+for imagem in "$@"
+do
     echo "Processando $imagem..."
 
+    # Verifica se o arquivo existe
+    if [[ ! -f $imagem ]]; then
+        echo "Arquivo $imagem não encontrado!"
+        continue
+    fi
+
     # Define o caminho e o nome base para as imagens convertidas
-    CAMINHO_BASE=$(echo $imagem | sed 's/.png//')
+    CAMINHO_BASE=$(echo $imagem | sed 's/.webp//')
 
     # Conversão para 720w com crop específico
     convert "$imagem" -resize "x1334" -gravity center -crop 720x1334+0+0 +repage -quality 80 "${CAMINHO_BASE}-720w.webp"
