@@ -11,7 +11,7 @@
 }
 
 @media (max-width: 700px) {
-  
+
   .js [data-menu="button"] {
     display: flex;
     background: none;
@@ -66,19 +66,10 @@
     background-color: var(--bg); 
   }
 
-  /* .js [data-menu="button"].active #hamburguer::before {
-    transform: rotate(135deg);
-    opacity: 1;
-  }
-
-  .js [data-menu="button"].active #hamburguer::after {
-    transform: rotate(-135deg);
-    top: -7px;
-    opacity: 1;
-  } */
-
   .js [data-menu="list"]  {
-    display: none;
+    visibility: hidden; /* em vez de display: none para permitir animações */
+    opacity: 0; /* Comece completamente transparente */
+
     position: absolute;
     width: 100vw;
     top: 0;
@@ -91,11 +82,11 @@
 
   .js [data-menu="list"] a {
     font: 300 1.4rem/1 "Inter", sans-serif;    
-    width: 100%;
     display: flex;
     align-items: center;
     color: var(--bg);
     margin-left: 15px;
+    width: 100vw;
   }
 
   .js [data-menu="list"] li {
@@ -115,40 +106,18 @@
     padding-top: 5rem
   }
 
-  .menu li {
-    opacity: 0;
-    animation: fadeIn 0.5s ease forwards;
-  }
-  
-  .menu li:nth-child(1) {
-    animation-delay: 0.2s; /* Adjust the delay for the first item */
-  }
-  
-  .menu li:nth-child(2) {
-    animation-delay: 0.4s; /* Adjust the delay for the second item */
-  }
-  
-  .menu li:nth-child(4) {
-    animation-delay: 0.8s; /* Adjust the delay for the third item */
-  }
-  
-  .menu li:nth-child(5) {
-    animation-delay: 1s; /* Adjust the delay for the fourth item */
-  }  
-
-  .nav__menu__projetos.sub__projetos {
+  .nav__menu__projetos-mobile {
     display: flex;
     flex-direction: column;
     gap: 4px;
     margin-left: 36px;
   }
 
-  .menu .nav__menu__projetos.sub__projetos li {
+  .menu .nav__menu__projetos-mobile li {
     font: 300 1.4rem/1 "Inter", sans-serif;  
     color: #B4B4B4;
     text-align: left;  
     margin: 0;
-    animation-delay: 0.6s; 
   }
 
   .menu__mobile__footer {
@@ -161,7 +130,6 @@
     justify-content: space-between;
     z-index: 99;
     padding: 10px;
-   
   }
 
   .menu__mobile__footer a {
@@ -184,9 +152,6 @@
     padding: 1.2rem;
     height: 31px;
     width: 31px;
-    opacity: 0;
-    animation: fadeIn 0.5s ease forwards;
-    animation-delay: 1.4s; 
   }
   
   .js [data-menu="email"].active {
@@ -196,35 +161,18 @@
     left: 0;
     padding: 0.6rem;
     margin: 0;
-    opacity: 0;
     color: var(--bg);
-    font: 400 1.085rem/1.2 "Inter", sans-serif;
-    animation: fadeIn 0.5s ease forwards;
-    animation-delay: 1.2s; 
+    font: 400 1.085rem/1.2 "Inter", sans-serif; 
     }
   
   .js [data-menu="instagram"].active  {
     display: block;
     height: 31px;
     width: 31px;
-    opacity: 0;
-    animation: fadeIn 0.5s ease forwards;
-    animation-delay: 1.4s; 
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translate3d(0,10px,0);
-    }
-    to {
-      opacity: 1;
-      transform: translate3d(0,0,0);
-    }
   }
 
   #botao-down.active,
   #botao-voltar.active {
-      display: none;
+    display: none;
   }
 }

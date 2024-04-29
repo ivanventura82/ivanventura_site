@@ -1,4 +1,3 @@
-// import ScrollSuave from './modules/scroll-suave.js';
 import MenuMobile from './modules/menu-mobile.js';
 import MenuProjetos from './modules/menu-projetos.js';
 import ScrollAnima from './modules/scroll-anima.js';
@@ -28,10 +27,9 @@ menuProjetos.init();
 
 new HoverInteraction();
 
-const mySwiper = new MySwiper();
+const mySwiper = new MySwiper(menuProjetos);
 mySwiper.initialize();
     
-
 const urlParams = new URLSearchParams(window.location.search);
 const categoriaInicial = urlParams.get('filter') || 'selecionado'; // Usa 'selecionado' como padrão, se não houver filtro
 
@@ -58,9 +56,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-
-    
-
-
-
-
