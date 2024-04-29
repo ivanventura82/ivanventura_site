@@ -4,47 +4,75 @@ export default class CarregaPaginaProjeto {
     constructor(jsonURL, mySwiperInstance) {
         this.jsonURL = jsonURL;
         this.mySwiper = mySwiperInstance;
-
     }
 
-        async carregarConteudo(datahash) {
-        try {
-            const response = await fetch(this.jsonURL);
-            const data = await response.json();
-            const projeto = data.find(proj => proj.datahash === datahash);
-            if (projeto) {
-                await this.processarProjeto(projeto);
-                this.mySwiper.update(); // Atualiza o Swiper após todos os slides serem adicionados
+    async carregarConteudo(datahash) {
+    try {
+        const response = await fetch(this.jsonURL);
+        const data = await response.json();
+        const projeto = data.find(proj => proj.datahash === datahash);
+        if (projeto) {
+            await this.processarProjeto(projeto);
+            this.mySwiper.update(); // Atualiza o Swiper após todos os slides serem adicionados
 
-            } else {
-                console.error("Projeto com datahash " + datahash + " não encontrado.");
-            }
-        } catch (error) {
-            console.error("Erro ao carregar o conteúdo do projeto:", error);
+        } else {
+            console.error("Projeto com datahash " + datahash + " não encontrado.");
         }
+    } catch (error) {
+        console.error("Erro ao carregar o conteúdo do projeto:", error);
     }
+}
+
+    // async processarProjeto(projeto) {
+    //     this.limparSlidesExistentes();
+    //     const swiperWrapper = document.querySelector('.swiper-wrapper');
+        
+    //     const slidePrincipal = this.criarSlidePrincipal(projeto);
+    //     swiperWrapper.appendChild(slidePrincipal);
+        
+    //     // Assegurar que todos os elementos são carregados antes da animação
+    //     requestAnimationFrame(() => this.animarSlide(slidePrincipal));
+
+    //     const slideBio = this.criarSlideBio(projeto);
+    //     swiperWrapper.appendChild(slideBio);
+
+    //     projeto.slides.forEach(slide => {
+    //         swiperWrapper.appendChild(this.criarSlideSecundario(projeto, slide));
+    //     });
+
+    //     this.criarSlideDetalhes(projeto);
+    //     this.criarBotaoVoltar();
+    //     this.atualizarMetaTags(projeto);
+    // }
 
     async processarProjeto(projeto) {
         this.limparSlidesExistentes();
         const swiperWrapper = document.querySelector('.swiper-wrapper');
-        
+    
+        // Define a categoria do projeto no corpo da página para uso futuro
+        document.body.dataset.categoria = projeto.categoria;  // Assume que a categoria do projeto está disponível em 'projeto.category'
+    
         const slidePrincipal = this.criarSlidePrincipal(projeto);
         swiperWrapper.appendChild(slidePrincipal);
-        
-        // Assegurar que todos os elementos são carregados antes da animação
+    
+        // Assumindo que a animação ocorre após todos os elementos serem carregados
         requestAnimationFrame(() => this.animarSlide(slidePrincipal));
-
+    
         const slideBio = this.criarSlideBio(projeto);
         swiperWrapper.appendChild(slideBio);
-
+    
         projeto.slides.forEach(slide => {
             swiperWrapper.appendChild(this.criarSlideSecundario(projeto, slide));
         });
-
+    
         this.criarSlideDetalhes(projeto);
         this.criarBotaoVoltar();
         this.atualizarMetaTags(projeto);
+    
+        // Chama o método para marcar o link como ativo após carregar o projeto
+        this.mySwiper.markActiveLink(projeto.categoria);
     }
+    
 
     atualizarMetaTags(projeto) {
         if (projeto) {

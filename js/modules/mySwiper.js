@@ -1,5 +1,6 @@
 // Import Swiper and modules
 import gsap from 'gsap';
+import MenuProjetos from './menu-projetos';
 import Swiper from 'swiper';
 import { Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation } from 'swiper/modules';
 import 'swiper/css';
@@ -10,19 +11,21 @@ import 'swiper/css/effect-cards';
 import 'swiper/css/mousewheel';
 
 export default class MySwiper {
-  constructor(carregaProjetosInstance = null) {
+  constructor(menuProjetosInstance) {
+    this.menuProjetos = menuProjetosInstance;
     this.swiper = null;
     this.allSlides = [];
     this.allMenuItems = [];
-    this.filtroAtivo = false; // Adiciona a flag de controle de filtro
+    this.filtroAtivo = false;
     this.setupResizeListener();
-  }
+}
 
   initialize() {
     document.addEventListener('DOMContentLoaded', () => {
       this.initializeSwiper();
       this.setupFilterLinks();
       this.applyFilterFromURL(); // Certifique-se de que está sendo chamado corretamente
+      // Verifica se está na página de projeto e abre o menu
     });
   }
 
@@ -30,7 +33,7 @@ export default class MySwiper {
     const pagination = document.querySelector('.swiper-pagination');
     const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
     const menuLateral = document.querySelector('.menu-lateral');
-    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
+    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu-projetos="list"] a, [data-menu="button"], #hamburguer, #botao-voltar');
 
     // Initialize Swiper instance
     this.initializeSwiperInstance();
@@ -69,6 +72,8 @@ export default class MySwiper {
   
     // Setup filter links
     this.setupFilterLinks();
+    this.applyFilterFromURL();
+
     if (!this.isNotIndexPage()) {
       this.applyFilterFromURL();
     }
@@ -126,12 +131,6 @@ export default class MySwiper {
       document.dispatchEvent(new CustomEvent('SwiperReady')); // Event indicating Swiper is ready
   }
 
-  handleImagesReady() {
-    console.log("All images have loaded.");
-    this.precarregarImagens(this.swiper);
-  }
-
-
   handleSwiperInit() {
     console.log("Swiper instance initialization complete.");
 
@@ -143,13 +142,19 @@ export default class MySwiper {
       this.applyDisplayNoneToFirstBullet();
     }
     this.animateSubtitles();
-    this.animateButtons();
     this.setupEventListeners();
-
-    
+    this.animateButtons();
     if (this.slides && this.slides.length > 1) {
       this.preload(this);
     }
+    if (this.isProjetosPage()) {
+      this.menuProjetos.openMenu();
+    }
+  }
+
+  handleImagesReady() {
+    console.log("All images have loaded.");
+    this.precarregarImagens(this.swiper);
   }
 
   handleSlideChangeStart() {
@@ -160,10 +165,22 @@ export default class MySwiper {
     // this.animateSlideImage(currentSlide); 
     console.log("Evento de início de transição de slide disparado.");
     this.precarregarImagens(this.swiper);
+    
+  }
+
+  applyFilterFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterCategory = urlParams.get('filter');
+    if (filterCategory) {
+        this.filterSlides(filterCategory);
+        this.navigateToFirstSlideOfCategory(filterCategory);
+        this.setFiltroAtivo(true);
+        this.markActiveLink(filterCategory); 
+        this.menuProjetos.openMenu();  
+    }
   }
 
   handleSlideChangeEnd() {
-
     let currentSlideIndex = this.swiper.realIndex;
     if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
       this.updateUIForLastSlide();
@@ -196,7 +213,6 @@ export default class MySwiper {
     }
   }
 
-
   selectSubtitles() {
     // Selecionar elementos
     const subtitle1 = document.querySelector('.subtitle__part1');
@@ -218,21 +234,6 @@ export default class MySwiper {
     return [botaoLogo, botaoProjetos, botaoMobile, botaoEstudio, botaoContato, botaoDown, botaoVoltar].filter(btn => btn !== null);
   }
   
-  animateSubtitles() {
-    const subtitles = this.selectSubtitles();
-    gsap.set(subtitles, {opacity: 0, y: 400});
-  
-    // if (subtitles.length === 0) {
-    //     return; // Encerra a função se não houver elementos suficientes
-    // }
-  
-    const tl = gsap.timeline({defaults: {ease: "power2.out"}});
-    subtitles.forEach(subtitle => {
-        tl.to(subtitle, {opacity: 1, y: "25vh", duration: 0.5}, "+=0.1");
-    });
-    tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
-  }
-  
   animateButtons() {
     const buttons = this.selectButtons();
     gsap.set(buttons, {opacity: 0, y: 0});
@@ -245,6 +246,53 @@ export default class MySwiper {
     const tl = gsap.timeline({defaults: {ease: "power2.out"}, delay: 2});
     tl.to(buttons, {opacity: 1, y: 0, duration: 0.3, stagger: 0.1}, "+=0.1");
   }
+
+
+  animateButtons() {
+    const buttons = this.selectButtons();
+    const menuItems = document.querySelectorAll('.menu__projetos li'); // Seleciona os itens do menu projetos
+
+    // Define opacidade inicial para todos os botões e itens do menu
+    gsap.set([...buttons, ...menuItems], { opacity: 0 });
+
+    if (buttons.length === 0) {
+        console.error('Required button elements not found');
+        return; // Encerra a função se não houver elementos suficientes
+    }
+
+    const tl = gsap.timeline({defaults: {ease: "power2.out"}, delay: 2});
+
+    // Anima os botões para aparecerem
+    tl.to(buttons, { opacity: 1, y: 0, duration: 0.3, stagger: 0.1 }, "+=0.1");
+
+    // Verifica se o menu está ativo ao iniciar a timeline e adiciona a animação dos itens de menu
+    if (this.projetosList && this.projetosList.classList.contains(this.activeClass)) {
+        tl.to(menuItems, {
+            opacity: 1,
+            duration: 0.3,
+            stagger: {
+                amount: 0.5,
+                from: "end"
+            }
+        }, "-=0.1"); // Sincroniza com o final da animação dos botões
+    }
+}
+
+  animateSubtitles() {
+    const subtitles = this.selectSubtitles();
+    gsap.set(subtitles, {opacity: 0, y: 400});
+  
+    // if (subtitles.length === 0) {
+    //     return; // Encerra a função se não houver elementos suficientes
+    // }
+  
+    const tl = gsap.timeline({defaults: {ease: "power2.out"}});
+    subtitles.forEach(subtitle => {
+        tl.to(subtitle, {opacity: 1, y: "25vh", duration: 0.3}, "+=0.1");
+    });
+    tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
+  }
+  
 
   animateSlideElements(slide) {
     const subtitle1 = slide.querySelector('.subtitle__part2');
@@ -292,7 +340,7 @@ export default class MySwiper {
   }
 
   updateUIForLastSlide() {
-    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
+    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
     const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
   
     menuElements.forEach(el => el.classList.remove('white-color'));
@@ -311,7 +359,6 @@ export default class MySwiper {
       botaoProximo.addEventListener('click', () => this.navegarParaProximoSlide());
     }
   }
-  
   
   initializeSwiper2() {
     // Lógica para inicializar swiper2 aqui
@@ -423,10 +470,34 @@ export default class MySwiper {
     pagination.style.display = menuLateral.style.display = deveExibir ? 'flex' : 'none';
     pagination.style.opacity = deveExibir ? '1' : '0';
     if (this.filtroAtivo) {
-      const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer');
+      const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"],[data-menu="button"], #hamburguer');
       menuElements.forEach(el => el.classList.add('white-color'));
     }
   }
+
+    // handleHashChange() {
+  //     const hash = window.location.hash;
+  //     const category = this.mapHashToCategory(hash);
+
+  //     if (category) {
+  //         this.filterSlides(category);
+  //     }
+  // }
+
+  // mapHashToCategory(hash) {
+  //     switch (hash) {
+  //       case '#viw':
+  //             return 'all';
+  //         case '#quadritone':
+  //             return 'residencias';
+  //         case '#viw':
+  //             return 'edificios';
+  //         case '#teatrosescatalaia':
+  //             return 'institucionais';
+  //         default:
+  //             return null;
+  //     }
+  // }
 
   setFiltroAtivo(ativo) {
     this.filtroAtivo = ativo;
@@ -458,9 +529,10 @@ export default class MySwiper {
       console.log('A instância de CarregaProjetos ou o método filtrarEExibirProjetos não está disponível.');
     }
   }
+  
 
   setupFilterLinks() {
-    const filterLinks = document.querySelectorAll('.nav__menu__projetos a[data-filter]');
+    const filterLinks = document.querySelectorAll(('.nav__menu__projetos-mobile a[data-filter], .nav__menu__projetos-desktop a[data-filter]'));
     filterLinks.forEach(link => {
       link.addEventListener('click', (event) => {
         event.preventDefault(); // Prevenir a ação padrão
@@ -482,55 +554,45 @@ export default class MySwiper {
     });
   }
   
-  applyFilterFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const filterCategory = urlParams.get('filter');
-    if (filterCategory) {
-        this.filterSlides(filterCategory);
-        this.navigateToFirstSlideOfCategory(filterCategory); // Opcional, dependendo se você quer que a navegação pule para o primeiro slide filtrado
-        this.setFiltroAtivo(true);
+  // applyFilterFromURL() {
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   const filterCategory = urlParams.get('filter');
+  //   if (filterCategory) {
+  //     this.filterSlides(filterCategory);
+  //     this.navigateToFirstSlideOfCategory(filterCategory); // Opcional, dependendo se você quer que a navegação pule para o primeiro slide filtrado
+  //     this.setFiltroAtivo(true);
+  //     // Adiciona lógica para marcar o link ativo
+  //     this.markActiveLink(filterCategory);
+  //     // Abre o menu de projetos se o filtro for aplicado
+  //     this.menuProjetos.openMenu();
+  //   }
+  // }
 
-        // Adiciona lógica para marcar o link ativo
-      this.markActiveLink(filterCategory);
-    }
-  }
+
+
+
+  // markActiveLink(filterCategory) {
+  //   // Remove a classe active-link de todos os links
+  //   const links = document.querySelectorAll('.nav__menu__projetos a[data-filter]');
+  //   links.forEach(link => link.classList.remove('active-link'));
+  
+  //   // Encontra o link correspondente e adiciona a classe active-link
+  //   const activeLink = Array.from(links).find(link => link.getAttribute('data-filter') === filterCategory);
+  //   if (activeLink) {
+  //       activeLink.classList.add('active-link');
+  //   }
+  // }
 
   markActiveLink(filterCategory) {
-    // Remove a classe active-link de todos os links
-    const links = document.querySelectorAll('.nav__menu__projetos a[data-filter]');
+    const links = document.querySelectorAll('.nav__menu__projetos-mobile a[data-filter], .nav__menu__projetos-desktop a[data-filter]');
     links.forEach(link => link.classList.remove('active-link'));
   
-    // Encontra o link correspondente e adiciona a classe active-link
     const activeLink = Array.from(links).find(link => link.getAttribute('data-filter') === filterCategory);
     if (activeLink) {
         activeLink.classList.add('active-link');
     }
   }
-  
-  handleHashChange() {
-      const hash = window.location.hash;
-      const category = this.mapHashToCategory(hash);
-
-      if (category) {
-          this.filterSlides(category);
-      }
-  }
-
-  mapHashToCategory(hash) {
-      switch (hash) {
-        case '#viw':
-              return 'all';
-          case '#quadritone':
-              return 'residencias';
-          case '#viw':
-              return 'edificios';
-          case '#teatrosescatalaia':
-              return 'institucionais';
-          default:
-              return null;
-      }
-  }
-    
+   
   filterSlides(category) {
     let filteredSlides;
 
@@ -554,7 +616,7 @@ export default class MySwiper {
     if (filteredSlides.length > 0) {
         this.swiper.slideTo(0, 0); // Navega sem delay
     }
-}
+  } 
 
   navigateToFirstSlideOfCategory(category) {
     if (category === 'all') {
@@ -593,18 +655,18 @@ export default class MySwiper {
   setupResizeListener() {
     // Associa o listener de resize ao método da classe, garantindo o contexto correto com bind
     window.addEventListener('resize', this.handleResize.bind(this));
-}
+  }
 
-handleResize() {
-    // Método chamado em cada evento de redimensionamento da janela
-    // Atualizar a visibilidade do texto conforme necessário
-    const bioProject = document.querySelector('.bio__project');
-    if (bioProject) {
-        this.adjustTextVisibility(bioProject);
-    }
-}
+  handleResize() {
+      // Método chamado em cada evento de redimensionamento da janela
+      // Atualizar a visibilidade do texto conforme necessário
+      const bioProject = document.querySelector('.bio__project');
+      if (bioProject) {
+          this.adjustTextVisibility(bioProject);
+      }
+  }
 
-adjustTextVisibility(bioProject) {
+  adjustTextVisibility(bioProject) {
     const descricao = bioProject.querySelector('p');
     const expandBtn = bioProject.querySelector('.expand-btn');
     const collapseBtn = bioProject.querySelector('.collapse-btn');
@@ -652,8 +714,7 @@ adjustTextVisibility(bioProject) {
         collapseBtn.style.display = 'none';
         ul.style.display = 'block';
     }
-}
-
+  }
 
   slideChange() {
     // this.carregarImagensDosProximosSlides(this.swiper, 3);
@@ -690,7 +751,7 @@ adjustTextVisibility(bioProject) {
   updatePaginationAndMenu(currentSlideIndex) {
     const pagination = document.querySelector('.swiper-pagination');
     const menuLateral = document.querySelector('.menu-lateral');
-    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
+    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
     const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
   
     if (pagination) {
@@ -891,6 +952,9 @@ adjustTextVisibility(bioProject) {
     return this.swiper;
   }
 }
+ 
+
+
  
 
 
