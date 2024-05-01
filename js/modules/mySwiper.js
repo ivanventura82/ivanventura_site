@@ -168,18 +168,6 @@ export default class MySwiper {
     
   }
 
-  applyFilterFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const filterCategory = urlParams.get('filter');
-    if (filterCategory) {
-        this.filterSlides(filterCategory);
-        this.navigateToFirstSlideOfCategory(filterCategory);
-        this.setFiltroAtivo(true);
-        this.markActiveLink(filterCategory); 
-        this.menuProjetos.openMenu();  
-    }
-  }
-
   handleSlideChangeEnd() {
     let currentSlideIndex = this.swiper.realIndex;
     if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
@@ -475,30 +463,6 @@ export default class MySwiper {
     }
   }
 
-    // handleHashChange() {
-  //     const hash = window.location.hash;
-  //     const category = this.mapHashToCategory(hash);
-
-  //     if (category) {
-  //         this.filterSlides(category);
-  //     }
-  // }
-
-  // mapHashToCategory(hash) {
-  //     switch (hash) {
-  //       case '#viw':
-  //             return 'all';
-  //         case '#quadritone':
-  //             return 'residencias';
-  //         case '#viw':
-  //             return 'edificios';
-  //         case '#teatrosescatalaia':
-  //             return 'institucionais';
-  //         default:
-  //             return null;
-  //     }
-  // }
-
   setFiltroAtivo(ativo) {
     this.filtroAtivo = ativo;
     this.updatePaginationAndMenuVisibility(this.swiper ? this.swiper.realIndex : 0);
@@ -509,13 +473,25 @@ export default class MySwiper {
     this.updateProjectMenu(indiceSlideAtivo);
   }
 
+  applyFilterFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterCategory = urlParams.get('filter');
+    if (filterCategory) {
+        this.filterSlides(filterCategory);
+        this.navigateToFirstSlideOfCategory(filterCategory);
+        this.setFiltroAtivo(true);
+        this.markActiveLink(filterCategory); 
+        this.menuProjetos.openMenu();  
+    }
+  }
+
   applyFilter(filterCategory) {
     console.log(`Aplicando filtro: ${filterCategory}`);
 
     // Verifica se está na página index e a instância de CarregaProjetos está disponível
-    if (document.body.id === "index-page" && this.carregaProjetosInstance && typeof this.carregaProjetosInstance.filtrarEExibirProjetos === 'function') {
+    if (document.body.id === "index-page" && this.carregaProjetosInstance && typeof this.carregaProjetosInstance.iniciarCortinaEAtualizarSlides === 'function') {
       // Aplica o filtro
-      this.carregaProjetosInstance.filtrarEExibirProjetos(filterCategory);
+      this.carregaProjetosInstance.iniciarCortinaEAtualizarSlides(filterCategory, true);
       this.setFiltroAtivo(true);
 
       // Atualiza a URL sem recarregar a página
@@ -531,57 +507,54 @@ export default class MySwiper {
   }
   
 
+  // setupFilterLinks() {
+  //   const filterLinks = document.querySelectorAll(('.nav__menu__projetos-mobile a[data-filter], .nav__menu__projetos-desktop a[data-filter]'));
+  //   filterLinks.forEach(link => {
+  //     link.addEventListener('click', (event) => {
+  //       event.preventDefault(); // Prevenir a ação padrão
+
+  //       // Pega a categoria do atributo data-filter do link clicado
+  //       const category = link.getAttribute('data-filter');
+  //       this.applyFilter(category); // Isso deveria chamar o console.log
+  //       this.navigateToFirstSlideOfCategory(category); // Navega para o primeiro slide da categoria
+  //       this.markActiveLink(category); // Marca o link como ativo ao clicar
+
+  //       if (this.isNotIndexPage()) {
+  //         // Se não estiver na página index, redireciona para a index com o parâmetro de filtragem
+  //         window.location.href = `/index.html?filter=${category}`;
+  //       } else {
+  //         // Está na página index, aplica a filtragem como antes
+  //         this.filterSlides(category);
+  //       }
+  //     });
+  //   });
+  // }
+
   setupFilterLinks() {
     const filterLinks = document.querySelectorAll(('.nav__menu__projetos-mobile a[data-filter], .nav__menu__projetos-desktop a[data-filter]'));
     filterLinks.forEach(link => {
-      link.addEventListener('click', (event) => {
-        event.preventDefault(); // Prevenir a ação padrão
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevenir a ação padrão
 
-        // Pega a categoria do atributo data-filter do link clicado
-        const category = link.getAttribute('data-filter');
-        this.applyFilter(category); // Isso deveria chamar o console.log
-        this.navigateToFirstSlideOfCategory(category); // Navega para o primeiro slide da categoria
-        this.markActiveLink(category); // Marca o link como ativo ao clicar
+            const category = link.getAttribute('data-filter');
 
-        if (this.isNotIndexPage()) {
-          // Se não estiver na página index, redireciona para a index com o parâmetro de filtragem
-          window.location.href = `/index.html?filter=${category}`;
-        } else {
-          // Está na página index, aplica a filtragem como antes
-          this.filterSlides(category);
-        }
-      });
+            // Animação da cortina preta primeiro
+            if (this.carregaProjetosInstance) {
+                this.carregaProjetosInstance.iniciarCortinaEAtualizarSlides(category, true, () => {
+                    // Callback quando a animação estiver completa
+                    this.markActiveLink(category); // Marca o link como ativo ao clicar
+                    this.navigateToFirstSlideOfCategory(category); // Navega para o primeiro slide da categoria
+
+                    if (this.isNotIndexPage()) {
+                        // Se não estiver na página index, redireciona para a index com o parâmetro de filtragem
+                        window.location.href = `/index.html?filter=${category}`;
+                    }
+                });
+            }
+        });
     });
-  }
-  
-  // applyFilterFromURL() {
-  //   const urlParams = new URLSearchParams(window.location.search);
-  //   const filterCategory = urlParams.get('filter');
-  //   if (filterCategory) {
-  //     this.filterSlides(filterCategory);
-  //     this.navigateToFirstSlideOfCategory(filterCategory); // Opcional, dependendo se você quer que a navegação pule para o primeiro slide filtrado
-  //     this.setFiltroAtivo(true);
-  //     // Adiciona lógica para marcar o link ativo
-  //     this.markActiveLink(filterCategory);
-  //     // Abre o menu de projetos se o filtro for aplicado
-  //     this.menuProjetos.openMenu();
-  //   }
-  // }
+}
 
-
-
-
-  // markActiveLink(filterCategory) {
-  //   // Remove a classe active-link de todos os links
-  //   const links = document.querySelectorAll('.nav__menu__projetos a[data-filter]');
-  //   links.forEach(link => link.classList.remove('active-link'));
-  
-  //   // Encontra o link correspondente e adiciona a classe active-link
-  //   const activeLink = Array.from(links).find(link => link.getAttribute('data-filter') === filterCategory);
-  //   if (activeLink) {
-  //       activeLink.classList.add('active-link');
-  //   }
-  // }
 
   markActiveLink(filterCategory) {
     const links = document.querySelectorAll('.nav__menu__projetos-mobile a[data-filter], .nav__menu__projetos-desktop a[data-filter]');
