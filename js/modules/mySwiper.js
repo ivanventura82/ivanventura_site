@@ -485,87 +485,30 @@ export default class MySwiper {
     }
   }
 
-  applyFilter(filterCategory) {
-    console.log(`Aplicando filtro: ${filterCategory}`);
-
-    // Verifica se está na página index e a instância de CarregaProjetos está disponível
-    if (document.body.id === "index-page" && this.carregaProjetosInstance && typeof this.carregaProjetosInstance.iniciarCortinaEAtualizarSlides === 'function') {
-      // Aplica o filtro
-      this.carregaProjetosInstance.iniciarCortinaEAtualizarSlides(filterCategory, true);
-      this.setFiltroAtivo(true);
-
-      // Atualiza a URL sem recarregar a página
-      const novaUrl = `${window.location.pathname}?filter=${filterCategory}`;
-      window.history.pushState({ path: novaUrl }, '', novaUrl);
-    } else if (this.isNotIndexPage()) {
-      // Se não estiver na página index, redireciona para a index com o parâmetro de filtragem
-      window.location.href = `/index.html?filter=${filterCategory}`;
-      
-    } else {
-      console.log('A instância de CarregaProjetos ou o método filtrarEExibirProjetos não está disponível.');
-    }
-  }
-  
-
-  // setupFilterLinks() {
-  //   const filterLinks = document.querySelectorAll(('.nav__menu__projetos-mobile a[data-filter], .nav__menu__projetos-desktop a[data-filter]'));
-  //   filterLinks.forEach(link => {
-  //     link.addEventListener('click', (event) => {
-  //       event.preventDefault(); // Prevenir a ação padrão
-
-  //       // Pega a categoria do atributo data-filter do link clicado
-  //       const category = link.getAttribute('data-filter');
-  //       this.applyFilter(category); // Isso deveria chamar o console.log
-  //       this.navigateToFirstSlideOfCategory(category); // Navega para o primeiro slide da categoria
-  //       this.markActiveLink(category); // Marca o link como ativo ao clicar
-
-  //       if (this.isNotIndexPage()) {
-  //         // Se não estiver na página index, redireciona para a index com o parâmetro de filtragem
-  //         window.location.href = `/index.html?filter=${category}`;
-  //       } else {
-  //         // Está na página index, aplica a filtragem como antes
-  //         this.filterSlides(category);
-  //       }
-  //     });
-  //   });
-  // }
-
   setupFilterLinks() {
     const filterLinks = document.querySelectorAll(('.nav__menu__projetos-mobile a[data-filter], .nav__menu__projetos-desktop a[data-filter]'));
     filterLinks.forEach(link => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault(); // Prevenir a ação padrão
+      link.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevenir a ação padrão
 
-            const category = link.getAttribute('data-filter');
+        // Pega a categoria do atributo data-filter do link clicado
+        const category = link.getAttribute('data-filter');
+        this.applyFilter(category); // Isso deveria chamar o console.log
+        this.navigateToFirstSlideOfCategory(category); // Navega para o primeiro slide da categoria
+        this.markActiveLink(category); // Marca o link como ativo ao clicar
 
-            // Animação da cortina preta primeiro
-            if (this.carregaProjetosInstance) {
-                this.carregaProjetosInstance.iniciarCortinaEAtualizarSlides(category, true, () => {
-                    // Callback quando a animação estiver completa
-                    this.markActiveLink(category); // Marca o link como ativo ao clicar
-                    this.navigateToFirstSlideOfCategory(category); // Navega para o primeiro slide da categoria
-
-                    if (this.isNotIndexPage()) {
-                        // Se não estiver na página index, redireciona para a index com o parâmetro de filtragem
-                        window.location.href = `/index.html?filter=${category}`;
-                    }
-                });
-            }
-        });
+        if (this.isNotIndexPage()) {
+          // Se não estiver na página index, redireciona para a index com o parâmetro de filtragem
+          window.location.href = `/index.html?filter=${category}`;
+        } else {
+          // Está na página index, aplica a filtragem como antes
+          this.filterSlides(category);
+        }
+      });
     });
-}
-
-
-  markActiveLink(filterCategory) {
-    const links = document.querySelectorAll('.nav__menu__projetos-mobile a[data-filter], .nav__menu__projetos-desktop a[data-filter]');
-    links.forEach(link => link.classList.remove('active-link'));
-  
-    const activeLink = Array.from(links).find(link => link.getAttribute('data-filter') === filterCategory);
-    if (activeLink) {
-        activeLink.classList.add('active-link');
-    }
   }
-   
+
+
   filterSlides(category) {
     let filteredSlides;
 
@@ -591,6 +534,65 @@ export default class MySwiper {
     }
   } 
 
+  handleHashChange() {
+    const hash = window.location.hash;
+    const category = this.mapHashToCategory(hash);
+
+    if (category) {
+        this.filterSlides(category);
+    }
+}
+
+mapHashToCategory(hash) {
+    switch (hash) {
+      case '#viw':
+            return 'all';
+        case '#quadritone':
+            return 'residencias';
+        case '#viw':
+            return 'edificios';
+        case '#teatrosescatalaia':
+            return 'institucionais';
+        default:
+            return null;
+    }
+}
+
+
+  applyFilter(filterCategory) {
+    console.log(`Aplicando filtro: ${filterCategory}`);
+
+    // Verifica se está na página index e a instância de CarregaProjetos está disponível
+    if (document.body.id === "index-page" && this.carregaProjetosInstance && typeof this.carregaProjetosInstance.filtrarEExibirProjetos === 'function') {
+      // Aplica o filtro
+      this.carregaProjetosInstance.filtrarEExibirProjetos(filterCategory);
+      this.setFiltroAtivo(true);
+
+      // Atualiza a URL sem recarregar a página
+      const novaUrl = `${window.location.pathname}?filter=${filterCategory}`;
+      window.history.pushState({ path: novaUrl }, '', novaUrl);
+    } else if (this.isNotIndexPage()) {
+      // Se não estiver na página index, redireciona para a index com o parâmetro de filtragem
+      window.location.href = `/index.html?filter=${filterCategory}`;
+      
+    } else {
+      console.log('A instância de CarregaProjetos ou o método filtrarEExibirProjetos não está disponível.');
+    }
+  }
+
+
+
+
+  markActiveLink(filterCategory) {
+    const links = document.querySelectorAll('.nav__menu__projetos-mobile a[data-filter], .nav__menu__projetos-desktop a[data-filter]');
+    links.forEach(link => link.classList.remove('active-link'));
+  
+    const activeLink = Array.from(links).find(link => link.getAttribute('data-filter') === filterCategory);
+    if (activeLink) {
+        activeLink.classList.add('active-link');
+    }
+  }
+  
   navigateToFirstSlideOfCategory(category) {
     if (category === 'all') {
         // Se 'all', navega para o segundo slide, assumindo que o primeiro é sempre o slide1
@@ -608,6 +610,7 @@ export default class MySwiper {
     }
   }
 
+
   navigateToSlide(hash) {
     const targetSlideIndex = this.swiper.slides.findIndex(slide =>
         slide.getAttribute('data-hash') === hash
@@ -619,6 +622,7 @@ export default class MySwiper {
     }
   }
 
+  
    // Método para definir a instância de CarregaProjetos
   setCarregaProjetosInstance(carregaProjetosInstance) {
     this.carregaProjetosInstance = carregaProjetosInstance;
