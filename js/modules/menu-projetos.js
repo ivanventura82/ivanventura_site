@@ -44,9 +44,11 @@ export default class MenuProjetos {
       }
     });
     this.isOpen = true;
-    // document.addEventListener('click', this.closeMenu);
+    // document.addEventListener('click', this.closeMenu);   // ouvinte para fechar o menu no clique fora
     console.log('Menu Opened');
   }
+
+  //close menu com lógica de fechar com clique fora
 
   // closeMenu(event, force = false) {
   //   console.log('closeMenu Called', 'Event Target:', event.target, 'Force:', force);

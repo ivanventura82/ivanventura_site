@@ -218,49 +218,6 @@ export default class CarregaPaginaProjeto {
         return slideContentPosition;
     }
 
-    // criarSlideBio(projeto) {
-    //     const slideElement = document.createElement('div');
-    //     slideElement.className = 'swiper-slide';
-    //     slideElement.style.backgroundColor = '#f8f8f8';
-
-    //     const slideContentPosition = document.createElement('div');
-    //     slideContentPosition.className = 'slide-content-position';
-
-    //     const slideContentProject = document.createElement('div');
-    //     slideContentProject.className = 'slide-content-project';
-
-    //     const bioProject = document.createElement('div');
-    //     bioProject.className = 'bio__project';
-    //     const ul = document.createElement('ul');
-
-    //     const propriedadesBio = ["área", "local", "co-autor", "ano", "estado"];
-    //     propriedadesBio.forEach(propriedade => {
-    //     if (projeto[propriedade]) {
-    //         const li = document.createElement('li');
-    //         // Verifica se a propriedade é 'área' para adicionar 'm²'
-    //         if (propriedade === "área") {
-    //             li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${projeto[propriedade]} m²</strong>`;
-    //         } else {
-    //             li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${projeto[propriedade]}</strong>`;
-    //         }
-    //         ul.appendChild(li); 
-    //     }
-    // });
-
-        
-
-    //     const descricao = document.createElement('p');
-    //     descricao.textContent = projeto.description;
-
-
-    //     bioProject.appendChild(ul);
-    //     bioProject.appendChild(descricao); // Adiciona a descrição ao projeto
-    //     slideContentProject.appendChild(bioProject);
-    //     slideContentPosition.appendChild(slideContentProject);
-    //     slideElement.appendChild(slideContentPosition);
-    //     return slideElement;
-    // }
-
     criarSlideBio(projeto) {
         const slideElement = document.createElement('div');
         slideElement.className = 'swiper-slide';
@@ -278,21 +235,21 @@ export default class CarregaPaginaProjeto {
     
         const propriedadesBio = ["área", "local", "co-autor", "ano", "estado"];
         propriedadesBio.forEach(propriedade => {
-        if (projeto[propriedade]) {
-            const li = document.createElement('li');
-            // Verifica se a propriedade é 'área' para adicionar 'm²'
-            if (propriedade === "área") {
-                li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${projeto[propriedade]} m²</strong>`;
-            } else {
-                li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${projeto[propriedade]}</strong>`;
+            let valor = projeto[propriedade];
+            if (valor && valor.toString().trim() !== "" && valor !== "-") {
+                const li = document.createElement('li');
+                if (propriedade === "área") {
+                    li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${valor} m²</strong>`;
+                } else {
+                    li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${valor}</strong>`;
+                }
+                ul.appendChild(li);
             }
-            ul.appendChild(li); 
-        }
         });
-
+    
         const descricao = document.createElement('p');
-        descricao.textContent = projeto.description;
-        descricao.style.display = 'block'; // Garante que o elemento está visível para cálculo
+        descricao.textContent = projeto.description || 'Descrição não disponível';
+        descricao.style.display = 'block';
     
         const expandBtn = document.createElement('span');
         expandBtn.textContent = '... mais';
@@ -301,26 +258,25 @@ export default class CarregaPaginaProjeto {
         const collapseBtn = document.createElement('button');
         collapseBtn.textContent = 'Voltar';
         collapseBtn.className = 'collapse-btn';
-        collapseBtn.style.display = 'none'; // Escondido por padrão
+        collapseBtn.style.display = 'none';
     
-        // Adiciona elementos ao DOM para cálculos
         bioProject.appendChild(ul);
         bioProject.appendChild(descricao);
         bioProject.appendChild(expandBtn);
         bioProject.appendChild(collapseBtn);
+    
         slideContentProject.appendChild(bioProject);
         slideContentPosition.appendChild(slideContentProject);
         slideElement.appendChild(slideContentPosition);
     
-        // Ajusta o conteúdo baseado na contagem de linhas
         requestAnimationFrame(() => {
             const lineHeight = parseFloat(getComputedStyle(descricao).lineHeight);
             const boxHeight = descricao.clientHeight;
             const lineCount = boxHeight / lineHeight;
     
             if (lineCount > 10) {
-                descricao.textContent = projeto.description.substring(0, 380) + '...'; // Ajuste conforme necessário
-                expandBtn.style.display = 'inline'; // Mostra o botão de expandir
+                descricao.textContent = projeto.description.substring(0, 380) + '...';
+                expandBtn.style.display = 'inline';
     
                 expandBtn.addEventListener('click', function() {
                     descricao.textContent = projeto.description;
@@ -338,13 +294,98 @@ export default class CarregaPaginaProjeto {
                     bioProject.classList.remove('expanded');
                 });
             } else {
-                expandBtn.style.display = 'none'; // Não mostra botões se o texto for curto
+                expandBtn.style.display = 'none';
                 collapseBtn.style.display = 'none';
             }
         });
     
         return slideElement;
     }
+    
+    // criarSlideBio(projeto) {
+    //     const slideElement = document.createElement('div');
+    //     slideElement.className = 'swiper-slide';
+    //     slideElement.style.backgroundColor = '#f8f8f8';
+    
+    //     const slideContentPosition = document.createElement('div');
+    //     slideContentPosition.className = 'slide-content-position';
+    
+    //     const slideContentProject = document.createElement('div');
+    //     slideContentProject.className = 'slide-content-project';
+    
+    //     const bioProject = document.createElement('div');
+    //     bioProject.className = 'bio__project';
+    //     const ul = document.createElement('ul');
+    
+    //     const propriedadesBio = ["área", "local", "co-autor", "ano", "estado"];
+    //     propriedadesBio.forEach(propriedade => {
+    //     if (projeto[propriedade]) {
+    //         const li = document.createElement('li');
+    //         // Verifica se a propriedade é 'área' para adicionar 'm²'
+    //         if (propriedade === "área") {
+    //             li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${projeto[propriedade]} m²</strong>`;
+    //         } else {
+    //             li.innerHTML = `<span>${propriedade.charAt(0).toUpperCase() + propriedade.slice(1)}</span><strong>${projeto[propriedade]}</strong>`;
+    //         }
+    //         ul.appendChild(li); 
+    //     }
+    //     });
+
+    //     const descricao = document.createElement('p');
+    //     descricao.textContent = projeto.description;
+    //     descricao.style.display = 'block'; // Garante que o elemento está visível para cálculo
+    
+    //     const expandBtn = document.createElement('span');
+    //     expandBtn.textContent = '... mais';
+    //     expandBtn.className = 'expand-btn';
+    
+    //     const collapseBtn = document.createElement('button');
+    //     collapseBtn.textContent = 'Voltar';
+    //     collapseBtn.className = 'collapse-btn';
+    //     collapseBtn.style.display = 'none'; // Escondido por padrão
+    
+    //     // Adiciona elementos ao DOM para cálculos
+    //     bioProject.appendChild(ul);
+    //     bioProject.appendChild(descricao);
+    //     bioProject.appendChild(expandBtn);
+    //     bioProject.appendChild(collapseBtn);
+    //     slideContentProject.appendChild(bioProject);
+    //     slideContentPosition.appendChild(slideContentProject);
+    //     slideElement.appendChild(slideContentPosition);
+    
+    //     // Ajusta o conteúdo baseado na contagem de linhas
+    //     requestAnimationFrame(() => {
+    //         const lineHeight = parseFloat(getComputedStyle(descricao).lineHeight);
+    //         const boxHeight = descricao.clientHeight;
+    //         const lineCount = boxHeight / lineHeight;
+    
+    //         if (lineCount > 10) {
+    //             descricao.textContent = projeto.description.substring(0, 380) + '...'; // Ajuste conforme necessário
+    //             expandBtn.style.display = 'inline'; // Mostra o botão de expandir
+    
+    //             expandBtn.addEventListener('click', function() {
+    //                 descricao.textContent = projeto.description;
+    //                 ul.style.display = 'none';
+    //                 expandBtn.style.display = 'none';
+    //                 collapseBtn.style.display = 'inline';
+    //                 bioProject.classList.add('expanded');
+    //             });
+    
+    //             collapseBtn.addEventListener('click', function() {
+    //                 descricao.textContent = projeto.description.substring(0, 380) + '...';
+    //                 ul.style.display = 'block';
+    //                 expandBtn.style.display = 'inline';
+    //                 collapseBtn.style.display = 'none';
+    //                 bioProject.classList.remove('expanded');
+    //             });
+    //         } else {
+    //             expandBtn.style.display = 'none'; // Não mostra botões se o texto for curto
+    //             collapseBtn.style.display = 'none';
+    //         }
+    //     });
+    
+    //     return slideElement;
+    // }
 
     criarSlideSecundario(projeto, slide) {
         const slideElement = document.createElement('div');
