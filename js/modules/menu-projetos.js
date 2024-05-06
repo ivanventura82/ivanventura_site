@@ -44,22 +44,30 @@ export default class MenuProjetos {
       }
     });
     this.isOpen = true;
-    document.addEventListener('click', this.closeMenu);
+    // document.addEventListener('click', this.closeMenu);
     console.log('Menu Opened');
   }
 
+  // closeMenu(event, force = false) {
+  //   console.log('closeMenu Called', 'Event Target:', event.target, 'Force:', force);
+  //   if (!this.projetosList.contains(event.target) && !this.projetosButton.contains(event.target) || force) {
+  //       console.log('Closing Menu');
+  //       this.animateMenuClose(this.projetosList.querySelectorAll('li'));
+  //       document.removeEventListener('click', this.closeMenu);
+  //       this.isOpen = false;
+  //       console.log('Menu Closed');
+  //   } else {
+  //       console.log('Clicked Inside Menu, Not Closing');
+  //   }
+  // }
+
   closeMenu(event, force = false) {
-    console.log('closeMenu Called', 'Event Target:', event.target, 'Force:', force);
-    if (!this.projetosList.contains(event.target) && !this.projetosButton.contains(event.target) || force) {
-        console.log('Closing Menu');
-        this.animateMenuClose(this.projetosList.querySelectorAll('li'));
-        document.removeEventListener('click', this.closeMenu);
-        this.isOpen = false;
-        console.log('Menu Closed');
-    } else {
-        console.log('Clicked Inside Menu, Not Closing');
-    }
-  }
+    console.log('closeMenu Called', 'Force:', force);
+    console.log('Closing Menu');
+    this.animateMenuClose(this.projetosList.querySelectorAll('li'));
+    this.isOpen = false;
+    console.log('Menu Closed');
+}
 
   animateMenuClose(items) {
     console.log('Animating Menu Close');
