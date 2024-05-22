@@ -1,3 +1,16 @@
+import "./global.css";
+import "./header.css";
+import "./swiper.css";
+import "./distancias.css";
+import "./menu-mobile.css";
+import "./menu-projetos.css";
+import "./tipografia.css";
+import "./cores.css";
+import "./home.css";
+import "./estudio.css";
+import "./projetos.css";
+import "./contato.css";
+
 import MenuMobile from './modules/menu-mobile.js';
 import MenuProjetos from './modules/menu-projetos.js';
 import ScrollAnima from './modules/scroll-anima.js';
