@@ -1,15 +1,3 @@
-import "./global.css";
-import "./header.css";
-import "./swiper.css";
-import "./distancias.css";
-import "./menu-mobile.css";
-import "./menu-projetos.css";
-import "./tipografia.css";
-import "./cores.css";
-import "./home.css";
-import "./estudio.css";
-import "./projetos.css";
-import "./contato.css";
 
 import MenuMobile from './modules/menu-mobile.js';
 import MenuProjetos from './modules/menu-projetos.js';
@@ -18,6 +6,18 @@ import MySwiper from './modules/mySwiper.js';
 import HoverInteraction  from './modules/premios-content.js';
 import CarregaProjetos from './modules/carregaProjetos.js';
 import CarregaPaginaProjeto from './modules/carregaPaginaProjeto.js';
+import "../css/global.css";
+import "../css/header.css";
+import "../css/distancias.css";
+import "../css/menu-mobile.css";
+import "../css/menu-projetos.css";
+import "../css/tipografia.css";
+import "../css/cores.css";
+import "../css/home.css";
+import "../css/estudio.css";
+import "../css/projetos.css";
+import "../css/contato.css";
+import "../css/swiper.css";
 
 const scrollAnima = new ScrollAnima('[data-anime="scroll"]');
 scrollAnima.init();
