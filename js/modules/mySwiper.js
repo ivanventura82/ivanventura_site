@@ -1,6 +1,5 @@
-// Import Swiper and modules
 import gsap from 'gsap';
-import MenuProjetos from './menu-projetos';
+// import MenuProjetos from './menu-projetos';
 import Swiper from 'swiper';
 import { Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation } from 'swiper/modules';
 import 'swiper/css';
