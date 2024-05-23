@@ -28,6 +28,10 @@
     }
   }
 
+.email-telefone a {
+  display: flex;
+  flex-direction: column;
+}
 
 .contato p {
   font: 300 1rem/1.6 "Inter", sans-serif;
@@ -43,7 +47,7 @@
   opacity: 0.6;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
 
 
   .slide-content.container__contato  {
@@ -55,7 +59,7 @@
 
   .contato {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap:40px;
   }
 }
