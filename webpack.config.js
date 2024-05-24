@@ -1,6 +1,7 @@
 const path = require('path');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './js/script.js',
@@ -34,6 +35,22 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'style.css', // Define o nome do arquivo CSS gerado
       chunkFilename: '[id].css',
+    }),
+    new HtmlWebpackPlugin({
+      template: './index.html',  // Caminho para o seu arquivo HTML principal
+      filename: 'index.html'     // O nome do arquivo HTML na pasta dist
+    }),
+    new HtmlWebpackPlugin({
+      template: './contato.html',
+      filename: 'contato.html'
+    }),
+    new HtmlWebpackPlugin({
+      template: './estudio.html',
+      filename: 'estudio.html'
+    }),
+    new HtmlWebpackPlugin({
+      template: './projeto.html',
+      filename: 'projeto.html'
     }),
   ],
   optimization: {
