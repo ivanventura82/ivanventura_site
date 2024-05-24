@@ -17,14 +17,14 @@
  
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-    <link href="./dist/style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet"> <!-- Removido ./dist/ -->
     <script>document.documentElement.classList.add('js');</script>
     <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
-    <link rel="preload" href="./img/viw/viw-720w.webp" as="image" media="(max-width: 719px)">  
+    <link rel="preload" href="/img/viw/viw-720w.webp" as="image" media="(max-width: 719px)">  
   </head>
   <body id="index-page">
     <header class="menu-principal">
-      <a class="nav__button nav__button__home" data-menu="logo" href="./index.html">
+      <a class="nav__button nav__button__home" data-menu="logo" href="index.html"> <!-- Removido ./ -->
         <span class="visually-hidden">Voltar para a página inicial</span>
       </a>
       <div class="nav__button menu__projetos"> 
@@ -42,8 +42,8 @@
           </ul>
         </nav>
       </div>    
-      <a class="nav__button nav__button__estudio" href="./estudio.html">Estúdio</a>
-      <a class="nav__button nav__button__contato" href="./contato.html">Contato</a>
+      <a class="nav__button nav__button__estudio" href="estudio.html">Estúdio</a> <!-- Removido ./ -->
+      <a class="nav__button nav__button__contato" href="contato.html">Contato</a> <!-- Removido ./ -->
       <a id="botao-down" aria-label="Ir para ver os projetos">
         <svg width="34" height="36" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#a)" fill="#101010"><path d="M4.7 0H0l10.9 35.6h4.7L4.7 0zM28.7 0h4.7L22.5 35.6h-4.7L28.7 0z"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h33.4v35.6H0z"/></clipPath></defs></svg>
       </a>
@@ -59,8 +59,8 @@
           <span id="hamburguer"></span>
         </button>
         <ul data-menu="list">
-          <li><a href="./dist/index.html">Home</a></li>
-          <li><a href="./dist/index.html#view">Projetos</a></li>
+          <li><a href="index.html">Home</a> <!-- Removido ./dist/ -->
+          <li><a href="index.html#view">Projetos</a> <!-- Removido ./dist/ -->
             <ul class="nav__menu__projetos-mobile">
               <li><a href="#quadritone" data-filter="residencias">Residências</a></li>
               <li><a href="#viw" data-filter="edificios">Edifícios</a></li>
@@ -69,8 +69,8 @@
               <li><a href="#teatrosescatalaia" data-filter="institucionais">Institucionais</a></li>
               <li><a href="#papacama" data-filter="design">Design</a></li>
             </ul>
-          <li><a href="./estudio.html">Estúdio</a></li>
-          <li><a href="./contato.html">Contato</a></li>
+          <li><a href="estudio.html">Estúdio</a> <!-- Removido ./ -->
+          <li><a href="contato.html">Contato</a> <!-- Removido ./ -->
         </ul>
       </nav>
     </div>
@@ -102,7 +102,8 @@
       </nav>
     </div>
 
-    <script src="./dist/main.js"></script>
+    <script src="main.js"></script> 
   </body>
 </html>
+
 
