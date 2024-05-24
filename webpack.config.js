@@ -2,6 +2,7 @@ const path = require('path');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './js/script.js',
@@ -29,6 +30,21 @@ module.exports = {
           'css-loader',
         ],
       },
+      // Regra para processar imagens
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]',  // Preserva a estrutura de pastas
+              context: path.resolve(__dirname, 'img'),  // Define a pasta raiz para os arquivos
+              outputPath: 'img/',  // Pasta onde as imagens serão colocadas dentro de dist/
+              publicPath: 'img/',  // Caminho usado para referenciar as imagens no site
+            },
+          },
+        ],
+      }
     ],
   },
   plugins: [
@@ -52,6 +68,11 @@ module.exports = {
       template: './projeto.html',
       filename: 'projeto.html'
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'img', to: 'img' }  // Copia a estrutura de diretórios de 'img' para 'dist/img'
+      ]
+    })
   ],
   optimization: {
     minimize: true,
