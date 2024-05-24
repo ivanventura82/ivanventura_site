@@ -9,7 +9,7 @@
 }
 
 [data-menu="logo"] {
-  background-image: url(/img/logo-black.svg);
+  background-image: url('../img/logo-black.svg');
   background-repeat: no-repeat;
   background-size: auto;
   height: 37px;
@@ -17,7 +17,7 @@
 }
 
 [data-menu="logo"].white-color, .nav__button.nav__button__home.white {
-  background-image: url(/img/logo-white.svg);
+  background-image: url('../img/logo-white.svg');
   background-repeat: no-repeat;
   background-size: auto;
   height: 37px;

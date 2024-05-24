@@ -141,7 +141,7 @@
     }
   
   .js [data-menu="instagram"].active  {
-    background-image: url(/img/instagram.svg);
+    background-image: url('../img/instagram.svg');
     background-repeat: no-repeat;
     background-size: auto;
     display: block;
