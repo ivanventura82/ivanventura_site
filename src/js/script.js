@@ -47,7 +47,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const categoriaInicial = urlParams.get('filter') || 'selecionado'; // Usa 'selecionado' como padrão, se não houver filtro
 
 if (document.body.id === "index-page") {
-    const carregaProjetos = new CarregaProjetos('./dist/projetos.json', mySwiper);
+    const carregaProjetos = new CarregaProjetos('./projetos.json', mySwiper);
     carregaProjetos.carregarProjetos(categoriaInicial); // Passa a categoriaInicial
     mySwiper.setCarregaProjetosInstance(carregaProjetos);
 }   
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Verifica se o projectId foi capturado corretamente
         if (projectId) {
-            const carregaPaginaProjeto = new CarregaPaginaProjeto('./dist/projetos.json', mySwiper);
+            const carregaPaginaProjeto = new CarregaPaginaProjeto('./projetos.json', mySwiper);
             carregaPaginaProjeto.carregarConteudo(datahash); // Passa o projectId para carregar o conteúdo específico
         } else {
             console.error("ID do projeto não especificado na URL.");
