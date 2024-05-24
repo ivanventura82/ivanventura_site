@@ -95,11 +95,11 @@ export default class CarregaProjetos {
             
             const backgroundImage = document.createElement('img');
             backgroundImage.className = 'slide-background-img';
-            backgroundImage.src = `./dist/img/${projeto.datahash}/${projeto.imagemhome}.webp`;
+            backgroundImage.src = `../img/${projeto.datahash}/${projeto.imagemhome}.webp`;
             backgroundImage.srcset = `
-            ./dist/img/${projeto.datahash}/${projeto.imagemhome}-720w.webp 720w,
-            ./dist/img/${projeto.datahash}/${projeto.imagemhome}-1024w.webp 1024w,
-            ./dist/img/${projeto.datahash}/${projeto.imagemhome}-1920w.webp 1920w
+            ../img/${projeto.datahash}/${projeto.imagemhome}-720w.webp 720w,
+            ../img/${projeto.datahash}/${projeto.imagemhome}-1024w.webp 1024w,
+            ../img/${projeto.datahash}/${projeto.imagemhome}-1920w.webp 1920w
             `;
             backgroundImage.sizes = "(max-width: 720px) 100vw, (max-width: 1024px) 100vw, 100vw";
             backgroundImage.alt = `Projeto ${projeto.title}`;
