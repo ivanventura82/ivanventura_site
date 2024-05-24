@@ -96,6 +96,7 @@ module.exports = {
     filename: 'main.js',
     assetModuleFilename: 'img/[name][ext]',
   },
+  mode: 'development', // Modo de desenvolvimento
   module: {
     rules: [
       {
@@ -192,6 +193,9 @@ module.exports = {
     },
     compress: true,
     port: 9000,
+    hot: true, // Adiciona o hot reloading
+    open: true, // Abre o navegador automaticamente
   },
 };
+
 
