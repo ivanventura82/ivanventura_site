@@ -159,8 +159,6 @@ export default class MySwiper {
     let currentSlide = this.swiper.slides[this.swiper.activeIndex];
     this.clearSlideAnimations(currentSlide); // Limpeza opcional de animações anteriores
     this.animateSlideElements(currentSlide); // Inicia a animação dos elementos
-    this.clearImageAnimations(currentSlide); // Limpeza opcional de animações anteriores
-    // this.animateSlideImage(currentSlide); 
     console.log("Evento de início de transição de slide disparado.");
     this.precarregarImagens(this.swiper); 
   }
@@ -230,7 +228,6 @@ startInitialAnimation() {
   }
 }
 
-  
   selectButtons() {
     const botaoLogo = document.querySelector('.nav__button__home');
     const botaoProjetos = document.querySelector('.menu__projetos');
@@ -243,19 +240,18 @@ startInitialAnimation() {
     return [botaoLogo, botaoProjetos, botaoMobile, botaoEstudio, botaoContato, botaoDown, botaoVoltar].filter(btn => btn !== null);
   }
   
-  animateButtons() {
-    const buttons = this.selectButtons();
-    gsap.set(buttons, {opacity: 0, y: 0});
+  // animateButtons() {
+  //   const buttons = this.selectButtons();
+  //   gsap.set(buttons, {opacity: 0, y: 0});
   
-    if (buttons.length === 0) {
-        console.error('Required button elements not found');
-        return; // Encerra a função se não houver elementos suficientes
-    }
+  //   if (buttons.length === 0) {
+  //       console.error('Required button elements not found');
+  //       return; // Encerra a função se não houver elementos suficientes
+  //   }
   
-    const tl = gsap.timeline({defaults: {ease: "power2.out"}, delay: 2});
-    tl.to(buttons, {opacity: 1, y: 0, duration: 0.3, stagger: 0.1}, "+=0.1");
-  }
-
+  //   const tl = gsap.timeline({defaults: {ease: "power2.out"}, delay: 2});
+  //   tl.to(buttons, {opacity: 1, y: 0, duration: 0.3, stagger: 0.1}, "+=0.1");
+  // }
 
   animateButtons() {
     const buttons = this.selectButtons();
@@ -286,47 +282,6 @@ startInitialAnimation() {
         }, "-=0.1"); // Sincroniza com o final da animação dos botões
     }
 }
-
-
-
-// animateSlideElements(slide) {
-//   const subtitle1 = slide.querySelector('.subtitle__part2');
-//   const subtitle2 = slide.querySelector('.subtitle__part3');
-//   const titleLinkDiv = slide.querySelector('.slide__title__link');
-
-//   // Verificação se os elementos existem antes de prosseguir com a animação
-//   if (!subtitle1 || !subtitle2 || !titleLinkDiv) {
-//       console.log('Elementos faltando, animação interrompida.');
-//       return; // Interrompe a execução da função se algum elemento for null
-//   }
-
-//   // Prevenir animações duplicadas
-//   if (slide.dataset.animated) {
-//       console.log('Animação já executada para este slide.');
-//       return; // Interrompe a execução se a animação já foi executada
-//   }
-
-//   // Marcar o slide como animado
-//   slide.dataset.animated = true;
-
-//   // Adiciona logs para monitorar a execução
-//   console.log('Iniciando animação para:', slide);
-
-//   gsap.set([titleLinkDiv, subtitle1, subtitle2], {opacity: 0, y: 20});
-
-//   // Cria uma linha do tempo para a animação
-//   const tl = gsap.timeline({defaults: {duration: 0.4, ease: "power2.out"}});
-
-//   // Animação dos elementos com delays ajustados
-//   tl.to(subtitle1, {opacity: 1, y: 0}, "+=0.3")  // Inicia com delay inicial
-//     .to(subtitle2, {opacity: 1, y: 0}, "+=0.2")  // Inicia logo após subtitle1
-//     .to(titleLinkDiv, {opacity: 1, y: 0}, "+=0.2"); // Inicia logo após subtitle2
-
-//   // Log após animação
-//   tl.eventCallback("onComplete", () => {
-//       console.log('Animação concluída para:', slide);
-//   });
-// }
 
 // Função para animar os elementos do slide durante a troca de slides
 animateSlideElements(slide) {
@@ -364,14 +319,6 @@ animateSlideElements(slide) {
     elements.forEach(el => {
       gsap.set(el, { clearProps: "all" });
     });
-  }
-
-  clearImageAnimations(slide) {
-    const bgImage = slide.querySelector('.slide-background-img');
-    if (!bgImage) {
-      return; // Interrompe a execução se o elemento for null
-  }
-    gsap.set(bgImage, { clearProps: "scale" });
   }
 
   updateUIForLastSlide() {
