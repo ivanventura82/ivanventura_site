@@ -269,9 +269,9 @@ export default class MySwiper {
   
     const tl = gsap.timeline({defaults: {ease: "power2.out"}});
     subtitles.forEach(subtitle => {
-        tl.to(subtitle, {opacity: 1, y: "25vh", duration: 0.3}, "+=0.1");
+      tl.to(subtitle, {opacity: 1, y: "25vh", duration: 0.3}, "+=0.1");
     });
-    // tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
+      tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
   }
   
 //   animateSlideElements(slide) {
