@@ -71,7 +71,6 @@
   text-transform: capitalize;
 }
 
-
 .slide__title__link:hover * {
   opacity: 0.6 !important;
 }
