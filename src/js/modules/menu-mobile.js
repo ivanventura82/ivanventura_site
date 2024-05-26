@@ -131,8 +131,6 @@ export default class MenuMobile {
   }
   
 
-  
-
   init() {
     if (this.menuButton && this.menuList && this.logoMobile && this.emailMobile && this.instagramMobile) {
       this.addMenuMobileEvents();
