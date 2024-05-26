@@ -139,7 +139,7 @@ export default class MySwiper {
     if (!this.isNotIndexPage()) { // Assuming this method checks if it's not the index page
       this.applyDisplayNoneToFirstBullet();
     }
-    this.animateSubtitles();
+    // this.animateSubtitles();
     this.setupEventListeners();
     this.animateButtons();
     if (this.slides && this.slides.length > 1) {
@@ -162,8 +162,7 @@ export default class MySwiper {
     this.clearImageAnimations(currentSlide); // Limpeza opcional de animações anteriores
     // this.animateSlideImage(currentSlide); 
     console.log("Evento de início de transição de slide disparado.");
-    this.precarregarImagens(this.swiper);
-    
+    this.precarregarImagens(this.swiper); 
   }
 
   handleSlideChangeEnd() {
@@ -199,14 +198,14 @@ export default class MySwiper {
     }
   }
 
-  selectSubtitles() {
-    // Selecionar elementos
-    const subtitle1 = document.querySelector('.subtitle__part1');
-    const subtitle2 = document.querySelector('.subtitle__part2');
-    const subtitle3 = document.querySelector('.subtitle__part3');
+  // selectSubtitles() {
+  //   // Selecionar elementos
+  //   const subtitle1 = document.querySelector('.subtitle__part1');
+  //   const subtitle2 = document.querySelector('.subtitle__part2');
+  //   const subtitle3 = document.querySelector('.subtitle__part3');
   
-    return [subtitle1, subtitle2, subtitle3].filter(sub => sub !== null);
-  }
+  //   return [subtitle1, subtitle2, subtitle3].filter(sub => sub !== null);
+  // }
   
   selectButtons() {
     const botaoLogo = document.querySelector('.nav__button__home');
@@ -264,42 +263,78 @@ export default class MySwiper {
     }
 }
 
-  animateSubtitles() {
-    const subtitles = this.selectSubtitles();
-    gsap.set(subtitles, {opacity: 0, y: 400});
+  // animateSubtitles() {
+  //   const subtitles = this.selectSubtitles();
+  //   gsap.set(subtitles, {opacity: 0, y: 400});
   
-    // if (subtitles.length === 0) {
-    //     return; // Encerra a função se não houver elementos suficientes
-    // }
+  //   const tl = gsap.timeline({defaults: {ease: "power2.out"}});
+  //   subtitles.forEach(subtitle => {
+  //       tl.to(subtitle, {opacity: 1, y: "25vh", duration: 0.3}, "+=0.1");
+  //   });
+  //   tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
+  // }
   
-    const tl = gsap.timeline({defaults: {ease: "power2.out"}});
-    subtitles.forEach(subtitle => {
-        tl.to(subtitle, {opacity: 1, y: "25vh", duration: 0.3}, "+=0.1");
-    });
-    tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
+//   animateSlideElements(slide) {
+//     const subtitle1 = slide.querySelector('.subtitle__part2');
+//     const subtitle2 = slide.querySelector('.subtitle__part3');
+//     const titleLinkDiv = slide.querySelector('.slide__title__link');
+
+//     // Verificação se os elementos existem antes de prosseguir com a animação
+//     if (!subtitle1 || !subtitle2 || !titleLinkDiv) {
+//         return; // Interrompe a execução da função se algum elemento for null
+//     }
+
+//     // Configura a opacidade inicial e a posição dos elementos
+//     gsap.set([titleLinkDiv, subtitle1, subtitle2], {opacity: 0, y: 20});
+
+//     // Cria uma linha do tempo para a animação
+//     const tl = gsap.timeline({defaults: {duration: 0.3, ease: "power2.out"}});
+
+//     // Animação dos elementos com delays ajustados
+//     tl.to(subtitle1, {opacity: 1, y: 0}, "+=0.5")  // Inicia com delay inicial
+//       .to(subtitle2, {opacity: 1, y: 0}, "+=0.05")  // Inicia logo após subtitle1
+//       .to(titleLinkDiv, {opacity: 1, y: 0}, "+=0.05"); // Inicia logo após subtitle2
+// }
+
+animateSlideElements(slide) {
+  const subtitle1 = slide.querySelector('.subtitle__part2');
+  const subtitle2 = slide.querySelector('.subtitle__part3');
+  const titleLinkDiv = slide.querySelector('.slide__title__link');
+
+  // Verificação se os elementos existem antes de prosseguir com a animação
+  if (!subtitle1 || !subtitle2 || !titleLinkDiv) {
+      console.log('Elementos faltando, animação interrompida.');
+      return; // Interrompe a execução da função se algum elemento for null
   }
-  
-  animateSlideElements(slide) {
-    const subtitle1 = slide.querySelector('.subtitle__part2');
-    const subtitle2 = slide.querySelector('.subtitle__part3');
-    const titleLinkDiv = slide.querySelector('.slide__title__link');
 
-    // Verificação se os elementos existem antes de prosseguir com a animação
-    if (!subtitle1 || !subtitle2 || !titleLinkDiv) {
-        return; // Interrompe a execução da função se algum elemento for null
-    }
+  // Prevenir animações duplicadas
+  if (slide.dataset.animated) {
+      console.log('Animação já executada para este slide.');
+      return; // Interrompe a execução se a animação já foi executada
+  }
 
-    // Configura a opacidade inicial e a posição dos elementos
-    gsap.set([titleLinkDiv, subtitle1, subtitle2], {opacity: 0, y: 20});
+  // Marcar o slide como animado
+  slide.dataset.animated = true;
 
-    // Cria uma linha do tempo para a animação
-    const tl = gsap.timeline({defaults: {duration: 0.3, ease: "power2.out"}});
+  // Adiciona logs para monitorar a execução
+  console.log('Iniciando animação para:', slide);
 
-    // Animação dos elementos com delays ajustados
-    tl.to(subtitle1, {opacity: 1, y: 0}, "+=0.5")  // Inicia com delay inicial
-      .to(subtitle2, {opacity: 1, y: 0}, "+=0.05")  // Inicia logo após subtitle1
-      .to(titleLinkDiv, {opacity: 1, y: 0}, "+=0.05"); // Inicia logo após subtitle2
+  gsap.set([titleLinkDiv, subtitle1, subtitle2], {opacity: 0, y: 20});
+
+  // Cria uma linha do tempo para a animação
+  const tl = gsap.timeline({defaults: {duration: 0.4, ease: "power2.out"}});
+
+  // Animação dos elementos com delays ajustados
+  tl.to(subtitle1, {opacity: 1, y: 0}, "+=0.3")  // Inicia com delay inicial
+    .to(subtitle2, {opacity: 1, y: 0}, "+=0.2")  // Inicia logo após subtitle1
+    .to(titleLinkDiv, {opacity: 1, y: 0}, "+=0.2"); // Inicia logo após subtitle2
+
+  // Log após animação
+  tl.eventCallback("onComplete", () => {
+      console.log('Animação concluída para:', slide);
+  });
 }
+
 
   clearSlideAnimations(slide) {
     const elements = slide.querySelectorAll('.slide__title, .slide__title__arrow, .subtitle__part2, .subtitle__part3');
