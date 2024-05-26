@@ -1,4 +1,3 @@
-
 import MenuMobile from './modules/menu-mobile.js';
 import MenuProjetos from './modules/menu-projetos.js';
 import ScrollAnima from './modules/scroll-anima.js';
