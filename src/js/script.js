@@ -5,6 +5,7 @@ import MySwiper from './modules/mySwiper.js';
 import HoverInteraction  from './modules/premios-content.js';
 import CarregaProjetos from './modules/carregaProjetos.js';
 import CarregaPaginaProjeto from './modules/carregaPaginaProjeto.js';
+
 import "../css/global.css";
 import "../css/distancias.css";
 import "../css/tipografia.css";
