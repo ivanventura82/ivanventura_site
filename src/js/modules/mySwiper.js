@@ -274,27 +274,27 @@ export default class MySwiper {
     // tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
   }
   
-  animateSlideElements(slide) {
-    const subtitle1 = slide.querySelector('.subtitle__part2');
-    const subtitle2 = slide.querySelector('.subtitle__part3');
-    const titleLinkDiv = slide.querySelector('.slide__title__link');
+//   animateSlideElements(slide) {
+//     const subtitle1 = slide.querySelector('.subtitle__part2');
+//     const subtitle2 = slide.querySelector('.subtitle__part3');
+//     const titleLinkDiv = slide.querySelector('.slide__title__link');
 
-    // Verificação se os elementos existem antes de prosseguir com a animação
-    if (!subtitle1 || !subtitle2 || !titleLinkDiv) {
-        return; // Interrompe a execução da função se algum elemento for null
-    }
+//     // Verificação se os elementos existem antes de prosseguir com a animação
+//     if (!subtitle1 || !subtitle2 || !titleLinkDiv) {
+//         return; // Interrompe a execução da função se algum elemento for null
+//     }
 
-    // Configura a opacidade inicial e a posição dos elementos
-    gsap.set([titleLinkDiv, subtitle1, subtitle2], {opacity: 0, y: 20});
+//     // Configura a opacidade inicial e a posição dos elementos
+//     gsap.set([titleLinkDiv, subtitle1, subtitle2], {opacity: 0, y: 20});
 
-    // Cria uma linha do tempo para a animação
-    const tl = gsap.timeline({defaults: {duration: 0.3, ease: "power2.out"}});
+//     // Cria uma linha do tempo para a animação
+//     const tl = gsap.timeline({defaults: {duration: 0.3, ease: "power2.out"}});
 
-    // Animação dos elementos com delays ajustados
-    tl.to(subtitle1, {opacity: 1, y: 0}, "+=0.5")  // Inicia com delay inicial
-      .to(subtitle2, {opacity: 1, y: 0}, "+=0.05")  // Inicia logo após subtitle1
-      .to(titleLinkDiv, {opacity: 1, y: 0}, "+=0.05"); // Inicia logo após subtitle2
-}
+//     // Animação dos elementos com delays ajustados
+//     tl.to(subtitle1, {opacity: 1, y: 0}, "+=0.5")  // Inicia com delay inicial
+//       .to(subtitle2, {opacity: 1, y: 0}, "+=0.05")  // Inicia logo após subtitle1
+//       .to(titleLinkDiv, {opacity: 1, y: 0}, "+=0.05"); // Inicia logo após subtitle2
+// }
 
 animateSlideElements(slide) {
   const subtitle1 = slide.querySelector('.subtitle__part2');
