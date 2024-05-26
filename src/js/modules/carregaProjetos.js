@@ -198,11 +198,6 @@ export default class CarregaProjetos {
 }
 
 
-
-
-
-
-
 // export default class CarregaProjetos {
 //     constructor(jsonURL, swiperInstance) {
 //         this.jsonURL = jsonURL;
@@ -349,42 +344,6 @@ export default class CarregaProjetos {
 //             });
 //         });
 //     }
-
-//     // iniciarCortinaEAtualizarSlides(categoria, ocultarPrimeiroBullet, callback) {
-//     //     const swiperWrapper = document.querySelector('.swiper-wrapper');
-//     //     const blackCurtain = document.createElement('div');
-//     //     blackCurtain.style.position = 'absolute';
-//     //     blackCurtain.style.left = 0;
-//     //     blackCurtain.style.top = 0;
-//     //     blackCurtain.style.width = '100%';
-//     //     blackCurtain.style.height = '100%';
-//     //     blackCurtain.style.backgroundColor = 'black';
-//     //     blackCurtain.style.zIndex = 9999;
-//     //     blackCurtain.style.transform = 'translateX(100%)';  // Inicia fora da tela, à direita
-//     //     swiperWrapper.appendChild(blackCurtain);
-    
-//     //     // Animação de entrada (da direita para a esquerda)
-//     //     gsap.to(blackCurtain, {
-//     //         x: '0%',
-//     //         duration: 1,
-//     //         ease: 'power2.inOut',
-//     //         onComplete: () => {
-//     //             this.filtrarEExibirProjetos(categoria, ocultarPrimeiroBullet);
-//     //             // Animação de saída (da esquerda para a direita)
-//     //             gsap.to(blackCurtain, {
-//     //                 x: '100%',  // Muda aqui para ir para a direita
-//     //                 duration: 1,
-//     //                 ease: 'power2.inOut',
-//     //                 onComplete: () => {
-//     //                     blackCurtain.remove(); // Remove a cortina após a animação
-//     //                     if (callback) callback(); // Chama o callback após a animação e atualização dos slides
-//     //                 }
-//     //             });
-//     //         }
-//     //     });
-//     // }
-
-    
 
 
 //     gerenciarPrimeiroBullet(ocultar) {

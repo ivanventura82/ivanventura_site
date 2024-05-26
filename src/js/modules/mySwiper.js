@@ -216,7 +216,6 @@ animateSubtitles() {
       tl.to(subtitle, {opacity: 1, y: "25vh", duration: 0.3}, "+=0.1");
   });
       tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
-
 }
 
 // Função para iniciar a animação dos subtítulos apenas uma vez na inicialização
@@ -240,19 +239,6 @@ startInitialAnimation() {
     return [botaoLogo, botaoProjetos, botaoMobile, botaoEstudio, botaoContato, botaoDown, botaoVoltar].filter(btn => btn !== null);
   }
   
-  // animateButtons() {
-  //   const buttons = this.selectButtons();
-  //   gsap.set(buttons, {opacity: 0, y: 0});
-  
-  //   if (buttons.length === 0) {
-  //       console.error('Required button elements not found');
-  //       return; // Encerra a função se não houver elementos suficientes
-  //   }
-  
-  //   const tl = gsap.timeline({defaults: {ease: "power2.out"}, delay: 2});
-  //   tl.to(buttons, {opacity: 1, y: 0, duration: 0.3, stagger: 0.1}, "+=0.1");
-  // }
-
   animateButtons() {
     const buttons = this.selectButtons();
     const menuItems = document.querySelectorAll('.menu__projetos li'); // Seleciona os itens do menu projetos
@@ -281,10 +267,10 @@ startInitialAnimation() {
             }
         }, "-=0.1"); // Sincroniza com o final da animação dos botões
     }
-}
+  }
 
-// Função para animar os elementos do slide durante a troca de slides
-animateSlideElements(slide) {
+  // Função para animar os elementos do slide durante a troca de slides
+  animateSlideElements(slide) {
   const subtitle1 = slide.querySelector('.subtitle__part2');
   const subtitle2 = slide.querySelector('.subtitle__part3');
   const titleLinkDiv = slide.querySelector('.slide__title__link');
@@ -312,7 +298,7 @@ animateSlideElements(slide) {
   tl.eventCallback("onComplete", () => {
       console.log('Animação concluída para:', slide);
   });
-}
+  }
 
   clearSlideAnimations(slide) {
     const elements = slide.querySelectorAll('.slide__title, .slide__title__arrow, .subtitle__part2, .subtitle__part3');
