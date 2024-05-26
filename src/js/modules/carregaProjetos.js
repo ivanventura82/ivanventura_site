@@ -151,8 +151,11 @@ export default class CarregaProjetos {
         const textSpans = content.querySelectorAll('span');
         const titleAndArrow = content.querySelector('.slide__title__link');
     
+        // Cria uma linha do tempo para a animação
+        const tl = gsap.timeline({defaults: {duration: 0.4, ease: "power2.out"}});
+    
         // Animação da Cortina Preta
-        gsap.to(blackCurtain, {
+        tl.to(blackCurtain, {
             x: '100%',
             duration: 1,
             ease: 'power2.inOut',
@@ -162,7 +165,7 @@ export default class CarregaProjetos {
         });
     
         // Animações de Zoom para a Imagem e Fade In para o Texto
-        gsap.fromTo(bgImage, {
+        tl.fromTo(bgImage, {
             scale: 1.1,
             autoAlpha: 0
         }, {
@@ -171,35 +174,23 @@ export default class CarregaProjetos {
             duration: 1.5,
             ease: 'power2.out',
             delay: 0.5  // Inicia após a cortina começar a se mover
-        });
+        }, '-=1'); // Sobrepõe parcialmente com a animação da cortina preta
     
-        gsap.fromTo(titleAndArrow, {
-            y: 30,
-            autoAlpha: 0
-        }, {
-            y: 0,
-            autoAlpha: 1,
-            duration: 1,
-            delay: 1.2, // Delay para começar a animação depois da imagem de fundo
-            ease: 'power2.out'
-        });
+        // Configura a opacidade inicial e a posição para spans e título
+        gsap.set([titleAndArrow, ...textSpans], {opacity: 0, y: 20});
     
-        textSpans.forEach((span, index) => {
-            gsap.fromTo(span, {
-                y: 30,
-                autoAlpha: 0
-            }, {
-                y: 0,
-                autoAlpha: 1,
-                duration: 1,
-                delay: 1.4 + index * 0.2, // Incrementa o delay para cada <span>
-                ease: 'power2.out'
-            });
-        });
+        // Animação dos spans e do título usando o tempo e ordem da função fornecida
+        if (textSpans[0]) {
+            tl.to(textSpans[0], {opacity: 1, y: 0}, "-=0.8"); // Inicia quase imediatamente após a imagem
+        }
+    
+        if (textSpans[1]) {
+            tl.to(textSpans[1], {opacity: 1, y: 0}, "-=0.6"); // Mantém a sequência logo após o primeiro span
+        }
+    
+        tl.to(titleAndArrow, {opacity: 1, y: 0}, "-=0.4"); // Inicia logo após o segundo span
     }
     
-  
-
     // Dentro de CarregaProjetos
     setSwiperInstance(swiperInstance) {
         this.swiperInstance = swiperInstance;

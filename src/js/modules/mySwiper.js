@@ -279,36 +279,27 @@ export default class MySwiper {
     tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
   }
   
-
   animateSlideElements(slide) {
     const subtitle1 = slide.querySelector('.subtitle__part2');
     const subtitle2 = slide.querySelector('.subtitle__part3');
     const titleLinkDiv = slide.querySelector('.slide__title__link');
 
-      // Verificação se os elementos existem antes de prosseguir com a animação
-      if (!subtitle1 || !subtitle2 || !titleLinkDiv) {
+    // Verificação se os elementos existem antes de prosseguir com a animação
+    if (!subtitle1 || !subtitle2 || !titleLinkDiv) {
         return; // Interrompe a execução da função se algum elemento for null
     }
 
+    // Configura a opacidade inicial e a posição dos elementos
     gsap.set([titleLinkDiv, subtitle1, subtitle2], {opacity: 0, y: 20});
-    // Exemplo simples de parallax para quando o slide entra em foco
-    // Certifique-se de que seu CSS inclua `filter: blur(5px);` inicialmente na `.slide-background-img`
 
-    const tl = gsap.timeline({defaults: {duration: 0.4, ease: "power2.out"}});
+    // Cria uma linha do tempo para a animação
+    const tl = gsap.timeline({defaults: {duration: 0.3, ease: "power2.out"}});
 
-    tl.to(subtitle1, {opacity: 1, y: 0}, "+=0.3")  // Certifique-se de adicionar um pequeno delay se necessário
-      .to(subtitle2, {opacity: 1, y: 0})
-      .to(titleLinkDiv, {opacity: 1, y: 0});
-  }
-
-  // animateSlideImage(slide) {
-  //   const bgImage = slide.querySelector('.slide-background-img');
-  //   if (!bgImage) {
-  //     return; // Interrompe a execução da função se o elemento for null
-  //   }
-
-  //   gsap.fromTo(bgImage, {scale: 1}, {scale: 1.05, duration: 1.5, ease: 'power2.inOut'});
-  // }
+    // Animação dos elementos com delays ajustados
+    tl.to(subtitle1, {opacity: 1, y: 0}, "+=0.5")  // Inicia com delay inicial
+      .to(subtitle2, {opacity: 1, y: 0}, "+=0.05")  // Inicia logo após subtitle1
+      .to(titleLinkDiv, {opacity: 1, y: 0}, "+=0.05"); // Inicia logo após subtitle2
+}
 
   clearSlideAnimations(slide) {
     const elements = slide.querySelectorAll('.slide__title, .slide__title__arrow, .subtitle__part2, .subtitle__part3');
@@ -556,7 +547,6 @@ mapHashToCategory(hash) {
     }
 }
 
-
   applyFilter(filterCategory) {
     console.log(`Aplicando filtro: ${filterCategory}`);
 
@@ -577,9 +567,6 @@ mapHashToCategory(hash) {
       console.log('A instância de CarregaProjetos ou o método filtrarEExibirProjetos não está disponível.');
     }
   }
-
-
-
 
   markActiveLink(filterCategory) {
     const links = document.querySelectorAll('.nav__menu__projetos-mobile a[data-filter], .nav__menu__projetos-desktop a[data-filter]');
