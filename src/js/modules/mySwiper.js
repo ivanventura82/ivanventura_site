@@ -242,20 +242,21 @@ export default class MySwiper {
 //   }
 // }
 
+
 handleSlideChangeStart() {
   let currentSlide = this.swiper.slides[this.swiper.activeIndex];
   this.clearSlideAnimations(currentSlide);
   this.animateSlideElements(currentSlide);
-  console.log("Evento de início de transição de slide disparado.");
+  console.log("Início da transição de slide:", this.swiper.realIndex);
   this.precarregarImagens(this.swiper);
-  this.checkAndUpdateUIForSlideStart();
+  this.updateUIForSlide(this.swiper.realIndex);
   this.updatePagination(); // Garante que a função esteja definida
 }
 
 
 handleSlideChangeEnd() {
-  this.checkAndUpdateUIForSlideEnd();
-  console.log("Slide Change End: ", this.swiper.realIndex);
+  console.log("Fim da transição de slide:", this.swiper.realIndex);
+  this.updateUIForSlide(this.swiper.realIndex);
   this.updatePagination(); // Garante que a função esteja definida
 }
 
@@ -281,12 +282,37 @@ checkAndUpdateUIForSlideEnd() {
 
 
 
-updateUIForLastSlide() {
+updateUIForSlide(currentSlideIndex) {
   const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
   const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
+  console.log("Atualizando UI para o slide:", currentSlideIndex);
 
+  // Remove todas as classes antes de adicionar as corretas
   menuElements.forEach(el => el.classList.remove('white-color'));
-  paginationBullets.forEach(bullet => bullet.classList.add('black'));
+  paginationBullets.forEach(bullet => bullet.classList.remove('black'));
+
+  // Lógica para o último slide
+  if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
+    menuElements.forEach(el => el.classList.remove('white-color'));
+    paginationBullets.forEach(bullet => bullet.classList.add('black'));
+  } 
+  // Lógica específica para páginas com "projetos" no URL
+  else if (this.isProjetosPage()) {
+    menuElements.forEach(el => {
+      if (currentSlideIndex === 0) {
+        el.classList.add('white-color');
+      } else if (currentSlideIndex === 1) {
+        el.classList.remove('white-color');
+      } else {
+        el.classList.add('white-color');
+      }
+    });
+    if (currentSlideIndex === 1) {
+      paginationBullets.forEach(bullet => bullet.classList.add('black'));
+    }
+  } else {
+    menuElements.forEach(el => el.classList.add('white-color'));
+  }
 }
 
 
@@ -358,7 +384,6 @@ updatePagination() {
     console.warn("Nenhum bullet ativo encontrado para o índice:", this.swiper.realIndex);
   }
 }
-
 
 
 
