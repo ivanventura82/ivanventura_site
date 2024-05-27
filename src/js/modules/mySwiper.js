@@ -170,23 +170,93 @@ export default class MySwiper {
   //   }
   // }
 
-  handleSlideChangeStart() {
-    let currentSlide = this.swiper.slides[this.swiper.activeIndex];
-    this.clearSlideAnimations(currentSlide);
-    this.animateSlideElements(currentSlide);
-    console.log("Evento de início de transição de slide disparado.");
-    this.precarregarImagens(this.swiper);
-    this.checkAndUpdateUIForSlide();
-    this.updatePagination();  // Adiciona a chamada aqui
+
+
+//   handleSlideChangeStart() {
+//     let currentSlide = this.swiper.slides[this.swiper.activeIndex];
+//     this.clearSlideAnimations(currentSlide);
+//     this.animateSlideElements(currentSlide);
+//     console.log("Evento de início de transição de slide disparado.");
+//     this.precarregarImagens(this.swiper);
+//     this.checkAndUpdateUIForSlide();
+//     this.updatePagination();  // Adiciona a chamada aqui
+// }
+
+// handleSlideChangeEnd() {
+//   this.checkAndUpdateUIForSlide();
+//   console.log("Slide Change End: ", currentSlideIndex);
+//     this.updatePagination();  // Adiciona a chamada aqui
+// }
+
+
+// checkAndUpdateUIForSlide() {
+//   let currentSlideIndex = this.swiper.realIndex;
+//   if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
+//       this.updateUIForLastSlide();
+//   } else {
+//       this.updateUIForNonLastSlides(currentSlideIndex);
+//   }
+// }
+
+// updateUIForLastSlide() {
+//   const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
+//   const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
+
+//   menuElements.forEach(el => el.classList.remove('white-color'));
+//   paginationBullets.forEach(bullet => bullet.classList.add('black'));
+// }
+
+// updateUIForLastSlide() {
+//   const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
+//   const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
+
+//   menuElements.forEach(el => el.classList.remove('white-color'));
+//   paginationBullets.forEach(bullet => bullet.classList.add('black'));
+// }
+
+// updateUIForNonLastSlides(currentSlideIndex) {
+//   const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
+//   const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
+
+//   menuElements.forEach(el => el.classList.add('white-color'));
+//   paginationBullets.forEach(bullet => bullet.classList.remove('black'));
+
+//   // Lógica específica para páginas com "projetos" no URL
+//   if (this.isProjetosPage()) {
+//       // Remove 'white-color' class only on the second slide
+//       menuElements.forEach(el => {
+//           if (currentSlideIndex === 0) {
+//               el.classList.add('white-color');
+//           }
+//           if (currentSlideIndex === 1) {
+//               el.classList.remove('white-color');
+//           }
+//       });
+
+//       paginationBullets.forEach(bullet => bullet.classList.remove('black'));
+
+//       // Adiciona a classe 'black' apenas no slide 2 (índice 1)
+//       if (currentSlideIndex === 1) { // Lembre-se que os índices começam em 0
+//           paginationBullets.forEach(bullet => bullet.classList.add('black'));
+//       }
+//   }
+// }
+
+handleSlideChangeStart() {
+  let currentSlide = this.swiper.slides[this.swiper.activeIndex];
+  this.clearSlideAnimations(currentSlide);
+  this.animateSlideElements(currentSlide);
+  console.log("Evento de início de transição de slide disparado.");
+  this.precarregarImagens(this.swiper);
+  this.checkAndUpdateUIForSlide();
+  this.updatePagination(); // Garante que a função esteja definida
 }
 
 handleSlideChangeEnd() {
   this.checkAndUpdateUIForSlide();
-  console.log("Slide Change End: ", currentSlideIndex);
-    this.updatePagination();  // Adiciona a chamada aqui
+  console.log("Slide Change End: ", this.swiper.realIndex);
+  this.updatePagination(); // Garante que a função esteja definida
 }
-
-
 
 checkAndUpdateUIForSlide() {
   let currentSlideIndex = this.swiper.realIndex;
@@ -205,20 +275,9 @@ updateUIForLastSlide() {
   paginationBullets.forEach(bullet => bullet.classList.add('black'));
 }
 
-updateUIForLastSlide() {
-  const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
-  const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-
-  menuElements.forEach(el => el.classList.remove('white-color'));
-  paginationBullets.forEach(bullet => bullet.classList.add('black'));
-}
-
 updateUIForNonLastSlides(currentSlideIndex) {
   const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
   const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-
-  menuElements.forEach(el => el.classList.add('white-color'));
-  paginationBullets.forEach(bullet => bullet.classList.remove('black'));
 
   // Lógica específica para páginas com "projetos" no URL
   if (this.isProjetosPage()) {
@@ -238,8 +297,33 @@ updateUIForNonLastSlides(currentSlideIndex) {
       if (currentSlideIndex === 1) { // Lembre-se que os índices começam em 0
           paginationBullets.forEach(bullet => bullet.classList.add('black'));
       }
+  } else {
+      menuElements.forEach(el => el.classList.add('white-color'));
+      paginationBullets.forEach(bullet => bullet.classList.remove('black'));
   }
 }
+
+updatePagination() {
+  const paginationBullets = document.querySelectorAll('.swiper-pagination .swiper-pagination-bullet');
+  if (paginationBullets.length === 0) {
+      console.warn("Nenhum bullet de paginação encontrado.");
+      return;
+  }
+
+  paginationBullets.forEach(bullet => {
+      bullet.classList.remove('swiper-pagination-bullet-active');
+  });
+
+  const activeBullet = paginationBullets[this.swiper.realIndex];
+  if (activeBullet) {
+      activeBullet.classList.add('swiper-pagination-bullet-active');
+  } else {
+      console.warn("Nenhum bullet ativo encontrado para o índice:", this.swiper.realIndex);
+  }
+}
+
+
+
 
   precarregarImagens(swiper) {
     const connectionType = navigator.connection && navigator.connection.effectiveType;
