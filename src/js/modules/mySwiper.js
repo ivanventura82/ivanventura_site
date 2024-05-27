@@ -176,6 +176,7 @@ export default class MySwiper {
     this.animateSlideElements(currentSlide);
     console.log("Evento de início de transição de slide disparado.");
     this.precarregarImagens(this.swiper);
+    this.updatePagination();  // Adiciona a chamada aqui
 }
 
 handleSlideChangeEnd() {
@@ -184,21 +185,30 @@ handleSlideChangeEnd() {
         this.updateUIForLastSlide();
     }
     console.log("Slide Change End: ", currentSlideIndex);
-    this.updatePagination();
+    this.updatePagination();  // Adiciona a chamada aqui
 }
 
 
-  updatePagination() {
-    const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-    paginationBullets.forEach(bullet => {
-        bullet.classList.remove('swiper-pagination-bullet-active');
-    });
 
-    const activeBullet = paginationBullets[this.swiper.realIndex];
-    if (activeBullet) {
-        activeBullet.classList.add('swiper-pagination-bullet-active');
-    }
+updatePagination() {
+  const paginationBullets = document.querySelectorAll('.swiper-pagination .swiper-pagination-bullet');
+  if (paginationBullets.length === 0) {
+      console.warn("Nenhum bullet de paginação encontrado.");
+      return;
+  }
+
+  paginationBullets.forEach(bullet => {
+      bullet.classList.remove('swiper-pagination-bullet-active');
+  });
+
+  const activeBullet = paginationBullets[this.swiper.realIndex];
+  if (activeBullet) {
+      activeBullet.classList.add('swiper-pagination-bullet-active');
+  } else {
+      console.warn("Nenhum bullet ativo encontrado para o índice:", this.swiper.realIndex);
+  }
 }
+
 
 
   precarregarImagens(swiper) {
