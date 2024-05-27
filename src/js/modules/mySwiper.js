@@ -155,20 +155,51 @@ export default class MySwiper {
     this.precarregarImagens(this.swiper);
   }
 
+  // handleSlideChangeStart() {
+  //   let currentSlide = this.swiper.slides[this.swiper.activeIndex];
+  //   this.clearSlideAnimations(currentSlide); // Limpeza opcional de animações anteriores
+  //   this.animateSlideElements(currentSlide); // Inicia a animação dos elementos
+  //   console.log("Evento de início de transição de slide disparado.");
+  //   this.precarregarImagens(this.swiper); 
+  // }
+
+  // handleSlideChangeEnd() {
+  //   let currentSlideIndex = this.swiper.realIndex;
+  //   if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
+  //     this.updateUIForLastSlide();
+  //   }
+  // }
+
   handleSlideChangeStart() {
     let currentSlide = this.swiper.slides[this.swiper.activeIndex];
-    this.clearSlideAnimations(currentSlide); // Limpeza opcional de animações anteriores
-    this.animateSlideElements(currentSlide); // Inicia a animação dos elementos
+    this.clearSlideAnimations(currentSlide);
+    this.animateSlideElements(currentSlide);
     console.log("Evento de início de transição de slide disparado.");
-    this.precarregarImagens(this.swiper); 
-  }
+    this.precarregarImagens(this.swiper);
+}
 
-  handleSlideChangeEnd() {
+handleSlideChangeEnd() {
     let currentSlideIndex = this.swiper.realIndex;
     if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
-      this.updateUIForLastSlide();
+        this.updateUIForLastSlide();
     }
-  }
+    console.log("Slide Change End: ", currentSlideIndex);
+    this.updatePagination();
+}
+
+
+  updatePagination() {
+    const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
+    paginationBullets.forEach(bullet => {
+        bullet.classList.remove('swiper-pagination-bullet-active');
+    });
+
+    const activeBullet = paginationBullets[this.swiper.realIndex];
+    if (activeBullet) {
+        activeBullet.classList.add('swiper-pagination-bullet-active');
+    }
+}
+
 
   precarregarImagens(swiper) {
     const connectionType = navigator.connection && navigator.connection.effectiveType;
