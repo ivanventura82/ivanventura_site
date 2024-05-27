@@ -85,9 +85,9 @@ export default class MySwiper {
         direction: "vertical",
         speed: 1000,
         simulateTouch: true,
-        touchRatio: 1.5,
+        touchRatio: 1,
         touchAngle: 45,
-        threshold: 20,
+        threshold: 10,
         allowTouchMove: true,
         followFinger: true,
         mousewheel: true,
@@ -122,8 +122,6 @@ export default class MySwiper {
           slideChange: this.slideChange.bind(this),
           init: this.handleSwiperInit.bind(this),
           imagesReady: this.handleImagesReady.bind(this),
-          touchMove: this.handleTouchMove.bind(this) // Adiciona o listener para touch move
-
         },
       });
 
@@ -190,11 +188,12 @@ handleSlideChangeEnd() {
     this.updatePagination();  // Adiciona a chamada aqui
 }
 
-handleTouchMove() {
-  let currentSlideIndex = this.swiper.realIndex;
-  if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
-      this.updateUIForLastSlide();
-  }
+updateUIForLastSlide() {
+  const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
+  const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
+
+  menuElements.forEach(el => el.classList.remove('white-color'));
+  paginationBullets.forEach(bullet => bullet.classList.add('black'));
 }
 
 updatePagination() {
