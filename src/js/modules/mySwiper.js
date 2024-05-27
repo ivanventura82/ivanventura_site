@@ -121,7 +121,9 @@ export default class MySwiper {
           slideChangeTransitionEnd: this.handleSlideChangeEnd.bind(this),
           slideChange: this.slideChange.bind(this),
           init: this.handleSwiperInit.bind(this),
-          imagesReady: this.handleImagesReady.bind(this)
+          imagesReady: this.handleImagesReady.bind(this),
+          touchMove: this.handleTouchMove.bind(this) // Adiciona o listener para touch move
+
         },
       });
 
@@ -188,7 +190,12 @@ handleSlideChangeEnd() {
     this.updatePagination();  // Adiciona a chamada aqui
 }
 
-
+handleTouchMove() {
+  let currentSlideIndex = this.swiper.realIndex;
+  if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
+      this.updateUIForLastSlide();
+  }
+}
 
 updatePagination() {
   const paginationBullets = document.querySelectorAll('.swiper-pagination .swiper-pagination-bullet');
@@ -208,8 +215,6 @@ updatePagination() {
       console.warn("Nenhum bullet ativo encontrado para o índice:", this.swiper.realIndex);
   }
 }
-
-
 
   precarregarImagens(swiper) {
     const connectionType = navigator.connection && navigator.connection.effectiveType;
