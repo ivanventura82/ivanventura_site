@@ -176,16 +176,21 @@ export default class MySwiper {
     this.animateSlideElements(currentSlide);
     console.log("Evento de início de transição de slide disparado.");
     this.precarregarImagens(this.swiper);
+    this.checkAndUpdateUIForLastSlide();
     this.updatePagination();  // Adiciona a chamada aqui
 }
 
 handleSlideChangeEnd() {
-    let currentSlideIndex = this.swiper.realIndex;
-    if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
-        this.updateUIForLastSlide();
-    }
+    this.checkAndUpdateUIForLastSlide();
     console.log("Slide Change End: ", currentSlideIndex);
     this.updatePagination();  // Adiciona a chamada aqui
+}
+
+checkAndUpdateUIForLastSlide() {
+  let currentSlideIndex = this.swiper.realIndex;
+  if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
+      this.updateUIForLastSlide();
+  }
 }
 
 updateUIForLastSlide() {
