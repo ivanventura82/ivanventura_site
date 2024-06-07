@@ -165,15 +165,49 @@ export default class MySwiper {
     this.precarregarImagens(this.swiper);
   }
 
+  // handleSlideChangeStart() {
+  //   let currentSlide = this.swiper.slides[this.swiper.activeIndex];
+  //   this.clearSlideAnimations(currentSlide);
+  //   this.animateSlideElements(currentSlide);
+  //   console.log("Início da transição de slide:", this.swiper.realIndex);
+  //   this.precarregarImagens(this.swiper);
+  //   this.updateUIForSlide(this.swiper.realIndex);
+  //   this.updatePagination(); // Garante que a função esteja definida
+  // }
+
   handleSlideChangeStart() {
     let currentSlide = this.swiper.slides[this.swiper.activeIndex];
-    this.clearSlideAnimations(currentSlide);
-    this.animateSlideElements(currentSlide);
     console.log("Início da transição de slide:", this.swiper.realIndex);
+  
+    this.clearSlideAnimations(currentSlide);
+  
+    const subtitle1 = currentSlide.querySelector('.subtitle__part2');
+    const subtitle2 = currentSlide.querySelector('.subtitle__part3');
+    const titleLinkDiv = currentSlide.querySelector('.slide__title__link');
+  
+    if (!subtitle1 || !subtitle2 || !titleLinkDiv) {
+      console.log('Elementos faltando, animação interrompida.');
+      return; // Interrompe a execução da função se algum elemento for null
+    }
+  
+    console.log('Iniciando animação para:', currentSlide);
+    gsap.set([titleLinkDiv, subtitle1, subtitle2], {opacity: 0, y: 20});
+  
+    const tl = gsap.timeline({defaults: {duration: 0.4, ease: "power2.out"}});
+  
+    tl.to(subtitle1, {opacity: 1, y: 0}, "+=0.3")  // Inicia com delay inicial
+      .to(subtitle2, {opacity: 1, y: 0}, "+=0.2")  // Inicia logo após subtitle1
+      .to(titleLinkDiv, {opacity: 1, y: 0}, "+=0.2");
+  
+    tl.eventCallback("onComplete", () => {
+      console.log('Animação concluída para:', currentSlide);
+    });
+  
     this.precarregarImagens(this.swiper);
     this.updateUIForSlide(this.swiper.realIndex);
     this.updatePagination(); // Garante que a função esteja definida
   }
+  
 
   handleSlideChangeEnd() {
     console.log("Fim da transição de slide:", this.swiper.realIndex);
