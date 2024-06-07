@@ -117,7 +117,7 @@ export default class MySwiper {
           clickable: true,
         },
         on: {
-          slideChangeTransitionStart: this.handleSlideChangeStart.bind(this),
+          slideChangeTransitionStart: this.debounce(this.handleSlideChangeStart.bind(this), 100),
           slideChangeTransitionEnd: this.handleSlideChangeEnd.bind(this),
           slideChange: this.slideChange.bind(this),
           init: this.handleSwiperInit.bind(this),
@@ -127,6 +127,16 @@ export default class MySwiper {
 
       console.log("Swiper inicializado:", this.swiper);
       document.dispatchEvent(new CustomEvent('SwiperReady')); // Event indicating Swiper is ready
+  }
+
+    // Função debounce para limitar a frequência de execução de uma função
+  debounce(func, wait) {
+    let timeout;
+    return function() {
+      const context = this, args = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(context, args), wait);
+    };
   }
 
   handleSwiperInit() {
@@ -155,239 +165,139 @@ export default class MySwiper {
     this.precarregarImagens(this.swiper);
   }
 
-  // handleSlideChangeStart() {
-  //   let currentSlide = this.swiper.slides[this.swiper.activeIndex];
-  //   this.clearSlideAnimations(currentSlide); // Limpeza opcional de animações anteriores
-  //   this.animateSlideElements(currentSlide); // Inicia a animação dos elementos
-  //   console.log("Evento de início de transição de slide disparado.");
-  //   this.precarregarImagens(this.swiper); 
-  // }
-
-  // handleSlideChangeEnd() {
-  //   let currentSlideIndex = this.swiper.realIndex;
-  //   if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
-  //     this.updateUIForLastSlide();
-  //   }
-  // }
-
-
-
-//   handleSlideChangeStart() {
-//     let currentSlide = this.swiper.slides[this.swiper.activeIndex];
-//     this.clearSlideAnimations(currentSlide);
-//     this.animateSlideElements(currentSlide);
-//     console.log("Evento de início de transição de slide disparado.");
-//     this.precarregarImagens(this.swiper);
-//     this.checkAndUpdateUIForSlide();
-//     this.updatePagination();  // Adiciona a chamada aqui
-// }
-
-// handleSlideChangeEnd() {
-//   this.checkAndUpdateUIForSlide();
-//   console.log("Slide Change End: ", currentSlideIndex);
-//     this.updatePagination();  // Adiciona a chamada aqui
-// }
-
-
-// checkAndUpdateUIForSlide() {
-//   let currentSlideIndex = this.swiper.realIndex;
-//   if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
-//       this.updateUIForLastSlide();
-//   } else {
-//       this.updateUIForNonLastSlides(currentSlideIndex);
-//   }
-// }
-
-// updateUIForLastSlide() {
-//   const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
-//   const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-
-//   menuElements.forEach(el => el.classList.remove('white-color'));
-//   paginationBullets.forEach(bullet => bullet.classList.add('black'));
-// }
-
-// updateUIForLastSlide() {
-//   const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
-//   const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-
-//   menuElements.forEach(el => el.classList.remove('white-color'));
-//   paginationBullets.forEach(bullet => bullet.classList.add('black'));
-// }
-
-// updateUIForNonLastSlides(currentSlideIndex) {
-//   const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
-//   const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-
-//   menuElements.forEach(el => el.classList.add('white-color'));
-//   paginationBullets.forEach(bullet => bullet.classList.remove('black'));
-
-//   // Lógica específica para páginas com "projetos" no URL
-//   if (this.isProjetosPage()) {
-//       // Remove 'white-color' class only on the second slide
-//       menuElements.forEach(el => {
-//           if (currentSlideIndex === 0) {
-//               el.classList.add('white-color');
-//           }
-//           if (currentSlideIndex === 1) {
-//               el.classList.remove('white-color');
-//           }
-//       });
-
-//       paginationBullets.forEach(bullet => bullet.classList.remove('black'));
-
-//       // Adiciona a classe 'black' apenas no slide 2 (índice 1)
-//       if (currentSlideIndex === 1) { // Lembre-se que os índices começam em 0
-//           paginationBullets.forEach(bullet => bullet.classList.add('black'));
-//       }
-//   }
-// }
-
-
-handleSlideChangeStart() {
-  let currentSlide = this.swiper.slides[this.swiper.activeIndex];
-  this.clearSlideAnimations(currentSlide);
-  this.animateSlideElements(currentSlide);
-  console.log("Início da transição de slide:", this.swiper.realIndex);
-  this.precarregarImagens(this.swiper);
-  this.updateUIForSlide(this.swiper.realIndex);
-  this.updatePagination(); // Garante que a função esteja definida
-}
-
-
-handleSlideChangeEnd() {
-  console.log("Fim da transição de slide:", this.swiper.realIndex);
-  this.updateUIForSlide(this.swiper.realIndex);
-  this.updatePagination(); // Garante que a função esteja definida
-}
-
-
-checkAndUpdateUIForSlideStart() {
-  let currentSlideIndex = this.swiper.realIndex;
-  console.log("Início da transição de slide: ", currentSlideIndex);
-  if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
-    this.updateUIForLastSlide();
-  } else {
-    this.updateUIForNonLastSlidesStart(currentSlideIndex);
+  handleSlideChangeStart() {
+    let currentSlide = this.swiper.slides[this.swiper.activeIndex];
+    this.clearSlideAnimations(currentSlide);
+    this.animateSlideElements(currentSlide);
+    console.log("Início da transição de slide:", this.swiper.realIndex);
+    this.precarregarImagens(this.swiper);
+    this.updateUIForSlide(this.swiper.realIndex);
+    this.updatePagination(); // Garante que a função esteja definida
   }
-}
 
-checkAndUpdateUIForSlideEnd() {
-  let currentSlideIndex = this.swiper.realIndex;
-  console.log("Fim da transição de slide: ", currentSlideIndex);
-  if (!(currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica')) {
-    this.updateUIForNonLastSlides(currentSlideIndex);
+  handleSlideChangeEnd() {
+    console.log("Fim da transição de slide:", this.swiper.realIndex);
+    this.updateUIForSlide(this.swiper.realIndex);
+    this.updatePagination(); // Garante que a função esteja definida
   }
-}
 
+  checkAndUpdateUIForSlideStart() {
+    let currentSlideIndex = this.swiper.realIndex;
+    console.log("Início da transição de slide: ", currentSlideIndex);
+    if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
+      this.updateUIForLastSlide();
+    } else {
+      this.updateUIForNonLastSlidesStart(currentSlideIndex);
+    }
+  }
 
+  checkAndUpdateUIForSlideEnd() {
+    let currentSlideIndex = this.swiper.realIndex;
+    console.log("Fim da transição de slide: ", currentSlideIndex);
+    if (!(currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica')) {
+      this.updateUIForNonLastSlides(currentSlideIndex);
+    }
+  }
 
+  updateUIForSlide(currentSlideIndex) {
+    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
+    const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
+    console.log("Atualizando UI para o slide:", currentSlideIndex);
 
-updateUIForSlide(currentSlideIndex) {
-  const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
-  const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-  console.log("Atualizando UI para o slide:", currentSlideIndex);
-
-  // Remove todas as classes antes de adicionar as corretas
-  menuElements.forEach(el => el.classList.remove('white-color'));
-  paginationBullets.forEach(bullet => bullet.classList.remove('black'));
-
-  // Lógica para o último slide
-  if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
+    // Remove todas as classes antes de adicionar as corretas
     menuElements.forEach(el => el.classList.remove('white-color'));
-    paginationBullets.forEach(bullet => bullet.classList.add('black'));
-  } 
-  // Lógica específica para páginas com "projetos" no URL
-  else if (this.isProjetosPage()) {
-    menuElements.forEach(el => {
-      if (currentSlideIndex === 0) {
-        el.classList.add('white-color');
-      } else if (currentSlideIndex === 1) {
-        el.classList.remove('white-color');
-      } else {
-        el.classList.add('white-color');
-      }
-    });
-    if (currentSlideIndex === 1) {
-      paginationBullets.forEach(bullet => bullet.classList.add('black'));
-    }
-  } else {
-    menuElements.forEach(el => el.classList.add('white-color'));
-  }
-}
-
-
-updateUIForNonLastSlidesStart(currentSlideIndex) {
-  const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
-  console.log("Atualizando UI para slides não finais no início da transição: ", currentSlideIndex);
-
-  // Lógica específica para páginas com "projetos" no URL
-  if (this.isProjetosPage()) {
-    menuElements.forEach(el => {
-      if (currentSlideIndex === 0) {
-        el.classList.add('white-color');
-      }
-      if (currentSlideIndex === 1) {
-        el.classList.remove('white-color');
-      }
-    });
-  } else {
-    menuElements.forEach(el => el.classList.add('white-color'));
-  }
-}
-
-
-updateUIForNonLastSlides(currentSlideIndex) {
-  const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
-  const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-  console.log("Atualizando UI para slides não finais no final da transição: ", currentSlideIndex);
-
-  // Lógica específica para páginas com "projetos" no URL
-  if (this.isProjetosPage()) {
-    // Remove 'white-color' class only on the second slide
-    menuElements.forEach(el => {
-      if (currentSlideIndex === 0) {
-        el.classList.add('white-color');
-      }
-      if (currentSlideIndex === 1) {
-        el.classList.remove('white-color');
-      }
-    });
-
     paginationBullets.forEach(bullet => bullet.classList.remove('black'));
 
-    // Adiciona a classe 'black' apenas no slide 2 (índice 1)
-    if (currentSlideIndex === 1) { // Lembre-se que os índices começam em 0
+    // Lógica para o último slide
+    if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
+      menuElements.forEach(el => el.classList.remove('white-color'));
       paginationBullets.forEach(bullet => bullet.classList.add('black'));
+    } 
+    // Lógica específica para páginas com "projetos" no URL
+    else if (this.isProjetosPage()) {
+      menuElements.forEach(el => {
+        if (currentSlideIndex === 0) {
+          el.classList.add('white-color');
+        } else if (currentSlideIndex === 1) {
+          el.classList.remove('white-color');
+        } else {
+          el.classList.add('white-color');
+        }
+      });
+      if (currentSlideIndex === 1) {
+        paginationBullets.forEach(bullet => bullet.classList.add('black'));
+      }
+    } else {
+      menuElements.forEach(el => el.classList.add('white-color'));
     }
-  } else {
-    menuElements.forEach(el => el.classList.add('white-color'));
-    paginationBullets.forEach(bullet => bullet.classList.remove('black'));
-  }
-}
-
-
-updatePagination() {
-  const paginationBullets = document.querySelectorAll('.swiper-pagination .swiper-pagination-bullet');
-  if (paginationBullets.length === 0) {
-    console.warn("Nenhum bullet de paginação encontrado.");
-    return;
   }
 
-  paginationBullets.forEach(bullet => {
-    bullet.classList.remove('swiper-pagination-bullet-active');
-  });
+  updateUIForNonLastSlidesStart(currentSlideIndex) {
+    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
+    console.log("Atualizando UI para slides não finais no início da transição: ", currentSlideIndex);
 
-  const activeBullet = paginationBullets[this.swiper.realIndex];
-  if (activeBullet) {
-    activeBullet.classList.add('swiper-pagination-bullet-active');
-  } else {
-    console.warn("Nenhum bullet ativo encontrado para o índice:", this.swiper.realIndex);
+    // Lógica específica para páginas com "projetos" no URL
+    if (this.isProjetosPage()) {
+      menuElements.forEach(el => {
+        if (currentSlideIndex === 0) {
+          el.classList.add('white-color');
+        }
+        if (currentSlideIndex === 1) {
+          el.classList.remove('white-color');
+        }
+      });
+    } else {
+      menuElements.forEach(el => el.classList.add('white-color'));
+    }
   }
-}
 
+  updateUIForNonLastSlides(currentSlideIndex) {
+    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
+    const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
+    console.log("Atualizando UI para slides não finais no final da transição: ", currentSlideIndex);
 
+    // Lógica específica para páginas com "projetos" no URL
+    if (this.isProjetosPage()) {
+      // Remove 'white-color' class only on the second slide
+      menuElements.forEach(el => {
+        if (currentSlideIndex === 0) {
+          el.classList.add('white-color');
+        }
+        if (currentSlideIndex === 1) {
+          el.classList.remove('white-color');
+        }
+      });
 
+      paginationBullets.forEach(bullet => bullet.classList.remove('black'));
 
+      // Adiciona a classe 'black' apenas no slide 2 (índice 1)
+      if (currentSlideIndex === 1) { // Lembre-se que os índices começam em 0
+        paginationBullets.forEach(bullet => bullet.classList.add('black'));
+      }
+    } else {
+      menuElements.forEach(el => el.classList.add('white-color'));
+      paginationBullets.forEach(bullet => bullet.classList.remove('black'));
+    }
+  }
+
+  updatePagination() {
+    const paginationBullets = document.querySelectorAll('.swiper-pagination .swiper-pagination-bullet');
+    if (paginationBullets.length === 0) {
+      console.warn("Nenhum bullet de paginação encontrado.");
+      return;
+    }
+
+    paginationBullets.forEach(bullet => {
+      bullet.classList.remove('swiper-pagination-bullet-active');
+    });
+
+    const activeBullet = paginationBullets[this.swiper.realIndex];
+    if (activeBullet) {
+      activeBullet.classList.add('swiper-pagination-bullet-active');
+    } else {
+      console.warn("Nenhum bullet ativo encontrado para o índice:", this.swiper.realIndex);
+    }
+  }
 
   precarregarImagens(swiper) {
     const connectionType = navigator.connection && navigator.connection.effectiveType;
@@ -415,36 +325,36 @@ updatePagination() {
     }
   }
 
-// Função para selecionar os subtítulos
-selectSubtitles() {
-  // Selecionar elementos
-  const subtitle1 = document.querySelector('.subtitle__part1');
-  const subtitle2 = document.querySelector('.subtitle__part2');
-  const subtitle3 = document.querySelector('.subtitle__part3');
+  // Função para selecionar os subtítulos
+  selectSubtitles() {
+    // Selecionar elementos
+    const subtitle1 = document.querySelector('.subtitle__part1');
+    const subtitle2 = document.querySelector('.subtitle__part2');
+    const subtitle3 = document.querySelector('.subtitle__part3');
 
-  return [subtitle1, subtitle2, subtitle3].filter(sub => sub !== null);
-}
-
-// Função para animar os subtítulos na inicialização
-animateSubtitles() {
-  const subtitles = this.selectSubtitles();
-  gsap.set(subtitles, {opacity: 0, y: 400});
-
-  const tl = gsap.timeline({defaults: {ease: "power2.out"}});
-  subtitles.forEach(subtitle => {
-      tl.to(subtitle, {opacity: 1, y: "25vh", duration: 0.3}, "+=0.1");
-  });
-      tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
-}
-
-// Função para iniciar a animação dos subtítulos apenas uma vez na inicialização
-startInitialAnimation() {
-  const firstSlide = document.querySelector('.swiper-slide'); // Ajuste o seletor conforme necessário
-  if (firstSlide && !firstSlide.dataset.initialAnimated) {
-      this.animateSubtitles();
-      firstSlide.dataset.initialAnimated = true; // Marca o slide como tendo a animação inicial aplicada
+    return [subtitle1, subtitle2, subtitle3].filter(sub => sub !== null);
   }
-}
+
+  // Função para animar os subtítulos na inicialização
+  animateSubtitles() {
+    const subtitles = this.selectSubtitles();
+    gsap.set(subtitles, {opacity: 0, y: 400});
+
+    const tl = gsap.timeline({defaults: {ease: "power2.out"}});
+    subtitles.forEach(subtitle => {
+        tl.to(subtitle, {opacity: 1, y: "25vh", duration: 0.3}, "+=0.1");
+    });
+        tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
+  }
+
+  // Função para iniciar a animação dos subtítulos apenas uma vez na inicialização
+  startInitialAnimation() {
+    const firstSlide = document.querySelector('.swiper-slide'); // Ajuste o seletor conforme necessário
+    if (firstSlide && !firstSlide.dataset.initialAnimated) {
+        this.animateSubtitles();
+        firstSlide.dataset.initialAnimated = true; // Marca o slide como tendo a animação inicial aplicada
+    }
+  }
 
   selectButtons() {
     const botaoLogo = document.querySelector('.nav__button__home');
@@ -488,6 +398,7 @@ startInitialAnimation() {
     }
   }
 
+  
   // Função para animar os elementos do slide durante a troca de slides
   animateSlideElements(slide) {
   const subtitle1 = slide.querySelector('.subtitle__part2');
@@ -707,7 +618,6 @@ startInitialAnimation() {
     });
   }
 
-
   filterSlides(category) {
     let filteredSlides;
 
@@ -742,20 +652,20 @@ startInitialAnimation() {
     }
 }
 
-mapHashToCategory(hash) {
-    switch (hash) {
-      case '#viw':
-            return 'all';
-        case '#quadritone':
-            return 'residencias';
+  mapHashToCategory(hash) {
+      switch (hash) {
         case '#viw':
-            return 'edificios';
-        case '#teatrosescatalaia':
-            return 'institucionais';
-        default:
-            return null;
-    }
-}
+              return 'all';
+          case '#quadritone':
+              return 'residencias';
+          case '#viw':
+              return 'edificios';
+          case '#teatrosescatalaia':
+              return 'institucionais';
+          default:
+              return null;
+      }
+  }
 
   applyFilter(filterCategory) {
     console.log(`Aplicando filtro: ${filterCategory}`);
@@ -805,7 +715,6 @@ mapHashToCategory(hash) {
     }
   }
 
-
   navigateToSlide(hash) {
     const targetSlideIndex = this.swiper.slides.findIndex(slide =>
         slide.getAttribute('data-hash') === hash
@@ -816,12 +725,10 @@ mapHashToCategory(hash) {
         this.swiper.slideTo(targetSlideIndex, 1000); // 1000 é o tempo da animação em milissegundos
     }
   }
-
   
    // Método para definir a instância de CarregaProjetos
   setCarregaProjetosInstance(carregaProjetosInstance) {
     this.carregaProjetosInstance = carregaProjetosInstance;
-    // Agora você pode usar this.carregaProjetosInstance dentro de MySwiper
   }
 
   setupResizeListener() {
@@ -889,11 +796,10 @@ mapHashToCategory(hash) {
   }
 
   slideChange() {
-    // this.carregarImagensDosProximosSlides(this.swiper, 3);
 
     // First, check if swiper is defined and initialized
     if (!this.swiper || !this.swiper.slides) return;
-  
+
     // Get the current and previous slide indexes
     let currentSlideIndex = this.swiper.realIndex;
     let previousSlideIndex = this.swiper.previousIndex;
@@ -955,41 +861,18 @@ mapHashToCategory(hash) {
     }
   }
 
-  // Supondo que menuElements já esteja definido e acessível aqui
-  if (this.isEstudioPage()) {
-    menuElements.forEach(el => {
-      const classNameAction = 'remove';
-      el.classList[classNameAction]('white-color');
-    });
-  } else {
-    menuElements.forEach(el => {
-      const classNameAction = currentSlideIndex >= 1 ? 'add' : 'remove';
-      el.classList[classNameAction]('white-color');
-    });
-  }
-
-
-    // Specific logic for pages with "projetos" in the URL
-  // if (this.isProjetosPage()) {
-  //   // Remove 'white-color' class only on the second slide
-  //   menuElements.forEach(el => {
-  //     if (currentSlideIndex === 0) {
-  //       el.classList.add('white-color');
-  //     }
-  //     if (currentSlideIndex === 1) {
-  //       el.classList.remove('white-color');
-  //     }
-  //   });
-
-  //   paginationBullets.forEach(bullet => bullet.classList.remove('black'));
-
-  //   // Adiciona a classe 'black' apenas no slide 2 (índice 1)
-  //   if (currentSlideIndex === 1) { // Lembre-se que os índices começam em 0
-  //     paginationBullets.forEach(bullet => bullet.classList.add('black'));
-  //   }  
-  // }
-
-
+    // Supondo que menuElements já esteja definido e acessível aqui
+    if (this.isEstudioPage()) {
+      menuElements.forEach(el => {
+        const classNameAction = 'remove';
+        el.classList[classNameAction]('white-color');
+      });
+    } else {
+      menuElements.forEach(el => {
+        const classNameAction = currentSlideIndex >= 1 ? 'add' : 'remove';
+        el.classList[classNameAction]('white-color');
+      });
+    }
     // Update pagination opacity if pagination exists
     if (pagination && this.swiper.pagination.el) {
 
@@ -1017,61 +900,6 @@ mapHashToCategory(hash) {
         if (correspondingMenuItem) correspondingMenuItem.classList.add('active');
     }
   }
-
-  /**
-  * Updates titles and subtitles for the current and previous slides.
-  * @param {number} currentSlideIndex - The index of the current slide.
-  * @param {number} previousSlideIndex - The index of the previous slide.
-  */
-  // updateSlideTitlesAndSubtitles(currentSlideIndex, previousSlideIndex) {
-  //   // Handling titles and subtitles animation
-  //   const allTitlesAndSubtitles = document.querySelectorAll('.page__title, .page__subtitle');
-  //   this.clearAnimationClasses(allTitlesAndSubtitles);
-
-  //   // If there are no slides, return early
-  //   const activeSlide = this.swiper.slides[currentSlideIndex];
-  //   const previousSlide = this.swiper.slides[previousSlideIndex];
-  //   if (!activeSlide || !previousSlide) return;
-
-  //   // Adding animation classes to active slide's titles and subtitles
-  //   this.addAnimationClassesToSlide(activeSlide, currentSlideIndex > previousSlideIndex);
-  //   this.clearAnimationClasses(previousSlide.querySelectorAll('.slide__title, .subtitle__part1, .subtitle__part2, .subtitle__part3'));
-  // }
-
-  /**
-  * Clears animation classes from the given elements.
-  * @param {NodeListOf<Element>} elements - The elements to clear classes from.
-  */
-  // clearAnimationClasses(elements) {
-  //   elements.forEach(el => {
-  //       el.classList.remove('anime-up-text-active', 'anime-up-text-down', 'anime-up-active-title', 'anime-down-active-title', 'anime-up-active-sub', 'anime-down-active-sub');
-  //   });
-  // }
-
-  /**
-  * Adds animation classes to titles and subtitles in a slide.
-  * @param {Element} slide - The slide to add animation classes to.
-  * @param {boolean} isScrollingDown - Indicates if the slide is scrolling down.
-  */
-  // addAnimationClassesToSlide(slide, isScrollingDown) {
-  //   const animationClass = isScrollingDown ? 'anime-up-active' : 'anime-down-active';
-  //   slide.querySelectorAll('.slide__title, .subtitle__part1, .subtitle__part2, .subtitle__part3').forEach(el => {
-  //       el.classList.add(`${animationClass}-${el.classList.contains('slide__title') ? 'title' : 'sub'}`);
-  //   });
-  // }
-  
-  // animateSubtitleParts() {
-  //   var subtitleParts = document.querySelectorAll('.subtitle__part1, .subtitle__part2, .subtitle__part3');
-
-  //   anime ({
-  //     targets: subtitleParts,
-  //     translateY: [100, 0], // Slide in from the bottom
-  //     opacity: [0, 1], // Fade-in effect
-  //     duration: 1000, // Animation duration in milliseconds
-  //     easing: 'easeInOutQuad', // Easing function
-  //     delay: anime.stagger(200), // Delay between animations for each element
-  //   });
-  // }
 
   hideProjectMenu() {
     // Verifica se a largura da tela é maior que 800px
