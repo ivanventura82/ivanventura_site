@@ -116,170 +116,62 @@ export default class MySwiper {
           el: '.swiper-pagination',
           clickable: true,
         },
-          on: {
-            slideChangeTransitionStart: this.debounce(this.handleSlideChangeStart.bind(this), 100),
-            slideChangeTransitionEnd: this.handleSlideChangeEnd.bind(this),
-            slideChange: this.slideChange.bind(this),
-            init: this.handleSwiperInit.bind(this),
-            imagesReady: this.handleImagesReady.bind(this),
-          },
-        });
-
-        console.log("Swiper inicializado:", this.swiper);
-        document.dispatchEvent(new CustomEvent('SwiperReady')); // Event indicating Swiper is ready
-    }
-
-      // Função debounce para limitar a frequência de execução de uma função
-    debounce(func, wait) {
-      let timeout;
-      return function() {
-        const context = this, args = arguments;
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(context, args), wait);
-      };
-    }
-
-    handleSwiperInit() {
-      console.log("Swiper instance initialization complete.");
-
-      if (this.isEstudioPage()) {
-        const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-        paginationBullets.forEach(bullet => bullet.classList.add('black'));
-      }
-      if (!this.isNotIndexPage()) { // Assuming this method checks if it's not the index page
-        this.applyDisplayNoneToFirstBullet();
-      }
-      this.startInitialAnimation();
-      this.setupEventListeners();
-      this.animateButtons();
-      if (this.slides && this.slides.length > 1) {
-        this.preload(this);
-      }
-      if (this.isProjetosPage()) {
-        this.menuProjetos.openMenu();
-      }
-    }
-
-  
-    // handleSlideChangeStart() {
-    //   let currentSlide = this.swiper.slides[this.swiper.activeIndex];
-    //   console.log("Início da transição de slide:", this.swiper.realIndex);
-
-    //   // Verifica se a animação já foi aplicada ao slide atual
-    //   if (currentSlide.dataset.animated) {
-    //     console.log("Animação já aplicada ao slide:", this.swiper.realIndex);
-    //     return;
-    //   }
-
-    //   this.clearSlideAnimations(currentSlide);
-
-    //   // Verifica se os elementos a serem animados existem e adiciona logs
-    //   const subtitle1 = currentSlide.querySelector('.subtitle__part2');
-    //   const subtitle2 = currentSlide.querySelector('.subtitle__part3');
-    //   const titleLinkDiv = currentSlide.querySelector('.slide__title__link');
-
-    //   if (!subtitle1 || !subtitle2 || !titleLinkDiv) {
-    //     console.log('Elementos faltando, animação interrompida.');
-    //     return; // Interrompe a execução da função se algum elemento for null
-    //   }
-
-    //   console.log('Iniciando animação para:', currentSlide);
-    //   gsap.set([titleLinkDiv, subtitle1, subtitle2], {opacity: 0, y: 20});
-
-    //   const tl = gsap.timeline({defaults: {duration: 0.4, ease: "power2.out"}});
-
-    //   tl.to(subtitle1, {opacity: 1, y: 0}, "+=0.3")  // Inicia com delay inicial
-    //     .to(subtitle2, {opacity: 1, y: 0}, "+=0.2")  // Inicia logo após subtitle1
-    //     .to(titleLinkDiv, {opacity: 1, y: 0}, "+=0.2");
-
-    //   tl.eventCallback("onComplete", () => {
-    //     console.log('Animação concluída para:', currentSlide);
-    //     // Marca o slide como animado
-    //     currentSlide.dataset.animated = true;
-    //   });
-
-    //   this.precarregarImagens(this.swiper);
-    //   this.updateUIForSlide(this.swiper.realIndex);
-    //   this.updatePagination(); // Garante que a função esteja definida
-    // }
-    
-    // handleSlideChangeEnd() {
-    //   console.log("Fim da transição de slide:", this.swiper.realIndex);
-    //   this.updateUIForSlide(this.swiper.realIndex);
-    //   this.updatePagination(); // Garante que a função esteja definida
-    // }
-
-    // clearSlideAnimations(slide) {
-    //   const elements = slide.querySelectorAll('.slide__title, .slide__title__arrow, .subtitle__part2, .subtitle__part3');
-    //   elements.forEach(el => {
-    //     gsap.set(el, { clearProps: "all" });
-    //   });
-    //   // Remove a marcação de animação do slide
-    //   delete slide.dataset.animated;
-    // }
-
-    handleSlideChangeStart() {
-      let currentSlide = this.swiper.slides[this.swiper.activeIndex];
-      console.log("Início da transição de slide:", this.swiper.realIndex);
-  
-      // Verifica se a animação já foi aplicada ao slide atual
-      if (currentSlide.dataset.animated) {
-        console.log("Animação já aplicada ao slide:", this.swiper.realIndex);
-        return;
-      }
-  
-      this.clearSlideAnimations(currentSlide);
-  
-      // Verifica se os elementos a serem animados existem e adiciona logs
-      const subtitle1 = currentSlide.querySelector('.subtitle__part2');
-      const subtitle2 = currentSlide.querySelector('.subtitle__part3');
-      const titleLinkDiv = currentSlide.querySelector('.slide__title__link');
-  
-      if (!subtitle1 || !subtitle2 || !titleLinkDiv) {
-        console.log('Elementos faltando, animação interrompida.');
-        return; // Interrompe a execução da função se algum elemento for null
-      }
-  
-      console.log('Iniciando animação para:', currentSlide);
-      gsap.set([titleLinkDiv, subtitle1, subtitle2], {opacity: 0, y: 20});
-  
-      const tl = gsap.timeline({defaults: {duration: 0.4, ease: "power2.out"}});
-  
-      tl.to(subtitle1, {opacity: 1, y: 0}, "+=0.3")  // Inicia com delay inicial
-        .to(subtitle2, {opacity: 1, y: 0}, "+=0.2")  // Inicia logo após subtitle1
-        .to(titleLinkDiv, {opacity: 1, y: 0}, "+=0.2");
-  
-      tl.eventCallback("onComplete", () => {
-        console.log('Animação concluída para:', currentSlide);
-        // Marca o slide como animado
-        currentSlide.dataset.animated = true;
+        on: {
+          slideChangeTransitionStart: this.handleSlideChangeStart.bind(this),
+          slideChangeTransitionEnd: this.handleSlideChangeEnd.bind(this),
+          slideChange: this.slideChange.bind(this),
+          init: this.handleSwiperInit.bind(this),
+          imagesReady: this.handleImagesReady.bind(this),
+        },
       });
-  
-      this.precarregarImagens(this.swiper);
-      this.updateUIForSlide(this.swiper.realIndex);
-      this.updatePagination(); // Garante que a função esteja definida
+
+      console.log("Swiper inicializado:", this.swiper);
+      document.dispatchEvent(new CustomEvent('SwiperReady')); // Event indicating Swiper is ready
+  }
+
+  handleSwiperInit() {
+    console.log("Swiper instance initialization complete.");
+
+    if (this.isEstudioPage()) {
+      const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
+      paginationBullets.forEach(bullet => bullet.classList.add('black'));
     }
-  
-    handleSlideChangeEnd() {
-      console.log("Fim da transição de slide:", this.swiper.realIndex);
-      this.updateUIForSlide(this.swiper.realIndex);
-      this.updatePagination(); // Garante que a função esteja definida
+    if (!this.isNotIndexPage()) { // Assuming this method checks if it's not the index page
+      this.applyDisplayNoneToFirstBullet();
     }
-  
-    clearSlideAnimations(slide) {
-      const elements = slide.querySelectorAll('.slide__title, .slide__title__arrow, .subtitle__part2, .subtitle__part3');
-      elements.forEach(el => {
-        gsap.set(el, { clearProps: "all" });
-      });
-      // Remove a marcação de animação do slide
-      delete slide.dataset.animated;
+    this.startInitialAnimation();
+    this.setupEventListeners();
+    this.animateButtons();
+    if (this.slides && this.slides.length > 1) {
+      this.preload(this);
     }
-  
+    if (this.isProjetosPage()) {
+      this.menuProjetos.openMenu();
+    }
+  }
 
   handleImagesReady() {
     console.log("All images have loaded.");
     this.precarregarImagens(this.swiper);
   }
+
+  handleSlideChangeStart() {
+    let currentSlide = this.swiper.slides[this.swiper.activeIndex];
+    this.clearSlideAnimations(currentSlide);
+    this.animateSlideElements(currentSlide);
+    console.log("Início da transição de slide:", this.swiper.realIndex);
+    this.precarregarImagens(this.swiper);
+    this.updateUIForSlide(this.swiper.realIndex);
+    this.updatePagination(); // Garante que a função esteja definida
+  }
+
+
+  handleSlideChangeEnd() {
+    console.log("Fim da transição de slide:", this.swiper.realIndex);
+    this.updateUIForSlide(this.swiper.realIndex);
+    this.updatePagination(); // Garante que a função esteja definida
+  }
+
 
   checkAndUpdateUIForSlideStart() {
     let currentSlideIndex = this.swiper.realIndex;
@@ -380,24 +272,28 @@ export default class MySwiper {
     }
   }
 
-  updatePagination() {
-    const paginationBullets = document.querySelectorAll('.swiper-pagination .swiper-pagination-bullet');
-    if (paginationBullets.length === 0) {
-      console.warn("Nenhum bullet de paginação encontrado.");
-      return;
-    }
-
-    paginationBullets.forEach(bullet => {
-      bullet.classList.remove('swiper-pagination-bullet-active');
-    });
-
-    const activeBullet = paginationBullets[this.swiper.realIndex];
-    if (activeBullet) {
-      activeBullet.classList.add('swiper-pagination-bullet-active');
-    } else {
-      console.warn("Nenhum bullet ativo encontrado para o índice:", this.swiper.realIndex);
-    }
+updatePagination() {
+  const paginationBullets = document.querySelectorAll('.swiper-pagination .swiper-pagination-bullet');
+  if (paginationBullets.length === 0) {
+    console.warn("Nenhum bullet de paginação encontrado.");
+    return;
   }
+
+  paginationBullets.forEach(bullet => {
+    bullet.classList.remove('swiper-pagination-bullet-active');
+  });
+
+  const activeBullet = paginationBullets[this.swiper.realIndex];
+  if (activeBullet) {
+    activeBullet.classList.add('swiper-pagination-bullet-active');
+  } else {
+    console.warn("Nenhum bullet ativo encontrado para o índice:", this.swiper.realIndex);
+  }
+}
+
+
+
+
 
   precarregarImagens(swiper) {
     const connectionType = navigator.connection && navigator.connection.effectiveType;
@@ -425,36 +321,36 @@ export default class MySwiper {
     }
   }
 
-  // Função para selecionar os subtítulos
-  selectSubtitles() {
-    // Selecionar elementos
-    const subtitle1 = document.querySelector('.subtitle__part1');
-    const subtitle2 = document.querySelector('.subtitle__part2');
-    const subtitle3 = document.querySelector('.subtitle__part3');
+// Função para selecionar os subtítulos
+selectSubtitles() {
+  // Selecionar elementos
+  const subtitle1 = document.querySelector('.subtitle__part1');
+  const subtitle2 = document.querySelector('.subtitle__part2');
+  const subtitle3 = document.querySelector('.subtitle__part3');
 
-    return [subtitle1, subtitle2, subtitle3].filter(sub => sub !== null);
+  return [subtitle1, subtitle2, subtitle3].filter(sub => sub !== null);
+}
+
+// Função para animar os subtítulos na inicialização
+animateSubtitles() {
+  const subtitles = this.selectSubtitles();
+  gsap.set(subtitles, {opacity: 0, y: 400});
+
+  const tl = gsap.timeline({defaults: {ease: "power2.out"}});
+  subtitles.forEach(subtitle => {
+      tl.to(subtitle, {opacity: 1, y: "25vh", duration: 0.3}, "+=0.1");
+  });
+      tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
+}
+
+// Função para iniciar a animação dos subtítulos apenas uma vez na inicialização
+startInitialAnimation() {
+  const firstSlide = document.querySelector('.swiper-slide'); // Ajuste o seletor conforme necessário
+  if (firstSlide && !firstSlide.dataset.initialAnimated) {
+      this.animateSubtitles();
+      firstSlide.dataset.initialAnimated = true; // Marca o slide como tendo a animação inicial aplicada
   }
-
-  // Função para animar os subtítulos na inicialização
-  animateSubtitles() {
-    const subtitles = this.selectSubtitles();
-    gsap.set(subtitles, {opacity: 0, y: 400});
-
-    const tl = gsap.timeline({defaults: {ease: "power2.out"}});
-    subtitles.forEach(subtitle => {
-        tl.to(subtitle, {opacity: 1, y: "25vh", duration: 0.3}, "+=0.1");
-    });
-        tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
-  }
-
-  // Função para iniciar a animação dos subtítulos apenas uma vez na inicialização
-  startInitialAnimation() {
-    const firstSlide = document.querySelector('.swiper-slide'); // Ajuste o seletor conforme necessário
-    if (firstSlide && !firstSlide.dataset.initialAnimated) {
-        this.animateSubtitles();
-        firstSlide.dataset.initialAnimated = true; // Marca o slide como tendo a animação inicial aplicada
-    }
-  }
+}
 
   selectButtons() {
     const botaoLogo = document.querySelector('.nav__button__home');
@@ -498,7 +394,6 @@ export default class MySwiper {
     }
   }
 
-  
   // Função para animar os elementos do slide durante a troca de slides
   animateSlideElements(slide) {
   const subtitle1 = slide.querySelector('.subtitle__part2');
@@ -718,6 +613,7 @@ export default class MySwiper {
     });
   }
 
+
   filterSlides(category) {
     let filteredSlides;
 
@@ -752,20 +648,20 @@ export default class MySwiper {
     }
 }
 
-  mapHashToCategory(hash) {
-      switch (hash) {
+mapHashToCategory(hash) {
+    switch (hash) {
+      case '#viw':
+            return 'all';
+        case '#quadritone':
+            return 'residencias';
         case '#viw':
-              return 'all';
-          case '#quadritone':
-              return 'residencias';
-          case '#viw':
-              return 'edificios';
-          case '#teatrosescatalaia':
-              return 'institucionais';
-          default:
-              return null;
-      }
-  }
+            return 'edificios';
+        case '#teatrosescatalaia':
+            return 'institucionais';
+        default:
+            return null;
+    }
+}
 
   applyFilter(filterCategory) {
     console.log(`Aplicando filtro: ${filterCategory}`);
@@ -815,6 +711,7 @@ export default class MySwiper {
     }
   }
 
+
   navigateToSlide(hash) {
     const targetSlideIndex = this.swiper.slides.findIndex(slide =>
         slide.getAttribute('data-hash') === hash
@@ -825,10 +722,12 @@ export default class MySwiper {
         this.swiper.slideTo(targetSlideIndex, 1000); // 1000 é o tempo da animação em milissegundos
     }
   }
+
   
    // Método para definir a instância de CarregaProjetos
   setCarregaProjetosInstance(carregaProjetosInstance) {
     this.carregaProjetosInstance = carregaProjetosInstance;
+    // Agora você pode usar this.carregaProjetosInstance dentro de MySwiper
   }
 
   setupResizeListener() {
@@ -896,10 +795,11 @@ export default class MySwiper {
   }
 
   slideChange() {
+    // this.carregarImagensDosProximosSlides(this.swiper, 3);
 
     // First, check if swiper is defined and initialized
     if (!this.swiper || !this.swiper.slides) return;
-
+  
     // Get the current and previous slide indexes
     let currentSlideIndex = this.swiper.realIndex;
     let previousSlideIndex = this.swiper.previousIndex;
@@ -961,18 +861,20 @@ export default class MySwiper {
     }
   }
 
-    // Supondo que menuElements já esteja definido e acessível aqui
-    if (this.isEstudioPage()) {
-      menuElements.forEach(el => {
-        const classNameAction = 'remove';
-        el.classList[classNameAction]('white-color');
-      });
-    } else {
-      menuElements.forEach(el => {
-        const classNameAction = currentSlideIndex >= 1 ? 'add' : 'remove';
-        el.classList[classNameAction]('white-color');
-      });
-    }
+  // Supondo que menuElements já esteja definido e acessível aqui
+  if (this.isEstudioPage()) {
+    menuElements.forEach(el => {
+      const classNameAction = 'remove';
+      el.classList[classNameAction]('white-color');
+    });
+  } else {
+    menuElements.forEach(el => {
+      const classNameAction = currentSlideIndex >= 1 ? 'add' : 'remove';
+      el.classList[classNameAction]('white-color');
+    });
+  }
+
+
     // Update pagination opacity if pagination exists
     if (pagination && this.swiper.pagination.el) {
 
@@ -1000,6 +902,7 @@ export default class MySwiper {
         if (correspondingMenuItem) correspondingMenuItem.classList.add('active');
     }
   }
+
 
   hideProjectMenu() {
     // Verifica se a largura da tela é maior que 800px
@@ -1047,8 +950,8 @@ export default class MySwiper {
     }
   }
   
-  slideChangeTransitionStart() {   
-  }
+  // slideChangeTransitionStart() {   
+  // }
 
   getSwiperInstance() {
     console.log(this.swiper);
