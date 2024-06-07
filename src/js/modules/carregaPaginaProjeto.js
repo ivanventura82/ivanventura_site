@@ -672,8 +672,18 @@ export default class CarregaPaginaProjeto {
                 collapseBtn.style.display = 'none';
             }
         });
-    
+        
         return slideElement;
+    }
+
+    criarBotaoVoltar() {
+        const botaoVoltar = document.getElementById('botao-voltar');
+        if (botaoVoltar) {
+            botaoVoltar.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.history.back();
+            });
+        }
     }
     
     criarSlideSecundario(projeto, slide) {
@@ -752,19 +762,7 @@ export default class CarregaPaginaProjeto {
             slideDetalhes.appendChild(slideContentPosition);
             swiperWrapper.appendChild(slideDetalhes);
         }
-
-        // Certifique-se de atualizar o swiper depois de adicionar o slide de detalhes
         this.mySwiper.update();
-    }
-
-    criarBotaoVoltar() {
-        const botaoVoltar = document.getElementById('botao-voltar');
-        if (botaoVoltar) {
-            botaoVoltar.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.history.back();
-            });
-        }
     }
 }
 
