@@ -150,11 +150,6 @@ export default class MySwiper {
     }
   }
 
-  handleImagesReady() {
-    console.log("All images have loaded.");
-    this.precarregarImagens(this.swiper);
-  }
-
   handleSlideChangeStart() {
     let currentSlide = this.swiper.slides[this.swiper.activeIndex];
     this.clearSlideAnimations(currentSlide);
@@ -171,6 +166,128 @@ export default class MySwiper {
     this.updateUIForSlide(this.swiper.realIndex);
     this.updatePagination(); // Garante que a função esteja definida
   }
+
+    // Função para selecionar os subtítulos
+    selectSubtitles() {
+      // Selecionar elementos
+      const subtitle1 = document.querySelector('.subtitle__part1');
+      const subtitle2 = document.querySelector('.subtitle__part2');
+      const subtitle3 = document.querySelector('.subtitle__part3');
+  
+      return [subtitle1, subtitle2, subtitle3].filter(sub => sub !== null);
+    }
+  
+    // Função para animar os subtítulos na inicialização
+    animateSubtitles() {
+      const subtitles = this.selectSubtitles();
+      gsap.set(subtitles, {opacity: 0, y: 400});
+  
+      const tl = gsap.timeline({defaults: {ease: "power2.out"}});
+      subtitles.forEach(subtitle => {
+          tl.to(subtitle, {opacity: 1, y: "25vh", duration: 0.3}, "+=0.1");
+      });
+          tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
+    }
+  
+    // Função para iniciar a animação dos subtítulos apenas uma vez na inicialização
+    startInitialAnimation() {
+      const firstSlide = document.querySelector('.swiper-slide'); // Ajuste o seletor conforme necessário
+      if (firstSlide && !firstSlide.dataset.initialAnimated) {
+          this.animateSubtitles();
+          firstSlide.dataset.initialAnimated = true; // Marca o slide como tendo a animação inicial aplicada
+      }
+    }
+  
+    selectButtons() {
+      const botaoLogo = document.querySelector('.nav__button__home');
+      const botaoProjetos = document.querySelector('.menu__projetos');
+      const botaoMobile = document.querySelector('.nav__button__mobile');
+      const botaoEstudio = document.querySelector('.nav__button__estudio');
+      const botaoContato = document.querySelector('.nav__button__contato');
+      const botaoDown = document.getElementById('botao-down');
+      const botaoVoltar = document.getElementById('botao-voltar');
+    
+      return [botaoLogo, botaoProjetos, botaoMobile, botaoEstudio, botaoContato, botaoDown, botaoVoltar].filter(btn => btn !== null);
+    }
+    
+    animateButtons() {
+      const buttons = this.selectButtons();
+      const menuItems = document.querySelectorAll('.menu__projetos li'); // Seleciona os itens do menu projetos
+  
+      // Define opacidade inicial para todos os botões e itens do menu
+      gsap.set([...buttons, ...menuItems], { opacity: 0 });
+  
+      if (buttons.length === 0) {
+          console.error('Required button elements not found');
+          return; // Encerra a função se não houver elementos suficientes
+      }
+  
+      const tl = gsap.timeline({defaults: {ease: "power2.out"}, delay: 2});
+  
+      // Anima os botões para aparecerem
+      tl.to(buttons, { opacity: 1, y: 0, duration: 0.3, stagger: 0.1 }, "+=0.1");
+  
+      // Verifica se o menu está ativo ao iniciar a timeline e adiciona a animação dos itens de menu
+      if (this.projetosList && this.projetosList.classList.contains(this.activeClass)) {
+          tl.to(menuItems, {
+              opacity: 1,
+              duration: 0.3,
+              stagger: {
+                  amount: 0.5,
+                  from: "end"
+              }
+          }, "-=0.1"); // Sincroniza com o final da animação dos botões
+      }
+    }
+  
+    // Função para animar os elementos do slide durante a troca de slides
+    animateSlideElements(slide) {
+    const subtitle1 = slide.querySelector('.subtitle__part2');
+    const subtitle2 = slide.querySelector('.subtitle__part3');
+    const titleLinkDiv = slide.querySelector('.slide__title__link');
+  
+    // Verificação se os elementos existem antes de prosseguir com a animação
+    if (!subtitle1 || !subtitle2 || !titleLinkDiv) {
+        console.log('Elementos faltando, animação interrompida.');
+        return; // Interrompe a execução da função se algum elemento for null
+    }
+  
+    // Adiciona logs para monitorar a execução
+    console.log('Iniciando animação para:', slide);
+  
+    gsap.set([titleLinkDiv, subtitle1, subtitle2], {opacity: 0, y: 20});
+  
+    // Cria uma linha do tempo para a animação
+    const tl = gsap.timeline({defaults: {duration: 0.4, ease: "power2.out"}});
+  
+    // Animação dos elementos com delays ajustados
+    tl.to(subtitle1, {opacity: 1, y: 0}, "+=0.3")  // Inicia com delay inicial
+      .to(subtitle2, {opacity: 1, y: 0}, "+=0.2")  // Inicia logo após subtitle1
+      .to(titleLinkDiv, {opacity: 1, y: 0}, "+=0.2"); // Inicia logo após subtitle2
+  
+    // Log após animação
+    tl.eventCallback("onComplete", () => {
+        console.log('Animação concluída para:', slide);
+    });
+    }
+  
+    clearSlideAnimations(slide) {
+      const elements = slide.querySelectorAll('.slide__title, .slide__title__arrow, .subtitle__part2, .subtitle__part3');
+      elements.forEach(el => {
+        gsap.set(el, { clearProps: "all" });
+      });
+    }
+
+    handleImagesReady() {
+      console.log("All images have loaded.");
+      this.precarregarImagens(this.swiper);
+    }
+  
+    navegarParaProximoSlide() {
+      if (this.swiper) {
+        this.swiper.slideNext();
+      }
+    }
 
 
   checkAndUpdateUIForSlideStart() {
@@ -224,6 +341,14 @@ export default class MySwiper {
     }
   }
 
+  updateUIForLastSlide() {
+    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
+    const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
+  
+    menuElements.forEach(el => el.classList.remove('white-color'));
+    paginationBullets.forEach(bullet => bullet.classList.add('black'));
+  }
+
   updateUIForNonLastSlidesStart(currentSlideIndex) {
     const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
     console.log("Atualizando UI para slides não finais no início da transição: ", currentSlideIndex);
@@ -272,28 +397,24 @@ export default class MySwiper {
     }
   }
 
-updatePagination() {
-  const paginationBullets = document.querySelectorAll('.swiper-pagination .swiper-pagination-bullet');
-  if (paginationBullets.length === 0) {
-    console.warn("Nenhum bullet de paginação encontrado.");
-    return;
+  updatePagination() {
+    const paginationBullets = document.querySelectorAll('.swiper-pagination .swiper-pagination-bullet');
+    if (paginationBullets.length === 0) {
+      console.warn("Nenhum bullet de paginação encontrado.");
+      return;
+    }
+
+    paginationBullets.forEach(bullet => {
+      bullet.classList.remove('swiper-pagination-bullet-active');
+    });
+
+    const activeBullet = paginationBullets[this.swiper.realIndex];
+    if (activeBullet) {
+      activeBullet.classList.add('swiper-pagination-bullet-active');
+    } else {
+      console.warn("Nenhum bullet ativo encontrado para o índice:", this.swiper.realIndex);
+    }
   }
-
-  paginationBullets.forEach(bullet => {
-    bullet.classList.remove('swiper-pagination-bullet-active');
-  });
-
-  const activeBullet = paginationBullets[this.swiper.realIndex];
-  if (activeBullet) {
-    activeBullet.classList.add('swiper-pagination-bullet-active');
-  } else {
-    console.warn("Nenhum bullet ativo encontrado para o índice:", this.swiper.realIndex);
-  }
-}
-
-
-
-
 
   precarregarImagens(swiper) {
     const connectionType = navigator.connection && navigator.connection.effectiveType;
@@ -321,131 +442,6 @@ updatePagination() {
     }
   }
 
-// Função para selecionar os subtítulos
-selectSubtitles() {
-  // Selecionar elementos
-  const subtitle1 = document.querySelector('.subtitle__part1');
-  const subtitle2 = document.querySelector('.subtitle__part2');
-  const subtitle3 = document.querySelector('.subtitle__part3');
-
-  return [subtitle1, subtitle2, subtitle3].filter(sub => sub !== null);
-}
-
-// Função para animar os subtítulos na inicialização
-animateSubtitles() {
-  const subtitles = this.selectSubtitles();
-  gsap.set(subtitles, {opacity: 0, y: 400});
-
-  const tl = gsap.timeline({defaults: {ease: "power2.out"}});
-  subtitles.forEach(subtitle => {
-      tl.to(subtitle, {opacity: 1, y: "25vh", duration: 0.3}, "+=0.1");
-  });
-      tl.to(subtitles, {y: 0, duration: 0.3, stagger: 0.1});
-}
-
-// Função para iniciar a animação dos subtítulos apenas uma vez na inicialização
-startInitialAnimation() {
-  const firstSlide = document.querySelector('.swiper-slide'); // Ajuste o seletor conforme necessário
-  if (firstSlide && !firstSlide.dataset.initialAnimated) {
-      this.animateSubtitles();
-      firstSlide.dataset.initialAnimated = true; // Marca o slide como tendo a animação inicial aplicada
-  }
-}
-
-  selectButtons() {
-    const botaoLogo = document.querySelector('.nav__button__home');
-    const botaoProjetos = document.querySelector('.menu__projetos');
-    const botaoMobile = document.querySelector('.nav__button__mobile');
-    const botaoEstudio = document.querySelector('.nav__button__estudio');
-    const botaoContato = document.querySelector('.nav__button__contato');
-    const botaoDown = document.getElementById('botao-down');
-    const botaoVoltar = document.getElementById('botao-voltar');
-  
-    return [botaoLogo, botaoProjetos, botaoMobile, botaoEstudio, botaoContato, botaoDown, botaoVoltar].filter(btn => btn !== null);
-  }
-  
-  animateButtons() {
-    const buttons = this.selectButtons();
-    const menuItems = document.querySelectorAll('.menu__projetos li'); // Seleciona os itens do menu projetos
-
-    // Define opacidade inicial para todos os botões e itens do menu
-    gsap.set([...buttons, ...menuItems], { opacity: 0 });
-
-    if (buttons.length === 0) {
-        console.error('Required button elements not found');
-        return; // Encerra a função se não houver elementos suficientes
-    }
-
-    const tl = gsap.timeline({defaults: {ease: "power2.out"}, delay: 2});
-
-    // Anima os botões para aparecerem
-    tl.to(buttons, { opacity: 1, y: 0, duration: 0.3, stagger: 0.1 }, "+=0.1");
-
-    // Verifica se o menu está ativo ao iniciar a timeline e adiciona a animação dos itens de menu
-    if (this.projetosList && this.projetosList.classList.contains(this.activeClass)) {
-        tl.to(menuItems, {
-            opacity: 1,
-            duration: 0.3,
-            stagger: {
-                amount: 0.5,
-                from: "end"
-            }
-        }, "-=0.1"); // Sincroniza com o final da animação dos botões
-    }
-  }
-
-  // Função para animar os elementos do slide durante a troca de slides
-  animateSlideElements(slide) {
-  const subtitle1 = slide.querySelector('.subtitle__part2');
-  const subtitle2 = slide.querySelector('.subtitle__part3');
-  const titleLinkDiv = slide.querySelector('.slide__title__link');
-
-  // Verificação se os elementos existem antes de prosseguir com a animação
-  if (!subtitle1 || !subtitle2 || !titleLinkDiv) {
-      console.log('Elementos faltando, animação interrompida.');
-      return; // Interrompe a execução da função se algum elemento for null
-  }
-
-  // Adiciona logs para monitorar a execução
-  console.log('Iniciando animação para:', slide);
-
-  gsap.set([titleLinkDiv, subtitle1, subtitle2], {opacity: 0, y: 20});
-
-  // Cria uma linha do tempo para a animação
-  const tl = gsap.timeline({defaults: {duration: 0.4, ease: "power2.out"}});
-
-  // Animação dos elementos com delays ajustados
-  tl.to(subtitle1, {opacity: 1, y: 0}, "+=0.3")  // Inicia com delay inicial
-    .to(subtitle2, {opacity: 1, y: 0}, "+=0.2")  // Inicia logo após subtitle1
-    .to(titleLinkDiv, {opacity: 1, y: 0}, "+=0.2"); // Inicia logo após subtitle2
-
-  // Log após animação
-  tl.eventCallback("onComplete", () => {
-      console.log('Animação concluída para:', slide);
-  });
-  }
-
-  clearSlideAnimations(slide) {
-    const elements = slide.querySelectorAll('.slide__title, .slide__title__arrow, .subtitle__part2, .subtitle__part3');
-    elements.forEach(el => {
-      gsap.set(el, { clearProps: "all" });
-    });
-  }
-
-  updateUIForLastSlide() {
-    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
-    const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-  
-    menuElements.forEach(el => el.classList.remove('white-color'));
-    paginationBullets.forEach(bullet => bullet.classList.add('black'));
-  }
-
-  navegarParaProximoSlide() {
-    if (this.swiper) {
-      this.swiper.slideNext();
-    }
-  }
-  
   setupEventListeners() {
     const botaoProximo = document.getElementById('botao-down');
     if (botaoProximo) {
