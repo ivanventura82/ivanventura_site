@@ -23,7 +23,6 @@ li span {
   flex-direction: column;
   gap: 60px;
   position: relative;
-
 }
 
 .bio__project ul {
@@ -43,8 +42,8 @@ li span {
 .bio__project p {
   font: 1rem/1.6 "Inter", sans-serif;
   max-width: 100ch;
-  margin-left: 0;}
-
+  margin-left: 0;
+}
 
 .detalhes__project ul {
   font: 1rem/1.6 "Inter", sans-serif;
@@ -136,7 +135,6 @@ li span {
     flex-direction: row;
     gap: 8px;  
     max-width: none;
-
   }
 
   .photos__grid__2 {
@@ -165,15 +163,6 @@ li span {
     text-decoration: underline;
   }
 
-  .collapse-btn {
-    color: var(--text);
-    border: none;
-    background-color: #f8f8f8;
-    padding: 4px 8px;
-    border: solid 1px var(--text);
-    display: none; /* Inicialmente escondido */
-  }
-
   .bio__project.expanded p {
       -webkit-line-clamp: none;
       cursor: default;
@@ -184,9 +173,17 @@ li span {
   }
 
   .bio__project.expanded .collapse-btn {
-      display: block;
-      position: absolute;
-      bottom: -5vh;
-      right: 0;
+      display: flex;
+      justify-content: flex-end;
+  }
+
+  .collapse-btn {
+    color: var(--text);
+    border: none;
+    background-color: var(--bg);
+    padding: 4px 8px;
+    border: solid 1px var(--text);
+    display: none; /* Inicialmente escondido */
+    width: 30%;
   }
 }
