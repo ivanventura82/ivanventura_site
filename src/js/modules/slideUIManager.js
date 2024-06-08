@@ -1,4 +1,3 @@
-// slideUIManager.js
 export default class SlideUIManager {
   constructor(swiperInstance) {
     this.swiper = swiperInstance;

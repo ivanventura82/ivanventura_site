@@ -126,6 +126,10 @@ li span {
     color: var(--bg);
   }
 
+  .bio__project p {
+    font: 1rem/1.3 "Inter", sans-serif;
+  }
+
   .bio__project ul {
     flex-direction: column;
     gap: 4px;  
@@ -172,18 +176,21 @@ li span {
       display: none;
   }
 
-  .bio__project.expanded .collapse-btn {
+  .bio__project.expanded.collapse-btn {
       display: flex;
       justify-content: flex-end;
   }
 
   .collapse-btn {
+    align-items: center;
+    align-self: flex-start;
+    text-decoration: underline;
     color: var(--text);
     border: none;
     background-color: var(--bg);
-    padding: 4px 8px;
-    border: solid 1px var(--text);
+    padding: 4px;
+    /* border: solid 1px var(--text); */
     display: none; /* Inicialmente escondido */
-    width: 30%;
+    /* width: 30%; */
   }
 }
