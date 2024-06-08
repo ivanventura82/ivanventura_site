@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 import Swiper from 'swiper';
 import { Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation } from 'swiper/modules';
+import SlideUIManager from './slideUIManager.js'; 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -12,6 +13,7 @@ export default class MySwiper {
   constructor(menuProjetosInstance) {
     this.menuProjetos = menuProjetosInstance;
     this.swiper = null;
+    this.slideUIManager = null;  // Adiciona a instância de SlideUIManager aqui
     this.allSlides = [];
     this.allMenuItems = [];
     this.filtroAtivo = false;
@@ -75,6 +77,8 @@ export default class MySwiper {
     if (!this.isNotIndexPage()) {
       this.applyFilterFromURL();
     }
+     // Inicializa o SlideUIManager com a instância do Swiper após a inicialização do Swiper
+     this.slideUIManager = new SlideUIManager(this.swiper);  
   }
 
   initializeSwiperInstance() {
@@ -156,14 +160,14 @@ export default class MySwiper {
     this.animateSlideElements(currentSlide);
     console.log("Início da transição de slide:", this.swiper.realIndex);
     this.precarregarImagens(this.swiper);
-    this.updateUIForSlide(this.swiper.realIndex);
+    this.slideUIManager.updateUIForSlide(this.swiper.realIndex);
     this.updatePagination(); // Garante que a função esteja definida
   }
 
 
   handleSlideChangeEnd() {
     console.log("Fim da transição de slide:", this.swiper.realIndex);
-    this.updateUIForSlide(this.swiper.realIndex);
+    this.slideUIManager.updateUIForSlide(this.swiper.realIndex);
     this.updatePagination(); // Garante que a função esteja definida
   }
 
@@ -288,114 +292,6 @@ export default class MySwiper {
         this.swiper.slideNext();
       }
     }
-
-
-  checkAndUpdateUIForSlideStart() {
-    let currentSlideIndex = this.swiper.realIndex;
-    console.log("Início da transição de slide: ", currentSlideIndex);
-    if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
-      this.updateUIForLastSlide();
-    } else {
-      this.updateUIForNonLastSlidesStart(currentSlideIndex);
-    }
-  }
-
-  checkAndUpdateUIForSlideEnd() {
-    let currentSlideIndex = this.swiper.realIndex;
-    console.log("Fim da transição de slide: ", currentSlideIndex);
-    if (!(currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica')) {
-      this.updateUIForNonLastSlides(currentSlideIndex);
-    }
-  }
-
-  updateUIForSlide(currentSlideIndex) {
-    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
-    const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-    console.log("Atualizando UI para o slide:", currentSlideIndex);
-
-    // Remove todas as classes antes de adicionar as corretas
-    menuElements.forEach(el => el.classList.remove('white-color'));
-    paginationBullets.forEach(bullet => bullet.classList.remove('black'));
-
-    // Lógica para o último slide
-    if (currentSlideIndex === this.swiper.slides.length - 1 && window.location.hash === '#ficha-tecnica') {
-      menuElements.forEach(el => el.classList.remove('white-color'));
-      paginationBullets.forEach(bullet => bullet.classList.add('black'));
-    } 
-    // Lógica específica para páginas com "projetos" no URL
-    else if (this.isProjetosPage()) {
-      menuElements.forEach(el => {
-        if (currentSlideIndex === 0) {
-          el.classList.add('white-color');
-        } else if (currentSlideIndex === 1) {
-          el.classList.remove('white-color');
-        } else {
-          el.classList.add('white-color');
-        }
-      });
-      if (currentSlideIndex === 1) {
-        paginationBullets.forEach(bullet => bullet.classList.add('black'));
-      }
-    } else {
-      menuElements.forEach(el => el.classList.add('white-color'));
-    }
-  }
-
-  updateUIForLastSlide() {
-    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
-    const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-  
-    menuElements.forEach(el => el.classList.remove('white-color'));
-    paginationBullets.forEach(bullet => bullet.classList.add('black'));
-  }
-
-  updateUIForNonLastSlidesStart(currentSlideIndex) {
-    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
-    console.log("Atualizando UI para slides não finais no início da transição: ", currentSlideIndex);
-
-    // Lógica específica para páginas com "projetos" no URL
-    if (this.isProjetosPage()) {
-      menuElements.forEach(el => {
-        if (currentSlideIndex === 0) {
-          el.classList.add('white-color');
-        }
-        if (currentSlideIndex === 1) {
-          el.classList.remove('white-color');
-        }
-      });
-    } else {
-      menuElements.forEach(el => el.classList.add('white-color'));
-    }
-  }
-
-  updateUIForNonLastSlides(currentSlideIndex) {
-    const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
-    const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-    console.log("Atualizando UI para slides não finais no final da transição: ", currentSlideIndex);
-
-    // Lógica específica para páginas com "projetos" no URL
-    if (this.isProjetosPage()) {
-      // Remove 'white-color' class only on the second slide
-      menuElements.forEach(el => {
-        if (currentSlideIndex === 0) {
-          el.classList.add('white-color');
-        }
-        if (currentSlideIndex === 1) {
-          el.classList.remove('white-color');
-        }
-      });
-
-      paginationBullets.forEach(bullet => bullet.classList.remove('black'));
-
-      // Adiciona a classe 'black' apenas no slide 2 (índice 1)
-      if (currentSlideIndex === 1) { // Lembre-se que os índices começam em 0
-        paginationBullets.forEach(bullet => bullet.classList.add('black'));
-      }
-    } else {
-      menuElements.forEach(el => el.classList.add('white-color'));
-      paginationBullets.forEach(bullet => bullet.classList.remove('black'));
-    }
-  }
 
   updatePagination() {
     const paginationBullets = document.querySelectorAll('.swiper-pagination .swiper-pagination-bullet');
@@ -707,7 +603,6 @@ mapHashToCategory(hash) {
     }
   }
 
-
   navigateToSlide(hash) {
     const targetSlideIndex = this.swiper.slides.findIndex(slide =>
         slide.getAttribute('data-hash') === hash
@@ -718,7 +613,6 @@ mapHashToCategory(hash) {
         this.swiper.slideTo(targetSlideIndex, 1000); // 1000 é o tempo da animação em milissegundos
     }
   }
-
   
    // Método para definir a instância de CarregaProjetos
   setCarregaProjetosInstance(carregaProjetosInstance) {
@@ -791,7 +685,6 @@ mapHashToCategory(hash) {
   }
 
   slideChange() {
-    // this.carregarImagensDosProximosSlides(this.swiper, 3);
 
     // First, check if swiper is defined and initialized
     if (!this.swiper || !this.swiper.slides) return;
@@ -870,7 +763,6 @@ mapHashToCategory(hash) {
     });
   }
 
-
     // Update pagination opacity if pagination exists
     if (pagination && this.swiper.pagination.el) {
 
@@ -898,7 +790,6 @@ mapHashToCategory(hash) {
         if (correspondingMenuItem) correspondingMenuItem.classList.add('active');
     }
   }
-
 
   hideProjectMenu() {
     // Verifica se a largura da tela é maior que 800px
