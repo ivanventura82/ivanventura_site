@@ -66,13 +66,11 @@
     }
 
 @media (max-width: 700px) {
-
-
 .nav__button.menu__projetos {
-  display: none;
-}
+    display: none;
+  }
 
-[data-menu="button"] {
-  display: none;
-}
+  [data-menu="button"] {
+    display: none;
+  }
 }

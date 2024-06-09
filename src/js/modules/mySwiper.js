@@ -1,4 +1,3 @@
-import gsap from 'gsap';
 import Swiper from 'swiper';
 import { Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation } from 'swiper/modules';
 import SlideUIManager from './slideUIManager.js'; 
@@ -421,30 +420,6 @@ export default class MySwiper {
     }
   } 
 
-  handleHashChange() {
-    const hash = window.location.hash;
-    const category = this.mapHashToCategory(hash);
-
-    if (category) {
-        this.filterSlides(category);
-    }
-}
-
-mapHashToCategory(hash) {
-    switch (hash) {
-      case '#viw':
-            return 'all';
-        case '#quadritone':
-            return 'residencias';
-        case '#viw':
-            return 'edificios';
-        case '#teatrosescatalaia':
-            return 'institucionais';
-        default:
-            return null;
-    }
-}
-
   applyFilter(filterCategory) {
     console.log(`Aplicando filtro: ${filterCategory}`);
 
@@ -677,9 +652,6 @@ mapHashToCategory(hash) {
       }
     }
   }
-  
-  // slideChangeTransitionStart() {   
-  // }
 
   getSwiperInstance() {
     console.log(this.swiper);
