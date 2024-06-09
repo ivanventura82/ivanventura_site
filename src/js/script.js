@@ -1,6 +1,5 @@
 import MenuMobile from './modules/menu-mobile.js';
 import MenuProjetos from './modules/menu-projetos.js';
-import ScrollAnima from './modules/scroll-anima.js';
 import MySwiper from './modules/mySwiper.js';
 import HoverInteraction  from './modules/premios-content.js';
 import CarregaProjetos from './modules/carregaProjetos.js';
@@ -18,9 +17,6 @@ import "../css/menu-projetos.css";
 import "../css/estudio.css";
 import "../css/projetos.css";
 import "../css/contato.css";
-
-const scrollAnima = new ScrollAnima('[data-anime="scroll"]');
-scrollAnima.init();
 
 const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]', '[data-menu="logo"]', '[data-menu="email"]', '[data-menu="instagram"]');
 menuMobile.init();

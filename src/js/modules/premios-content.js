@@ -40,6 +40,3 @@ export default class HoverInteraction {
       return element.nextElementSibling;
   }
 }
-
-// // Create an instance of the class to activate the functionality
-// new HoverInteraction();

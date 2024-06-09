@@ -48,21 +48,6 @@ export default class MenuProjetos {
     console.log('Menu Opened');
   }
 
-  //close menu com lógica de fechar com clique fora
-
-  // closeMenu(event, force = false) {
-  //   console.log('closeMenu Called', 'Event Target:', event.target, 'Force:', force);
-  //   if (!this.projetosList.contains(event.target) && !this.projetosButton.contains(event.target) || force) {
-  //       console.log('Closing Menu');
-  //       this.animateMenuClose(this.projetosList.querySelectorAll('li'));
-  //       document.removeEventListener('click', this.closeMenu);
-  //       this.isOpen = false;
-  //       console.log('Menu Closed');
-  //   } else {
-  //       console.log('Clicked Inside Menu, Not Closing');
-  //   }
-  // }
-
   closeMenu(event, force = false) {
     console.log('closeMenu Called', 'Force:', force);
     console.log('Closing Menu');
@@ -104,41 +89,3 @@ export default class MenuProjetos {
     return this;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
