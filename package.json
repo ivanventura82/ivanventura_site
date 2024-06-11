@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ThiagoLaredo/ivanventura.git"
+    "url": "git+https://github.com/ThiagoLaredo/IvanVenturaArquitetura.git"
   },
-  "author": "",
+  "author": "Thiago Laredo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ThiagoLaredo/ivanventura.git/issues"
+    "url": "https://github.com/ThiagoLaredo/IvanVenturaArquitetura.git/issues"
   },
-  "homepage": "https://github.com/ThiagoLaredo/ivanventura.git#readme",
+  "homepage": "https://github.com/ThiagoLaredo/IvanVenturaArquitetura.git#readme",
   "devDependencies": {
     "@babel/core": "^7.24.6",
     "@babel/plugin-transform-runtime": "^7.24.6",
