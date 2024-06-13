@@ -1385,10 +1385,10 @@
     "detalhes": ""
   },
   {
-    "title": "Moradia Estudiantil Unifesp",
+    "title": "Moradia Estudantil Unifesp",
     "selecionado": "",
     "categoria": "institucionais",
-    "datahash": "moradiaestudiantilunifesp",
+    "datahash": "moradiaestudantilunifesp",
     "subtitulo1": "Viva, estude,",
     "subtitulo2": "conecte-se",
     "description": "Partindo do conceito de permeabilidade urbana, este projeto visa integrar-se harmoniosamente ao ambiente urbano circundante. Os blocos de apartamentos são elevados sobre pilotis, deixando o térreo livre para criar uma praça aberta para a comunidade, com espaços coletivos e áreas verdes. As unidades habitacionais estão distribuídas em dois blocos com um desnível de 1,5 metros entre eles, conectados por uma rampa com inclinação de 5%. A disposição dos blocos foi planejada para maximizar a exposição solar e o conforto térmico. Com quatro pavimentos, o térreo abriga a praça aberta ao público e diversas áreas de apoio, incluindo administração, segurança, manutenção e vestiários, além de instalações técnicas como cabine primária de energia e reservatório de água.",
@@ -1397,17 +1397,17 @@
     "co-autor": "Fernando Capra",
     "ano": 2015,
     "estado": "Ideia",
-    "imagemhome": "moradiaestudiantilunifesp",
-    "imagem1": "moradiaestudiantilunifesp1",
+    "imagemhome": "moradiaestudantilunifesp",
+    "imagem1": "moradiaestudantilunifesp1",
     "slides": [
       [
-        "moradiaestudiantilunifesp2"
+        "moradiaestudantilunifesp2"
       ],
       [
-        "moradiaestudiantilunifesp3"
+        "moradiaestudantilunifesp3"
       ],
       [
-        "moradiaestudiantilunifesp4"
+        "moradiaestudantilunifesp4"
       ]
     ],
     "detalhes": ""
