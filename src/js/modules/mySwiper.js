@@ -276,7 +276,7 @@ export default class MySwiper {
   }
 
   isProjetosPage() {
-    return window.location.pathname.includes('/projeto.html');
+    return window.location.pathname.includes('/projeto');
   }
   
   isFichaTecnicaSlide() {
