@@ -144,8 +144,9 @@ export default class MySwiper {
     if (!this.isNotIndexPage()) { // Assuming this method checks if it's not the index page
       this.applyDisplayNoneToFirstBullet();
     }
-    this.slideManager.startInitialAnimation();  // Use SlideAnimationManager    this.setupEventListeners();
-    this.slideManager.animateButtons();  // Use SlideAnimationManager
+    this.slideManager.startInitialAnimation();     
+    this.setupEventListeners();
+    this.slideManager.animateButtons();  
     if (this.slides && this.slides.length > 1) {
       this.preload(this);
     }
