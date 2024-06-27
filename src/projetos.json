@@ -663,7 +663,10 @@
     "estado": "Em Desenvolvimento",
     "imagemhome": "beaurose",
     "imagem1": "beaurose1",
-    "slides": "",
+    "slides": "[
+      [
+        "beaurose"],["beaurose1"]]
+    ,
     "detalhes": ""
   },
   {
