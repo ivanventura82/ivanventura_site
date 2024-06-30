@@ -575,7 +575,8 @@
     "estado": "Construído",
     "imagemhome": "cita",
     "imagem1": "cita1",
-    "slides": "[["cita2",["cita3"],["cita4"],["cita5"],["cita6"],["cita7"],["cita8"],["cita9"],["cita10"],["cita11"],["cita12"],["cita13"],["cita14"],["cita15"],["cita16"],["cita17"]]",
+    "slides": "[
+    ["cita2"],["cita3"],["cita4"],["cita5"],["cita6"],["cita7"],["cita8"],["cita9"],["cita10"],["cita11"],["cita12"],["cita13"],["cita14"],["cita15"],["cita16"],["cita17"]]",
     "detalhes": [
       {
         "titulo": "Construção",
