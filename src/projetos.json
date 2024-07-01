@@ -450,14 +450,37 @@
     "imagemhome": "teatrosescatalaia",
     "imagem1": "teatrosescatalaia1",
     "slides":  [
-      ["teatrosescatalaia2", "teatrosescatalaia3"],
-      ["teatrosescatalaia4"],
-      ["teatrosescatalaia5", "teatrosescatalaia6"],
-      ["teatrosescatalaia7"],
-      ["teatrosescatalaia8"], 
-      ["teatrosescatalaia9"], ["teatrosescatalaia10"],
-      ["teatrosescatalaia11"], ["teatrosescatalaia12"]
+      [
+        "teatrosescatalaia"
       ],
+      [
+        "teatrosescatalaia2", "teatrosescatalaia3"
+      ],
+      [
+        "teatrosescatalaia4"
+      ],
+      [
+        "teatrosescatalaia5", "teatrosescatalaia6"
+      ],
+      [
+        "teatrosescatalaia7"
+      ],
+      [
+        "teatrosescatalaia8"
+      ], 
+      [
+        "teatrosescatalaia9"
+      ], 
+      [
+        "teatrosescatalaia10"
+      ],
+      [
+        "teatrosescatalaia11"
+      ], 
+      [
+        "teatrosescatalaia12"
+      ]
+    ],
     "detalhes": [
       {
         "titulo": "Prêmio",
