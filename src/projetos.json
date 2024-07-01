@@ -1563,8 +1563,9 @@
       {
         "titulo": "Fotos",
         "valor": "Ilana Bessler"
-      }
-{        "titulo": "Marcenaria",
+      },
+      { 
+        "titulo": "Marcenaria",
         "valor": "Uffe Kampmann"
       }
     ]
