@@ -1970,15 +1970,11 @@
     "imagem1": "l231",
     "slides": [
       [
-        "l232"
-      ],
-      [
+        "l232",
         "l233"
       ],
       [
-        "l234"
-      ],
-      [
+        "l234",
         "l235"
       ],
       [
@@ -1988,7 +1984,40 @@
         "l237"
       ]
     ],
-    "detalhes": "[{\"titulo\": \"Prêmio\", \"valor\": \"International Property Awards em Londres\"},\n{\"titulo\": \"Construção\", \"valor\": \"Atmosfera Incorporadora\"},\n{\"titulo\": \"Estrutura\", \"valor\": \"Eduardo Penteado Engenharia\"},\n{\"titulo\": \"Fundações\", \"valor\": \"Apoio Engenharia\"},\n{\"titulo\": \"Instalações\", \"valor\": \"Procion Engenharia\"},\n{\"titulo\": \"Ar Condicionado\", \"valor\": \"Arplan Engenharia\"}, \n{\"titulo\": \"Paisagismo\", \"valor\": \"Talquintal Paisagismo\"},\n{\"titulo\": \"Consultorias Prevenção de Incêndio\", \"valor\": \"Stf\"},"
+    "detalhes": "[
+      {
+        "titulo": "Prêmio",
+        "valor": "International Property Awards em Londres"
+      },
+      {
+        "titulo": "Construção",
+        "valor": "Atmosfera Incorporadora"
+      },
+      {
+        "titulo": "Estrutura",
+        "valor": "Eduardo Penteado Engenharia"
+      },
+      {
+        "titulo": "Fundações", 
+        "valor": "Apoio Engenharia"
+      },
+      {
+        "titulo": "Instalações",
+        "valor": "Procion Engenharia"
+      },
+      {
+        "titulo": "Ar Condicionado",
+        "valor": "Arplan Engenharia"
+      },
+      {
+        "titulo": "Paisagismo",
+        "valor": "Talquintal Paisagismo"
+      },
+      {
+        "titulo": "Consultorias Prevenção de Incêndio",
+        "valor": "Stf"
+      }
+    ]
   },
   {
     "title": "Shopping Sustentavel",
