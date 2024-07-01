@@ -786,10 +786,12 @@
     "imagem1": "rubik1",
     "slides": [
       [
-        "rubik",
+        "rubik"
+      ],
+       [
+        "rubik2"
       ],
       [
-        "rubik2",
         "rubik3"
       ]
     ],
