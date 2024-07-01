@@ -243,7 +243,13 @@
     "imagem1": "wing1",
     "slides": [
       [
+        "wing"
+      ],
+      [
         "wing2"
+      ],
+      [
+        "wing3"
       ]
     ],
     "detalhes": [
