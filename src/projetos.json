@@ -782,22 +782,11 @@
     "imagem1": "rubik1",
     "slides": [
       [
+        "rubik",
+      ],
+      [
         "rubik2",
         "rubik3"
-      ],
-      [
-        "rubik4"
-      ],
-      [
-        "rubik5",
-        "rubik6"
-      ],
-      [
-        "rubik7"
-      ],
-      [
-        "rubik8",
-        "rubik9"
       ]
     ],
     "detalhes": ""
