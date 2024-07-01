@@ -577,10 +577,7 @@
     "imagem1": "cita1",
     "slides": [
     [
-      "cita2"
-    ],
-      [
-        "cita3"
+      "cita2","cita3"
       ],
       [
         "cita4"
