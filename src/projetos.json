@@ -1,6 +1,6 @@
 ﻿[
    {
-    "title": "Centro Administrativo do Governo do Estado de São Paulo",
+    "title": "Centro Administrativo de SP",
     "selecionado": true,
     "categoria": "institucionais",
     "datahash": "casp",
@@ -47,11 +47,19 @@
       },
       {
         "titulo": "Colaboradores",
-        "valor": "Carlos Eduardo Alcalde, Henrique Dias, João Pedro de Oliveira Souza, Mateus Alves"
+        "valor": "Carlos Eduardo Alcalde, Henrique Dias, João Pedro de Oliveira Souza"
       },
-      {
-        "titulo": "Cenotecnia e Acústica",
-        "valor": "Lanfranchi"
+       {
+        "titulo": "Estrutura",
+        "valor": "Dirk Mader"
+      },
+       {
+        "titulo": "Paisagismo",
+        "valor": "Mateus Oliveira"
+      },
+       {
+        "titulo": "Cenotécnia e Acústica",
+        "valor": "Gustavo Lanfranchi"
       },
       {
         "titulo": "Conforto Ambiental e Sustentabilidade",
