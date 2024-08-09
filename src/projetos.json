@@ -1,5 +1,65 @@
 ﻿[
-  {
+   {
+    "title": "Centro Administrativo do Governo do Estado de São Paulo",
+    "selecionado": true,
+    "categoria": "institucionais",
+    "datahash": "casp",
+    "subtitulo1": "4 monolitos",
+    "subtitulo2": "cartesianos",
+    "description": "O projeto propõe intervenções que buscam integrar-se ao ambiente existente e catalisar a transformação do centro de São Paulo, conectando-se à Praça Princesa Isabel e revitalizando a região dos Campos Elíseos. Historicamente, essa área foi um bairro nobre, mas enfrentou declínio ao longo do tempo. O projeto visa reafirmar seu papel urbano, revitalizando estruturas e criando novos espaços, com foco na transparência e responsabilidade governamental. Os quatro monólitos, organizados de forma cartesiana, simbolizam ideias essenciais e promovem um diálogo urbano, tornando o Centro Administrativo um marco de revitalização e progresso social em São Paulo.”.",
+    "área": 232.145,
+    "local": "São Paulo | SP",
+    "co-autor": "Alfredo Del Bianco, Felipe Maia, João Sommacal, Walter Makhohl e Yuri Vital",
+    "ano": 2024,
+    "estado": "Ideia",
+    "imagemhome": "casp",
+    "imagem1": "casp1",
+    "slides":  [
+      [
+        "casp"
+      ],
+      [
+        "casp2"
+      ],
+      [
+        "casp3"
+      ],
+      [
+        "casp4"
+      ],
+      [
+        "casp5"
+      ],
+      [
+        "casp6"
+      ],
+      [
+        "casp7"
+      ],
+      [
+        "casp8"
+      ]
+    ],
+    "detalhes": [
+      {
+        "titulo": "Prêmio",
+        "valor": "Menção Honrosa"
+      },
+      {
+        "titulo": "Colaboradores",
+        "valor": "Carlos Eduardo Alcalde, Henrique Dias, João Pedro de Oliveira Souza, Mateus Alves"
+      },
+      {
+        "titulo": "Cenotecnia e Acústica",
+        "valor": "Lanfranchi"
+      },
+      {
+        "titulo": "Conforto Ambiental e Sustentabilidade",
+        "valor": "Raquel Sanches"
+      }
+      ]
+  },
+   {
     "title": "Viw",
     "selecionado": true,
     "categoria": "edificios",
