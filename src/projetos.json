@@ -1708,7 +1708,10 @@
     "imagemhome": "reservadna",
     "imagem1": "reservadna1",
     "slides": [
-      [
+       [
+        "reservadna"
+      ],
+       [
         "reservadna2",
         "reservadna3"
       ],
