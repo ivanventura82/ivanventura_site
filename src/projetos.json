@@ -566,6 +566,41 @@
       }
     ]
   },
+      {
+    "title": "Micasa 2.0",
+    "selecionado": true,
+    "categoria": "residencias",
+    "datahash": "mic",
+    "subtitulo1": "A casa",
+    "subtitulo2": "do arquiteto",
+    "description": "A casa em formato de 'U' organiza no térreo a sala de estar de um lado e a de jantar no outro, ligadas pela cozinha central. No pavimento superior, as suítes dos filhos ficam sobre o estar, e a suíte do casal sobre o jantar, conectadas por um corredor-closet que fica sobre a cozinha.",
+    "área": 170,
+    "local": "São Paulo | SP",
+    "co-autor": "",
+    "ano": 2024,
+    "estado": "Em Construção",
+    "imagemhome": "mic",
+    "imagem1": "mic1",
+    "slides": [
+      [
+        "mic2"
+      ],
+      [
+        "mic3",
+        "mic4"
+      ],
+      [
+        "mic5",
+        "mic6"
+      ]
+    ],
+    "detalhes": [
+      {
+        "titulo": "Construção",
+        "valor": "Eng. Marcos Cordeiro"
+      }
+    ]
+  },
   {
     "title": "Teatro Sesc Atalaia",
     "selecionado": true,
