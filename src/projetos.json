@@ -1,48 +1,5 @@
-﻿[ 
-    {
-    "title": "DNA Itaguá",
-    "selecionado": "",
-    "categoria": "edificios",
-    "datahash": "dnaitagua",
-    "subtitulo1": "Um mergulho",
-    "subtitulo2": "na paisagem",
-    "description": "A piscina transparente, voltada para a baía com a Serra do Mar como pano de fundo, é o marco do DNA Itaguá, oferecendo uma área de lazer completa com piscinas, spa e um exclusivo espaço wellness no topo.",
-    "área": 14500,
-    "local": "Ubatuba | SP",
-    "co-autor": "Yuri Vital",
-    "ano": 2024,
-    "estado": "Em Construção",
-    "imagemhome": "dnaitagua",
-    "imagem1": "dnaitagua1",
-    "slides": [
-      [
-        "dnaitagua2"
-      ],
-      [
-        "dnaitagua3"
-      ],
-      [
-        "dnaitagua4"
-      ],
-       [
-        "dnaitagua5"
-      ],
-      [
-        "dnaitagua5"
-      ]  
-    ],
-    "detalhes": [
-      {
-        "titulo": "Construção",
-        "valor": "Atmosfera Incorporadora"
-      },
-       {
-        "titulo": "Fundações",
-        "valor": "Apoio Engenharia"
-      } 
-    ]
-  },
-   {
+﻿[
+     {
     "title": "CASP",
     "selecionado": true,
     "categoria": "institucionais",
@@ -448,7 +405,50 @@
     ],
     "detalhes": ""
   },
-  {
+     {
+    "title": "DNA Itaguá",
+    "selecionado": "",
+    "categoria": "edificios",
+    "datahash": "dnaitagua",
+    "subtitulo1": "Um mergulho",
+    "subtitulo2": "na paisagem",
+    "description": "A piscina transparente, voltada para a baía com a Serra do Mar como pano de fundo, é o marco do DNA Itaguá, oferecendo uma área de lazer completa com piscinas, spa e um exclusivo espaço wellness no topo.",
+    "área": 14500,
+    "local": "Ubatuba | SP",
+    "co-autor": "Yuri Vital",
+    "ano": 2024,
+    "estado": "Em Construção",
+    "imagemhome": "dnaitagua",
+    "imagem1": "dnaitagua1",
+    "slides": [
+      [
+        "dnaitagua2"
+      ],
+      [
+        "dnaitagua3"
+      ],
+      [
+        "dnaitagua4"
+      ],
+       [
+        "dnaitagua5"
+      ],
+      [
+        "dnaitagua5"
+      ]  
+    ],
+    "detalhes": [
+      {
+        "titulo": "Construção",
+        "valor": "Atmosfera Incorporadora"
+      },
+       {
+        "titulo": "Fundações",
+        "valor": "Apoio Engenharia"
+      } 
+    ]
+     },
+     {
     "title": "Set",
     "selecionado": "",
     "categoria": "edificios",
