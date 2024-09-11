@@ -352,35 +352,7 @@
       }
     ]
   },
-  {
-    "title": "Flora",
-    "selecionado": true,
-    "categoria": "edificios",
-    "datahash": "flora",
-    "subtitulo1": "Volumes ousados",
-    "subtitulo2": "e dinâmicos",
-    "description": "O projeto se destaca pelos volumes ousados e dinâmicos de suas varandas em formato \"vai e vem\", criando uma estética impressionante e ao mesmo tempo simples. A abordagem arquitetônica inovadora valoriza a preservação da natureza, destacando o verde exuberante da mata atlântica. além disso, o contraste das cores escolhidas, especialmente as tonalidades avermelhadas, adiciona uma camada adicional de atratividade, realçando a ousadia dos volumes arquitetônicos e a beleza natural.",
-    "área": 14000,
-    "local": "São Paulo",
-    "co-autor": "Yuri Vital",
-    "ano": 2021,
-    "estado": "Em Desenvolvimento",
-    "imagemhome": "flora",
-    "imagem1": "flora1",
-    "slides": [
-      [
-        "flora"
-      ],
-       [
-        "flora2"
-      ],
-      [
-        "flora3"
-      ]
-    ],
-    "detalhes": ""
-  },
-  {
+      {
     "title": "Quadritone",
     "selecionado": true,
     "categoria": "residencias",
@@ -503,7 +475,7 @@
     ]
   },
       {
-    "title": "DNA Itaguá",
+    "title": "Dna Itaguá",
     "selecionado": "",
     "categoria": "edificios",
     "datahash": "dnaitagua",
@@ -543,7 +515,35 @@
       } 
     ]
      },
-     {
+      {
+    "title": "Flora",
+    "selecionado": true,
+    "categoria": "edificios",
+    "datahash": "flora",
+    "subtitulo1": "Volumes ousados",
+    "subtitulo2": "e dinâmicos",
+    "description": "O projeto se destaca pelos volumes ousados e dinâmicos de suas varandas em formato \"vai e vem\", criando uma estética impressionante e ao mesmo tempo simples. A abordagem arquitetônica inovadora valoriza a preservação da natureza, destacando o verde exuberante da mata atlântica. além disso, o contraste das cores escolhidas, especialmente as tonalidades avermelhadas, adiciona uma camada adicional de atratividade, realçando a ousadia dos volumes arquitetônicos e a beleza natural.",
+    "área": 14000,
+    "local": "São Paulo",
+    "co-autor": "Yuri Vital",
+    "ano": 2021,
+    "estado": "Em Desenvolvimento",
+    "imagemhome": "flora",
+    "imagem1": "flora1",
+    "slides": [
+      [
+        "flora"
+      ],
+       [
+        "flora2"
+      ],
+      [
+        "flora3"
+      ]
+    ],
+    "detalhes": ""
+  },
+      {
     "title": "Set",
     "selecionado": "",
     "categoria": "edificios",
