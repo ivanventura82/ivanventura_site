@@ -405,7 +405,104 @@
     ],
     "detalhes": ""
   },
-     {
+      {
+    "title": "Reserva Dna",
+    "selecionado": true,
+    "categoria": "edificios",
+    "datahash": "reservadna",
+    "subtitulo1": "Paisagens compartilhadas",
+    "subtitulo2": "mar e mata",
+    "description": "Localizado à beira-mar, com a majestosa Mata Atlântica adentrando o terreno pela parte posterior, este empreendimento destaca-se pela vista privilegiada para o oceano. Os apartamentos foram estrategicamente dispostos a 45°, maximizando as visuais marítimas. Reconhecendo a importância da vista para o mar, toda a cobertura do edifício foi transformada em um vasto jardim, proporcionando um ambiente de contemplação e lazer para os moradores desfrutarem das vistas deslumbrantes do mar e da mata, criando assim um imenso mirante.",
+    "área": 30000,
+    "local": "Ubatuba | SP",
+    "co-autor": "David Ito",
+    "ano": 2013,
+    "estado": "Construído",
+    "imagemhome": "reservadna",
+    "imagem1": "reservadna1",
+    "slides": [
+       [
+        "reservadna"
+      ],
+       [
+        "reservadna2",
+        "reservadna3"
+      ],
+      [
+        "reservadna4",
+        "reservadna5"
+      ],
+      [
+        "reservadna6"
+      ],
+      [
+        "reservadna7"
+      ],
+      [
+        "reservadna8"
+      ],
+      [
+        "reservadna9"
+      ],
+      [
+        "reservadna10"
+      ],
+      [
+        "reservadna11"
+      ],
+      [
+        "reservadna12"
+      ],
+      [
+        "reservadna13"
+      ],
+      [
+        "reservadna14"
+      ],
+       [
+        "reservadna15"
+      ],
+       [
+        "reservadna16"
+      ],
+       [
+        "reservadna17"
+      ],
+       [
+        "reservadna18"
+      ],
+       [
+        "reservadna19"
+      ]
+    ],
+    "detalhes": [
+      {
+        "titulo": "Construção",
+        "valor": "Atmosfera Incorporadora"
+      },
+      {
+        "titulo": "Estrutura",
+        "valor": "OSMB Engenharia"
+      },
+      {
+        "titulo": "Fundações",
+        "valor": "Apoio Engenharia"
+      },
+      {
+        "titulo": "Instalações",
+        "valor": "SPHE Engenharia"
+      },
+      {
+        "titulo": "Consultorias Prevenção de Incêndio",
+        "valor": "Stf"
+      },
+      {
+        "titulo": "Paisagismo",
+        "valor": "Benedito Abbud"
+      }
+    ]
+  },
+      {
     "title": "DNA Itaguá",
     "selecionado": "",
     "categoria": "edificios",
@@ -1770,104 +1867,7 @@
       }
     ]
   },
-  {
-    "title": "Reserva Dna",
-    "selecionado": true,
-    "categoria": "edificios",
-    "datahash": "reservadna",
-    "subtitulo1": "Paisagens compartilhadas",
-    "subtitulo2": "mar e mata",
-    "description": "Localizado à beira-mar, com a majestosa Mata Atlântica adentrando o terreno pela parte posterior, este empreendimento destaca-se pela vista privilegiada para o oceano. Os apartamentos foram estrategicamente dispostos a 45°, maximizando as visuais marítimas. Reconhecendo a importância da vista para o mar, toda a cobertura do edifício foi transformada em um vasto jardim, proporcionando um ambiente de contemplação e lazer para os moradores desfrutarem das vistas deslumbrantes do mar e da mata, criando assim um imenso mirante.",
-    "área": 30000,
-    "local": "Ubatuba | SP",
-    "co-autor": "David Ito",
-    "ano": 2013,
-    "estado": "Construído",
-    "imagemhome": "reservadna",
-    "imagem1": "reservadna1",
-    "slides": [
-       [
-        "reservadna"
-      ],
-       [
-        "reservadna2",
-        "reservadna3"
-      ],
-      [
-        "reservadna4",
-        "reservadna5"
-      ],
-      [
-        "reservadna6"
-      ],
-      [
-        "reservadna7"
-      ],
-      [
-        "reservadna8"
-      ],
-      [
-        "reservadna9"
-      ],
-      [
-        "reservadna10"
-      ],
-      [
-        "reservadna11"
-      ],
-      [
-        "reservadna12"
-      ],
-      [
-        "reservadna13"
-      ],
-      [
-        "reservadna14"
-      ],
-       [
-        "reservadna15"
-      ],
-       [
-        "reservadna16"
-      ],
-       [
-        "reservadna17"
-      ],
-       [
-        "reservadna18"
-      ],
-       [
-        "reservadna19"
-      ]
-    ],
-    "detalhes": [
       {
-        "titulo": "Construção",
-        "valor": "Atmosfera Incorporadora"
-      },
-      {
-        "titulo": "Estrutura",
-        "valor": "OSMB Engenharia"
-      },
-      {
-        "titulo": "Fundações",
-        "valor": "Apoio Engenharia"
-      },
-      {
-        "titulo": "Instalações",
-        "valor": "SPHE Engenharia"
-      },
-      {
-        "titulo": "Consultorias Prevenção de Incêndio",
-        "valor": "Stf"
-      },
-      {
-        "titulo": "Paisagismo",
-        "valor": "Benedito Abbud"
-      }
-    ]
-  },
-  {
     "title": "Restaurante O Pote",
     "selecionado": "",
     "categoria": "comerciais",
