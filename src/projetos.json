@@ -1119,8 +1119,8 @@
     "selecionado": "",
     "categoria": "comerciais",
     "datahash": "cafevista",
-    "subtitulo1": "3 pilares",
-    "subtitulo2": "como lareiras",
+    "subtitulo1": "3 pilares,",
+    "subtitulo2": "3 lareiras",
     "description": "Os três pilares centrais que sustentam o espaço deste café não apenas oferecem estabilidade, mas também simbolizam o movimento dinâmico que permeia nosso ambiente. Integrar as lareiras nesses elementos não é apenas uma escolha funcional, mas uma expressão de calor e energia que envolve os visitantes.\n\nCada detalhe, desde a forma da estrutura até a ampla vista panorâmica que abraça a paisagem, foi concebido para criar uma experiência que vai além do ordinário. É uma ode à harmonia entre espaço e experiência, onde a arquitetura se torna uma narrativa em si mesma.",
     "área": 675,
     "local": "São Paulo",
@@ -1131,9 +1131,11 @@
     "imagem1": "cafevista1",
     "slides": [
       [
-        "cafevista2",
-        "cafevista3"
+        "cafevista2"
       ],
+         [
+        "cafevista3"
+         ],
       [
         "cafevista4"
       ]
