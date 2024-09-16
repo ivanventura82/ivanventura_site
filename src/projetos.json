@@ -290,8 +290,11 @@
     "imagem1": "templodocafe1",
     "slides": [
       [
-        "templodocafe2"
+        "templodocafe"
       ],
+         [
+        "templodocafe2"
+         ],
       [
         "templodocafe3"
       ],
@@ -369,8 +372,11 @@
     "imagem1": "quadritone1",
     "slides": [
       [
+        "quadritone"
+      ], 
+         [
         "quadritone2"
-      ],
+         ],
       [
         "quadritone3"
       ]
@@ -619,8 +625,11 @@
     "imagem1": "eiros1",
     "slides": [
       [
+        "eiros"
+      ],
+         [
         "eiros2"
-      ]
+         ]
     ],
     "detalhes": ""
   },
