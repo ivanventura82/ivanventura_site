@@ -1327,8 +1327,11 @@
     "imagem1": "crixacentroeducacional1",
     "slides": [
       [
-        "crixacentroeducacional2"
+        "crixacentroeducacional"
       ],
+         [
+        "crixacentroeducacional2"
+         ],
       [
         "crixacentroeducacional3"
       ],
