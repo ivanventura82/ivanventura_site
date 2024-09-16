@@ -1767,8 +1767,11 @@
     "imagem1": "moradiaestudantil1",
     "slides": [
       [
-        "moradiaestudantil2"
+        "moradiaestudantil"
       ],
+         [
+        "moradiaestudantil2"
+         ],
       [
         "moradiaestudantil3"
       ],
