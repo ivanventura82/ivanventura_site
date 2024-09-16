@@ -1584,7 +1584,7 @@
     ]
   },
   {
-    "title": "Tatoo Academy",
+    "title": "Tattoo Academy",
     "selecionado": "",
     "categoria": "institucionais",
     "datahash": "tatooacademy",
@@ -1600,9 +1600,12 @@
     "imagem1": "tatooacademy1",
     "slides": [
       [
-        "tatooacademy2"
+        "tatooacademy"
       ],
-      [
+         [
+        "tatooacademy2"
+         ],
+         [
         "tatooacademy3"
       ],
       [
