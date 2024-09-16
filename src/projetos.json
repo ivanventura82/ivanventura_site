@@ -1364,8 +1364,11 @@
     "imagem1": "expodubai1",
     "slides": [
       [
-        "expodubai2"
+        "expodubai"
       ],
+         [
+        "expodubai2"
+         ],
       [
         "expodubai3"
       ],
