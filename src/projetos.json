@@ -2468,8 +2468,11 @@
     "imagem1": "museualvaraalto1",
     "slides": [
       [
+        "museualvaraalto"
+      ],
+         [
         "museualvaraalto2"
-      ]
+         ]
     ],
     "detalhes": ""
   }
