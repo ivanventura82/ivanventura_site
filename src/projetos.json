@@ -649,17 +649,30 @@
     "imagemhome": "micasa",
     "imagem1": "micasa1",
     "slides": [
-      [
+     [
         "micasa2"
-      ],
-      [
-        "micasa3",
+     ],
+     [
+        "micasa3"
+     ],
+     [
         "micasa4"
-      ],
-      [
-        "micasa6",
+     ],
+     [
+        "micasa5"
+     ],
+     [
+        "micasa6"
+     ],
+     [
         "micasa7"
-      ]
+     ],
+     [
+        "micasa8"
+     ],
+     [
+        "micasa9"
+     ]
     ],
     "detalhes": [
       {
