@@ -355,7 +355,113 @@
       }
     ]
   },
+{
+    "title": "Micasa 1.0",
+    "selecionado": true,
+    "categoria": "residencias",
+    "datahash": "micasa",
+    "subtitulo1": "A casa",
+    "subtitulo2": "do Snoopy",
+    "description": "Residência inspirada nos quadrinhos do snoopy, combina funcionalidade, estética e conforto. sua estrutura robusta e estilizada é construída com blocos estruturais aparentes, garantindo estabilidade e durabilidade. Os dois mezaninos estrategicamente posicionados proporcionam espaços adicionais para lazer, trabalho ou relaxamento, otimizando o uso do espaço disponível. A área de estar com pé-direito duplo cria uma sensação de amplitude, enquanto as telhas metálicas espaçadas na cumeeira permitem a entrada controlada de luz natural, realçando os ambientes internos. A piscina integrada à paisagem oferece uma vista panorâmica deslumbrante para momentos de relaxamento e contemplação.",
+    "área": 100,
+    "local": "Capela do Alto | SP",
+    "co-autor": "Estúdio Marion",
+    "ano": 2021,
+    "estado": "Construído",
+    "imagemhome": "micasa",
+    "imagem1": "micasa1",
+    "slides": [
+     [
+        "micasa2"
+     ],
+     [
+        "micasa3"
+     ],
+     [
+        "micasa4"
+     ],
+     [
+        "micasa5"
+     ],
+     [
+        "micasa6"
+     ],
+     [
+        "micasa7"
+     ],
+     [
+        "micasa8"
+     ],
+     [
+        "micasa9"
+     ],
+     [
+        "micasa10"
+     ],
+     [
+        "micasa11"
+     ],
+     [
+        "micasa12"
+     ],
+     [
+        "micasa13"
+     ],
+     [
+        "micasa14"
+     ],
+     [
+        "micasa15"
+     ]
+    ],
+    "detalhes": [
       {
+        "titulo": "Construção",
+        "valor": "Becca"
+      },
+      {
+        "titulo": "Consultoria estrutural",
+        "valor": "Eng. José Roberto"
+      }
+    ]
+  },
+      {
+    "title": "Micasa 2.0",
+    "selecionado": true,
+    "categoria": "residencias",
+    "datahash": "mic",
+    "subtitulo1": "A casa",
+    "subtitulo2": "do arquiteto",
+    "description": "A casa em formato de 'U' organiza no térreo a sala de estar de um lado e a de jantar no outro, ligadas pela cozinha central, que se abre para um pátio no centro do 'U'. No pavimento superior, as suítes dos filhos ficam sobre o estar e a suíte do casal sobre o jantar, conectadas por um corredor-closet sobre a cozinha.",
+    "área": 170,
+    "local": "São Paulo | SP",
+    "co-autor": "Estúdio Marion",
+    "ano": 2024,
+    "estado": "Em Construção",
+    "imagemhome": "mic",
+    "imagem1": "mic1",
+    "slides": [
+      [
+        "mic2",
+        "mic3"
+      ],
+      [
+        "mic4",
+        "mic5"
+      ],
+      [
+        "mic6",
+        "mic7"
+      ]
+    ],
+    "detalhes": [
+      {
+        "titulo": "Construção",
+        "valor": "Eng. Marcos Cordeiro"
+      }
+    ]
+  },
+{
     "title": "Quadritone",
     "selecionado": true,
     "categoria": "residencias",
@@ -633,113 +739,7 @@
     ],
     "detalhes": ""
   },
-  {
-    "title": "Micasa 1.0",
-    "selecionado": true,
-    "categoria": "residencias",
-    "datahash": "micasa",
-    "subtitulo1": "A casa",
-    "subtitulo2": "do Snoopy",
-    "description": "Residência inspirada nos quadrinhos do snoopy, combina funcionalidade, estética e conforto. sua estrutura robusta e estilizada é construída com blocos estruturais aparentes, garantindo estabilidade e durabilidade. Os dois mezaninos estrategicamente posicionados proporcionam espaços adicionais para lazer, trabalho ou relaxamento, otimizando o uso do espaço disponível. A área de estar com pé-direito duplo cria uma sensação de amplitude, enquanto as telhas metálicas espaçadas na cumeeira permitem a entrada controlada de luz natural, realçando os ambientes internos. A piscina integrada à paisagem oferece uma vista panorâmica deslumbrante para momentos de relaxamento e contemplação.",
-    "área": 100,
-    "local": "Capela do Alto | SP",
-    "co-autor": "Estúdio Marion",
-    "ano": 2021,
-    "estado": "Construído",
-    "imagemhome": "micasa",
-    "imagem1": "micasa1",
-    "slides": [
-     [
-        "micasa2"
-     ],
-     [
-        "micasa3"
-     ],
-     [
-        "micasa4"
-     ],
-     [
-        "micasa5"
-     ],
-     [
-        "micasa6"
-     ],
-     [
-        "micasa7"
-     ],
-     [
-        "micasa8"
-     ],
-     [
-        "micasa9"
-     ],
-     [
-        "micasa10"
-     ],
-     [
-        "micasa11"
-     ],
-     [
-        "micasa12"
-     ],
-     [
-        "micasa13"
-     ],
-     [
-        "micasa14"
-     ],
-     [
-        "micasa15"
-     ]
-    ],
-    "detalhes": [
-      {
-        "titulo": "Construção",
-        "valor": "Becca"
-      },
-      {
-        "titulo": "Consultoria estrutural",
-        "valor": "Eng. José Roberto"
-      }
-    ]
-  },
-      {
-    "title": "Micasa 2.0",
-    "selecionado": true,
-    "categoria": "residencias",
-    "datahash": "mic",
-    "subtitulo1": "A casa",
-    "subtitulo2": "do arquiteto",
-    "description": "A casa em formato de 'U' organiza no térreo a sala de estar de um lado e a de jantar no outro, ligadas pela cozinha central, que se abre para um pátio no centro do 'U'. No pavimento superior, as suítes dos filhos ficam sobre o estar e a suíte do casal sobre o jantar, conectadas por um corredor-closet sobre a cozinha.",
-    "área": 170,
-    "local": "São Paulo | SP",
-    "co-autor": "Estúdio Marion",
-    "ano": 2024,
-    "estado": "Em Construção",
-    "imagemhome": "mic",
-    "imagem1": "mic1",
-    "slides": [
-      [
-        "mic2",
-        "mic3"
-      ],
-      [
-        "mic4",
-        "mic5"
-      ],
-      [
-        "mic6",
-        "mic7"
-      ]
-    ],
-    "detalhes": [
-      {
-        "titulo": "Construção",
-        "valor": "Eng. Marcos Cordeiro"
-      }
-    ]
-  },
-  {
+{
     "title": "Teatro Sesc Atalaia",
     "selecionado": true,
     "categoria": "institucionais",
