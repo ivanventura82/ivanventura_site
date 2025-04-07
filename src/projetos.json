@@ -91,6 +91,60 @@
       }
       ]
   },
+         {
+    "title": "ERECHIN",
+    "selecionado": true,
+    "categoria": "institucionais",
+    "datahash": "erechin",
+    "subtitulo1": "Cidade, memória",
+    "subtitulo2": "e diálogo",
+    "description": "O novo projeto da Câmara de Vereadores de Erechim valoriza o prédio existente com uma ampliação funcional e moderna. Mantém-se o acesso principal e cria-se a Galeria Memorial, dedicada à história da cidade. O novo edifício integra recepção, plenário para 300 pessoas, gabinetes e espaços de convivência, priorizando acessibilidade, ventilação natural e preservação do patrimônio.",
+    "área": 3.720,
+    "local": "Erechin | RS",
+    "co-autor": "Felipe Maia, João Sommacal e Yuri Vital",
+    "ano": 2024,
+    "estado": "Ideia",
+    "imagemhome": "erechin",
+    "imagem1": "erechin1",
+    "slides":  [
+      [
+        "erechin"
+      ],
+      [
+        "erechin2"
+      ],
+      [
+        "erechin3"
+      ],
+      [
+        "erechin4"
+      ],
+      [
+        "erechin5"
+      ],
+      [
+        "erechin6"
+      ]
+    ],
+    "detalhes": [
+      {
+        "titulo": "Prêmio",
+        "valor": "Menção Honrosa"
+      },
+      {
+        "titulo": "Colaboradores",
+        "valor": "Carlos Eduardo Alcalde"
+      },
+       {
+        "titulo": "Estrutura",
+        "valor": "Dirk Mader"
+      },
+         {
+        "titulo": "Cenotécnia e Acústica",
+        "valor": "Gustavo Lanfranchi"
+      }
+    ]
+  },
    {
     "title": "VIW",
     "selecionado": true,
@@ -278,7 +332,7 @@
   },
   {
     "title": "Templo do Café",
-    "selecionado": true,
+    "selecionado": "",
     "categoria": "comerciais",
     "datahash": "templodocafe",
     "subtitulo1": "Um Abraço",
