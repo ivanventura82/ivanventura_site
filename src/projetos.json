@@ -91,7 +91,93 @@
       }
       ]
   },
-         {
+      {
+    "title": "SESC GALERIA",
+    "selecionado": true,
+    "categoria": "institucionais",
+    "datahash": "sescgaleria",
+    "subtitulo1": "revisitando",
+    "subtitulo2": "a história",
+    "description": "SESC Galeria – Deixar o edifício falar
+A intervenção no Edifício João Brícola propõe uma síntese entre restauro e arquitetura contemporânea, respeitando o valor histórico sem recorrer à mimese. O projeto valoriza a estrutura existente como organismo vivo, capaz de integrar novas camadas de significado, reativando fachadas, abrindo vazios e criando percursos. A relação entre o antigo e o novo é marcada por equilíbrio, luz natural e continuidade urbana — uma arquitetura que transforma sem apagar, e permite ao edifício continuar a falar.",
+    "área": 13.500,
+    "local": "São Paulo | SP",
+    "co-autor": "Augusto Longarine, Breno Quaioti, Daniel Carcavalli, Diego Pinheiro, Felipe Maia, João Souza, João Sommacal, Letícia Baldo, Luiz Sakata, Maria Dutra, Yuri Vital.",
+    "ano": 2025,
+    "estado": "Ideia",
+    "imagemhome": "sescgaleria",
+    "imagem1": "sescgaleria1",
+    "slides":  [
+      [
+        "sescgaleria"
+      ],
+      [
+        "casp2"
+      ],
+      [
+        "casp3"
+      ],
+      [
+        "casp4"
+      ],
+      [
+        "casp5"
+      ],
+      [
+        "casp6"
+      ],
+       [
+        "casp16"
+      ],
+       [
+        "casp7"
+      ],
+       [
+        "casp8"
+      ],
+       [
+        "casp9"
+      ],
+      [
+        "casp10"
+      ],
+       [
+        "casp11"
+      ],
+       [
+        "casp12"
+      ],
+       [
+        "casp13"
+      ],
+       [
+        "casp14"
+      ],
+       [
+        "casp15"
+      ]
+    ],
+    "detalhes": [
+      {
+        "titulo": "Prêmio",
+        "valor": "3º prêmio em concurso internacional"
+      },
+      {
+        "titulo": "Colaboradores",
+        "valor": "Beatriz Malichesqui, Carlos Alcalde, Fernando Mauad, Guilherme Okasaki, Manoella Cabrera, Mateus Silva"
+      },
+       {
+        "titulo": "Estrutura",
+        "valor": "Dirk Mader e Inner Engenharia"
+      },
+       {
+        "titulo": "Consultores",
+        "valor": "Consultores:
+"Bernardes Zanchetti |Cozinha Industrial|, Elaine Biella |Paisagismo|, Gustavo Lanfranchi |Cenotecnia|, Luís Almeida |Instalações|, Ocimar Fernandes |Bombeiro|, Pedro Paulino |Identidade Visual|, Ricardo Bozza |Estrutura|, Silvana Cambiaghi |Acessibilidade|"
+      }
+      ]
+  },
+      {
     "title": "Erechin",
     "selecionado": true,
     "categoria": "institucionais",
