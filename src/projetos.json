@@ -228,7 +228,38 @@
       }
     ]
   },
-   {
+      {
+    "title": "Condominio Baleia",
+    "selecionado": "",
+    "categoria": "residencias",
+    "datahash": "condominiobaleia",
+    "subtitulo1": "A natureza",
+    "subtitulo2": "é o caminho",
+    "description": "Este condomínio exclusivo é composto por 34 casas de alto padrão e foi concebido como uma grande área verde permeável. a típica configuração de ruas e calçadas foi substituída por um amplo boulevard linear, situado no centro do condomínio. o boulevard é revestido com placas de pedra cercadas por gramados, e conta com um vasto paisagismo, incluindo plantas, árvores e gazebos distribuídos de forma aleatória. Essa abordagem resulta em uma considerável redução da velocidade dos veículos, permitindo que toda a extensão que normalmente seria uma rua de acesso seja utilizada como uma ampla área verde para convivência. o acesso às residências é proporcionado por um elegante gradil de chapa metálica perfurada, dando a impressão de que as \"caixas\" superiores estão flutuando. o pavimento superior possui fechamento único com ripas de madeira pintadas, com abertura tipo camarão.",
+    "área": 11000,
+    "local": "Praia da baleia | SP",
+    "co-autor": "David Ito e Julian Quintaes",
+    "ano": 2012,
+    "estado": "Em Desenvolvimento",
+    "imagemhome": "condominiobaleia",
+    "imagem1": "condominiobaleia1",
+    "slides": [
+      [
+        "condominiobaleia"
+      ],
+         [
+        "condominiobaleia2"
+         ],
+      [
+        "condominiobaleia3"
+      ],
+      [
+        "condominiobaleia4"
+      ]
+    ],
+    "detalhes": "[{\"titulo\": \"Prêmio\", \"valor\": \"1° lugar em concurso fechado\"}"
+  },
+      {
     "title": "VIW",
     "selecionado": true,
     "categoria": "edificios",
@@ -2114,38 +2145,7 @@
     "slides": "[[\"casapinheiros2\", \"casapinheiros3\"],\n[\"casapinheiros4\", \"casapinheiros5\",]\n[\"casapinheiros6\"], \n[\"casapinheiros7\", \"casapinheiros8\"]]",
     "detalhes": "[{\"titulo\": \"Capa\", \"valor\": \"Arquitetura & Construção de setembro de 2013\"},"
   },
-  {
-    "title": "Condominio Baleia",
-    "selecionado": "",
-    "categoria": "residencias",
-    "datahash": "condominiobaleia",
-    "subtitulo1": "A natureza",
-    "subtitulo2": "é o caminho",
-    "description": "Este condomínio exclusivo é composto por 34 casas de alto padrão e foi concebido como uma grande área verde permeável. a típica configuração de ruas e calçadas foi substituída por um amplo boulevard linear, situado no centro do condomínio. o boulevard é revestido com placas de pedra cercadas por gramados, e conta com um vasto paisagismo, incluindo plantas, árvores e gazebos distribuídos de forma aleatória. Essa abordagem resulta em uma considerável redução da velocidade dos veículos, permitindo que toda a extensão que normalmente seria uma rua de acesso seja utilizada como uma ampla área verde para convivência. o acesso às residências é proporcionado por um elegante gradil de chapa metálica perfurada, dando a impressão de que as \"caixas\" superiores estão flutuando. o pavimento superior possui fechamento único com ripas de madeira pintadas, com abertura tipo camarão.",
-    "área": 11000,
-    "local": "Praia da baleia | SP",
-    "co-autor": "David Ito e Julian Quintaes",
-    "ano": 2012,
-    "estado": "Em Desenvolvimento",
-    "imagemhome": "condominiobaleia",
-    "imagem1": "condominiobaleia1",
-    "slides": [
-      [
-        "condominiobaleia"
-      ],
-         [
-        "condominiobaleia2"
-         ],
-      [
-        "condominiobaleia3"
-      ],
-      [
-        "condominiobaleia4"
-      ]
-    ],
-    "detalhes": "[{\"titulo\": \"Prêmio\", \"valor\": \"1° lugar em concurso fechado\"}"
-  },
-  {
+    {
     "title": "Restaurante B",
     "selecionado": "",
     "categoria": "comerciais",
