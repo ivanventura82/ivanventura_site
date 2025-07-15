@@ -2142,8 +2142,12 @@
     "estado": "Construído",
     "imagemhome": "casapinheiros",
     "imagem1": "casapinheiros1",
-    "slides": "[[\"casapinheiros2\", \"casapinheiros3\"],\n[\"casapinheiros4\", \"casapinheiros5\",]\n[\"casapinheiros6\"], \n[\"casapinheiros7\", \"casapinheiros8\"]]",
-    "detalhes": "[{\"titulo\": \"Capa\", \"valor\": \"Arquitetura & Construção de setembro de 2013\"},"
+    "slides": [
+         ["casapinheiros2", "casapinheiros3"], 
+         ["casapinheiros4", "casapinheiros5"],
+         ["casapinheiros6"],
+         ["casapinheiros7", "casapinheiros8"]],
+    "detalhes": {"titulo": "Capa", "valor": "Arquitetura & Construção de setembro de 2013"},"
   },
     {
     "title": "Restaurante B",
