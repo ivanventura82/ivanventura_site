@@ -2023,7 +2023,11 @@
     "estado": "Construído",
     "imagemhome": "apartamentomyp",
     "imagem1": "apartamentomyp1",
-    "slides": "",
+    "slides": [
+      [
+        "apartamentomyp"
+      ]
+    ], 
     "detalhes": ""
   },
   {
