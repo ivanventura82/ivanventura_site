@@ -2147,7 +2147,8 @@
          ["casapinheiros4", "casapinheiros5"],
          ["casapinheiros6"],
          ["casapinheiros7", "casapinheiros8"]],
-    "detalhes": {"titulo": "Capa", "valor": "Arquitetura & Construção de setembro de 2013"},
+    "detalhes": [{"titulo": "Capa", "valor": "Arquitetura & Construção de setembro de 2013"}
+    ]
   },
     {
     "title": "Restaurante B",
