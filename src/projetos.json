@@ -2147,6 +2147,7 @@
     "imagemhome": "casapinheiros",
     "imagem1": "casapinheiros1",
     "slides": [
+         ["casapinheiros"],
          ["casapinheiros2", "casapinheiros3"], 
          ["casapinheiros4", "casapinheiros5"],
          ["casapinheiros6"],
