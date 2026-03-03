@@ -257,7 +257,12 @@
         "condominiobaleia4"
       ]
     ],
-    "detalhes": "[{\"titulo\": \"Prêmio\", \"valor\": \"1° lugar em concurso fechado\"}"
+     "detalhes": [
+      {
+        "titulo": "Prêmio",
+        "valor": "1º lugar em concurso fechado"
+      }
+    ]
   },
       {
     "title": "VIW",
