@@ -1957,7 +1957,14 @@
     "estado": "Ideia",
     "imagemhome": "shoppingkp",
     "imagem1": "shoppingkp1",
-    "slides": "",
+    "slides": [
+      [
+        "shoppingkp"
+      ],
+       [
+        "shoppingkp2"
+      ]
+    ],
     "detalhes": ""
   },
   {
