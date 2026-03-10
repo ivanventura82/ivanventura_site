@@ -1508,9 +1508,12 @@
     "co-autor": "Yuri Vital",
     "ano": 2018,
     "estado": "Ideia",
-    "imagemhome": "greenedge",
-    "imagem1": "greenedge1",
+    "imagemhome": "greenedge1",
+    "imagem1": "greenedge",
     "slides": [
+      [
+        "greenedge1"
+      ],
       [
         "greenedge2"
       ],
