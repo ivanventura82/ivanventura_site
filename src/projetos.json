@@ -1893,7 +1893,7 @@
     "detalhes": ""
   },
   {
-    "title": "Casa Hl",
+    "title": "Casa HL",
     "selecionado": "",
     "categoria": "residencias",
     "datahash": "casahl",
@@ -2366,7 +2366,7 @@
     "detalhes": ""
   },
   {
-    "title": "Condominio Do Bosque",
+    "title": "Condomínio Do Bosque",
     "selecionado": "",
     "categoria": "residencias",
     "datahash": "condominiodobosque",
@@ -2382,6 +2382,9 @@
     "imagem1": "condominiodobosque1",
     "slides": [
       [
+        "condominiodobosque"
+      ],
+       [
         "condominiodobosque2"
       ],
       [
