@@ -1842,7 +1842,7 @@
     "categoria": "residencias",
     "datahash": "casaa",
     "subtitulo1": "Conexão de",
-    "subtitulo2": "Ponta a Ponta",
+    "subtitulo2": "Ponto a Ponto",
     "description": "Com um desnível de 12 metros entre suas extremidades e acessos distintos em cada uma delas, este terreno abriga uma residência cuidadosamente projetada para oferecer uma experiência única de moradia. Estrategicamente situada no ponto mais alto do lote para aproveitar as vistas panorâmicas, a entrada de veículos é pela parte inferior, enquanto o acesso pedestre se dá pela parte superior.\nNo centro do projeto, uma passarela coberta conecta elegantemente os espaços sociais e privados. Ambientes amplos e arejados se estendem em um único nível, integrando-se ao ambiente externo por meio de generosas aberturas. Na ala íntima, nos fundos da casa, os quartos abrem-se para um pátio ensolarado.\nUma característica única deste projeto é a possibilidade de acesso aos quartos por uma escada externa que leva à laje de cobertura, proporcionando uma conexão direta com a rua adjacente na parte posterior do terreno.",
     "área": 300,
     "local": "São Paulo",
@@ -1850,11 +1850,17 @@
     "ano": 2016,
     "estado": "Ideia",
     "imagemhome": "casaa",
-    "imagem1": "casaa1",
+    "imagem1": "casaa5",
     "slides": [
       [
-        "casaa2"
+        "casaa"
       ],
+      [
+        "casaa1"
+      ],
+      [
+        "casaa2"
+      ], 
       [
         "casaa3"
       ],
