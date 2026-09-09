@@ -77,7 +77,7 @@ export default class CarregaProjetos {
         // Remove todos os slides exceto o slide1
         slidesParaRemover.forEach(slide => swiperWrapper.removeChild(slide));
     
-        projetos.forEach(projeto => {
+        projetos.forEach((projeto, index) => {
             const slideElement = document.createElement('div');
             slideElement.className = 'swiper-slide com-imagem-de-fundo';
             slideElement.setAttribute('data-filter', projeto.categoria); 
@@ -101,9 +101,11 @@ export default class CarregaProjetos {
             ../img/${projeto.datahash}/${projeto.imagemhome}-1024w.webp 1024w,
             ../img/${projeto.datahash}/${projeto.imagemhome}-1920w.webp 1920w
             `;
-            backgroundImage.sizes = "(max-width: 720px) 100vw, (max-width: 1024px) 100vw, 100vw";
+            backgroundImage.sizes = "100vw";
             backgroundImage.alt = `Projeto ${projeto.title}`;
-            backgroundImage.loading = "lazy";
+            backgroundImage.loading = index === 0 ? "eager" : "lazy";
+            backgroundImage.fetchPriority = index === 0 ? "high" : "low";
+            backgroundImage.decoding = "async";
     
             const slideContent = document.createElement('div');
             slideContent.className = 'slide-content';
@@ -174,7 +176,7 @@ export default class CarregaProjetos {
             duration: 1.5,
             ease: 'power2.out',
             delay: 0.5  // Inicia após a cortina começar a se mover
-        }, '-=1'); // Sobrepõe parcialmente com a animação da cortina preta
+        }, '-=1'); // Sobrepõe parcialmente com a duração da cortina
     
         // Configura a opacidade inicial e a posição para spans e título
         gsap.set([titleAndArrow, ...textSpans], {opacity: 0, y: 20});
