@@ -1,9 +1,12 @@
 /* Preserve typography and layout; change the choreography only. */
-#index-page .mySwiper > .swiper-wrapper,
 #index-page .mySwiper > .swiper-wrapper > .swiper-slide {
-  transition-timing-function: cubic-bezier(0.65, 0, 0.2, 1);
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+  overflow: hidden;
+  background-color: var(--bg);
 }
-#index-page .swiper-slide { background-color: #151515; }
+#index-page .mySwiper > .swiper-wrapper > .swiper-slide:first-child { visibility: visible; }
 #index-page .slide-background-img { transform-origin: center; }
 #index-page .slide-content { backface-visibility: hidden; }
 #index-page .link__title:focus-visible,

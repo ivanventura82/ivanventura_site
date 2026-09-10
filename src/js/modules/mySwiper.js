@@ -1,7 +1,6 @@
 import Swiper from 'swiper';
-import { Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation, EffectCreative, Keyboard, A11y } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation, Keyboard, A11y } from 'swiper/modules';
 import HomeMotion from './homeMotion.js';
-import 'swiper/css/effect-creative';
 import SlideUIManager from './slideUIManager.js';
 import SlideManager from './slideManager.js';
 import 'swiper/css';
@@ -85,10 +84,10 @@ export default class MySwiper {
       console.log("Inicializando Swiper...");
 
       this.swiper = new Swiper(".mySwiper", {
-        modules: [Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation, EffectCreative, Keyboard, A11y],
+        modules: [Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation, Keyboard, A11y],
         init: false,
         direction: "vertical",
-        speed: this.homeMotion?.media.matches ? 0 : (this.isHome ? 850 : 1000),
+        speed: this.homeMotion?.media.matches ? 0 : (this.isHome ? this.homeMotion.duration : 1000),
         preventInteractionOnTransition: this.isHome,
         keyboard: { enabled: this.isHome, onlyInViewport: true },
         a11y: { enabled: true, paginationBulletMessage: 'Ir para o projeto {{index}}' },
@@ -97,8 +96,9 @@ export default class MySwiper {
         touchAngle: 45,
         threshold: 10,
         allowTouchMove: true,
-        followFinger: true,
-        mousewheel: this.isHome ? { forceToAxis: true, thresholdDelta: 18, thresholdTime: 850 } : true,
+        followFinger: !this.isHome,
+        virtualTranslate: this.isHome,
+        mousewheel: this.isHome ? { forceToAxis: true, thresholdDelta: 18, thresholdTime: this.homeMotion.duration } : true,
         passiveListeners: true,
         observer: true,
         observeParents: true,
@@ -115,13 +115,7 @@ export default class MySwiper {
           el: '.swiper-scrollbar',
           draggable: true,
         },
-        effect: this.isHome ? 'creative' : 'slide',
-        creativeEffect: {
-          perspective: false,
-          limitProgress: 1,
-          prev: { translate: [0, '-20%', -1] },
-          next: { translate: [0, '100%', 0] },
-        },
+        effect: 'slide',
         preventClicksPropagation: false,
         hashNavigation: {
           watchState: true,
@@ -143,7 +137,7 @@ export default class MySwiper {
       this.swiper.init();
       if (this.homeMotion) {
         this.homeMotion.media.addEventListener('change', () => {
-          this.swiper.params.speed = this.homeMotion.media.matches ? 0 : 850;
+          this.swiper.params.speed = this.homeMotion.media.matches ? 0 : this.homeMotion.duration;
           this.homeMotion.enter(this.swiper.slides[this.swiper.activeIndex], true);
         });
       }
@@ -176,7 +170,10 @@ export default class MySwiper {
   handleSlideChangeStart() {
     let currentSlide = this.swiper.slides[this.swiper.activeIndex];
     if (this.isHome) {
-      this.homeMotion.enter(currentSlide);
+      const direction = this.swiper.activeIndex >= this.swiper.previousIndex ? 1 : -1;
+      this.homeMotion.enter(currentSlide, false, direction, () => {
+        if (this.swiper.animating) this.swiper.transitionEnd();
+      });
     } else if (currentSlide) {
       this.slideManager.clearSlideAnimations(currentSlide);
       this.slideManager.animateSlideElements(currentSlide);
