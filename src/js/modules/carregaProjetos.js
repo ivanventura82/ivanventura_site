@@ -1,10 +1,10 @@
-import gsap from 'gsap';
 
 export default class CarregaProjetos {
     constructor(jsonURL, swiperInstance) {
         this.jsonURL = jsonURL;
         this.swiperInstance = swiperInstance; // Garanta que esta é a instância de MySwiper
         console.log("Swiper instance passed to CarregaProjetos:", this.swiperInstance);
+        this.introSlide = document.querySelector('[data-hash="slide1"]');
         this.todosProjetos = []; // Nova propriedade para armazenar todos os projetos
         this.projetosFiltrados = []; // Adiciona esta linha   
     }
@@ -34,8 +34,8 @@ export default class CarregaProjetos {
 
 
         this.projetosFiltrados = projetosFiltrados; // Adiciona esta linha
-        this.exibirProjetos(this.projetosFiltrados, ocultarPrimeiroBullet);
-        this.construirMenuLateral(projetosFiltrados); // Atualize para usar os projetos filtrados
+        this.construirMenuLateral(projetosFiltrados);
+        this.exibirProjetos(this.projetosFiltrados, ocultarPrimeiroBullet); // Atualize para usar os projetos filtrados
     }
   
     construirMenuLateral(projetosFiltrados) {
@@ -77,22 +77,15 @@ export default class CarregaProjetos {
         // Remove todos os slides exceto o slide1
         slidesParaRemover.forEach(slide => swiperWrapper.removeChild(slide));
     
+        this.swiperInstance.homeMotion?.reset();
+        if (ocultarPrimeiroBullet && this.introSlide) swiperWrapper.prepend(this.introSlide);
+        else this.introSlide?.remove();
         projetos.forEach((projeto, index) => {
             const slideElement = document.createElement('div');
             slideElement.className = 'swiper-slide com-imagem-de-fundo';
             slideElement.setAttribute('data-filter', projeto.categoria); 
             slideElement.setAttribute('data-hash', projeto.datahash);
 
-            // Adicionando a cortina preta
-            const blackCurtain = document.createElement('div');
-            blackCurtain.className = 'black-curtain';
-            blackCurtain.style.width = '100%';
-            blackCurtain.style.height = '100%';
-            blackCurtain.style.backgroundColor = 'rgba(0,0,0,0.7)'; // Ajuste a cor e a opacidade conforme necessário
-            blackCurtain.style.position = 'absolute';
-            blackCurtain.style.top = '0';
-            blackCurtain.style.left = '0';
-            
             const backgroundImage = document.createElement('img');
             backgroundImage.className = 'slide-background-img';
             backgroundImage.src = `../img/${projeto.datahash}/${projeto.imagemhome}.webp`;
@@ -121,78 +114,16 @@ export default class CarregaProjetos {
     
             slideElement.appendChild(backgroundImage);
             slideElement.appendChild(slideContent);
-            slideElement.appendChild(blackCurtain);
             swiperWrapper.appendChild(slideElement); // Adiciona o slide ao swiperWrapper
 
             // Chamar a animação para o slide
-            this.animarSlide(slideElement);
+            this.swiperInstance.homeMotion?.prepare(slideElement);
 
         });
     
-        if (this.swiperInstance) {
-            setTimeout(() => {
-                this.swiperInstance.update(); // Atualiza o Swiper para refletir as mudanças
-                if (ocultarPrimeiroBullet) {
-                    this.swiperInstance.applyDisplayNoneToFirstBullet();
-                } else {
-                    const firstPaginationBullet = document.querySelector('.swiper-pagination .swiper-pagination-bullet');
-                    if (firstPaginationBullet) {
-                        firstPaginationBullet.style.display = ''; // Ou 'flex', dependendo do seu layout
-                    }
-                }
-            }, 50); // Ajuste o tempo conforme necessário
-        } else {
-            console.error("Swiper instance is not defined in CarregaProjetos.");
-        }
+        this.swiperInstance.refreshHomeSlides(!ocultarPrimeiroBullet);
     }
 
-    animarSlide(slideElement) {
-        const blackCurtain = slideElement.querySelector('.black-curtain');
-        const bgImage = slideElement.querySelector('.slide-background-img');
-        const content = slideElement.querySelector('.slide-content');
-        const textSpans = content.querySelectorAll('span');
-        const titleAndArrow = content.querySelector('.slide__title__link');
-    
-        // Cria uma linha do tempo para a animação
-        const tl = gsap.timeline({defaults: {duration: 0.4, ease: "power2.out"}});
-    
-        // Animação da Cortina Preta
-        tl.to(blackCurtain, {
-            x: '100%',
-            duration: 1,
-            ease: 'power2.inOut',
-            onComplete: () => {
-                blackCurtain.style.display = 'none';
-            }
-        });
-    
-        // Animações de Zoom para a Imagem e Fade In para o Texto
-        tl.fromTo(bgImage, {
-            scale: 1.1,
-            autoAlpha: 0
-        }, {
-            scale: 1,
-            autoAlpha: 1,
-            duration: 1.5,
-            ease: 'power2.out',
-            delay: 0.5  // Inicia após a cortina começar a se mover
-        }, '-=1'); // Sobrepõe parcialmente com a duração da cortina
-    
-        // Configura a opacidade inicial e a posição para spans e título
-        gsap.set([titleAndArrow, ...textSpans], {opacity: 0, y: 20});
-    
-        // Animação dos spans e do título usando o tempo e ordem da função fornecida
-        if (textSpans[0]) {
-            tl.to(textSpans[0], {opacity: 1, y: 0}, "-=0.8"); // Inicia quase imediatamente após a imagem
-        }
-    
-        if (textSpans[1]) {
-            tl.to(textSpans[1], {opacity: 1, y: 0}, "-=0.6"); // Mantém a sequência logo após o primeiro span
-        }
-    
-        tl.to(titleAndArrow, {opacity: 1, y: 0}, "-=0.4"); // Inicia logo após o segundo span
-    }
-    
     // Dentro de CarregaProjetos
     setSwiperInstance(swiperInstance) {
         this.swiperInstance = swiperInstance;

@@ -101,7 +101,7 @@ export default class SlideManager {
       return;
     }
 
-    const tl = gsap.timeline({ defaults: { ease: "power2.out" }, delay: 2 });
+    const tl = gsap.timeline({ defaults: { ease: "power2.out" }, delay: document.body.id === "index-page" ? 0.15 : 2 });
     tl.to(buttons, { opacity: 1, y: 0, duration: 0.3, stagger: 0.1 }, "+=0.1");
 
     if (this.projetosList && this.projetosList.classList.contains(this.activeClass)) {

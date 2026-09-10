@@ -1,0 +1,22 @@
+/* Preserve typography and layout; change the choreography only. */
+#index-page .mySwiper > .swiper-wrapper,
+#index-page .mySwiper > .swiper-wrapper > .swiper-slide {
+  transition-timing-function: cubic-bezier(0.65, 0, 0.2, 1);
+}
+#index-page .swiper-slide { background-color: #151515; }
+#index-page .slide-background-img { transform-origin: center; }
+#index-page .slide-content { backface-visibility: hidden; }
+#index-page .link__title:focus-visible,
+#index-page .nav__button:focus-visible,
+#index-page #botao-down:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 8px;
+}
+@media (prefers-reduced-motion: reduce) {
+  #index-page .swiper-slide,
+  #index-page .swiper-wrapper,
+  #index-page .swiper-pagination-bullet {
+    transition-duration: 0ms !important;
+    animation: none !important;
+  }
+}

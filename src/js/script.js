@@ -17,6 +17,7 @@ import "../css/menu-projetos.css";
 import "../css/estudio.css";
 import "../css/projetos.css";
 import "../css/contato.css";
+import "../css/home-motion.css";
 
 const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]', '[data-menu="logo"]', '[data-menu="email"]', '[data-menu="instagram"]');
 menuMobile.init();

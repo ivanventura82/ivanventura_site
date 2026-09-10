@@ -1,7 +1,9 @@
 import Swiper from 'swiper';
-import { Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation } from 'swiper/modules';
-import SlideUIManager from './slideUIManager.js'; 
-import SlideManager from './slideManager.js';  
+import { Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation, EffectCreative, Keyboard, A11y } from 'swiper/modules';
+import HomeMotion from './homeMotion.js';
+import 'swiper/css/effect-creative';
+import SlideUIManager from './slideUIManager.js';
+import SlideManager from './slideManager.js';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -13,19 +15,20 @@ export default class MySwiper {
   constructor(menuProjetosInstance) {
     this.menuProjetos = menuProjetosInstance;
     this.swiper = null;
+    this.isHome = document.body.id === 'index-page';
+    this.homeMotion = this.isHome ? new HomeMotion() : null;
     this.slideUIManager = null;  // Adiciona a instância de SlideUIManager aqui
     this.slideManager = new SlideManager();  // Instancia SlideAnimationManager
     this.allSlides = [];
     this.allMenuItems = [];
     this.filtroAtivo = false;
     this.setupResizeListener();
+    this.initialHash = window.location.hash.slice(1);
 }
 
   initialize() {
     document.addEventListener('DOMContentLoaded', () => {
-      this.initializeSwiper();
-      this.setupFilterLinks();
-      this.applyFilterFromURL(); // Certifique-se de que está sendo chamado corretamente
+      this.initializeSwiper(); // Certifique-se de que está sendo chamado corretamente
       // Verifica se está na página de projeto e abre o menu
     });
   }
@@ -57,52 +60,52 @@ export default class MySwiper {
       paginationBullets.forEach(bullet => bullet.classList.add('black'));
 
     } else {
-      // pagination.style.opacity = '0'; 
+      // pagination.style.opacity = '0';
       pagination.style.display = 'none'; // Esconde inicialmente a paginação usando display none
     }
-  }  
+  }
 
     if (menuLateral) {
       this.initializeMenuLateral(menuLateral);
       menuLateral.style.display = 'none'; // Hide menu lateral initially
     }
-  
+
     // Collect slides and menu items
     this.allSlides = Array.from(document.querySelectorAll('.swiper-slide'));
     this.allMenuItems = Array.from(document.querySelectorAll('.project-menu-item'));
-  
+
     // Setup filter links
     this.setupFilterLinks();
-    this.applyFilterFromURL();
-
-    if (!this.isNotIndexPage()) {
-      this.applyFilterFromURL();
-    }
+    if (!this.isHome) this.applyFilterFromURL();
      // Inicializa o SlideUIManager com a instância do Swiper após a inicialização do Swiper
-     this.slideUIManager = new SlideUIManager(this.swiper);  
+     this.slideUIManager = new SlideUIManager(this.swiper);
   }
 
   initializeSwiperInstance() {
       console.log("Inicializando Swiper...");
 
       this.swiper = new Swiper(".mySwiper", {
-        modules: [Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation],
+        modules: [Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation, EffectCreative, Keyboard, A11y],
+        init: false,
         direction: "vertical",
-        speed: 1000,
+        speed: this.homeMotion?.media.matches ? 0 : (this.isHome ? 850 : 1000),
+        preventInteractionOnTransition: this.isHome,
+        keyboard: { enabled: this.isHome, onlyInViewport: true },
+        a11y: { enabled: true, paginationBulletMessage: 'Ir para o projeto {{index}}' },
         simulateTouch: true,
         touchRatio: 1,
         touchAngle: 45,
         threshold: 10,
         allowTouchMove: true,
         followFinger: true,
-        mousewheel: true,
+        mousewheel: this.isHome ? { forceToAxis: true, thresholdDelta: 18, thresholdTime: 850 } : true,
         passiveListeners: true,
         observer: true,
         observeParents: true,
         slidesPerView: 1,
         preloadImages: false,
         watchSlidesVisibility: true,
-        watchSlidesProgress: true, 
+        watchSlidesProgress: true,
         lazy: {
           loadPrevNext: true,
           loadPrevNextAmount: 5,
@@ -112,7 +115,13 @@ export default class MySwiper {
           el: '.swiper-scrollbar',
           draggable: true,
         },
-        effect: 'slide',
+        effect: this.isHome ? 'creative' : 'slide',
+        creativeEffect: {
+          perspective: false,
+          limitProgress: 1,
+          prev: { translate: [0, '-20%', -1] },
+          next: { translate: [0, '100%', 0] },
+        },
         preventClicksPropagation: false,
         hashNavigation: {
           watchState: true,
@@ -130,6 +139,14 @@ export default class MySwiper {
         },
       });
 
+      this.slideUIManager = new SlideUIManager(this.swiper);
+      this.swiper.init();
+      if (this.homeMotion) {
+        this.homeMotion.media.addEventListener('change', () => {
+          this.swiper.params.speed = this.homeMotion.media.matches ? 0 : 850;
+          this.homeMotion.enter(this.swiper.slides[this.swiper.activeIndex], true);
+        });
+      }
       console.log("Swiper inicializado:", this.swiper);
       document.dispatchEvent(new CustomEvent('SwiperReady')); // Event indicating Swiper is ready
   }
@@ -144,9 +161,10 @@ export default class MySwiper {
     if (!this.isNotIndexPage()) { // Assuming this method checks if it's not the index page
       this.applyDisplayNoneToFirstBullet();
     }
-    this.slideManager.startInitialAnimation();     
+    if (this.isHome) this.homeMotion.enter(this.swiper.slides[this.swiper.activeIndex], true);
+    else this.slideManager.startInitialAnimation();
     this.setupEventListeners();
-    this.slideManager.animateButtons();  
+    this.slideManager.animateButtons();
     if (this.slides && this.slides.length > 1) {
       this.preload(this);
     }
@@ -157,8 +175,12 @@ export default class MySwiper {
 
   handleSlideChangeStart() {
     let currentSlide = this.swiper.slides[this.swiper.activeIndex];
-    this.slideManager.clearSlideAnimations(currentSlide);  // Use SlideAnimationManager
-    this.slideManager.animateSlideElements(currentSlide);  // Use SlideAnimationManager
+    if (this.isHome) {
+      this.homeMotion.enter(currentSlide);
+    } else if (currentSlide) {
+      this.slideManager.clearSlideAnimations(currentSlide);
+      this.slideManager.animateSlideElements(currentSlide);
+    }
     console.log("Início da transição de slide:", this.swiper.realIndex);
     this.precarregarImagens(this.swiper);
     this.slideUIManager.updateUIForSlide(this.swiper.realIndex);
@@ -176,7 +198,7 @@ export default class MySwiper {
       console.log("All images have loaded.");
       this.precarregarImagens(this.swiper);
     }
-  
+
     navegarParaProximoSlide() {
       if (this.swiper) {
         this.swiper.slideNext();
@@ -204,14 +226,14 @@ export default class MySwiper {
 
   precarregarImagens(swiper) {
     const connectionType = navigator.connection && navigator.connection.effectiveType;
-    if (['4g', 'wifi'].includes(connectionType)) {
-      const slidesToPreload = 2; // Ajuste conforme necessário
+    if (!navigator.connection?.saveData && !['slow-2g', '2g'].includes(connectionType)) {
+      const slidesToPreload = ['4g', 'wifi'].includes(connectionType) ? 2 : 1; // Ajuste conforme necessário
       for (let i = 1; i <= slidesToPreload; i++) {
         let nextSlideIndex = swiper.realIndex + i;
         if (nextSlideIndex >= swiper.slides.length) {
           nextSlideIndex -= swiper.slides.length; // Considerar looping
         }
-  
+
         let nextSlideElement = swiper.slides[nextSlideIndex];
         if (nextSlideElement) {
           const images = nextSlideElement.querySelectorAll('.slide-background-img');
@@ -231,10 +253,13 @@ export default class MySwiper {
   setupEventListeners() {
     const botaoProximo = document.getElementById('botao-down');
     if (botaoProximo) {
-      botaoProximo.addEventListener('click', () => this.navegarParaProximoSlide());
+      botaoProximo.addEventListener('click', (event) => {
+        event.preventDefault();
+        this.navegarParaProximoSlide();
+      });
     }
   }
-  
+
   initializeSwiper2() {
     // Lógica para inicializar swiper2 aqui
     this.swiper2 = new Swiper(".mySwiper2", {
@@ -278,7 +303,7 @@ export default class MySwiper {
   isProjetosPage() {
     return window.location.pathname.includes('/projeto');
   }
-  
+
   isFichaTecnicaSlide() {
     return window.location.hash.includes('#ficha-tecnica');
   }
@@ -329,18 +354,36 @@ export default class MySwiper {
     return !!document.querySelector('.menu-lateral');
   }
 
+  refreshHomeSlides(filtered) {
+    if (!this.swiper) return;
+    this.filtroAtivo = filtered;
+    this.swiper.update();
+    this.allSlides = [...this.swiper.slides];
+    const hashIndex = this.swiper.slides.findIndex(slide => slide.dataset.hash === this.initialHash);
+    this.initialHash = '';
+    this.swiper.slideTo(hashIndex >= 0 ? hashIndex : 0, 0);
+    this.homeMotion.enter(this.swiper.slides[this.swiper.activeIndex], true);
+    this.slideChange();
+    this.precarregarImagens(this.swiper);
+    if (!filtered) this.applyDisplayNoneToFirstBullet();
+    else {
+      const category = new URLSearchParams(window.location.search).get('filter');
+      if (category) this.markActiveLink(category);
+    }
+  }
+
   update() {
     if (this.swiper) {
         this.swiper.update();
     }
   }
- 
+
   updatePaginationAndMenuVisibility(currentSlideIndex) {
     const pagination = document.querySelector('.swiper-pagination');
     const menuLateral = document.querySelector('.menu-lateral');
-  
+
     if (!pagination || !menuLateral) return;
-  
+
     const deveExibir = currentSlideIndex > 0 || this.filtroAtivo;
     pagination.style.display = menuLateral.style.display = deveExibir ? 'flex' : 'none';
     pagination.style.opacity = deveExibir ? '1' : '0';
@@ -367,12 +410,14 @@ export default class MySwiper {
         this.filterSlides(filterCategory);
         this.navigateToFirstSlideOfCategory(filterCategory);
         this.setFiltroAtivo(true);
-        this.markActiveLink(filterCategory); 
-        this.menuProjetos.openMenu();  
+        this.markActiveLink(filterCategory);
+        this.menuProjetos.openMenu();
     }
   }
 
   setupFilterLinks() {
+    if (this.filtersBound) return;
+    this.filtersBound = true;
     const filterLinks = document.querySelectorAll(('.nav__menu__projetos-mobile a[data-filter], .nav__menu__projetos-desktop a[data-filter]'));
     filterLinks.forEach(link => {
       link.addEventListener('click', (event) => {
@@ -380,6 +425,11 @@ export default class MySwiper {
 
         // Pega a categoria do atributo data-filter do link clicado
         const category = link.getAttribute('data-filter');
+        if (this.isHome) {
+          this.applyFilter(category);
+          this.markActiveLink(category);
+          return;
+        }
         this.applyFilter(category); // Isso deveria chamar o console.log
         this.navigateToFirstSlideOfCategory(category); // Navega para o primeiro slide da categoria
         this.markActiveLink(category); // Marca o link como ativo ao clicar
@@ -405,7 +455,7 @@ export default class MySwiper {
         filteredSlides = this.allSlides.filter(slide => slide.getAttribute('data-hash') !== 'slide1');
     } else {
         // Filtra slides que correspondem à categoria, excluindo o slide de apresentação
-        filteredSlides = this.allSlides.filter(slide => 
+        filteredSlides = this.allSlides.filter(slide =>
             slide.getAttribute('data-filter') === category && slide.getAttribute('data-hash') !== 'slide1'
         );
     }
@@ -419,7 +469,7 @@ export default class MySwiper {
     if (filteredSlides.length > 0) {
         this.swiper.slideTo(0, 0); // Navega sem delay
     }
-  } 
+  }
 
   applyFilter(filterCategory) {
     console.log(`Aplicando filtro: ${filterCategory}`);
@@ -436,7 +486,7 @@ export default class MySwiper {
     } else if (this.isNotIndexPage()) {
       // Se não estiver na página index, redireciona para a index com o parâmetro de filtragem
       window.location.href = `/index.html?filter=${filterCategory}`;
-      
+
     } else {
       console.log('A instância de CarregaProjetos ou o método filtrarEExibirProjetos não está disponível.');
     }
@@ -445,13 +495,13 @@ export default class MySwiper {
   markActiveLink(filterCategory) {
     const links = document.querySelectorAll('.nav__menu__projetos-mobile a[data-filter], .nav__menu__projetos-desktop a[data-filter]');
     links.forEach(link => link.classList.remove('active-link'));
-  
+
     const activeLink = Array.from(links).find(link => link.getAttribute('data-filter') === filterCategory);
     if (activeLink) {
         activeLink.classList.add('active-link');
     }
   }
-  
+
   navigateToFirstSlideOfCategory(category) {
     if (category === 'all') {
         // Se 'all', navega para o segundo slide, assumindo que o primeiro é sempre o slide1
@@ -476,10 +526,10 @@ export default class MySwiper {
 
     // Se um slide válido for encontrado, navega para esse slide
     if (targetSlideIndex !== -1) {
-        this.swiper.slideTo(targetSlideIndex, 1000); // 1000 é o tempo da animação em milissegundos
+        this.swiper.slideTo(targetSlideIndex, this.swiper.params.speed); // 1000 é o tempo da animação em milissegundos
     }
   }
-  
+
    // Método para definir a instância de CarregaProjetos
   setCarregaProjetosInstance(carregaProjetosInstance) {
     this.carregaProjetosInstance = carregaProjetosInstance;
@@ -505,7 +555,7 @@ export default class MySwiper {
 
     // First, check if swiper is defined and initialized
     if (!this.swiper || !this.swiper.slides) return;
-  
+
     // Get the current and previous slide indexes
     let currentSlideIndex = this.swiper.realIndex;
     let previousSlideIndex = this.swiper.previousIndex;
@@ -520,7 +570,7 @@ export default class MySwiper {
         navButtonArrow.style.display = 'none';
       }
     }
-    
+
     // Update UI elements based on the current slide index
     this.updatePaginationAndMenu(currentSlideIndex);
     // this.updateSlideTitlesAndSubtitles(currentSlideIndex, previousSlideIndex);
@@ -537,7 +587,7 @@ export default class MySwiper {
     const menuLateral = document.querySelector('.menu-lateral');
     const menuElements = document.querySelectorAll('.nav__button, .nav__menu__projetos-desktop a, .nav__menu__projetos-mobile a, .nav__button__projetos p, [data-menu-projetos="button"], [data-menu="button"], #hamburguer, #botao-voltar');
     const paginationBullets = document.querySelectorAll('.swiper-pagination-bullet');
-  
+
     if (pagination) {
       if (this.isEstudioPage() || this.isProjetosPage()) {
         pagination.style.opacity = '1';
@@ -548,12 +598,12 @@ export default class MySwiper {
         pagination.style.display = displayStyle;
       }
     }
-  
+
     if (menuLateral) {
       const displayStyle = currentSlideIndex >= 1 ? 'flex' : 'none';
       menuLateral.style.display = displayStyle;
     }
- 
+
     if (pagination && menuLateral) {
       const deveExibir = currentSlideIndex > 0 || this.filtroAtivo;
       pagination.style.display = deveExibir ? 'flex' : 'none';
@@ -613,27 +663,27 @@ export default class MySwiper {
     if (window.innerWidth > 800) {
       const projectMenu = document.querySelector('.project-menu-hover');
       const pagination = document.querySelector('.pagination');
-  
+
       if (projectMenu) {
         projectMenu.classList.remove('show-element');
         pagination.style.display = 'flex';
       }
     }
   }
-  
+
   showProjectMenu() {
     // Verifica se a largura da tela é maior que 800px
     if (window.innerWidth > 800) {
       const projectMenu = document.querySelector('.project-menu-hover');
       const pagination = document.querySelector('.pagination');
-  
+
       if (projectMenu) {
         projectMenu.classList.add('show-element');
         pagination.style.display = 'none';
       }
     }
   }
-  
+
   hidePagination() {
     // Verifica se a largura da tela é maior que 800px
     if (window.innerWidth > 800) {
@@ -643,7 +693,7 @@ export default class MySwiper {
       }
     }
   }
-  
+
   showPagination() {
     // Verifica se a largura da tela é maior que 800px
     if (window.innerWidth > 800) {
