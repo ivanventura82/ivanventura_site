@@ -114,7 +114,7 @@ export default class MySwiper {
         allowTouchMove: true,
         followFinger: !this.motion,
         virtualTranslate: !!this.motion,
-        mousewheel: this.motion ? { forceToAxis: true, thresholdDelta: 18, thresholdTime: this.motion.duration } : true,
+        mousewheel: this.motion ? { forceToAxis: true, thresholdDelta: 18, thresholdTime: this.projectMotion ? 100 : this.motion.duration } : true,
         passiveListeners: true,
         observer: true,
         observeParents: true,
