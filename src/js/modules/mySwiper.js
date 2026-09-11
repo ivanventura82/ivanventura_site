@@ -2,6 +2,7 @@ import Swiper from 'swiper';
 import transitionCategory from './categoryTransition.js';
 import { Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation, Keyboard, A11y } from 'swiper/modules';
 import HomeMotion from './homeMotion.js';
+import EditorialMotion from './editorialMotion.js';
 import ProjectMotion from './projectMotion.js';
 import SlideUIManager from './slideUIManager.js';
 import SlideManager from './slideManager.js';
@@ -19,7 +20,9 @@ export default class MySwiper {
     this.isHome = document.body.id === 'index-page';
     this.homeMotion = this.isHome ? new HomeMotion() : null;
     this.projectMotion = document.body.id === 'pagina-projeto' ? new ProjectMotion() : null;
-    this.motion = this.homeMotion || this.projectMotion;
+    this.editorialMotion = /\/(estudio|contato)(\.html)?\/?$/.test(location.pathname) ? new EditorialMotion() : null;
+    if (this.editorialMotion) document.body.classList.add('editorial-motion');
+    this.motion = this.homeMotion || this.projectMotion || this.editorialMotion;
     this.slideUIManager = null;  // Adiciona a instância de SlideUIManager aqui
     this.slideManager = new SlideManager();  // Instancia SlideAnimationManager
     this.allSlides = [];
@@ -79,6 +82,15 @@ export default class MySwiper {
 
     // Setup filter links
     this.setupFilterLinks();
+    if (this.editorialMotion) {
+      document.querySelectorAll('.premios, .editorial-motion .slide-content').forEach(panel => {
+        panel.addEventListener('wheel', event => {
+          const remaining = panel.scrollHeight - panel.clientHeight - panel.scrollTop;
+          if ((event.deltaY > 0 && remaining > 1) || (event.deltaY < 0 && panel.scrollTop > 1)) event.stopPropagation();
+        }, {passive:true});
+        panel.addEventListener('touchstart', () => panel.classList.toggle('swiper-no-swiping', panel.scrollHeight > panel.clientHeight + 1), {passive:true});
+      });
+    }
     if (!this.isHome) this.applyFilterFromURL();
      // Inicializa o SlideUIManager com a instância do Swiper após a inicialização do Swiper
      this.slideUIManager = new SlideUIManager(this.swiper);
@@ -282,17 +294,33 @@ export default class MySwiper {
   }
 
   initializeSwiper3() {
-    // Lógica para inicializar swiper3 aqui
-    this.swiper3 = new Swiper(".mySwiper3", {
-      modules: [Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation],
-      mousewheel: false,
-      slidesPerView: 1,
-      grabCursor: true,
-      pagination: {
-        el: '.swiper-pagination-2',
-        bulletClass: 'custom-pagination-bullet-2',
-        clickable: true,
-      },
+    const container = document.querySelector('.mySwiper3');
+    if (!container) return;
+    const gallery = new HomeMotion({restingScale:1.02,transitionScale:1.10,photoTravel:0});
+    container.classList.add('editorial-gallery');
+    container.querySelectorAll('.estudio').forEach(slide => {
+      const background = slide.style.backgroundImage;
+      const match = background.match(/url\(["']?(.*?)["']?\)/);
+      if (match) {
+        const image = new Image(); image.src = match[1]; image.alt = 'Escritório Ivan Ventura';
+        image.className = 'slide-background-img'; slide.appendChild(image);
+      }
+    });
+    this.swiper3 = new Swiper(container, {
+      modules:[Pagination,A11y], init:false, nested:true,
+      speed:gallery.media.matches?0:gallery.duration, virtualTranslate:true, followFinger:false,
+      preventInteractionOnTransition:true, slidesPerView:1,
+      pagination:{el:container.querySelector('.swiper-pagination-2'),bulletClass:'custom-pagination-bullet-2',clickable:true},
+      on:{
+        init:swiper=>gallery.enter(swiper.slides[swiper.activeIndex],true),
+        slideChangeTransitionStart:swiper=>gallery.enter(swiper.slides[swiper.activeIndex],false,
+          swiper.activeIndex>=swiper.previousIndex?1:-1,()=>{if(swiper.animating)swiper.transitionEnd();})
+      }
+    });
+    this.swiper3.init();
+    gallery.media.addEventListener('change',()=>{
+      this.swiper3.params.speed=gallery.media.matches?0:gallery.duration;
+      gallery.enter(this.swiper3.slides[this.swiper3.activeIndex],true);
     });
   }
 
@@ -712,5 +740,6 @@ export default class MySwiper {
     return this.swiper;
   }
 }
+
 
 

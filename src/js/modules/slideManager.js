@@ -94,7 +94,7 @@ export default class SlideManager {
   animateButtons() {
     const buttons = this.selectButtons();
     const menuItems = document.querySelectorAll('.menu__projetos li');
-    if (document.body.id === 'pagina-projeto') {
+    if (document.body.id === 'pagina-projeto' || document.body.classList.contains('editorial-motion')) {
       gsap.set([...buttons, ...menuItems], { opacity: 1, y: 0 });
       return;
     }
@@ -147,3 +147,4 @@ export default class SlideManager {
     });
   }
 }
+
