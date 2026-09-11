@@ -1,4 +1,5 @@
 import Swiper from 'swiper';
+import transitionCategory from './categoryTransition.js';
 import { Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation, Keyboard, A11y } from 'swiper/modules';
 import HomeMotion from './homeMotion.js';
 import ProjectMotion from './projectMotion.js';
@@ -169,6 +170,7 @@ export default class MySwiper {
   }
 
   handleSlideChangeStart() {
+    if (this.categoryBusy) return;
     let currentSlide = this.swiper.slides[this.swiper.activeIndex];
     if (this.motion) {
       const direction = this.swiper.activeIndex >= this.swiper.previousIndex ? 1 : -1;
@@ -432,26 +434,15 @@ export default class MySwiper {
     this.filtersBound = true;
     const filterLinks = document.querySelectorAll(('.nav__menu__projetos-mobile a[data-filter], .nav__menu__projetos-desktop a[data-filter]'));
     filterLinks.forEach(link => {
+      link.href = '/index.html?filter=' + encodeURIComponent(link.dataset.filter);
       link.addEventListener('click', (event) => {
-        event.preventDefault(); // Prevenir a ação padrão
-
-        // Pega a categoria do atributo data-filter do link clicado
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
         const category = link.getAttribute('data-filter');
-        if (this.isHome) {
-          this.applyFilter(category);
-          this.markActiveLink(category);
-          return;
-        }
-        this.applyFilter(category); // Isso deveria chamar o console.log
-        this.navigateToFirstSlideOfCategory(category); // Navega para o primeiro slide da categoria
-        this.markActiveLink(category); // Marca o link como ativo ao clicar
-
-        if (this.isNotIndexPage()) {
-          // Se não estiver na página index, redireciona para a index com o parâmetro de filtragem
-          window.location.href = `/index.html?filter=${category}`;
+        if (this.isHome || this.projectMotion) {
+          transitionCategory(this, category);
         } else {
-          // Está na página index, aplica a filtragem como antes
-          this.filterSlides(category);
+          window.location.href = `/index.html?filter=${encodeURIComponent(category)}`;
         }
       });
     });
@@ -721,4 +712,5 @@ export default class MySwiper {
     return this.swiper;
   }
 }
+
 

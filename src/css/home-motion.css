@@ -23,3 +23,8 @@
     animation: none !important;
   }
 }
+
+/* Keep category changes below the persistent navigation. */
+body.category-navigation .mySwiper { isolation:isolate; z-index:1; }
+body.category-navigation .white-color { animation:none; }
+
