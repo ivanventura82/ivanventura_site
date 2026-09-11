@@ -165,9 +165,7 @@ export default class MySwiper {
     if (this.slides && this.slides.length > 1) {
       this.preload(this);
     }
-    if (this.isProjetosPage()) {
-      this.menuProjetos.openMenu();
-    }
+
   }
 
   handleSlideChangeStart() {

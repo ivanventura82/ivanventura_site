@@ -18,15 +18,16 @@ const exitEase = CustomEase.create('portfolio-out', MOTION.exitCurve);
 const entryEase = CustomEase.create('portfolio-in', MOTION.entryCurve);
 
 export default class HomeMotion {
-  constructor() {
+  constructor(settings = {}) {
+    this.settings = { ...MOTION, ...settings };
     this.media = window.matchMedia('(prefers-reduced-motion: reduce)');
     this.activeSlide = null;
     this.timeline = null;
     this.onFinish = null;
   }
   get duration() {
-    return Math.ceil(1000 * Math.max(MOTION.edgeDelay + MOTION.zoomDuration,
-      MOTION.entryDelay + MOTION.captionDelay + MOTION.entryDuration));
+    return Math.ceil(1000 * Math.max(this.settings.edgeDelay + this.settings.zoomDuration,
+      this.settings.entryDelay + this.settings.captionDelay + this.settings.entryDuration));
   }
   lines(slide) {
     return slide ? [...slide.querySelectorAll('.main__title > span, .link__title > span, .slide__title__link')] : [];
@@ -40,7 +41,7 @@ export default class HomeMotion {
     const lines = this.lines(slide);
     if (lines.length) gsap.set(lines, { autoAlpha: 0, y: 0, rotation: 0, transformOrigin: '0% 50%' });
     const photo = this.photos(slide);
-    if (photo.length) gsap.set(photo, { scale: MOTION.restingScale, yPercent: 0 });
+    if (photo.length) gsap.set(photo, { scale: this.settings.restingScale, yPercent: 0 });
   }
   reset() {
     this.timeline?.kill();
@@ -72,7 +73,7 @@ export default class HomeMotion {
       const lines = this.lines(slide);
       if (lines.length) gsap.set(lines, { autoAlpha: 1, y: 0, rotation: 0 });
       const photo = this.photos(slide);
-      if (photo.length) gsap.set(photo, { scale: MOTION.restingScale, yPercent: 0 });
+      if (photo.length) gsap.set(photo, { scale: this.settings.restingScale, yPercent: 0 });
       finish();
       return;
     }
@@ -84,31 +85,31 @@ export default class HomeMotion {
     const timeline = gsap.timeline({ onComplete: finish });
     this.timeline = timeline;
     const stagger = (line, i, lines) => line.classList.contains('slide__title__link')
-      ? MOTION.captionDelay
-      : (direction === 1 ? i : lines.filter(el => !el.classList.contains('slide__title__link')).length - 1 - i) * MOTION.lineStagger;
+      ? this.settings.captionDelay
+      : (direction === 1 ? i : lines.filter(el => !el.classList.contains('slide__title__link')).length - 1 - i) * this.settings.lineStagger;
     const oldLines = this.lines(previous), newLines = this.lines(slide);
     oldLines.forEach((line, i) => timeline.to(line, {
-      autoAlpha: 0, y: -direction * MOTION.exitDistance,
-      rotation: -direction * MOTION.exitRotation, transformOrigin: '0% 50%',
-      duration: MOTION.exitDuration, ease: exitEase,
+      autoAlpha: 0, y: -direction * this.settings.exitDistance,
+      rotation: -direction * this.settings.exitRotation, transformOrigin: '0% 50%',
+      duration: this.settings.exitDuration, ease: exitEase,
     }, stagger(line, i, oldLines)));
     timeline.to(slide, { clipPath: 'inset(0% 0% 0% 0%)',
-      duration: MOTION.edgeDuration, ease: edgeEase }, MOTION.edgeDelay);
+      duration: this.settings.edgeDuration, ease: edgeEase }, this.settings.edgeDelay);
     const outgoingPhoto = this.photos(previous);
     const incomingPhoto = this.photos(slide);
     if (outgoingPhoto.length) timeline.to(outgoingPhoto, {
-      scale: MOTION.transitionScale, yPercent: -direction * MOTION.photoTravel,
-      duration: MOTION.edgeDuration, ease: edgeEase,
-    }, MOTION.edgeDelay);
+      scale: this.settings.transitionScale, yPercent: -direction * this.settings.photoTravel,
+      duration: this.settings.edgeDuration, ease: edgeEase,
+    }, this.settings.edgeDelay);
     if (incomingPhoto.length) timeline.fromTo(incomingPhoto, {
-      scale: MOTION.transitionScale, yPercent: direction * MOTION.photoTravel,
-    }, { scale: MOTION.restingScale, yPercent: 0,
-      duration: MOTION.zoomDuration, ease: zoomEase }, MOTION.edgeDelay);
+      scale: this.settings.transitionScale, yPercent: direction * this.settings.photoTravel,
+    }, { scale: this.settings.restingScale, yPercent: 0,
+      duration: this.settings.zoomDuration, ease: zoomEase }, this.settings.edgeDelay);
     newLines.forEach((line, i) => timeline.fromTo(line, {
-      autoAlpha: 0, y: direction * MOTION.entryDistance,
-      rotation: direction * MOTION.entryRotation, transformOrigin: '0% 50%',
-    }, { autoAlpha: 1, y: 0, rotation: 0, duration: MOTION.entryDuration, ease: entryEase,
-    }, MOTION.entryDelay + stagger(line, i, newLines)));
+      autoAlpha: 0, y: direction * this.settings.entryDistance,
+      rotation: direction * this.settings.entryRotation, transformOrigin: '0% 50%',
+    }, { autoAlpha: 1, y: 0, rotation: 0, duration: this.settings.entryDuration, ease: entryEase,
+    }, this.settings.entryDelay + stagger(line, i, newLines)));
   }
 }
 

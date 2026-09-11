@@ -3,8 +3,7 @@ import { CustomEase } from 'gsap/CustomEase';
 import { MOTION } from './homeMotion.js';
 
 gsap.registerPlugin(CustomEase);
-const key = 'ivan-project-entry-v1';
-const edge = CustomEase.create('project-entry-edge', MOTION.edgeCurve);
+const key = 'ivan-project-entry-v2';
 const zoom = CustomEase.create('project-entry-zoom', MOTION.zoomCurve);
 
 export default function installProjectEntrance(owner) {
@@ -26,14 +25,14 @@ export default function installProjectEntrance(owner) {
       leaving = true; leavingSlide = slide;
       owner.swiper?.disable();
       const project = owner.carregaProjetosInstance?.todosProjetos.find(p => p.datahash === id);
-      if (project) { const preload = new Image(); preload.src = '/img/' + id + '/' + project.imagem1 + '-1024w.webp'; }
+      if (project) { const preload = new Image(); preload.src = '/img/' + id + '/' + (project.imagemhome || project.imagem1) + '-1024w.webp'; }
       leaveTimeline = gsap.timeline({ onComplete: () => location.assign(url.href) });
       leaveTimeline.to(owner.homeMotion.lines(slide), {
-        autoAlpha:0, y:-MOTION.exitDistance, rotation:-MOTION.exitRotation,
+        autoAlpha:0, y:-14, rotation:0,
         transformOrigin:'left center', duration:MOTION.exitDuration, stagger:MOTION.lineStagger,
         ease:'power2.in',
       }, 0);
-      leaveTimeline.to(photo, {scale:1.24,duration:.65,ease:edge}, 0);
+      leaveTimeline.to(photo, {scale:1.10,duration:.35,ease:zoom}, 0);
     });
     window.addEventListener('pageshow', () => {
       if (!leavingSlide) return;
@@ -54,7 +53,7 @@ export default function installProjectEntrance(owner) {
   const overlay=document.createElement('div');
   overlay.className='project-entry-overlay'; overlay.setAttribute('aria-hidden','true');
   const cover=new Image(); cover.src=source.href; cover.alt='';
-  cover.style.transform='scale(1.24)'; overlay.appendChild(cover); document.body.appendChild(overlay);
+  cover.style.transform='scale(1.10)'; overlay.appendChild(cover); document.querySelector('.mySwiper').appendChild(overlay);
   let timeline, finished=false, locked=false;
   const finish=()=>{
     if(finished)return; finished=true;
@@ -69,13 +68,15 @@ export default function installProjectEntrance(owner) {
     locked=!!swiper.enabled; swiper.disable();
     const photo=slide.querySelector('.slide-background-img');
     try {
+      if(photo) { photo.removeAttribute('srcset'); photo.src=source.href; }
       if(photo) await Promise.race([photo.decode().catch(()=>{}),new Promise(resolve=>setTimeout(resolve,1200))]);
       if(finished)return;
       timeline=gsap.timeline({onComplete:finish});
-      // The old cover is concealed from bottom to top, revealing the project.
-      timeline.to(overlay,{clipPath:'inset(0% 0% 100% 0%)',duration:.85,ease:edge},0);
-      if(photo) timeline.fromTo(photo,{scale:1.18,yPercent:3},{scale:MOTION.restingScale,yPercent:0,duration:1.08,ease:zoom},0);
-      timeline.fromTo(owner.projectMotion.lines(slide),{autoAlpha:0,y:35,rotation:2},{autoAlpha:1,y:0,rotation:0,duration:.61,stagger:.08,ease:'power3.out'},.65);
+      // Keep the selected photograph continuous across the navigation.
+      timeline.to(cover,{scale:MOTION.restingScale,duration:.7,ease:zoom},0);
+      if(photo) timeline.fromTo(photo,{scale:1.10,yPercent:0},{scale:MOTION.restingScale,yPercent:0,duration:.7,ease:zoom},0);
+      timeline.to(overlay,{opacity:0,duration:.35,ease:'power1.inOut'},.25);
+      timeline.fromTo(owner.projectMotion.lines(slide),{autoAlpha:0,y:14,rotation:0},{autoAlpha:1,y:0,rotation:0,duration:.5,stagger:.06,ease:'power3.out'},.25);
     } catch (_) {finish();}
   };
   const timeout=setTimeout(finish,5000);

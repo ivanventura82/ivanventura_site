@@ -94,6 +94,10 @@ export default class SlideManager {
   animateButtons() {
     const buttons = this.selectButtons();
     const menuItems = document.querySelectorAll('.menu__projetos li');
+    if (document.body.id === 'pagina-projeto') {
+      gsap.set([...buttons, ...menuItems], { opacity: 1, y: 0 });
+      return;
+    }
     gsap.set([...buttons, ...menuItems], { opacity: 0 });
 
     if (buttons.length === 0) {

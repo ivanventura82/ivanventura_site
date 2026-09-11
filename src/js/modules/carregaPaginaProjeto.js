@@ -39,6 +39,9 @@ export default class CarregaPaginaProjeto {
         const slideBio = this.criarSlideBio(projeto);
         swiperWrapper.appendChild(slideBio);
     
+        if (projeto.imagemhome && projeto.imagemhome !== projeto.imagem1 && !projeto.slides.some(slide => slide.includes(projeto.imagem1))) {
+            swiperWrapper.appendChild(this.criarSlideSecundario(projeto, [projeto.imagem1]));
+        }
         projeto.slides.forEach(slide => {
             swiperWrapper.appendChild(this.criarSlideSecundario(projeto, slide));
         });
@@ -49,6 +52,15 @@ export default class CarregaPaginaProjeto {
     
         // Chama o método para marcar o link como ativo após carregar o projeto
         this.mySwiper.markActiveLink(projeto.categoria);
+        swiperWrapper.querySelectorAll('.project-text-slide .slide-content-project').forEach(panel => {
+            panel.addEventListener('wheel', event => {
+                const remaining = panel.scrollHeight - panel.clientHeight - panel.scrollTop;
+                if ((event.deltaY > 0 && remaining > 1) || (event.deltaY < 0 && panel.scrollTop > 1)) event.stopPropagation();
+            }, { passive: true });
+            panel.addEventListener('touchstart', () => {
+                panel.classList.toggle('swiper-no-swiping', panel.scrollHeight > panel.clientHeight + 1);
+            }, { passive: true });
+        });
     }
     
 
@@ -96,11 +108,12 @@ export default class CarregaPaginaProjeto {
         backgroundImage.alt = `Capa do projeto ${projeto.title}`;
         backgroundImage.loading = "eager";
         backgroundImage.fetchPriority = "high";
-        backgroundImage.src = `./img/${projeto.datahash}/${projeto.imagem1}.webp`;
+        const cover = projeto.imagemhome || projeto.imagem1;
+        backgroundImage.src = `./img/${projeto.datahash}/${cover}.webp`;
         backgroundImage.srcset = `
-            ./img/${projeto.datahash}/${projeto.imagem1}-720w.webp 720w,
-            ./img/${projeto.datahash}/${projeto.imagem1}-1024w.webp 1024w,
-            ./img/${projeto.datahash}/${projeto.imagem1}-1920w.webp 1920w
+            ./img/${projeto.datahash}/${cover}-720w.webp 720w,
+            ./img/${projeto.datahash}/${cover}-1024w.webp 1024w,
+            ./img/${projeto.datahash}/${cover}-1920w.webp 1920w
         `;
         backgroundImage.sizes = "(max-width: 720px) 100vw, (max-width: 1024px) 100vw, 100vw";
 
@@ -126,7 +139,7 @@ export default class CarregaPaginaProjeto {
 
     criarSlideBio(projeto) {
         const slideElement = document.createElement('div');
-        slideElement.className = 'swiper-slide';
+        slideElement.className = 'swiper-slide project-text-slide';
         slideElement.style.backgroundColor = '#f8f8f8';
     
         const slideContentPosition = document.createElement('div');
@@ -271,7 +284,7 @@ export default class CarregaPaginaProjeto {
         // Cria o slide de detalhes se existirem detalhes a serem exibidos
         if (projeto.detalhes && projeto.detalhes.length > 0) {
             const slideDetalhes = document.createElement('div');
-            slideDetalhes.className = 'swiper-slide';
+            slideDetalhes.className = 'swiper-slide project-text-slide';
             slideDetalhes.style.backgroundColor = '#f8f8f8';
             slideDetalhes.setAttribute('data-hash', 'ficha-tecnica'); 
 
