@@ -393,6 +393,7 @@ export default class MySwiper {
     this.homeMotion.enter(this.swiper.slides[this.swiper.activeIndex], true);
     this.slideChange();
     this.precarregarImagens(this.swiper);
+    document.dispatchEvent(new CustomEvent('HomeMotionReady'));
     if (!filtered) this.applyDisplayNoneToFirstBullet();
     else {
       const category = new URLSearchParams(window.location.search).get('filter');
@@ -740,6 +741,7 @@ export default class MySwiper {
     return this.swiper;
   }
 }
+
 
 
 

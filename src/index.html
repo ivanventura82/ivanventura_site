@@ -30,12 +30,21 @@
     </style>
     <script>
       try {
-        if (!sessionStorage.getItem('ivan-opening-v1') && !location.hash && !new URLSearchParams(location.search).has('filter') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        if (!new URLSearchParams(location.search).has('return') && !sessionStorage.getItem('ivan-opening-v1') && !location.hash && !new URLSearchParams(location.search).has('filter') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
           document.documentElement.classList.add('opening-pending');
           setTimeout(function(){ document.documentElement.classList.remove('opening-pending'); }, 6000);
         }
       } catch (_) {}
     </script>
+<style>
+html.home-return-pending [data-hash="slide1"] .main__title > span { visibility:hidden !important; }
+</style>
+<script>
+if(new URLSearchParams(location.search).get('return')==='logo') {
+ document.documentElement.classList.add('home-return-pending');
+ setTimeout(()=>document.documentElement.classList.remove('home-return-pending'),4000);
+}
+</script>
 </head>
   <body id="index-page">
 <div id="opening-logo" aria-hidden="true"><div class="opening-mark"><img src="/img/logo-black.svg" alt="" style="clip-path:polygon(0 0,5.72% 0,5.72% 100%,0 100%)"><img src="/img/logo-black.svg" alt="" style="clip-path:polygon(14.26% 0,20.26% 0,34.3% 100%,28.3% 100%)"><img src="/img/logo-black.svg" alt="" style="clip-path:polygon(51.16% 0,57.16% 0,43.13% 100%,37.12% 100%)"><img src="/img/logo-black.svg" alt="" style="clip-path:polygon(71.19% 0,77.14% 0,63.1% 100%,57.15% 100%)"><img src="/img/logo-black.svg" alt="" style="clip-path:polygon(80.02% 0,85.97% 0,100% 100%,94.05% 100%)"></div></div>
@@ -183,3 +192,4 @@
 </script>
 </body>
 </html>
+

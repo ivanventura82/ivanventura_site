@@ -2,6 +2,7 @@ import MenuMobile from './modules/menu-mobile.js';
 import MenuProjetos from './modules/menu-projetos.js';
 import MySwiper from './modules/mySwiper.js';
 import installProjectEntrance from './modules/projectEntrance.js';
+import installHomeReturn from './modules/homeReturn.js';
 import HoverInteraction  from './modules/premios-content.js';
 import CarregaProjetos from './modules/carregaProjetos.js';
 import CarregaPaginaProjeto from './modules/carregaPaginaProjeto.js';
@@ -42,6 +43,7 @@ new HoverInteraction();
 const mySwiper = new MySwiper(menuProjetos);
 mySwiper.initialize();
 installProjectEntrance(mySwiper);
+installHomeReturn(mySwiper);
     
 const urlParams = new URLSearchParams(window.location.search);
 const categoriaInicial = urlParams.get('filter') || 'selecionado'; // Usa 'selecionado' como padrão, se não houver filtro
@@ -69,3 +71,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
