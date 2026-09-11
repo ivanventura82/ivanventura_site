@@ -1,4 +1,3 @@
-import gsap from 'gsap';
 
 export default class CarregaPaginaProjeto {
     constructor(jsonURL, mySwiperInstance) {
@@ -13,7 +12,7 @@ export default class CarregaPaginaProjeto {
         const projeto = data.find(proj => proj.datahash === datahash);
         if (projeto) {
             await this.processarProjeto(projeto);
-            this.mySwiper.update(); // Atualiza o Swiper após todos os slides serem adicionados
+            this.mySwiper.refreshProjectSlides(); // Prepara a galeria com o efeito compartilhado
 
         } else {
             console.error("Projeto com datahash " + datahash + " não encontrado.");
@@ -35,7 +34,7 @@ export default class CarregaPaginaProjeto {
         swiperWrapper.appendChild(slidePrincipal);
     
         // Assumindo que a animação ocorre após todos os elementos serem carregados
-        requestAnimationFrame(() => this.animarSlide(slidePrincipal));
+        
     
         const slideBio = this.criarSlideBio(projeto);
         swiperWrapper.appendChild(slideBio);
@@ -84,17 +83,6 @@ export default class CarregaPaginaProjeto {
         slideElement.className = 'swiper-slide com-imagem-de-fundo';
         slideElement.style.backgroundColor = '#000000';
     
-        const blackCurtain = document.createElement('div');
-        blackCurtain.className = 'black-curtain';
-        blackCurtain.style.position = 'absolute';
-        blackCurtain.style.left = 0;
-        blackCurtain.style.top = 0;
-        blackCurtain.style.width = '100%';
-        blackCurtain.style.height = '100%';
-        blackCurtain.style.backgroundColor = '#1c1c1c';
-        blackCurtain.style.transform = 'translateX(-100%)';
-        slideElement.appendChild(blackCurtain);
-    
         const backgroundImage = this.criarElementoImagem(projeto);
         slideElement.appendChild(backgroundImage);
         slideElement.appendChild(this.criarConteudoSlide(projeto.title));
@@ -102,70 +90,12 @@ export default class CarregaPaginaProjeto {
         return slideElement;
     }
     
-    animarSlide(slideElement) {
-        // Primeiro, vamos confirmar que o slideElement foi passado
-        if (!slideElement) {
-            console.error("slideElement está indefinido.");
-            return;
-        }
-    
-        // Tentar encontrar a cortina preta dentro do slideElement
-        const blackCurtain = slideElement.querySelector('.black-curtain'); // Certifique-se de que essa classe existe
-        if (!blackCurtain) {
-            console.error("blackCurtain não encontrado.");
-            return;
-        }
-    
-        // Tentar encontrar a imagem de fundo
-        const backgroundImage = slideElement.querySelector('.slide-background-img');
-        if (!backgroundImage) {
-            console.error("backgroundImage não encontrado.");
-            return;
-        }
-    
-        // E o título principal
-        const mainTitle = slideElement.querySelector('.main__title');
-        if (!mainTitle) {
-            console.error("mainTitle não encontrado.");
-            return;
-        }
-    
-        // Se tudo estiver correto, proceder com a animação
-        gsap.to(blackCurtain, {
-            x: '100%',
-            duration: 1,
-            ease: 'power2.inOut',
-            onComplete: () => blackCurtain.remove()
-        });
-    
-        gsap.fromTo(backgroundImage, {
-            scale: 1.1,
-            autoAlpha: 0
-        }, {
-            scale: 1,
-            autoAlpha: 1,
-            duration: 1.5,
-            ease: 'power2.out',
-            delay: 0.5
-        });
-    
-        gsap.fromTo(mainTitle, {
-            y: 30,
-            autoAlpha: 0
-        }, {
-            y: 0,
-            autoAlpha: 1,
-            duration: 1,
-            delay: 1,
-            ease: 'power2.out'
-        });
-    }
-    
     criarElementoImagem(projeto) {
         const backgroundImage = document.createElement('img');
         backgroundImage.className = 'slide-background-img';
         backgroundImage.alt = `Capa do projeto ${projeto.title}`;
-        backgroundImage.loading = "lazy";
+        backgroundImage.loading = "eager";
+        backgroundImage.fetchPriority = "high";
         backgroundImage.src = `./img/${projeto.datahash}/${projeto.imagem1}.webp`;
         backgroundImage.srcset = `
             ./img/${projeto.datahash}/${projeto.imagem1}-720w.webp 720w,
@@ -327,7 +257,12 @@ export default class CarregaPaginaProjeto {
         image.srcset = `${basePath}-720w.webp 720w, ${basePath}-1024w.webp 1024w, ${basePath}-1920w.webp 1920w`;
         image.sizes = "100vw";
         image.alt = `${imgName}`;
-        return image;
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        const window = document.createElement('div');
+        window.className = 'project-photo-window';
+        window.appendChild(image);
+        return window;
     }
     
     criarSlideDetalhes(projeto) {

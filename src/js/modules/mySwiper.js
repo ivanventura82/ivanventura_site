@@ -1,6 +1,7 @@
 import Swiper from 'swiper';
 import { Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation, Keyboard, A11y } from 'swiper/modules';
 import HomeMotion from './homeMotion.js';
+import ProjectMotion from './projectMotion.js';
 import SlideUIManager from './slideUIManager.js';
 import SlideManager from './slideManager.js';
 import 'swiper/css';
@@ -16,6 +17,8 @@ export default class MySwiper {
     this.swiper = null;
     this.isHome = document.body.id === 'index-page';
     this.homeMotion = this.isHome ? new HomeMotion() : null;
+    this.projectMotion = document.body.id === 'pagina-projeto' ? new ProjectMotion() : null;
+    this.motion = this.homeMotion || this.projectMotion;
     this.slideUIManager = null;  // Adiciona a instância de SlideUIManager aqui
     this.slideManager = new SlideManager();  // Instancia SlideAnimationManager
     this.allSlides = [];
@@ -87,18 +90,18 @@ export default class MySwiper {
         modules: [Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation, Keyboard, A11y],
         init: false,
         direction: "vertical",
-        speed: this.homeMotion?.media.matches ? 0 : (this.isHome ? this.homeMotion.duration : 1000),
-        preventInteractionOnTransition: this.isHome,
-        keyboard: { enabled: this.isHome, onlyInViewport: true },
+        speed: this.motion?.media.matches ? 0 : (this.motion ? this.motion.duration : 1000),
+        preventInteractionOnTransition: !!this.motion,
+        keyboard: { enabled: !!this.motion, onlyInViewport: true },
         a11y: { enabled: true, paginationBulletMessage: 'Ir para o projeto {{index}}' },
         simulateTouch: true,
         touchRatio: 1,
         touchAngle: 45,
         threshold: 10,
         allowTouchMove: true,
-        followFinger: !this.isHome,
-        virtualTranslate: this.isHome,
-        mousewheel: this.isHome ? { forceToAxis: true, thresholdDelta: 18, thresholdTime: this.homeMotion.duration } : true,
+        followFinger: !this.motion,
+        virtualTranslate: !!this.motion,
+        mousewheel: this.motion ? { forceToAxis: true, thresholdDelta: 18, thresholdTime: this.motion.duration } : true,
         passiveListeners: true,
         observer: true,
         observeParents: true,
@@ -135,10 +138,10 @@ export default class MySwiper {
 
       this.slideUIManager = new SlideUIManager(this.swiper);
       this.swiper.init();
-      if (this.homeMotion) {
-        this.homeMotion.media.addEventListener('change', () => {
-          this.swiper.params.speed = this.homeMotion.media.matches ? 0 : this.homeMotion.duration;
-          this.homeMotion.enter(this.swiper.slides[this.swiper.activeIndex], true);
+      if (this.motion) {
+        this.motion.media.addEventListener('change', () => {
+          this.swiper.params.speed = this.motion.media.matches ? 0 : this.motion.duration;
+          this.motion.enter(this.swiper.slides[this.swiper.activeIndex], true);
         });
       }
       console.log("Swiper inicializado:", this.swiper);
@@ -155,7 +158,7 @@ export default class MySwiper {
     if (!this.isNotIndexPage()) { // Assuming this method checks if it's not the index page
       this.applyDisplayNoneToFirstBullet();
     }
-    if (this.isHome) this.homeMotion.enter(this.swiper.slides[this.swiper.activeIndex], true);
+    if (this.motion) this.motion.enter(this.swiper.slides[this.swiper.activeIndex], true);
     else this.slideManager.startInitialAnimation();
     this.setupEventListeners();
     this.slideManager.animateButtons();
@@ -169,9 +172,9 @@ export default class MySwiper {
 
   handleSlideChangeStart() {
     let currentSlide = this.swiper.slides[this.swiper.activeIndex];
-    if (this.isHome) {
+    if (this.motion) {
       const direction = this.swiper.activeIndex >= this.swiper.previousIndex ? 1 : -1;
-      this.homeMotion.enter(currentSlide, false, direction, () => {
+      this.motion.enter(currentSlide, false, direction, () => {
         if (this.swiper.animating) this.swiper.transitionEnd();
       });
     } else if (currentSlide) {
@@ -233,7 +236,7 @@ export default class MySwiper {
 
         let nextSlideElement = swiper.slides[nextSlideIndex];
         if (nextSlideElement) {
-          const images = nextSlideElement.querySelectorAll('.slide-background-img');
+          const images = nextSlideElement.querySelectorAll('.slide-background-img, .project-photo-window img');
           images.forEach(img => {
             if (img.loading === "lazy") {
               img.loading = "eager"; // Forçar o carregamento imediato
@@ -367,6 +370,20 @@ export default class MySwiper {
       const category = new URLSearchParams(window.location.search).get('filter');
       if (category) this.markActiveLink(category);
     }
+  }
+
+  refreshProjectSlides() {
+    if (!this.swiper || !this.projectMotion) return;
+    this.projectMotion.reset();
+    this.swiper.update();
+    this.swiper.slides.forEach(slide => this.projectMotion.prepare(slide));
+    const index = this.swiper.slides.findIndex(slide => slide.dataset.hash === this.initialHash);
+    this.initialHash = '';
+    this.swiper.slideTo(index >= 0 ? index : 0, 0);
+    this.projectMotion.enter(this.swiper.slides[this.swiper.activeIndex], true);
+    this.precarregarImagens(this.swiper);
+    this.slideUIManager.updateUIForSlide(this.swiper.activeIndex);
+    document.dispatchEvent(new CustomEvent('ProjectMotionReady'));
   }
 
   update() {
@@ -706,3 +723,4 @@ export default class MySwiper {
     return this.swiper;
   }
 }
+

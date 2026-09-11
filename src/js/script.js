@@ -1,6 +1,7 @@
 import MenuMobile from './modules/menu-mobile.js';
 import MenuProjetos from './modules/menu-projetos.js';
 import MySwiper from './modules/mySwiper.js';
+import installProjectEntrance from './modules/projectEntrance.js';
 import HoverInteraction  from './modules/premios-content.js';
 import CarregaProjetos from './modules/carregaProjetos.js';
 import CarregaPaginaProjeto from './modules/carregaPaginaProjeto.js';
@@ -18,6 +19,7 @@ import "../css/estudio.css";
 import "../css/projetos.css";
 import "../css/contato.css";
 import "../css/home-motion.css";
+import "../css/project-motion.css";
 
 const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]', '[data-menu="logo"]', '[data-menu="email"]', '[data-menu="instagram"]');
 menuMobile.init();
@@ -39,6 +41,7 @@ new HoverInteraction();
 
 const mySwiper = new MySwiper(menuProjetos);
 mySwiper.initialize();
+installProjectEntrance(mySwiper);
     
 const urlParams = new URLSearchParams(window.location.search);
 const categoriaInicial = urlParams.get('filter') || 'selecionado'; // Usa 'selecionado' como padrão, se não houver filtro

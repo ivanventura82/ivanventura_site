@@ -31,12 +31,16 @@ export default class HomeMotion {
   lines(slide) {
     return slide ? [...slide.querySelectorAll('.main__title > span, .link__title > span, .slide__title__link')] : [];
   }
+  photos(slide) {
+    return slide ? [...slide.querySelectorAll('.slide-background-img')] : [];
+  }
   prepare(slide) {
     gsap.set(slide, { visibility: 'hidden', clipPath: 'inset(0% 0% 0% 0%)', zIndex: 0 });
     slide.inert = true;
-    gsap.set(this.lines(slide), { autoAlpha: 0, y: 0, rotation: 0, transformOrigin: '0% 50%' });
-    const photo = slide.querySelector('.slide-background-img');
-    if (photo) gsap.set(photo, { scale: MOTION.restingScale, yPercent: 0 });
+    const lines = this.lines(slide);
+    if (lines.length) gsap.set(lines, { autoAlpha: 0, y: 0, rotation: 0, transformOrigin: '0% 50%' });
+    const photo = this.photos(slide);
+    if (photo.length) gsap.set(photo, { scale: MOTION.restingScale, yPercent: 0 });
   }
   reset() {
     this.timeline?.kill();
@@ -65,9 +69,10 @@ export default class HomeMotion {
         if (other !== slide && other.classList.contains('swiper-slide')) this.prepare(other);
       });
       slide.inert = false;
-      gsap.set(this.lines(slide), { autoAlpha: 1, y: 0, rotation: 0 });
-      const photo = slide.querySelector('.slide-background-img');
-      if (photo) gsap.set(photo, { scale: MOTION.restingScale, yPercent: 0 });
+      const lines = this.lines(slide);
+      if (lines.length) gsap.set(lines, { autoAlpha: 1, y: 0, rotation: 0 });
+      const photo = this.photos(slide);
+      if (photo.length) gsap.set(photo, { scale: MOTION.restingScale, yPercent: 0 });
       finish();
       return;
     }
@@ -89,13 +94,13 @@ export default class HomeMotion {
     }, stagger(line, i, oldLines)));
     timeline.to(slide, { clipPath: 'inset(0% 0% 0% 0%)',
       duration: MOTION.edgeDuration, ease: edgeEase }, MOTION.edgeDelay);
-    const outgoingPhoto = previous.querySelector('.slide-background-img');
-    const incomingPhoto = slide.querySelector('.slide-background-img');
-    if (outgoingPhoto) timeline.to(outgoingPhoto, {
+    const outgoingPhoto = this.photos(previous);
+    const incomingPhoto = this.photos(slide);
+    if (outgoingPhoto.length) timeline.to(outgoingPhoto, {
       scale: MOTION.transitionScale, yPercent: -direction * MOTION.photoTravel,
       duration: MOTION.edgeDuration, ease: edgeEase,
     }, MOTION.edgeDelay);
-    if (incomingPhoto) timeline.fromTo(incomingPhoto, {
+    if (incomingPhoto.length) timeline.fromTo(incomingPhoto, {
       scale: MOTION.transitionScale, yPercent: direction * MOTION.photoTravel,
     }, { scale: MOTION.restingScale, yPercent: 0,
       duration: MOTION.zoomDuration, ease: zoomEase }, MOTION.edgeDelay);
@@ -106,3 +111,4 @@ export default class HomeMotion {
     }, MOTION.entryDelay + stagger(line, i, newLines)));
   }
 }
+
