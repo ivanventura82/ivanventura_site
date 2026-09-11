@@ -78,6 +78,7 @@ export default async function transitionCategory(owner, category) {
     const url = '/index.html?filter=' + encodeURIComponent(category);
     history.pushState({categoryTransition:true}, '', url);
     changed = true;
+    owner.currentCategory = category;
     loader.filtrarEExibirProjetos(category);
     owner.setFiltroAtivo(true);
     owner.markActiveLink(category);
