@@ -20,8 +20,25 @@
     <script>document.documentElement.classList.add('js');</script>
     <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
     <link rel="preload" href="/img/casp/casp-1920w.webp" as="image" imagesrcset="/img/casp/casp-720w.webp 720w, /img/casp/casp-1024w.webp 1024w, /img/casp/casp-1920w.webp 1920w" imagesizes="100vw" fetchpriority="high">
-  </head>
+  
+    <style>
+      #opening-logo { display:none; }
+      html.opening-pending body > :not(#opening-logo) { opacity:0 !important; }
+      html.opening-pending #opening-logo { display:flex; position:fixed; inset:0; z-index:10000; align-items:center; justify-content:center; background:#fff; }
+      #opening-logo .opening-mark { position:relative; width:clamp(85px,16vw,130px); aspect-ratio:80/37; }
+      #opening-logo img { opacity:0; position:absolute; inset:0; width:100%; height:100%; transform-origin:50% 85%; }
+    </style>
+    <script>
+      try {
+        if (!sessionStorage.getItem('ivan-opening-v1') && !location.hash && !new URLSearchParams(location.search).has('filter') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.documentElement.classList.add('opening-pending');
+          setTimeout(function(){ document.documentElement.classList.remove('opening-pending'); }, 6000);
+        }
+      } catch (_) {}
+    </script>
+</head>
   <body id="index-page">
+<div id="opening-logo" aria-hidden="true"><div class="opening-mark"><img src="/img/logo-black.svg" alt="" style="clip-path:polygon(0 0,5.72% 0,5.72% 100%,0 100%)"><img src="/img/logo-black.svg" alt="" style="clip-path:polygon(14.26% 0,20.26% 0,34.3% 100%,28.3% 100%)"><img src="/img/logo-black.svg" alt="" style="clip-path:polygon(51.16% 0,57.16% 0,43.13% 100%,37.12% 100%)"><img src="/img/logo-black.svg" alt="" style="clip-path:polygon(71.19% 0,77.14% 0,63.1% 100%,57.15% 100%)"><img src="/img/logo-black.svg" alt="" style="clip-path:polygon(80.02% 0,85.97% 0,100% 100%,94.05% 100%)"></div></div>
     <header class="menu-principal">
       <a class="nav__button nav__button__home" data-menu="logo" href="index.html"> 
         <span class="visually-hidden">Voltar para a página inicial</span>
@@ -99,5 +116,70 @@
         </ul>
       </nav>
     </div>
-  </body>
+  
+<script>
+(() => {
+  function startOpening() {
+    requestAnimationFrame(async () => {
+      const html = document.documentElement;
+      const overlay = document.getElementById('opening-logo');
+      if (!html.classList.contains('opening-pending')) { overlay?.remove(); return; }
+      const swiper = document.querySelector('.mySwiper')?.swiper;
+      const wasEnabled = swiper?.enabled;
+      const elements = [...document.body.children].filter(el => el !== overlay && !['SCRIPT','STYLE'].includes(el.tagName));
+      const inertStates = elements.map(el => el.inert);
+      const animations = [];
+      const lines = [...document.querySelectorAll('[data-hash="slide1"] .main__title > span')];
+      let timer, revealTimer, finished = false;
+      const finish = () => {
+        if (finished) return;
+        finished = true;
+        clearTimeout(timer); clearTimeout(revealTimer);
+        html.classList.remove('opening-pending');
+        lines.forEach(el => { el.style.opacity='1'; el.style.visibility='visible'; el.style.transform='none'; });
+        animations.forEach(a => a.cancel());
+        elements.forEach((el,i) => { el.inert = inertStates[i]; });
+        if (wasEnabled && !swiper.destroyed) swiper.enable();
+        overlay.remove();
+      };
+      const animate = (el, frames, options) => {
+        const animation = el.animate(frames, {fill:'both', ...options});
+        animations.push(animation);
+      };
+      try {
+        sessionStorage.setItem('ivan-opening-v1','1');
+        elements.forEach(el => { el.inert = true; });
+        if (wasEnabled) swiper.disable();
+        timer = setTimeout(finish, 4000);
+        await Promise.race([
+          Promise.all([...overlay.querySelectorAll('img')].map(img => img.decode().catch(()=>{}))),
+          new Promise(resolve => setTimeout(resolve, 500))
+        ]);
+        if (finished) return;
+        [...overlay.querySelectorAll('img')].forEach((piece,i) => animate(piece, [
+          {opacity:0, transform:'translate('+((i-2)*5)+'px,'+(i%2?-18:18)+'px) rotate('+(i%2?5:-5)+'deg) scaleY(.18)'},
+          {opacity:1, transform:'translate(0,0) rotate(0deg) scaleY(1)'}
+        ], {duration:540, delay:100+i*75, easing:'cubic-bezier(.22,1,.36,1)'}));
+        animate(overlay.querySelector('.opening-mark'), [
+          {opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-12px)'}
+        ], {duration:260,delay:1220,easing:'cubic-bezier(.55,0,.8,.45)'});
+        lines.forEach((line,i) => animate(line, [
+          {opacity:0,visibility:'visible',transform:'translateY(35px) rotate(2deg)'},
+          {opacity:1,visibility:'visible',transform:'translateY(0) rotate(0deg)'}
+        ], {duration:610,delay:1440+i*80,easing:'cubic-bezier(.16,1,.3,1)'}));
+        document.querySelectorAll('.menu-principal,.nav__button__mobile').forEach(el => animate(el, [
+          {opacity:0},{opacity:1}
+        ], {duration:450,delay:1530,easing:'ease-out'}));
+        revealTimer = setTimeout(() => html.classList.remove('opening-pending'), 1480);
+        await Promise.all(animations.map(a => a.finished));
+      } catch (_) {
+        // A abertura nunca deve impedir a navegação.
+      } finally { finish(); }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startOpening, {once:true});
+  else startOpening();
+})();
+</script>
+</body>
 </html>
