@@ -35,6 +35,14 @@ export default class MenuProjetos {
     this.isOpen = true;
     gsap.to(items, {opacity:1,duration:.22,stagger:.025,overwrite:true});
   }
+  closeAfterSelection() {
+    const region = this.projetosButton.closest('nav') || this.projetosButton.parentElement;
+    if (this.hoverMedia.matches && region.matches(':hover')) {
+      this.openMenu();
+      return;
+    }
+    this.closeMenu();
+  }
   closeMenu() {
     this.clearTimers();
     this.isOpen = false;
@@ -67,7 +75,7 @@ export default class MenuProjetos {
       if (!this.hoverMedia.matches || event.pointerType === 'touch') return;
       this.clearTimers();
       this.closeTimer = setTimeout(()=>{
-        if (!region.contains(document.activeElement) || document.activeElement === this.projetosButton) this.closeMenu();
+        this.closeMenu();
       },400);
     });
     region.addEventListener('focusin',()=>clearTimeout(this.closeTimer));

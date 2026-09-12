@@ -33,17 +33,7 @@ export default async function transitionCategory(owner, category) {
     await waitForImage(cover);
 
     owner.markActiveLink(category);
-    if (owner.menuProjetos.isOpen) {
-      const menu = owner.menuProjetos;
-      const items = menu.projetosList.querySelectorAll('li');
-      gsap.killTweensOf(items);
-      menu.isOpen = false;
-      menu.projetosButton.setAttribute('aria-expanded','false');
-      gsap.to(items,{opacity:0,duration:.18,overwrite:true,onComplete:()=>{
-        menu.projetosList.classList.remove(menu.activeClass);
-        menu.projetosButton.classList.remove(menu.activeClass);
-      }});
-    }
+    if (owner.menuProjetos.isOpen) owner.menuProjetos.closeAfterSelection();
     const previous = swiper.slides[swiper.activeIndex];
     overlay = previous.cloneNode(true);
     overlay.removeAttribute('id');
