@@ -1,0 +1,45 @@
+{
+  "title": "Notre-Dame",
+  "selecionado": true,
+  "categoria": "institucionais",
+  "datahash": "notredame",
+  "subtitulo1": "Um Tributo à",
+  "subtitulo2": "Notre Dame",
+  "description": "O projeto não é apenas uma restauração, mas uma homenagem à memória da Catedral de Notre Dame, renovando o diálogo entre Paris e o monumento. Um novo telhado reflete o céu parisiense, com um deck externo que cria uma experiência surreal para os visitantes, parecendo caminhar sobre um telhado invisível. As técnicas e materiais de construção serão modernos, com as torres reconstruídas em aço inox polido, refletindo o céu e o entorno da cidade. Inspirado no conceito de restauração de Viollet-le-Duc, a ausência da torre principal simboliza a transformação em um pátio ao ar livre, onde as estátuas dos apóstolos serão expostas em uma nova galeria. O piso transparente permitirá a passagem da luz, criando uma sensação de ascensão em direção ao divino.",
+  "área": "-",
+  "local": "Paris | França",
+  "co-autor": "Felipe Maia, João Sommacal e Yuri Vital",
+  "ano": 2019,
+  "estado": "Ideia",
+  "imagemhome": "/img/notredame/notredame-1920w.webp",
+  "imagem1": "/img/notredame/notredame1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/notredame/notredame2-1920w.webp",
+      "foto2": "/img/notredame/notredame3-1920w.webp"
+    },
+    {
+      "foto": "/img/notredame/notredame4.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/notredame/notredame5.webp",
+      "foto2": "/img/notredame/notredame6.webp"
+    },
+    {
+      "foto": "/img/notredame/notredame7.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/notredame/notredame8.webp",
+      "foto2": "/img/notredame/notredame9.webp"
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Prêmio",
+      "valor": "Finalista em concurso internacional"
+    }
+  ],
+  "ordem": 24
+}

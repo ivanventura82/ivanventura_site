@@ -1,0 +1,28 @@
+{
+  "title": "Museu Alvar Aalto",
+  "selecionado": false,
+  "categoria": "institucionais",
+  "datahash": "museualvaraalto",
+  "subtitulo1": "Reflexos que unem",
+  "subtitulo2": "duas obras-primas",
+  "description": "Projeto de Edifício 'Ponte' para a Integração entre Dois Museus Ícones, Concebidos pelo Renomado Arquiteto Alvar Aalto na Finlândia. O conceito deste edifício é proporcionar uma integração fluida entre os dois museus existentes, que se encontram em diferentes níveis. Com uma quebra de níveis internos, o edifício visa facilitar o acesso e a conexão entre os espaços. Além disso, o formato do edifício é notável, sendo todo revestido em vidro reflexivo e disposto em um ângulo côncavo, criando um efeito de caleidoscópio onde os reflexos dos edifícios adjacentes se conectam, proporcionando uma experiência visual única e dinâmica para os visitantes.",
+  "área": 280,
+  "local": "Finlândia",
+  "co-autor": "",
+  "ano": 2015,
+  "estado": "Ideia",
+  "imagemhome": "/img/museualvaraalto/museualvaraalto-1920w.webp",
+  "imagem1": "/img/museualvaraalto/museualvaraalto1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/museualvaraalto/museualvaraalto-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/museualvaraalto/museualvaraalto2-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 66
+}

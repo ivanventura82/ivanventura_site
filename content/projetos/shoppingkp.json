@@ -1,0 +1,28 @@
+{
+  "title": "Galeria do Mar",
+  "selecionado": false,
+  "categoria": "comerciais",
+  "datahash": "shoppingkp",
+  "subtitulo1": "Uma fusão",
+  "subtitulo2": "à beira-mar",
+  "description": "Este empreendimento multifuncional à beira-mar reúne um shopping, áreas residenciais e um hotel, criando um ambiente vibrante e diversificado para moradores e visitantes desfrutarem. Os apartamentos apresentam painéis tipo brise móvel coloridos, adicionando um toque de dinamismo e estilo à arquitetura.",
+  "área": 16000,
+  "local": "Ubatuba | SP",
+  "co-autor": "",
+  "ano": 2015,
+  "estado": "Ideia",
+  "imagemhome": "/img/shoppingkp/shoppingkp-1920w.webp",
+  "imagem1": "/img/shoppingkp/shoppingkp1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/shoppingkp/shoppingkp-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/shoppingkp/shoppingkp2-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 44
+}

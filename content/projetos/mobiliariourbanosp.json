@@ -1,0 +1,32 @@
+{
+  "title": "Mobiliario Urbano Sp",
+  "selecionado": false,
+  "categoria": "design",
+  "datahash": "mobiliariourbanosp",
+  "subtitulo1": "Triângulos urbanos",
+  "subtitulo2": "formas da cidade",
+  "description": "O desenho icônico do mapa de São Paulo nas calçadas inspirou a simplicidade do traço do projeto, baseado em módulos triangulares em preto e branco que representam o estado. Essa modularidade permite diversas composições, criando uma linguagem única para o conjunto de equipamentos. Os módulos são feitos de chapa metálica com pintura eletrostática em um tom verde para resistência máxima. Sugerimos explorar variações de cor, como nos ônibus da cidade, usando uma cor para cada região, e alternar entre chapas dobradas e perfuradas para criar os triângulos.",
+  "área": "-",
+  "local": "São Paulo",
+  "co-autor": "",
+  "ano": 2016,
+  "estado": "Ideia",
+  "imagemhome": "/img/mobiliariourbanosp/mobiliariourbanosp-1920w.webp",
+  "imagem1": "/img/mobiliariourbanosp/mobiliariourbanosp1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/mobiliariourbanosp/mobiliariourbanosp2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/mobiliariourbanosp/mobiliariourbanosp3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/mobiliariourbanosp/mobiliariourbanosp4-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 41
+}

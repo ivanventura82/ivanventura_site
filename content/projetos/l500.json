@@ -1,0 +1,93 @@
+{
+  "title": "L500",
+  "selecionado": true,
+  "categoria": "edificios",
+  "datahash": "l500",
+  "subtitulo1": "Uma ilha",
+  "subtitulo2": "no céu",
+  "description": "Novo ícone do viver bem no litoral paulista. Um local extraordinário em um dos cenários mais bonitos do litoral de são paulo, com ampla visão da baía do Itaguá, na melhor localização de Ubatuba. Um empreendimento exclusivo, pensado em cada detalhe para acolher famílias e sonhos. Um projeto concebido para ser sua residência definitiva, de frente para o mar, oferecendo um horizonte excepcional como cenário para sua vida.",
+  "área": 13500,
+  "local": "Ubatuba | SP",
+  "co-autor": "Yuri Vital",
+  "ano": 2022,
+  "estado": "Em Construção",
+  "imagemhome": "/img/l500/l500-1920w.webp",
+  "imagem1": "/img/l500/l5001-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/l500/l50016-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/l500/l5002-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/l500/l5003-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/l500/l5004-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/l500/l5005-1920w.webp",
+      "foto2": "/img/l500/l5007-1920w.webp"
+    },
+    {
+      "foto": "/img/l500/l5006-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/l500/l5008-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/l500/l5009-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/l500/l50010-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/l500/l50011-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/l500/l50012-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/l500/l50013-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/l500/l50014-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/l500/l50015-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Construção",
+      "valor": "Atmosfera Incorporadora"
+    },
+    {
+      "titulo": "Estrutura",
+      "valor": "Program Engenharia"
+    },
+    {
+      "titulo": "Fundações",
+      "valor": "Apoio Engenharia"
+    },
+    {
+      "titulo": "Instalações",
+      "valor": "Bim simples"
+    }
+  ],
+  "ordem": 6
+}

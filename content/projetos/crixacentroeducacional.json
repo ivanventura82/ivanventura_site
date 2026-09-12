@@ -1,0 +1,48 @@
+{
+  "title": "Crixá Centro Educacional",
+  "selecionado": false,
+  "categoria": "institucionais",
+  "datahash": "crixacentroeducacional",
+  "subtitulo1": "Escola com envoltório",
+  "subtitulo2": "monolítico integrado",
+  "description": "O projeto apresenta uma escola como um monólito metálico, envolto por uma membrana leve, caracterizado pela simplicidade e funcionalidade. O objetivo é integrar o jardim ao espaço interior, criando um ambiente verde em uma região árida como o bairro Crixá. A membrana proporciona desempenho térmico e identidade ao edifício, permitindo vistas sem comprometer a privacidade. A estrutura em concreto pré-fabricado e a modulação padrão reduzem os custos, enquanto a cobertura metálica garante impermeabilização eficiente. Uma rampa estrategicamente posicionada isola a poluição sonora. O resultado é uma construção econômica e funcional.",
+  "área": 3200,
+  "local": "São Sebastião - DF",
+  "co-autor": "Yuri Vital",
+  "ano": 2018,
+  "estado": "Ideia",
+  "imagemhome": "/img/crixacentroeducacional/crixacentroeducacional-1920w.webp",
+  "imagem1": "/img/crixacentroeducacional/crixacentroeducacional1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/crixacentroeducacional/crixacentroeducacional-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/crixacentroeducacional/crixacentroeducacional2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/crixacentroeducacional/crixacentroeducacional3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/crixacentroeducacional/crixacentroeducacional4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/crixacentroeducacional/crixacentroeducacional5-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/crixacentroeducacional/crixacentroeducacional6-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/crixacentroeducacional/crixacentroeducacional7-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 32
+}

@@ -1,0 +1,36 @@
+{
+  "title": "Warina",
+  "selecionado": true,
+  "categoria": "edificios",
+  "datahash": "warina",
+  "subtitulo1": "Inspirado no",
+  "subtitulo2": "ouriço do mar",
+  "description": "Este projeto está localizado em uma das praias mais visitadas do litoral norte. O empreendimento residencial, inspirado em no ouriço-do-mar, possui varandas finas e soltas, proporcionando a cada apartamento uma área livre de vizinhos na área de estar. Essa abordagem aumenta a privacidade e confere aos moradores uma sensação de exclusividade.",
+  "área": 5500,
+  "local": "Ubatuba | SP",
+  "co-autor": "Yuri Vital",
+  "ano": 2020,
+  "estado": "Em Desenvolvimento",
+  "imagemhome": "/img/warina/warina-1920w.webp",
+  "imagem1": "/img/warina/warina1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/warina/warina-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/warina/warina2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/warina/warina3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/warina/warina4-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 18
+}

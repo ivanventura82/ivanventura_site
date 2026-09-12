@@ -1,0 +1,78 @@
+backend:
+  name: github
+  repo: ivanventura82/ivanventura_site
+  branch: master
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+site_url: https://ivanventura.com.br
+locale: pt
+publish_mode: editorial_workflow
+media_folder: content/uploads
+public_folder: /uploads
+media_library:
+  name: default
+  config:
+    max_file_size: 52428800
+collections:
+  - name: projetos
+    label: Projetos
+    label_singular: Projeto
+    description: "Envie fotos em JPG, PNG ou WebP. As versões leves serão criadas ao publicar. Rascunhos não aparecem no site, mas ficam no repositório público: não envie material confidencial."
+    folder: content/projetos
+    create: true
+    delete: false
+    extension: json
+    format: json
+    identifier_field: datahash
+    slug: '{{datahash}}'
+    summary: '{{title}} · {{categoria}}'
+    sortable_fields: [ordem, title, categoria, ano]
+    view_groups:
+      - label: Categoria
+        field: categoria
+    fields:
+      - {label: Nome do projeto, name: title, widget: string}
+      - label: Categoria
+        name: categoria
+        widget: select
+        options:
+          - {label: Residências, value: residencias}
+          - {label: Edifícios, value: edificios}
+          - {label: Interiores, value: interiores}
+          - {label: Comerciais, value: comerciais}
+          - {label: Institucionais, value: institucionais}
+          - {label: Design, value: design}
+      - {label: Mostrar em Selecionados, name: selecionado, widget: boolean, default: false}
+      - {label: Ordem no portfólio, name: ordem, widget: number, value_type: int, default: 0, min: 0, hint: 'Números menores aparecem primeiro. Use 0 para colocar um novo projeto no início.'}
+      - {label: Frase — primeira linha, name: subtitulo1, widget: string, required: false}
+      - {label: Frase — segunda linha, name: subtitulo2, widget: string, required: false}
+      - {label: Descrição, name: description, widget: text, required: false}
+      - {label: Área em m², name: área, widget: string, required: false}
+      - {label: Local, name: local, widget: string, required: false}
+      - {label: Co-autor, name: co-autor, widget: string, required: false}
+      - {label: Ano, name: ano, widget: string, required: false}
+      - {label: Estado, name: estado, widget: string, required: false, hint: 'Por exemplo: Construído, Em Construção ou Ideia.'}
+      - {label: Foto de capa, name: imagemhome, widget: image, hint: 'Escolha uma foto horizontal. Envie o arquivo grande; não precisa redimensionar.', media_library: {config: {allow_multiple: false}}}
+      - {label: Foto depois da descrição, name: imagem1, widget: image, required: false, media_library: {config: {allow_multiple: false}}}
+      - label: Galeria
+        label_singular: Página de fotos
+        name: slides
+        widget: list
+        required: false
+        collapsed: true
+        summary: '{{fields.foto}}'
+        hint: 'Arraste as páginas para mudar a ordem. Cada página pode ter uma foto ou duas lado a lado.'
+        fields:
+          - {label: Foto, name: foto, widget: image, media_library: {config: {allow_multiple: false}}}
+          - {label: Segunda foto ao lado, name: foto2, widget: image, required: false, media_library: {config: {allow_multiple: false}}}
+      - label: Créditos e ficha técnica
+        label_singular: Crédito
+        name: detalhes
+        widget: list
+        required: false
+        collapsed: true
+        summary: '{{fields.titulo}} — {{fields.valor}}'
+        fields:
+          - {label: Função, name: titulo, widget: string}
+          - {label: Nome ou informação, name: valor, widget: string}
+      - {label: Endereço do projeto, name: datahash, widget: project-id}

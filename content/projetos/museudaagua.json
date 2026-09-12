@@ -1,0 +1,65 @@
+{
+  "title": "Museu da Água",
+  "selecionado": true,
+  "categoria": "institucionais",
+  "datahash": "museudaagua",
+  "subtitulo1": "Arquitetura",
+  "subtitulo2": "Aquática",
+  "description": "O museu da água é um projeto inovador com uma implantação em formato de cruz, que se integra perfeitamente aos edifícios existentes. Seu eixo principal abriga a área expositiva, com anexos dedicados a áreas de apoio, biblioteca e circulação vertical. O objetivo central do museu é exaltar a importância vital da água para todas as atividades humanas. Além de servir como espaço de encontro, lazer e pesquisa, o museu atua como um verdadeiro centro de conscientização, compartilhando conhecimento sobre a água por meio de exposições interativas e tecnologias inovadoras.\n\"A água pode e deve ser entendida como ponto central para qualquer atividade humana. Portanto, um local de exaltação a água é um local de exaltação ao encontro, lazer, pesquisa, conhecimento e conscientização.",
+  "área": 2400,
+  "local": "São Paulo",
+  "co-autor": "Felipe Maia, Gustavo Lanfranchi, João Sommacal e Yuri Vital",
+  "ano": 2020,
+  "estado": "Ideia",
+  "imagemhome": "/img/museudaagua/museudaagua-1920w.webp",
+  "imagem1": "/img/museudaagua/museudaagua1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/museudaagua/museudaagua2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/museudaagua/museudaagua3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/museudaagua/museudaagua4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/museudaagua/museudaagua5-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/museudaagua/museudaagua6-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/museudaagua/museudaagua7-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/museudaagua/museudaagua8-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/museudaagua/museudaagua9.webp",
+      "foto2": "/img/museudaagua/museudaagua10.webp"
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Prêmio",
+      "valor": "3° lugar em concurso nacional"
+    },
+    {
+      "titulo": "Colaboradores",
+      "valor": "Antonio Moutinho, Alice Pelegrino, Camilla Gubeissi, Luiz Sakata"
+    },
+    {
+      "titulo": "Estrutura",
+      "valor": "Dirk Mader"
+    }
+  ],
+  "ordem": 19
+}

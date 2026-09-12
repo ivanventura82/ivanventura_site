@@ -1,0 +1,61 @@
+{
+  "title": "Erechin",
+  "selecionado": true,
+  "categoria": "institucionais",
+  "datahash": "erechin",
+  "subtitulo1": "Cidade, memória",
+  "subtitulo2": "e diálogo",
+  "description": "O novo projeto da Câmara de Vereadores de Erechim valoriza o prédio existente com uma ampliação funcional e moderna. Mantém-se o acesso principal e cria-se a Galeria Memorial, dedicada à história da cidade. O novo edifício integra recepção, plenário para 300 pessoas, gabinetes e espaços de convivência, priorizando acessibilidade, ventilação natural e preservação do patrimônio.",
+  "área": 3.725,
+  "local": "Erechin | RS",
+  "co-autor": "Felipe Maia, João Sommacal e Yuri Vital",
+  "ano": 2024,
+  "estado": "Ideia",
+  "imagemhome": "/img/erechin/erechin-1920w.webp",
+  "imagem1": "/img/erechin/erechin1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/erechin/erechin-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/erechin/erechin2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/erechin/erechin3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/erechin/erechin4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/erechin/erechin5-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/erechin/erechin6-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Prêmio",
+      "valor": "Menção Honrosa"
+    },
+    {
+      "titulo": "Colaboradores",
+      "valor": "Carlos Eduardo Alcalde"
+    },
+    {
+      "titulo": "Estrutura",
+      "valor": "Dirk Mader"
+    },
+    {
+      "titulo": "Cenotécnia e Acústica",
+      "valor": "Gustavo Lanfranchi"
+    }
+  ],
+  "ordem": 3
+}

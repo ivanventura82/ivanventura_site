@@ -1,0 +1,32 @@
+{
+  "title": "Condomínio Do Bosque",
+  "selecionado": false,
+  "categoria": "residencias",
+  "datahash": "condominiodobosque",
+  "subtitulo1": "Transformando desafios",
+  "subtitulo2": "em diversidade arquitetônica",
+  "description": "Nosso escritório foi contratado para revisar um projeto de condomínio residencial em Santana do Parnaíba. Inicialmente, todos os lotes eram planos, exigindo um único modelo de casa geminada e altos custos com intervenções topográficas. Propusemos três modelos diferentes de casas geminadas para otimizar o terreno, cada um com um perfil de terreno distinto: Casa Aclive, Casa Declive e Casa Plana. Essa solução reduziu os custos e trouxe diversidade arquitetônica ao empreendimento.",
+  "área": 152000,
+  "local": "Alphaville | SP",
+  "co-autor": "David Ito",
+  "ano": 2009,
+  "estado": "Em Desenvolvimento",
+  "imagemhome": "/img/condominiodobosque/condominiodobosque-1920w.webp",
+  "imagem1": "/img/condominiodobosque/condominiodobosque1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/condominiodobosque/condominiodobosque-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/condominiodobosque/condominiodobosque2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/condominiodobosque/condominiodobosque3-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 57
+}

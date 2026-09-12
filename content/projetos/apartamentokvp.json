@@ -1,0 +1,28 @@
+{
+  "title": "Apartamento Kvp",
+  "selecionado": false,
+  "categoria": "interiores",
+  "datahash": "apartamentokvp",
+  "subtitulo1": "Integração perfeita",
+  "subtitulo2": "forma e função",
+  "description": "A reforma deste apartamento foi cuidadosamente planejada para otimizar o espaço e integrar os ambientes de forma funcional. Um dos destaques é a grande estante de madeira, que não só oferece espaço de armazenamento, mas também funciona como uma conexão entre a cozinha e a sala de jantar. Este painel contínuo oculta a transição entre os espaços e proporciona acesso conveniente aos itens necessários durante as refeições.",
+  "área": 250,
+  "local": "São Paulo",
+  "co-autor": "",
+  "ano": 2015,
+  "estado": "Construído",
+  "imagemhome": "/img/apartamentokvp/apartamentokvp-1920w.webp",
+  "imagem1": "/img/apartamentokvp/apartamentokvp1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/apartamentokvp/apartamentokvp-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/apartamentokvp/apartamentokvp2-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 43
+}

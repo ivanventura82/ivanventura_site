@@ -9,3 +9,5 @@ node_modules/
 
 # Ignorar pasta dist
 dist/
+.generated/
+

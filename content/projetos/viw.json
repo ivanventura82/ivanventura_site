@@ -1,0 +1,113 @@
+{
+  "title": "VIW",
+  "selecionado": true,
+  "categoria": "edificios",
+  "datahash": "viw",
+  "subtitulo1": "Piscinas sinuosas",
+  "subtitulo2": "Integradas à Natureza",
+  "description": "O design deste edifício residencial, que possui um total de 27 apartamentos, foi cuidadosamente concebido para combinar harmoniosamente com o ambiente natural ao seu redor. A sinuosidade das montanhas de ubatuba serviu como uma fonte de inspiração para o desenho das piscinas exclusivas nas varandas de cada apartamento.",
+  "área": 8500,
+  "local": "Ubatuba | SP",
+  "co-autor": "Yuri Vital",
+  "ano": 2023,
+  "estado": "Construído",
+  "imagemhome": "/img/viw/viw-1920w.webp",
+  "imagem1": "/img/viw/viw1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/viw/viw2-1920w.webp",
+      "foto2": "/img/viw/viw3-1920w.webp"
+    },
+    {
+      "foto": "/img/viw/viw4-1920w.webp",
+      "foto2": "/img/viw/viw5-1920w.webp"
+    },
+    {
+      "foto": "/img/viw/viw6-1920w.webp",
+      "foto2": "/img/viw/viw7-1920w.webp"
+    },
+    {
+      "foto": "/img/viw/viw8-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/viw/viw9-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/viw/viw10-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/viw/viw11-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/viw/viw12-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/viw/viw13-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/viw/viw14-1920w.webp",
+      "foto2": "/img/viw/viw15-1920w.webp"
+    },
+    {
+      "foto": "/img/viw/viw16-1920w.webp",
+      "foto2": "/img/viw/viw17-1920w.webp"
+    },
+    {
+      "foto": "/img/viw/viw18-1920w.webp",
+      "foto2": "/img/viw/viw19-1920w.webp"
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Prêmio",
+      "valor": "Finalista 10º Prêmio Saint-Gobain de Arquitetura"
+    },
+    {
+      "titulo": "Construção",
+      "valor": "Atmosfera Incorporadora"
+    },
+    {
+      "titulo": "Estrutura",
+      "valor": "Aluizio D'avila Engenharia"
+    },
+    {
+      "titulo": "Fundações",
+      "valor": "Apoio Engenharia"
+    },
+    {
+      "titulo": "Instalações",
+      "valor": "Skk Engenharia"
+    },
+    {
+      "titulo": "Ar Condicionado",
+      "valor": "Adias"
+    },
+    {
+      "titulo": "Luminotécnica",
+      "valor": "Lanfranchi"
+    },
+    {
+      "titulo": "Piscinas",
+      "valor": "Solve Engenharia"
+    },
+    {
+      "titulo": "Paisagismo",
+      "valor": "André Paoliello"
+    },
+    {
+      "titulo": "Consultorias Prevenção de Incêndio",
+      "valor": "Stf"
+    },
+    {
+      "titulo": "Fotos",
+      "valor": "Nelson Kon + Alberto Ricci | Aéreas |"
+    }
+  ],
+  "ordem": 5
+}

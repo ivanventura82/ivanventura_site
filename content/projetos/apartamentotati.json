@@ -1,0 +1,28 @@
+{
+  "title": "Apartamento Tati",
+  "selecionado": false,
+  "categoria": "interiores",
+  "datahash": "apartamentotati",
+  "subtitulo1": "Convívio integrado",
+  "subtitulo2": "estilo contemporâneo",
+  "description": "Um lar espaçoso e contemporâneo, projetado para um casal e seu filho, combina funcionalidade e estilo. A área social integrada, a pedido dos moradores, promove encontros calorosos entre amigos e familiares. Um elegante pórtico de madeira define o hall de entrada, ocultando discretamente as portas do lavabo e da cozinha, esta última facilmente conectada à sala de jantar e estar através de portas com abertura tipo camarão.",
+  "área": 160,
+  "local": "São Paulo",
+  "co-autor": "",
+  "ano": 2014,
+  "estado": "Ideia",
+  "imagemhome": "/img/apartamentotati/apartamentotati-1920w.webp",
+  "imagem1": "/img/apartamentotati/apartamentotati1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/apartamentotati/apartamentotati-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/apartamentotati/apartamentotati2-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 46
+}

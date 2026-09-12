@@ -1,0 +1,61 @@
+{
+  "title": "Templo do Café",
+  "selecionado": false,
+  "categoria": "comerciais",
+  "datahash": "templodocafe",
+  "subtitulo1": "Um Abraço",
+  "subtitulo2": "Panorâmico",
+  "description": "O restaurante está estrategicamente situado em uma deslumbrante fazenda de café no interior de São Paulo. O projeto foi concebido levando em consideração o ponto crucial de preservar e destacar a magnífica paisagem ao redor. A estrutura foi cuidadosamente desenhada no formato de um \"c\", com suas pontas em balanço, criando uma integração harmoniosa com o ambiente natural.\nAo adotar essa abordagem arquitetônica inovadora, o restaurante oferece aos visitantes uma experiência única. Os espaços abertos e os amplos panos de vidro permitem que a vista deslumbrante seja apreciada de todos os ângulos, proporcionando uma atmosfera envolvente e inspiradora.\nA fusão da rústica fazenda de café com o design contemporâneo e sofisticado do restaurante cria um ambiente acolhedor e elegante. os materiais naturais, como madeira e pedra, destacam a conexão com a natureza, enquanto a meticulosa seleção de mobiliário e detalhes proporciona conforto e estilo.",
+  "área": 900,
+  "local": "Pardinho | SP",
+  "co-autor": "Yuri Vital",
+  "ano": 2022,
+  "estado": "Em Desenvolvimento",
+  "imagemhome": "/img/templodocafe/templodocafe-1920w.webp",
+  "imagem1": "/img/templodocafe/templodocafe1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/templodocafe/templodocafe-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/templodocafe/templodocafe2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/templodocafe/templodocafe3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/templodocafe/templodocafe4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/templodocafe/templodocafe5-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/templodocafe/templodocafe6-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/templodocafe/templodocafe7-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/templodocafe/templodocafe8-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Estrutura",
+      "valor": "Program Engenharia"
+    },
+    {
+      "titulo": "Fundações",
+      "valor": "Apoio Engenharia"
+    }
+  ],
+  "ordem": 7
+}

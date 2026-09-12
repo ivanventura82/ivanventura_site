@@ -1,0 +1,37 @@
+{
+  "title": "Casa Jcm",
+  "selecionado": false,
+  "categoria": "residencias",
+  "datahash": "casajcm",
+  "subtitulo1": "Lar de harmonia",
+  "subtitulo2": "em família",
+  "description": "Esta casa é o lar de uma família calorosa, conhecida por suas reuniões acolhedoras. O espaço social é amplo e integrado, conectado ao terraço gourmet e cercado por belos jardins, perfeito para encontros familiares. Situada em um condomínio fechado com topografia irregular, a casa enfrentou o desafio de adaptar-se ao terreno. Ao mover a garagem para a parte traseira, a casa foi construída em um platô elevado, proporcionando privacidade e distância dos vizinhos. O declive foi substituído por um elegante muro de contenção, separando o estacionamento da área residencial.",
+  "área": 480,
+  "local": "Confins | MG",
+  "co-autor": "David Ito",
+  "ano": 2012,
+  "estado": "Construído",
+  "imagemhome": "/img/casajcm/casajcm-1920w.webp",
+  "imagem1": "/img/casajcm/casajcm1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/casajcm/casajcm-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casajcm/casajcm2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casajcm/casajcm3-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Construção",
+      "valor": "Fabiano Martins"
+    }
+  ],
+  "ordem": 52
+}

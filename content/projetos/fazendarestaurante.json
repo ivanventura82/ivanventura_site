@@ -1,0 +1,40 @@
+{
+  "title": "Fazenda Restaurante",
+  "selecionado": false,
+  "categoria": "comerciais",
+  "datahash": "fazendarestaurante",
+  "subtitulo1": "Um ponto de",
+  "subtitulo2": "vista suspenso",
+  "description": "Restaurante situado em uma fazenda de café no interior de São Paulo. O conceito chave do projeto foi projetar a estrutura de forma a preservar a magnífica paisagem circundante. Destaque para o balcão, posicionado em uma área suspensa da construção, proporcionando uma vista exclusiva e uma sensação única de flutuação. Além disso, a abertura entre os blocos libera a vista para o espaço do bloco posterior, aproveitando ao máximo o terreno em declive e integrando-se harmoniosamente à topografia natural.",
+  "área": 700,
+  "local": "São Paulo",
+  "co-autor": "",
+  "ano": 2018,
+  "estado": "Ideia",
+  "imagemhome": "/img/fazendarestaurante/fazendarestaurante-1920w.webp",
+  "imagem1": "/img/fazendarestaurante/fazendarestaurante1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/fazendarestaurante/fazendarestaurante2-1920w.webp",
+      "foto2": "/img/fazendarestaurante/fazendarestaurante3.webp"
+    },
+    {
+      "foto": "/img/fazendarestaurante/fazendarestaurante4.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/fazendarestaurante/fazendarestaurante5.webp",
+      "foto2": "/img/fazendarestaurante/fazendarestaurante6.webp"
+    },
+    {
+      "foto": "/img/fazendarestaurante/fazendarestaurante7.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/fazendarestaurante/fazendarestaurante8.webp",
+      "foto2": "/img/fazendarestaurante/fazendarestaurante9.webp"
+    }
+  ],
+  "detalhes": [],
+  "ordem": 30
+}

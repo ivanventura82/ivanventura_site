@@ -1,0 +1,32 @@
+{
+  "title": "Rubik",
+  "selecionado": false,
+  "categoria": "edificios",
+  "datahash": "rubik",
+  "subtitulo1": "Cubo mágico",
+  "subtitulo2": "residencial",
+  "description": "Edifício inspirado nos cubos de Rubik, com uma ampla área de estar. Sua implantação é composta por duas unidades por andar, separadas pela circulação vertical, garantindo que cada unidade seja individual e independente. O design também inclui amplas janelas piso-teto, proporcionando vistas deslumbrantes para o mar.",
+  "área": 9000,
+  "local": "Ubatuba | SP",
+  "co-autor": "Yuri Vital",
+  "ano": 2019,
+  "estado": "Em Desenvolvimento",
+  "imagemhome": "/img/rubik/rubik-1920w.webp",
+  "imagem1": "/img/rubik/rubik1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/rubik/rubik-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/rubik/rubik2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/rubik/rubik3-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 25
+}

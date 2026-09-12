@@ -1,0 +1,44 @@
+{
+  "title": "Wall",
+  "selecionado": false,
+  "categoria": "residencias",
+  "datahash": "wall",
+  "subtitulo1": "La Vita",
+  "subtitulo2": "Verde",
+  "description": "Residencial com casas de formas retas e implantação orgânica, criando áreas verdes como pulmões naturais. destaque para a separação dos carros em bolsões, proporcionando uma área livre de veículos e um ambiente seguro para as crianças brincarem. Inspirado na vila italiana, o projeto promove a convivência entre os moradores e valoriza a qualidade de vida, com respeito ao meio ambiente. ambiente harmonioso e acolhedor, integrado à natureza.",
+  "área": 5500,
+  "local": "Ubatuba | SP",
+  "co-autor": "Yuri Vital",
+  "ano": 2020,
+  "estado": "Ideia",
+  "imagemhome": "/img/wall/wall-1920w.webp",
+  "imagem1": "/img/wall/wall1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/wall/wall-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/wall/wall2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/wall/wall3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/wall/wall4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/wall/wall5-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/wall/wall6-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 21
+}

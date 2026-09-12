@@ -1,0 +1,32 @@
+{
+  "title": "Greenedge",
+  "selecionado": false,
+  "categoria": "edificios",
+  "datahash": "greenedge",
+  "subtitulo1": "Inspiração",
+  "subtitulo2": "náutica",
+  "description": "Edifício de uso misto com um design arrojado, inspirado em embarcações, apresentando uma forma elegante que se estende até uma ponta ultra fina, apoiada sobre uma construção com cobertura verde. O conceito busca refletir a fluidez e o dinamismo das embarcações, enquanto a cobertura verde proporciona um aspecto sustentável e integração à natureza. o projeto visa criar um marco arquitetônico, mantendo a conexão com o entorno e oferecendo uma experiência única aos moradores e visitantes.",
+  "área": 12500,
+  "local": "São Paulo",
+  "co-autor": "Yuri Vital",
+  "ano": 2018,
+  "estado": "Ideia",
+  "imagemhome": "/img/greenedge/greenedge1-1920w.webp",
+  "imagem1": "/img/greenedge/greenedge-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/greenedge/greenedge1-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/greenedge/greenedge2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/greenedge/greenedge3-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 31
+}

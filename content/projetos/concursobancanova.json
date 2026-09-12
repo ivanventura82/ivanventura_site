@@ -1,0 +1,33 @@
+{
+  "title": "Concurso Banca Nova",
+  "selecionado": false,
+  "categoria": "design",
+  "datahash": "concursobancanova",
+  "subtitulo1": "Cores CMYK",
+  "subtitulo2": "transformando a cidade",
+  "description": "Esta iniciativa nasceu de um concurso promovido pela Abril Mídia e pela Prefeitura de São Paulo, visando revitalizar as bancas do Largo da Batata. Contudo, seu escopo transcende essa área, buscando estabelecer uma identidade visual para o mobiliário urbano em toda a cidade. Utilizando a paleta de cores ciano, magenta, amarelo e preto (CMYK), comumente associada à indústria editorial, as bancas foram concebidas de forma modular, permitindo sua adaptação a diferentes tamanhos de calçadas e viabilizando sua instalação em diversas localidades.",
+  "área": 15,
+  "local": "São Paulo",
+  "co-autor": "Julian Quintães",
+  "ano": 2012,
+  "estado": "Ideia",
+  "imagemhome": "/img/concursobancanova/concursobancanova-1920w.webp",
+  "imagem1": "/img/concursobancanova/concursobancanova1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/concursobancanova/concursobancanova2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/concursobancanova/concursobancanova3-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Prêmio",
+      "valor": "Finalista em concurso nacional"
+    }
+  ],
+  "ordem": 55
+}

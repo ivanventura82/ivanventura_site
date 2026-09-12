@@ -1,0 +1,44 @@
+{
+  "title": "Expo Dubai",
+  "selecionado": false,
+  "categoria": "institucionais",
+  "datahash": "expodubai",
+  "subtitulo1": "Conforto térmico",
+  "subtitulo2": "inovador",
+  "description": "O conceito inicial deste projeto foi utilizar o conhecimento local para proporcionar o máximo conforto térmico e garantir uma experiência agradável para todos os visitantes do espaço proposto. Para isso, nos inspiramos no \"ghtrah\", um lenço branco tradicional usado pelos homens árabes na cabeça, que possui um formato quadrado feito de algodão e é dobrado como um triângulo para permitir a passagem de ar, proporcionando ventilação e equilíbrio térmico. Da mesma forma, a caixa e seus vazios delimitados pelos equipamentos de ar condicionado foram projetados para resolver essa questão. A escolha da cor branca também reflete a luz e absorve menos energia, por isso foi utilizada na área externa do projeto.",
+  "área": 4500,
+  "local": "Dubai",
+  "co-autor": "Yuri Vital",
+  "ano": 2018,
+  "estado": "Ideia",
+  "imagemhome": "/img/expodubai/expodubai-1920w.webp",
+  "imagem1": "/img/expodubai/expodubai1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/expodubai/expodubai-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/expodubai/expodubai2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/expodubai/expodubai3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/expodubai/expodubai4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/expodubai/expodubai5-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/expodubai/expodubai6-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 33
+}

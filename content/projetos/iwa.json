@@ -1,0 +1,32 @@
+{
+  "title": "Iwa",
+  "selecionado": false,
+  "categoria": "edificios",
+  "datahash": "iwa",
+  "subtitulo1": "Lajes escalonadas",
+  "subtitulo2": "Vista para todos",
+  "description": "Tendo como inspiração a presença de duas praias em lados opostos, nosso projeto se desenvolve com uma implantação e formato ondulado. Para garantir a apreciação panorâmica das deslumbrantes paisagens litorâneas, criamos lajes escalonadas que oferecem aberturas visuais para as praias, ao mesmo tempo em que possibilitam a criação de terraços descobertos em todos os apartamentos, transformando-os em verdadeiras \"penthouses\", desde o 1º até o 5º pavimento.",
+  "área": 85000,
+  "local": "São Paulo",
+  "co-autor": "",
+  "ano": 2016,
+  "estado": "Em Desenvolvimento",
+  "imagemhome": "/img/iwa/iwa-1920w.webp",
+  "imagem1": "/img/iwa/iwa1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/iwa/iwa2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/iwa/iwa3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/iwa/iwa4-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 37
+}

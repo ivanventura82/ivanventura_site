@@ -1,0 +1,19 @@
+{
+  "title": "Eve",
+  "selecionado": false,
+  "categoria": "edificios",
+  "datahash": "eve",
+  "subtitulo1": "Arquitetura",
+  "subtitulo2": "livre",
+  "description": "Edifício de 7 andares, concebido com uma planta livre e uma fachada em concreto inspirada nos icônicos edifícios da década de 70.\nA planta livre é uma característica marcante deste projeto, proporcionando flexibilidade e liberdade na distribuição dos espaços internos. Isso permite aos futuros ocupantes adaptarem os ambientes de acordo com suas necessidades e preferências, criando ambientes personalizados e versáteis.",
+  "área": 1500,
+  "local": "São Paulo",
+  "co-autor": "",
+  "ano": 2019,
+  "estado": "Em Desenvolvimento",
+  "imagemhome": "/img/eve/eve-1920w.webp",
+  "imagem1": "/img/eve/eve1-1920w.webp",
+  "slides": [],
+  "detalhes": [],
+  "ordem": 26
+}

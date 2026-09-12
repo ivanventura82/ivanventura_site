@@ -1,0 +1,32 @@
+{
+  "title": "Quadritone",
+  "selecionado": false,
+  "categoria": "residencias",
+  "datahash": "quadritone",
+  "subtitulo1": "Stonehenge",
+  "subtitulo2": "urbana",
+  "description": "O projeto consiste em seis volumes retangulares, cada um medindo 5,6 x 5,6m, organizados em duas colunas. Os primeiros dois volumes abrigam a área de estar e a suíte principal, enquanto os outros quatro incluem as suítes dos filhos, cozinha, sala de jantar e a garagem. Enfrentamos desafios devido ao declive de 8m do terreno, optando por posicionar a entrada de veículos na parte posterior com uma rampa suave, seguindo o formato curvo do terreno para facilitar o acesso. O projeto busca conciliar funcionalidade e criatividade para atender às necessidades dos moradores e superar as particularidades do terreno em aclive.",
+  "área": 350,
+  "local": "São Paulo",
+  "co-autor": "Yuri Vital",
+  "ano": 2021,
+  "estado": "Em Desenvolvimento",
+  "imagemhome": "/img/quadritone/quadritone-1920w.webp",
+  "imagem1": "/img/quadritone/quadritone1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/quadritone/quadritone-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/quadritone/quadritone2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/quadritone/quadritone3-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 11
+}

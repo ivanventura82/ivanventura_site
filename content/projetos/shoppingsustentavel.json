@@ -1,0 +1,32 @@
+{
+  "title": "Mall Sustentável",
+  "selecionado": false,
+  "categoria": "comerciais",
+  "datahash": "shoppingsustentavel",
+  "subtitulo1": "Sustentabilidade e lazer",
+  "subtitulo2": "em perfeita harmonia",
+  "description": "Situado à beira-mar e vizinho do Residencial L23, este shopping complementa o reconhecido caráter sustentável do L23, que recebe aclamação internacional.\nInspirado nos mesmos valores, o projeto do shopping visa proporcionar conforto aos visitantes enquanto minimiza o consumo de energia. Aproveitando ao máximo a iluminação e ventilação naturais, o amplo átrio central oferece excelente luminosidade e circulação de ar, especialmente vital em regiões de alta umidade. Sua cobertura atua como um filtro solar, reduzindo a incidência direta nos momentos mais quentes do dia. Além disso, a extensa laje-jardim não apenas contribui para amenizar a temperatura interna, mas também otimiza o escoamento das águas pluviais e proporciona uma vista agradável para o Residencial L23.\nCom uma fachada repleta de bares e restaurantes, o shopping se torna um espaço convidativo à beira-mar, enriquecendo a experiência da região.",
+  "área": 10000,
+  "local": "Ubatuba | SP",
+  "co-autor": "David Ito",
+  "ano": 2009,
+  "estado": "Ideia",
+  "imagemhome": "/img/shoppingsustentavel/shoppingsustentavel-1920w.webp",
+  "imagem1": "/img/shoppingsustentavel/shoppingsustentavel1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/shoppingsustentavel/shoppingsustentavel-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/shoppingsustentavel/shoppingsustentavel2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/shoppingsustentavel/shoppingsustentavel3-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 59
+}

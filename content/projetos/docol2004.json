@@ -1,0 +1,33 @@
+{
+  "title": "Docol 2004",
+  "selecionado": false,
+  "categoria": "comerciais",
+  "datahash": "docol2004",
+  "subtitulo1": "Arquitetura onde",
+  "subtitulo2": "a moda desfila",
+  "description": "Conceito: Inspirado no glamour da alta-costura, o ambiente evoca uma extensão da passarela em seu interior, com um longo corredor de acesso e uma tela de projeção exibindo cenas de desfiles, enquanto a separação dos sanitários por cortinas de tecido remete ao backstage do evento.\nMateriais: Piso e lâmina de separação em madeira, volume do nicho em Corian da Dupont, cortina de separação dos sanitários em tecido cru com estrutura em metal polido, iluminação embutida indireta e painel com retroprojeção coberto por vidro opaco.",
+  "área": 50,
+  "local": "São Paulo",
+  "co-autor": "",
+  "ano": 2004,
+  "estado": "Ideia",
+  "imagemhome": "/img/docol2004/docol2004-1920w.webp",
+  "imagem1": "/img/docol2004/docol20041-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/docol2004/docol20042-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/docol2004/docol20043-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Prêmio",
+      "valor": "1° lugar em concurso nacional"
+    }
+  ],
+  "ordem": 63
+}

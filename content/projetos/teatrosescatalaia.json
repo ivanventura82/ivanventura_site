@@ -1,0 +1,85 @@
+{
+  "title": "Teatro Sesc Atalaia",
+  "selecionado": true,
+  "categoria": "institucionais",
+  "datahash": "teatrosescatalaia",
+  "subtitulo1": "O teatro",
+  "subtitulo2": "com uma praça",
+  "description": "A estratégia de implantação adotada objetiva atingir uma solução integrada entre as construções existentes na quadra, a nova intervenção arquitetônica e as vias de acesso do entorno imediato. para atingir tais conveniências, foram identificadas duas necessidades programáticas que demandariam de mais área: o conjunto volumétrico principal do teatro e o black box. assim, os itens citados foram implantados separadamente nas duas extremidades do terreno, proporcionando além da devida importância para cada um deles, uma praça central no lote chamada de “praça de boas vindas”.",
+  "área": 2500,
+  "local": "Aracaju | SE",
+  "co-autor": "Felipe Maia, Gustavo Lanfranchi, João Sommacal e Yuri Vital",
+  "ano": 2020,
+  "estado": "Em Desenvolvimento",
+  "imagemhome": "/img/teatrosescatalaia/teatrosescatalaia-1920w.webp",
+  "imagem1": "/img/teatrosescatalaia/teatrosescatalaia1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/teatrosescatalaia/teatrosescatalaia-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/teatrosescatalaia/teatrosescatalaia2-1920w.webp",
+      "foto2": "/img/teatrosescatalaia/teatrosescatalaia3-1920w.webp"
+    },
+    {
+      "foto": "/img/teatrosescatalaia/teatrosescatalaia4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/teatrosescatalaia/teatrosescatalaia5-1920w.webp",
+      "foto2": "/img/teatrosescatalaia/teatrosescatalaia6-1920w.webp"
+    },
+    {
+      "foto": "/img/teatrosescatalaia/teatrosescatalaia7-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/teatrosescatalaia/teatrosescatalaia8-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/teatrosescatalaia/teatrosescatalaia9-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/teatrosescatalaia/teatrosescatalaia10-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/teatrosescatalaia/teatrosescatalaia11-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/teatrosescatalaia/teatrosescatalaia12-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Prêmio",
+      "valor": "1° lugar em concurso nacional"
+    },
+    {
+      "titulo": "Colaboradores",
+      "valor": "Antonio Moutinho, Camilla Gubeissi, Luiz Sakata"
+    },
+    {
+      "titulo": "Luminotécnica",
+      "valor": "Lanfranchi"
+    },
+    {
+      "titulo": "Consultorias",
+      "valor": "Mindelo"
+    },
+    {
+      "titulo": "Instalações",
+      "valor": "Mindelo"
+    },
+    {
+      "titulo": "Maquete",
+      "valor": "Practica Maquetes"
+    }
+  ],
+  "ordem": 17
+}

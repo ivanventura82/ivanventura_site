@@ -1,0 +1,24 @@
+{
+  "title": "Segna",
+  "selecionado": true,
+  "categoria": "edificios",
+  "datahash": "segna",
+  "subtitulo1": "Inspirado no",
+  "subtitulo2": "cata-vento",
+  "description": "Empreendimento residencial com 25 andares, inspirado em um cata-vento. seu design inovador incorpora brises verticais que garantem privacidade e proteção solar, permitindo a entrada de luz natural filtrada em todas as áreas dos apartamentos.\nCom uma implantação cuidadosa, cada unidade está estrategicamente posicionada para maximizar a iluminação natural e a circulação do ar. O resultado é um conjunto harmonioso de residências que oferecem tanto conforto quanto eficiência energética.",
+  "área": 15500,
+  "local": "São Paulo",
+  "co-autor": "Yuri Vital",
+  "ano": 2020,
+  "estado": "Em Desenvolvimento",
+  "imagemhome": "/img/segna/segna-1920w.webp",
+  "imagem1": "/img/segna/segna1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/segna/segna2-1920w.webp",
+      "foto2": "/img/segna/segna3-1920w.webp"
+    }
+  ],
+  "detalhes": [],
+  "ordem": 22
+}

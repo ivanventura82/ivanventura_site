@@ -1,0 +1,40 @@
+{
+  "title": "Apartamento Sp",
+  "selecionado": false,
+  "categoria": "interiores",
+  "datahash": "apartamentosp",
+  "subtitulo1": "São Paulo",
+  "subtitulo2": "em cada traço",
+  "description": "Este amplo apartamento, lar de um casal e seus três filhos, se destaca pela funcionalidade e decoração contemporânea. Atendendo ao pedido dos clientes, que adoram receber amigos e familiares, toda a área social foi integrada para favorecer o clima de confraternização. Um dos destaques é a grande estante do home theater, conhecida como 'Estante São Paulo' devido ao seu design inspirado no mapa do estado.\nO hall de entrada é marcado por um pórtico de madeira que camufla as portas do elevador, lavabo e sala íntima. Além da cozinha tradicional, o apartamento possui uma cozinha gourmet integrada à sala íntima, podendo ser isolada por portas de correr.\nNos ambientes, destacam-se peças de designers consagrados como Charles Eames, Antonio Citterio, Hans Wegner, entre outros",
+  "área": 360,
+  "local": "São Paulo",
+  "co-autor": "David Ito",
+  "ano": 2012,
+  "estado": "Construído",
+  "imagemhome": "/img/apartamentosp/apartamentosp-1920w.webp",
+  "imagem1": "/img/apartamentosp/apartamentosp1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/apartamentosp/apartamentosp2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/apartamentosp/apartamentosp3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/apartamentosp/apartamentosp4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/apartamentosp/apartamentosp5-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/apartamentosp/apartamentosp6-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 53
+}

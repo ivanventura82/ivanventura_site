@@ -1,0 +1,93 @@
+{
+  "title": "Citá",
+  "selecionado": true,
+  "categoria": "residencias",
+  "datahash": "cita",
+  "subtitulo1": "Ares",
+  "subtitulo2": "contemporâneos",
+  "description": "A combinação de ares contemporâneos, funcionalidade e linhas limpas da arquitetura moderna brasileira. localizada em área ampla, de frente para uma praça gramada e arborizada, a casa oferece fachadas em ângulo de 45° para preservar a privacidade dos moradores. com um espaço versátil, é um residencial que valoriza a simplicidade e o prazer de viver bem.",
+  "área": 5500,
+  "local": "Ubatuba | SP",
+  "co-autor": "Yuri Vital",
+  "ano": 2020,
+  "estado": "Construído",
+  "imagemhome": "/img/cita/cita-1920w.webp",
+  "imagem1": "/img/cita/cita1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/cita/cita2-1920w.webp",
+      "foto2": "/img/cita/cita3-1920w.webp"
+    },
+    {
+      "foto": "/img/cita/cita4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/cita/cita5-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/cita/cita6-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/cita/cita7-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/cita/cita8-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/cita/cita9-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/cita/cita10-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/cita/cita11-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/cita/cita12-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/cita/cita13-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/cita/cita14-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/cita/cita15-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/cita/cita16-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/cita/cita17-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Construção",
+      "valor": "Atmosfera Incorporadora"
+    },
+    {
+      "titulo": "Estrutura",
+      "valor": "Dirk Mader"
+    },
+    {
+      "titulo": "Fundações",
+      "valor": "Apoio Engenharia"
+    }
+  ],
+  "ordem": 20
+}

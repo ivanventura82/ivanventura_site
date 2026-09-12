@@ -1,0 +1,33 @@
+{
+  "title": "Docol 2003",
+  "selecionado": false,
+  "categoria": "comerciais",
+  "datahash": "docol2003",
+  "subtitulo1": "Conceitual, minimalista",
+  "subtitulo2": "e futurista",
+  "description": "Conceito: Um ambiente minimalista e moderno que funciona como banheiro unissex e lounge noturno, destacando-se pelo clima chill-out e visual futurista com o uso de materiais frios.\nMateriais: Estrutura tubular do teto, divisórias dos sanitários e suportes para espelho em fibra de vidro; bancada, assento e esferas coletoras em Corian da Dupont; backlights em acrílico fosco contornando a bancada e os assentos; frisos radiais em fibra ótica no piso e teto com controle de intensidade e tonalidade; portas dos sanitários em plástico acrílico brilhante, sistema de abertura pivotante e tranca interna.",
+  "área": 40,
+  "local": "São Paulo",
+  "co-autor": "",
+  "ano": 2003,
+  "estado": "Ideia",
+  "imagemhome": "/img/docol2003/docol2003-1920w.webp",
+  "imagem1": "/img/docol2003/docol20031-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/docol2003/docol20032-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/docol2003/docol20033-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Prêmio",
+      "valor": "1° lugar em concurso nacional"
+    }
+  ],
+  "ordem": 64
+}

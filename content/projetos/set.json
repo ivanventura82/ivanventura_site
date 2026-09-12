@@ -1,0 +1,69 @@
+{
+  "title": "Set",
+  "selecionado": false,
+  "categoria": "edificios",
+  "datahash": "set",
+  "subtitulo1": "Iluminado e ventilado",
+  "subtitulo2": "naturalmente",
+  "description": "Iluminado e ventilado naturalmente, seguindo conceitos sustentáveis e inteligentes, o set praia grande é encantador logo ao primeiro olhar.\nA fachada contemporânea, com linhas finas e elegantes, revela conexão com a beleza do entorno. As deliciosas varandas estão prontas para fechamento com vidro, e da portaria para dentro são só facilidades.\nRecepção, academia, vestiários, lavandeira e máquinas de conveniência fazem do térreo um espaço que oferece muita praticidade para moradores e visitantes, de forma inovadora.",
+  "área": 3750,
+  "local": "Ubatuba | SP",
+  "co-autor": "Yuri Vital",
+  "ano": 2021,
+  "estado": "Em Construção",
+  "imagemhome": "/img/set/set-1920w.webp",
+  "imagem1": "/img/set/set1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/set/set2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/set/set3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/set/set4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/set/set5-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/set/set6-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/set/set7-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/set/set8-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/set/set9-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/set/set10-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Construção",
+      "valor": "Atmosfera Incorporadora"
+    },
+    {
+      "titulo": "Estrutura",
+      "valor": "Dirk Mader"
+    },
+    {
+      "titulo": "Fundações",
+      "valor": "Apoio Engenharia"
+    }
+  ],
+  "ordem": 15
+}

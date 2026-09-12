@@ -1,0 +1,45 @@
+{
+  "title": "Casa Pinheiros",
+  "selecionado": false,
+  "categoria": "residencias",
+  "datahash": "casapinheiros",
+  "subtitulo1": "Renovando espaços",
+  "subtitulo2": "descobrindo novos lares",
+  "description": "Totalmente renovada, esta casa de vila se transformou em um espaço amplo e dinâmico com a integração inteligente de ambientes. A cozinha e a sala se fundem em um único espaço, enquanto a edícula nos fundos deu lugar a um charmoso jardim com deck. No térreo, o corredor externo foi aproveitado para a instalação do lavabo e da lavanderia, aberta para o quintal. No pavimento superior, dois novos banheiros e pequenos terraços foram adicionados aos dois quartos, que foram beneficiados com a ampliação do espaço após a remoção do banheiro original.\nEste projeto, destaque na capa da revista Arquitetura & Construção de setembro de 2013, é um exemplo de renovação inteligente e funcional.",
+  "área": 92,
+  "local": "São Paulo",
+  "co-autor": "Estúdio Marion",
+  "ano": 2012,
+  "estado": "Construído",
+  "imagemhome": "/img/casapinheiros/casapinheiros-1920w.webp",
+  "imagem1": "/img/casapinheiros/casapinheiros1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/casapinheiros/casapinheiros-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casapinheiros/casapinheiros2-1920w.webp",
+      "foto2": "/img/casapinheiros/casapinheiros3-1920w.webp"
+    },
+    {
+      "foto": "/img/casapinheiros/casapinheiros4-1920w.webp",
+      "foto2": "/img/casapinheiros/casapinheiros5-1920w.webp"
+    },
+    {
+      "foto": "/img/casapinheiros/casapinheiros6-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casapinheiros/casapinheiros7-1920w.webp",
+      "foto2": "/img/casapinheiros/casapinheiros8-1920w.webp"
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Capa",
+      "valor": "Arquitetura & Construção de setembro de 2013"
+    }
+  ],
+  "ordem": 50
+}

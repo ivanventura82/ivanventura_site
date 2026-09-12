@@ -1,0 +1,45 @@
+{
+  "title": "Restaurante B",
+  "selecionado": false,
+  "categoria": "comerciais",
+  "datahash": "restauranteb",
+  "subtitulo1": "Onde o passado",
+  "subtitulo2": "encontra o presente",
+  "description": "O restaurante, situado em um casarão histórico em Higienópolis, preserva o charme do tijolo à vista, enquanto nos fundos, uma ampliação revela um espaçoso salão iluminado por três domus quadrados, conectados a um pátio com lareira externa. O teto ripado em madeira branca e as paredes de painéis pré-fabricados de concreto conferem um acabamento sofisticado e eficiente à construção.",
+  "área": 500,
+  "local": "São Paulo",
+  "co-autor": "David Ito",
+  "ano": 2012,
+  "estado": "Em Desenvolvimento",
+  "imagemhome": "/img/restauranteb/restauranteb-1920w.webp",
+  "imagem1": "/img/restauranteb/restauranteb1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/restauranteb/restauranteb-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/restauranteb/restauranteb2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/restauranteb/restauranteb3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/restauranteb/restauranteb4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/restauranteb/restauranteb5-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Construção",
+      "valor": "Souza Lima"
+    }
+  ],
+  "ordem": 51
+}

@@ -1,0 +1,24 @@
+{
+  "title": "Apartamento Myp",
+  "selecionado": false,
+  "categoria": "interiores",
+  "datahash": "apartamentomyp",
+  "subtitulo1": "Conexão e",
+  "subtitulo2": "minimalismo",
+  "description": "Esse apartamento foi a primeira aquisição imobiliária de um jovem casal, que em sua escolha, priorizou a proximidade ao trabalho, fundamental para uma boa qualidade de vida em São Paulo. O principal objetivo do projeto foi tornar o espaço o mais amplo possível, nesse intuito, a integração dos ambientes foi fundamental. Todas as paredes desnecessárias foram removidas, a cozinha e o escritório se integram à área social através de portas que formam um grande painel de madeira quando fechadas. A decoração segue sem excessos, concentrando o colorido em pequenos objetos e principalmente nos livros da estante de leitura, que emoldura o caixilho da sala.",
+  "área": 120,
+  "local": "São Paulo",
+  "co-autor": "",
+  "ano": 2014,
+  "estado": "Construído",
+  "imagemhome": "/img/apartamentomyp/apartamentomyp-1920w.webp",
+  "imagem1": "/img/apartamentomyp/apartamentomyp1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/apartamentomyp/apartamentomyp-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 47
+}

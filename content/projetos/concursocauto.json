@@ -1,0 +1,40 @@
+{
+  "title": "Concurso Cau-To",
+  "selecionado": false,
+  "categoria": "institucionais",
+  "datahash": "concursocauto",
+  "subtitulo1": "Um monolito eficiente",
+  "subtitulo2": "e funcional",
+  "description": "O projeto focou na criação de um monolito altamente funcional, visando otimizar os custos de construção. Com revestimento completo em chapa metálica expandida, oferece proteção contra a radiação solar. Além disso, reduz a dependência de sistemas de climatização ativos, proporcionando ventilação cruzada em todos os ambientes.",
+  "área": 350,
+  "local": "Palmas | TO",
+  "co-autor": "Yuri Vital",
+  "ano": 2018,
+  "estado": "Ideia",
+  "imagemhome": "/img/concursocauto/concursocauto-1920w.webp",
+  "imagem1": "/img/concursocauto/concursocauto1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/concursocauto/concursocauto2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/concursocauto/concursocauto3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/concursocauto/concursocauto4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/concursocauto/concursocauto5-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/concursocauto/concursocauto6-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 34
+}

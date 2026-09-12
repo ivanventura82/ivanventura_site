@@ -1,0 +1,36 @@
+{
+  "title": "Tattoo Academy",
+  "selecionado": false,
+  "categoria": "institucionais",
+  "datahash": "tatooacademy",
+  "subtitulo1": "Arquitetura que",
+  "subtitulo2": "revela segredos",
+  "description": "A tatuagem transcendeu sua marca original para se tornar uma manifestação singular de personalidade. Todos nascemos iguais, mas essa arte nos permite revelar nossa singularidade, muitas vezes obscurecida por normas sociais. Este projeto adota essa filosofia, situando seus principais espaços abaixo do nível da rua, como desenhos sob a pele, maximizando a luz natural através de coberturas de vidro. À primeira vista, a edificação pode passar despercebida, mas para aqueles que se aproximam, revela um café banhado em luz e cercado por um jardim tranquilo, proporcionando um refúgio do bulício urbano. Cada elemento do projeto é uma jornada de descobertas, desafiando a rigidez com cores vibrantes, em uma celebração da individualidade.",
+  "área": 600,
+  "local": "Melbourne | Austrália",
+  "co-autor": "Bruno del Mazza e Fernando Capra",
+  "ano": 2016,
+  "estado": "Ideia",
+  "imagemhome": "/img/tatooacademy/tatooacademy-1920w.webp",
+  "imagem1": "/img/tatooacademy/tatooacademy1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/tatooacademy/tatooacademy-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/tatooacademy/tatooacademy2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/tatooacademy/tatooacademy3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/tatooacademy/tatooacademy4-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 39
+}

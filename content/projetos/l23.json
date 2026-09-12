@@ -1,0 +1,73 @@
+{
+  "title": "L23",
+  "selecionado": false,
+  "categoria": "edificios",
+  "datahash": "l23",
+  "subtitulo1": "Forma e função",
+  "subtitulo2": "sustentáveis",
+  "description": "O L23 foi concebido de forma holística, abrangendo os princípios do desenvolvimento sustentável: social, econômico e ambiental. Seu reconhecimento internacional, premiado no Concurso International Property Awards em Londres, atesta sua excelência. O projeto passou por um estudo meticuloso das condições climáticas locais, caracterizadas por estações bem definidas e alto índice pluviométrico. Três elementos arquitetônicos foram implementados para otimizar o desempenho do edifício:\n-Varandas extensas protegem as aberturas da incidência direta de radiação solar durante os períodos críticos;\n-Grandes caixilhos, com abertura total, promovem a ventilação e iluminação naturais;\n-Um átrio central possibilita a ventilação cruzada e a iluminação natural nos ambientes de serviço.",
+  "área": 39000,
+  "local": "Ubatuba | SP",
+  "co-autor": "David Ito",
+  "ano": 2009,
+  "estado": "Construído",
+  "imagemhome": "/img/l23/l23-1920w.webp",
+  "imagem1": "/img/l23/l231-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/l23/l23-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/l23/l232-1920w.webp",
+      "foto2": "/img/l23/l233-1920w.webp"
+    },
+    {
+      "foto": "/img/l23/l234-1920w.webp",
+      "foto2": "/img/l23/l235-1920w.webp"
+    },
+    {
+      "foto": "/img/l23/l236-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/l23/l237-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Prêmio",
+      "valor": "International Property Awards em Londres"
+    },
+    {
+      "titulo": "Construção",
+      "valor": "Atmosfera Incorporadora"
+    },
+    {
+      "titulo": "Estrutura",
+      "valor": "Eduardo Penteado Engenharia"
+    },
+    {
+      "titulo": "Fundações",
+      "valor": "Apoio Engenharia"
+    },
+    {
+      "titulo": "Instalações",
+      "valor": "Procion Engenharia"
+    },
+    {
+      "titulo": "Ar Condicionado",
+      "valor": "Arplan Engenharia"
+    },
+    {
+      "titulo": "Paisagismo",
+      "valor": "Talquintal Paisagismo"
+    },
+    {
+      "titulo": "Consultorias Prevenção de Incêndio",
+      "valor": "Stf"
+    }
+  ],
+  "ordem": 58
+}

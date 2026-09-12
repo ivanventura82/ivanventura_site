@@ -1,0 +1,49 @@
+{
+  "title": "Casa Dm",
+  "selecionado": true,
+  "categoria": "residencias",
+  "datahash": "casadm",
+  "subtitulo1": "O declive se torna",
+  "subtitulo2": "privativo e moderno",
+  "description": "Residência localizada em terreno em declive, com dois níveis distintos. no pavimento superior, o acesso de veículos confere praticidade ao dia a dia dos moradores, enquanto a área íntima é reservada para dormitórios e espaços privados. no piso inferior, a área social é projetada para receber convidados, com um amplo jardim integrado à piscina e à área de festas. Destaque para o revestimento com brise metálico nas fachadas laterais, feitos com elementos de gradil industrializado, conferindo um visual moderno, privacidade e eficiência energética ao filtrar a luz solar, pois atua como uma barreira inteligente contra a radiação solar direta, reduzindo a carga térmica interna e, consequentemente, diminuindo a necessidade de resfriamento artificial.",
+  "área": 380,
+  "local": "Atibaia | SP",
+  "co-autor": "",
+  "ano": 2016,
+  "estado": "Construído",
+  "imagemhome": "/img/casadm/casadm-1920w.webp",
+  "imagem1": "/img/casadm/casadm1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/casadm/casadm2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casadm/casadm3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casadm/casadm4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casadm/casadm5-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casadm/casadm6-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casadm/casadm7-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Construção e Complementares",
+      "valor": "Eng. José Roberto"
+    }
+  ],
+  "ordem": 38
+}

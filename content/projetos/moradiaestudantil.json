@@ -1,0 +1,36 @@
+{
+  "title": "Moradia Estudantil Unifesp",
+  "selecionado": false,
+  "categoria": "institucionais",
+  "datahash": "moradiaestudantil",
+  "subtitulo1": "Viva, estude,",
+  "subtitulo2": "conecte-se",
+  "description": "Partindo do conceito de permeabilidade urbana, este projeto visa integrar-se harmoniosamente ao ambiente urbano circundante. Os blocos de apartamentos são elevados sobre pilotis, deixando o térreo livre para criar uma praça aberta para a comunidade, com espaços coletivos e áreas verdes. As unidades habitacionais estão distribuídas em dois blocos com um desnível de 1,5 metros entre eles, conectados por uma rampa com inclinação de 5%. A disposição dos blocos foi planejada para maximizar a exposição solar e o conforto térmico. Com quatro pavimentos, o térreo abriga a praça aberta ao público e diversas áreas de apoio, incluindo administração, segurança, manutenção e vestiários, além de instalações técnicas como cabine primária de energia e reservatório de água.",
+  "área": 8000,
+  "local": "São Paulo",
+  "co-autor": "Fernando Capra",
+  "ano": 2015,
+  "estado": "Ideia",
+  "imagemhome": "/img/moradiaestudantil/moradiaestudantil-1920w.webp",
+  "imagem1": "/img/moradiaestudantil/moradiaestudantil1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/moradiaestudantil/moradiaestudantil-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/moradiaestudantil/moradiaestudantil2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/moradiaestudantil/moradiaestudantil3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/moradiaestudantil/moradiaestudantil4-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 45
+}

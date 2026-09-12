@@ -1,0 +1,32 @@
+{
+  "title": "Casa Caixa",
+  "selecionado": false,
+  "categoria": "residencias",
+  "datahash": "casacaixa",
+  "subtitulo1": "A caixa que revela",
+  "subtitulo2": "o inesperado",
+  "description": "Essa casa, cujo projeto teve início com a concepção de uma simples caixa de concreto, foi transformada em um espaço moderno e aconchegante. A ideia central de uma caixa com a tampa deslizante aberta evoluiu para um ambiente onde a privacidade do morador é primordial, mantendo o exterior discreto enquanto os espaços internos se conectam harmoniosamente ao deck e à piscina. Situada em um lote de 400m², a residência destaca-se pelo exuberante jardim irrigado com água pluvial, evidenciando seu compromisso com a sustentabilidade. Além disso, elementos como a cobertura verde para controle térmico e acústico, o aquecimento solar, as esquadrias de madeira de reflorestamento e as fundações em estacas de concreto asseguram não apenas a estabilidade, mas também a eficiência ecológica da construção.",
+  "área": 180,
+  "local": "São Paulo",
+  "co-autor": "",
+  "ano": 2007,
+  "estado": "Ideia",
+  "imagemhome": "/img/casacaixa/casacaixa3-1920w.webp",
+  "imagem1": "/img/casacaixa/casacaixa2-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/casacaixa/casacaixa3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casacaixa/casacaixa-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casacaixa/casacaixa1-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 61
+}

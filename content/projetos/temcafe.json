@@ -1,0 +1,73 @@
+{
+  "title": "Tem Café",
+  "selecionado": false,
+  "categoria": "comerciais",
+  "datahash": "temcafe",
+  "subtitulo1": "Um tributo à",
+  "subtitulo2": "alma brasileira",
+  "description": "TEM Café: Torrado e Moído\nLocalizada no bairro de Higienópolis, São Paulo, a loja \"Tem Café\" é um tributo às estufas de café, incorporando materiais autênticos, incluindo tijolos vermelhos expostos descascados para revelar sua beleza original e madeira de demolição proveniente da fazenda do proprietário da loja. A luz filtrada pela tela especial, originalmente usada nos viveiros de mudas de café, cria uma atmosfera acolhedora, evocando os tons do pôr do sol. Essa estrutura independente, sustentada pelas estantes de exposição de café, proporciona uma sensação de leveza e fluidez no ambiente. Com moedores de café estrategicamente posicionados, o aroma da bebida permeia todo o espaço, oferecendo uma experiência sensorial completa para os apreciadores de café.",
+  "área": 50,
+  "local": "São Paulo",
+  "co-autor": "Domingos Pascali e Sarkis Semerdjian",
+  "ano": 2014,
+  "estado": "Construído",
+  "imagemhome": "/img/temcafe/temcafe-1920w.webp",
+  "imagem1": "/img/temcafe/temcafe1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/temcafe/temcafe2-1920w.webp",
+      "foto2": "/img/temcafe/temcafe3-1920w.webp"
+    },
+    {
+      "foto": "/img/temcafe/temcafe4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/temcafe/temcafe5-1920w.webp",
+      "foto2": "/img/temcafe/temcafe6-1920w.webp"
+    },
+    {
+      "foto": "/img/temcafe/temcafe7-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/temcafe/temcafe8-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/temcafe/temcafe9-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/temcafe/temcafe10-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/temcafe/temcafe11-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/temcafe/temcafe12-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/temcafe/temcafe13-1920w.webp",
+      "foto2": "/img/temcafe/temcafe14-1920w.webp"
+    },
+    {
+      "foto": "/img/temcafe/temcafe15-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Fotos",
+      "valor": "Ilana Bessler"
+    },
+    {
+      "titulo": "Marcenaria",
+      "valor": "Uffe Kampmann"
+    }
+  ],
+  "ordem": 48
+}

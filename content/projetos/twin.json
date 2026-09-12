@@ -1,0 +1,72 @@
+{
+  "title": "Twin",
+  "selecionado": false,
+  "categoria": "edificios",
+  "datahash": "twin",
+  "subtitulo1": "Vida vertical",
+  "subtitulo2": "em duas torres",
+  "description": "Projeto de uso misto, composto por duas torres separadas pela circulação vertical. O destaque deste edifício são suas fachadas revestidas com chapas de fibra coloridas, que conferem uma aparência alegre e contemporânea, trazendo dinamismo ao empreendimento.\nAs varandas com vigas de concreto aparente adicionam elegância ao edifício, criando uma estética sofisticada e moderna.\nA proposta de uso misto permite a integração harmoniosa de diferentes funções em um único espaço, proporcionando uma experiência completa e diversificada aos moradores e usuários.",
+  "área": 4,
+  "local": "Ubatuba | SP",
+  "co-autor": "Yuri Vital",
+  "ano": 2019,
+  "estado": "Em Desenvolvimento",
+  "imagemhome": "/img/twin/twin-1920w.webp",
+  "imagem1": "/img/twin/twin1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/twin/twin2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/twin/twin3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/twin/twin4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/twin/twin5-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/twin/twin6-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/twin/twin7-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/twin/twin8-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/twin/twin9-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/twin/twin10-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/twin/twin11-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/twin/twin12-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/twin/twin13-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/twin/twin14-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 28
+}

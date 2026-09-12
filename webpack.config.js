@@ -89,7 +89,9 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         { from: 'src/img', to: 'img' },
-        { from: 'src/projetos.json', to: 'projetos.json' },
+        { from: '.generated/projetos.json', to: 'projetos.json' },
+        { from: '.generated/img', to: 'img', noErrorOnMissing: true },
+        { from: 'src/admin', to: 'admin' },
       ],
     }),
   ],
@@ -113,5 +115,3 @@ module.exports = {
     open: true, // Abre o navegador automaticamente
   },
 };
-
-

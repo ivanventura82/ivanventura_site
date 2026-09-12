@@ -1,0 +1,57 @@
+{
+  "title": "Anexo 23",
+  "selecionado": false,
+  "categoria": "comerciais",
+  "datahash": "anexo23",
+  "subtitulo1": "Madeira e",
+  "subtitulo2": "mar",
+  "description": "Área comercial com cafés, restaurantes e bares, toda estruturada em madeira, em sintonia com o estilo do litoral. Os brises de madeira filtram a luz e melhoram a eficiência energética dos espaços. A madeira proporciona um ambiente acolhedor e conexão com a natureza, enfatizando o compromisso com a sustentabilidade. O espaço é convidativo e envolvente, harmonizando-se perfeitamente com a paisagem litorânea.",
+  "área": 800,
+  "local": "Ubatuba | SP",
+  "co-autor": "",
+  "ano": 2019,
+  "estado": "Construído",
+  "imagemhome": "/img/anexo23/anexo23-1920w.webp",
+  "imagem1": "/img/anexo23/anexo231-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/anexo23/anexo232-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/anexo23/anexo233-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/anexo23/anexo234-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/anexo23/anexo235-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/anexo23/anexo236-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/anexo23/anexo237-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/anexo23/anexo238-1920w.webp",
+      "foto2": "/img/anexo23/anexo239-1920w.webp"
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Construção",
+      "valor": "Atmosfera Incorporadora"
+    },
+    {
+      "titulo": "Estrutura de madeira",
+      "valor": "Uffe Kampmann"
+    }
+  ],
+  "ordem": 27
+}

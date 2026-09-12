@@ -1,0 +1,33 @@
+{
+  "title": "Wing",
+  "selecionado": true,
+  "categoria": "edificios",
+  "datahash": "wing",
+  "subtitulo1": "Rochas",
+  "subtitulo2": "iluminadas",
+  "description": "O edifício residencial, situado à beira-mar, apresenta uma característica verdadeiramente singular: piscinas com um design em forma de \"triângulo fluido\". essas piscinas são cuidadosamente incorporadas ao piso dos apartamentos, elevando-se apenas cerca de 45 cm acima do piso. no andar inferior, a forma orgânica do triângulo fluído se converte em uma luminária com retroiluminação do tipo barrisol, criando um efeito visual deslumbrante. Essa combinação de elementos busca capturar a beleza e a fluidez encontradas na natureza, transmitindo uma sensação de harmonia e conexão com o ambiente circundante. Inspiradas nas curvas elegantes das conchas marinhas, as piscinas do edifício acrescentam uma atmosfera excepcionalmente envolvente, proporcionando aos moradores uma experiência única que os conecta com a serenidade e a magnificência do oceano.",
+  "área": 5000,
+  "local": "São Paulo",
+  "co-autor": "Yuri Vital",
+  "ano": 2021,
+  "estado": "Em Desenvolvimento",
+  "imagemhome": "/img/wing/wing-1920w.webp",
+  "imagem1": "/img/wing/wing1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/wing/wing-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/wing/wing2-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Construção",
+      "valor": "Atmosfera Incorporadora"
+    }
+  ],
+  "ordem": 8
+}

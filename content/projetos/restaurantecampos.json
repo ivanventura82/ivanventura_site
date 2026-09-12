@@ -1,0 +1,28 @@
+{
+  "title": "Trattoria Campi",
+  "selecionado": false,
+  "categoria": "comerciais",
+  "datahash": "restaurantecampos",
+  "subtitulo1": "O sabor ganha forma",
+  "subtitulo2": "no ritmo do design",
+  "description": "Restaurante aconchegante de montanha com ênfase em pizzas, projetado com uma estrutura de metal que cria um padrão aleatório, estendendo-se do teto até as paredes. Um vidro com elementos em degradê controla a incidência solar, ajustando-se conforme a intensidade do sol.",
+  "área": 280,
+  "local": "Campos do Jordão | SP",
+  "co-autor": "David Ito",
+  "ano": 2011,
+  "estado": "Ideia",
+  "imagemhome": "/img/restaurantecampos/restaurantecampos-1920w.webp",
+  "imagem1": "/img/restaurantecampos/restaurantecampos1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/restaurantecampos/restaurantecampos-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/restaurantecampos/restaurantecampos2-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 56
+}

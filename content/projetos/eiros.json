@@ -1,0 +1,28 @@
+{
+  "title": "Eiros",
+  "selecionado": false,
+  "categoria": "edificios",
+  "datahash": "eiros",
+  "subtitulo1": "Elegância nostálgica",
+  "subtitulo2": "paulistana",
+  "description": "Composto por 8 pavimentos, este empreendimento residencial oferece apartamentos espaçosos juntamente com uma área de lazer completa no térreo. no entanto, o verdadeiro destaque desse projeto está na sua fachada austera e elegante. Inspirada pelo estilo arquitetônico paulista das décadas de 60 e 70, a fachada apresenta uma estética clean e sofisticada, aprimorada por floreiras estrategicamente posicionadas que adicionam um toque de beleza natural ao conjunto. Essas floreiras não apenas embelezam o exterior, mas também suavizam a luz, criando uma atmosfera agradável e tranquila nos apartamentos. essa homenagem aos renomados arquitetos brasileiros da época evoca uma sensação de nostalgia e valoriza a identidade local. Com sua aparência imponente e discreta, o empreendimento se destaca como uma verdadeira obra de arte urbana.",
+  "área": 2750,
+  "local": "São Paulo",
+  "co-autor": "Yuri Vital",
+  "ano": 2021,
+  "estado": "Em Desenvolvimento",
+  "imagemhome": "/img/eiros/eiros-1920w.webp",
+  "imagem1": "/img/eiros/eiros1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/eiros/eiros-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/eiros/eiros2-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 16
+}

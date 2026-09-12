@@ -1,0 +1,49 @@
+{
+  "title": "Dna Itaguá",
+  "selecionado": false,
+  "categoria": "edificios",
+  "datahash": "dnaitagua",
+  "subtitulo1": "Um mergulho",
+  "subtitulo2": "na paisagem",
+  "description": "A piscina transparente, voltada para a baía com a Serra do Mar como pano de fundo, é o marco do DNA Itaguá, oferecendo uma área de lazer completa com piscinas, spa e um exclusivo espaço wellness no topo.",
+  "área": 14500,
+  "local": "Ubatuba | SP",
+  "co-autor": "Yuri Vital",
+  "ano": 2024,
+  "estado": "Em Construção",
+  "imagemhome": "/img/dnaitagua/dnaitagua-1920w.webp",
+  "imagem1": "/img/dnaitagua/dnaitagua1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/dnaitagua/dnaitagua7-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/dnaitagua/dnaitagua2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/dnaitagua/dnaitagua3-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/dnaitagua/dnaitagua4-1920w.webp",
+      "foto2": "/img/dnaitagua/dnaitagua5-1920w.webp"
+    },
+    {
+      "foto": "/img/dnaitagua/dnaitagua6-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Construção",
+      "valor": "Atmosfera Incorporadora"
+    },
+    {
+      "titulo": "Fundações",
+      "valor": "Apoio Engenharia"
+    }
+  ],
+  "ordem": 13
+}

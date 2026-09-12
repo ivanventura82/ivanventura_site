@@ -1,0 +1,44 @@
+{
+  "title": "Restaurante 348",
+  "selecionado": false,
+  "categoria": "comerciais",
+  "datahash": "restaurante348",
+  "subtitulo1": "Tradição preservada",
+  "subtitulo2": "sabor renovado",
+  "description": "Este restaurante argentino incorpora um casarão do século XX em Higienópolis, unindo tradição e modernidade. Preservando a estrutura original, apenas adaptações sutis foram feitas para integrá-lo ao novo espaço gastronômico. Uma edícula, sem valor arquitetônico, foi removida para expandir a área, com seus tijolos reaproveitados no acabamento. Além disso, o projeto se destaca por sua sustentabilidade, utilizando iluminação e ventilação naturais, domos para a cozinha e um sistema de coleta de água pluvial para uso em limpeza e jardinagem.",
+  "área": 500,
+  "local": "São Paulo",
+  "co-autor": "David Ito",
+  "ano": 2009,
+  "estado": "Construído",
+  "imagemhome": "/img/restaurante348/restaurante348-1920w.webp",
+  "imagem1": "/img/restaurante348/restaurante3481-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/restaurante348/restaurante3482-1920w.webp",
+      "foto2": "/img/restaurante348/restaurante3483-1920w.webp"
+    },
+    {
+      "foto": "/img/restaurante348/restaurante3484-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/restaurante348/restaurante3485-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/restaurante348/restaurante3486-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/restaurante348/restaurante3487-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/restaurante348/restaurante3488-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 60
+}

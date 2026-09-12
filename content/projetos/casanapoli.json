@@ -1,0 +1,36 @@
+{
+  "title": "Casa Napoli",
+  "selecionado": false,
+  "categoria": "residencias",
+  "datahash": "casanapoli",
+  "subtitulo1": "Casa que se abre",
+  "subtitulo2": "para a vida",
+  "description": "Projeto residencial supera desafios em terreno estreito em declive, criando uma casa funcional e acolhedora. Com entrada direta e convidativa, garagem transforma-se em amplo pátio quando não utilizada. Árvores estrategicamente posicionadas criam ambiente natural. Grandes caixilhos de correr conectam espaços internos e externos. Volume central abriga áreas de serviço, cozinha e lazer, integrando-se à área externa. No andar superior, duas suítes oferecem privacidade e conforto. Deck mirante proporciona espaço tranquilo para convívio e contemplação.",
+  "área": 300,
+  "local": "São Caetano do Sul | SP",
+  "co-autor": "",
+  "ano": 2006,
+  "estado": "Construído",
+  "imagemhome": "/img/casanapoli/casanapoli1-1920w.webp",
+  "imagem1": "/img/casanapoli/casanapoli2-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/casanapoli/casanapoli1-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casanapoli/casanapoli-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casanapoli/casanapoli4-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casanapoli/casanapoli3-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 62
+}

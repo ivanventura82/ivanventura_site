@@ -1,0 +1,33 @@
+{
+  "title": "Docol 2002",
+  "selecionado": false,
+  "categoria": "comerciais",
+  "datahash": "docol2002",
+  "subtitulo1": "Rusticidade paradisíaca",
+  "subtitulo2": "nos detalhes",
+  "description": "Projeto de estilo rústico para o banheiro de uma residência litorânea, caracterizado por ambientes amplos, integrados e arejados. As paredes foram concebidas em tijolo aparente, enquanto o piso é revestido com deck de ipê, proporcionando uma atmosfera acolhedora e natural. No box, destaca-se o uso de seixo rolado branco, adicionando um toque de elegância e tranquilidade. A mesma madeira de ipê é empregada nas prateleiras que complementam o lavatório, unificando o design e conferindo uma sensação de harmonia ao espaço.",
+  "área": 10,
+  "local": "São Paulo",
+  "co-autor": "",
+  "ano": 2002,
+  "estado": "Ideia",
+  "imagemhome": "/img/docol2002/docol2002-1920w.webp",
+  "imagem1": "/img/docol2002/docol20021-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/docol2002/docol20022-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/docol2002/docol20023-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [
+    {
+      "titulo": "Prêmio",
+      "valor": "1° lugar em concurso nacional"
+    }
+  ],
+  "ordem": 65
+}

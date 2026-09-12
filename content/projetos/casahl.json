@@ -1,0 +1,32 @@
+{
+  "title": "Casa HL",
+  "selecionado": false,
+  "categoria": "residencias",
+  "datahash": "casahl",
+  "subtitulo1": "Camadas de conforto",
+  "subtitulo2": "e convivência",
+  "description": "Esta casa é projetada em três níveis distintos, cada um com sua função específica. No subsolo, acomodações para veículos e utilidades práticas. O térreo abriga a área social, que se integra harmoniosamente com a piscina, proporcionando momentos de lazer ao ar livre. No nível superior, a ala íntima oferece privacidade e conforto para seus moradores, completando o conceito de convivência e tranquilidade.",
+  "área": 500,
+  "local": "Toledo | PR",
+  "co-autor": "",
+  "ano": 2015,
+  "estado": "Ideia",
+  "imagemhome": "/img/casahl/casahl-1920w.webp",
+  "imagem1": "/img/casahl/casahl1-1920w.webp",
+  "slides": [
+    {
+      "foto": "/img/casahl/casahl-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casahl/casahl2-1920w.webp",
+      "foto2": ""
+    },
+    {
+      "foto": "/img/casahl/casahl3-1920w.webp",
+      "foto2": ""
+    }
+  ],
+  "detalhes": [],
+  "ordem": 42
+}
