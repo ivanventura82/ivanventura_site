@@ -10,7 +10,6 @@ publish_mode: editorial_workflow
 media_folder: content/uploads
 public_folder: /uploads
 media_library:
-  name: default
   config:
     max_file_size: 52428800
 collections:
