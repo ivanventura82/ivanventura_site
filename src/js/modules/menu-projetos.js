@@ -21,8 +21,8 @@ export default class MenuProjetos {
     event.preventDefault();
     event.stopPropagation();
     this.clearTimers();
-    if (this.isOpen) this.closeMenu();
-    else this.openMenu();
+    // Clicking confirms the hover opening instead of reversing it.
+    if (!this.isOpen) this.openMenu();
   }
   openMenu() {
     this.clearTimers();
@@ -84,6 +84,9 @@ export default class MenuProjetos {
         this.clearTimers();
         this.closeTimer=setTimeout(()=>{if(!region.matches(':hover'))this.closeMenu();},400);
       }
+    });
+    document.addEventListener('pointerdown', event=>{
+      if (this.isOpen && !region.contains(event.target)) this.closeMenu();
     });
     region.addEventListener('keydown',event=>{
       if(event.key==='Escape') { this.closeMenu(); this.projetosButton.focus(); }
