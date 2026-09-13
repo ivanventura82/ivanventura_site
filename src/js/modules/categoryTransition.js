@@ -75,8 +75,8 @@ export default async function transitionCategory(owner, category) {
     document.title = 'Ivan Ventura Arquitetura';
     const incoming = swiper.slides[swiper.activeIndex];
     const photo = incoming.querySelector('.slide-background-img');
-    // Reuse the exact decoded responsive resource before revealing the new slide.
-    photo.removeAttribute('srcset'); photo.src = cover.currentSrc || cover.src;
+    // Keep the image bound to its own project; never replace it with another cover.
+    photo.loading = 'eager';
     await waitForImage(photo);
     const newLines = owner.homeMotion.lines(incoming);
     const oldLines = [...overlay.querySelectorAll('.main__title > span, .link__title > span, .slide__title__link, .bio__project, .detalhes__project')];

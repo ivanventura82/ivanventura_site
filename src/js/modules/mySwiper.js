@@ -389,7 +389,8 @@ export default class MySwiper {
     this.allSlides = [...this.swiper.slides];
     const hashIndex = this.swiper.slides.findIndex(slide => slide.dataset.hash === this.initialHash);
     this.initialHash = '';
-    this.swiper.slideTo(hashIndex >= 0 ? hashIndex : 0, 0);
+    // Category transitions temporarily disable user input; this reset is internal.
+    this.swiper.slideTo(hashIndex >= 0 ? hashIndex : 0, 0, true, true);
     this.homeMotion.enter(this.swiper.slides[this.swiper.activeIndex], true);
     this.slideChange();
     this.precarregarImagens(this.swiper);
