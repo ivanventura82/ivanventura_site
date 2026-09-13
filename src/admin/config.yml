@@ -9,9 +9,6 @@ locale: pt
 publish_mode: editorial_workflow
 media_folder: content/uploads
 public_folder: /uploads
-media_library:
-  config:
-    max_file_size: 52428800
 collections:
   - name: projetos
     label: Projetos
