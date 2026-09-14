@@ -188,6 +188,9 @@ export default class MySwiper {
       const direction = this.swiper.activeIndex >= this.swiper.previousIndex ? 1 : -1;
       this.motion.enter(currentSlide, false, direction, () => {
         if (this.swiper.animating) this.swiper.transitionEnd();
+        const pendingHash = this.pendingProjectHash;
+        this.pendingProjectHash = null;
+        if (pendingHash) this.navigateToSlide(pendingHash);
       });
     } else if (currentSlide) {
       this.slideManager.clearSlideAnimations(currentSlide);
@@ -263,6 +266,15 @@ export default class MySwiper {
   }
 
   setupEventListeners() {
+    if (this.isHome && !this.lateralClicksBound) {
+      this.lateralClicksBound = true;
+      document.addEventListener('click', event => {
+        const link = event.target.closest?.('.project-menu-item');
+        if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        this.navigateToSlide(link.getAttribute('href').slice(1));
+      });
+    }
     const botaoProximo = document.getElementById('botao-down');
     if (botaoProximo) {
       botaoProximo.addEventListener('click', (event) => {
@@ -553,14 +565,22 @@ export default class MySwiper {
   }
 
   navigateToSlide(hash) {
+    if (!this.swiper || !this.swiper.enabled || this.categoryBusy) return;
     const targetSlideIndex = this.swiper.slides.findIndex(slide =>
-        slide.getAttribute('data-hash') === hash
+      slide.getAttribute('data-hash') === hash
     );
-
-    // Se um slide válido for encontrado, navega para esse slide
-    if (targetSlideIndex !== -1) {
-        this.swiper.slideTo(targetSlideIndex, this.swiper.params.speed); // 1000 é o tempo da animação em milissegundos
+    if (targetSlideIndex === -1) return;
+    this.pendingProjectHash = null;
+    if (targetSlideIndex === this.swiper.activeIndex) return;
+    const timeline = this.homeMotion?.timeline;
+    if (this.swiper.animating && timeline) {
+      // Latest choice wins; complete the current handoff within 120ms.
+      this.pendingProjectHash = hash;
+      const remaining = Math.max(0, timeline.duration() - timeline.time());
+      timeline.timeScale(Math.max(timeline.timeScale(), remaining / 0.12, 1));
+      return;
     }
+    this.swiper.slideTo(targetSlideIndex, this.swiper.params.speed);
   }
 
    // Método para definir a instância de CarregaProjetos
