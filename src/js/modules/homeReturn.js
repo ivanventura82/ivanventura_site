@@ -11,7 +11,7 @@ export default function installHomeReturn(owner) {
     if(url.origin!==location.origin)return;
     const isLogo=link.matches('a[data-menu="logo"], a.nav__button__home');
     const editorialTarget=/\/(estudio|contato)(\.html)?\/?$/.test(url.pathname);
-    if(!isLogo && !(owner.projectMotion && editorialTarget))return;
+    if(!isLogo && !editorialTarget)return;
     const destination=isLogo ? '/index.html?return=logo' : url.href;
     const background=!isLogo && /\/estudio/.test(url.pathname) ? '#f8f8f8' : '#fff';
     event.preventDefault();
