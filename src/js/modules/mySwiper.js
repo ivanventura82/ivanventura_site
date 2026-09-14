@@ -483,7 +483,7 @@ export default class MySwiper {
         if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
         event.preventDefault();
         const category = link.getAttribute('data-filter');
-        if (this.isHome || this.projectMotion) {
+        if (this.isHome || this.projectMotion || this.editorialMotion) {
           transitionCategory(this, category);
         } else {
           window.location.href = `/index.html?filter=${encodeURIComponent(category)}`;

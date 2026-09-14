@@ -82,13 +82,18 @@ async function performCategoryTransition(owner, category) {
     overlay.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;z-index:20;overflow:hidden;pointer-events:none;display:flex;align-items:center;justify-content:center;background:' + getComputedStyle(previous).backgroundColor;
     swiper.el.appendChild(overlay);
     document.body.classList.add('category-navigation');
-    const fromProject = !owner.isHome;
+    const fromOtherPage = !owner.isHome;
     owner.motion?.reset();
-    if (fromProject) {
+    if (fromOtherPage) {
       document.body.id = 'index-page';
       delete document.body.dataset.categoria;
       owner.isHome = true;
       owner.projectMotion = null;
+      owner.editorialMotion = null;
+      document.body.classList.remove('editorial-motion');
+      owner.swiper2?.destroy(true, true);
+      owner.swiper3?.destroy(true, true);
+      document.querySelector('.swiper-pagination')?.classList.remove('pagination-estudio');
       owner.homeMotion = new HomeMotion();
       owner.motion = owner.homeMotion;
       document.getElementById('botao-voltar')?.remove();
@@ -100,6 +105,8 @@ async function performCategoryTransition(owner, category) {
       }
       swiper.params.speed = owner.motion.media.matches ? 0 : owner.motion.duration;
       swiper.params.mousewheel.thresholdTime = owner.motion.duration;
+      owner.setupEventListeners();
+      owner.installResponsiveWheel();
       installProjectEntrance(owner);
     }
     owner.setCarregaProjetosInstance(loader);
