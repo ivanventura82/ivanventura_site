@@ -21,7 +21,8 @@
 }
 
 .swiper-slide.com-imagem-de-fundo::before,
-.category-transition-cover.com-imagem-de-fundo::before {
+.category-transition-cover.com-imagem-de-fundo::before,
+.project-entry-overlay::before {
   content: '';
   position: absolute;
   top: 0;

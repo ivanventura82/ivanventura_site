@@ -69,7 +69,10 @@ export default function installProjectEntrance(owner) {
     const photo=slide.querySelector('.slide-background-img');
     try {
       if(photo) { photo.removeAttribute('srcset'); photo.src=source.href; }
-      if(photo) await Promise.race([photo.decode().catch(()=>{}),new Promise(resolve=>setTimeout(resolve,1200))]);
+      await Promise.race([
+        Promise.all([cover.decode(), ...(photo ? [photo.decode()] : [])]),
+        new Promise((_,reject)=>setTimeout(()=>reject(new Error('Entry image unavailable')),4000))
+      ]);
       if(finished)return;
       timeline=gsap.timeline({onComplete:finish});
       // Keep the selected photograph continuous across the navigation.
