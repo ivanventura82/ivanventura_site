@@ -505,3 +505,45 @@ body.editorial-motion [data-hash="publicacoes"] .slide-content.studio {
   [data-hash="publicacoes"] .premios__title { font-size:40px; }
   [data-hash="publicacoes"] .publications-heading { margin-bottom:16px; }
 }
+
+
+/* Profile: the same warm background and editorial scale as awards and publications. */
+[data-hash="sobre"] { background:#f5f4f0 !important; }
+body.editorial-motion [data-hash="sobre"] > .slide-content-position { width:100%; }
+body.editorial-motion [data-hash="sobre"] .slide-content.studio {
+  position:relative; left:auto; width:calc(100% - 160px); max-width:1440px;
+  margin:0 auto; padding:0; display:block; max-height:72vh; max-height:72dvh;
+  overflow-y:auto; overflow-x:hidden; scrollbar-width:thin; scrollbar-color:#c6c4bc transparent;
+}
+[data-hash="sobre"] .bio__ivan {
+  display:grid; grid-template-columns:minmax(0,1.25fr) minmax(240px,.75fr);
+  gap:clamp(36px,6vw,112px); align-items:start;
+}
+[data-hash="sobre"] .texto__ivan { width:auto; min-width:0; display:flex; flex-direction:column; gap:28px; }
+[data-hash="sobre"] .profile-title {
+  margin:0 0 30px; font:400 clamp(42px,4.8vw,76px)/1.05 "Inter",sans-serif;
+  letter-spacing:-.055em; color:#252520;
+}
+[data-hash="sobre"] .texto__ivan p {
+  margin:0 0 16px; max-width:60ch; font:400 clamp(14px,1.12vw,17px)/1.65 "Inter",sans-serif; color:#62615d;
+}
+[data-hash="sobre"] .texto__ivan h3 {
+  margin:0; padding-top:24px; border-top:1px solid #d8d6ce;
+  font:400 clamp(18px,1.55vw,24px)/1.45 "Inter",sans-serif;
+  letter-spacing:-.025em; color:#34342f;
+}
+[data-hash="sobre"] #foto__ivan {
+  display:block; width:100%; height:auto; max-height:66vh; max-height:66dvh;
+  object-fit:contain; object-position:top right; border-radius:0;
+}
+@media(max-width:800px) {
+  body.editorial-motion [data-hash="sobre"] .slide-content.studio {
+    width:calc(100% - 56px); margin:0 28px; max-height:72vh; max-height:72dvh; padding-right:8px;
+  }
+  [data-hash="sobre"] .bio__ivan { grid-template-columns:1fr; gap:28px; }
+  [data-hash="sobre"] .profile-title { font-size:42px; margin-bottom:24px; }
+  [data-hash="sobre"] .texto__ivan { gap:8px; }
+  [data-hash="sobre"] .texto__ivan p { font-size:14px; line-height:1.65; }
+  [data-hash="sobre"] .texto__ivan h3 { font-size:18px; line-height:1.5; padding-top:20px; }
+  [data-hash="sobre"] #foto__ivan { max-width:362px; max-height:none; height:auto; justify-self:center; }
+}
