@@ -151,6 +151,7 @@ export default class MySwiper {
 
       this.slideUIManager = new SlideUIManager(this.swiper);
       this.swiper.init();
+      this.installResponsiveWheel();
       if (this.motion) {
         this.motion.media.addEventListener('change', () => {
           this.swiper.params.speed = this.motion.media.matches ? 0 : this.motion.duration;
@@ -190,7 +191,8 @@ export default class MySwiper {
         if (this.swiper.animating) this.swiper.transitionEnd();
         const pendingHash = this.pendingProjectHash;
         this.pendingProjectHash = null;
-        if (pendingHash) this.navigateToSlide(pendingHash);
+        if (pendingHash) { this.pendingWheelDirection = 0; this.navigateToSlide(pendingHash); }
+        else this.flushWheelNavigation();
       });
     } else if (currentSlide) {
       this.slideManager.clearSlideAnimations(currentSlide);
@@ -564,7 +566,61 @@ export default class MySwiper {
     }
   }
 
+  installResponsiveWheel() {
+    if (this.responsiveWheelBound || !(this.isHome || this.projectMotion)) return;
+    this.responsiveWheelBound = true;
+    let accumulated = 0, lastEvent = 0, lastAccepted = -Infinity;
+    this.swiper.el.addEventListener('wheel', event => {
+      if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY) || !event.deltaY) return;
+      const direction = Math.sign(event.deltaY);
+      // Let overflowing descriptions and menus scroll normally.
+      for (let node = event.target; node && node !== this.swiper.el; node = node.parentElement) {
+        if (node.nodeType !== 1) continue;
+        const overflow = getComputedStyle(node).overflowY;
+        if (/auto|scroll/.test(overflow) && node.scrollHeight > node.clientHeight + 1 &&
+          (direction > 0 ? node.scrollTop + node.clientHeight < node.scrollHeight - 1 : node.scrollTop > 1)) {
+          event.stopImmediatePropagation();
+          return;
+        }
+      }
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      if (!this.swiper.enabled || this.categoryBusy || this.categoryRequestRunning) {
+        this.pendingWheelDirection = 0; accumulated = 0; return;
+      }
+      const now = performance.now();
+      if (now - lastEvent > 180 || Math.sign(accumulated) !== direction) accumulated = 0;
+      lastEvent = now;
+      accumulated += event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
+      if (Math.abs(accumulated) < 18) return;
+      // Coalesce high-frequency trackpad events without imposing the animation duration.
+      if (now - lastAccepted < 100) { accumulated = 0; return; }
+      accumulated = 0;
+      this.wheelBurst = now - lastAccepted < 260;
+      lastAccepted = now;
+      this.pendingProjectHash = null;
+      this.pendingWheelDirection = direction;
+      const timeline = this.motion?.timeline;
+      if (this.swiper.animating && timeline) {
+        const remaining = Math.max(0, timeline.duration() - timeline.time());
+        timeline.timeScale(Math.max(timeline.timeScale(), remaining / 0.12, 1));
+      } else this.flushWheelNavigation();
+    }, {capture:true, passive:false});
+  }
+
+  flushWheelNavigation() {
+    const direction = this.pendingWheelDirection;
+    this.pendingWheelDirection = 0;
+    if (!direction || !this.swiper?.enabled || this.categoryBusy || this.categoryRequestRunning) return;
+    const target = Math.max(0, Math.min(this.swiper.slides.length - 1, this.swiper.activeIndex + direction));
+    if (target === this.swiper.activeIndex) return;
+    this.swiper.slideTo(target, this.swiper.params.speed);
+    const timeline = this.motion?.timeline;
+    if (this.wheelBurst && timeline) timeline.timeScale(Math.max(1, timeline.duration() / 0.35));
+  }
+
   navigateToSlide(hash) {
+    this.pendingWheelDirection = 0;
     if (!this.swiper || !this.swiper.enabled || this.categoryBusy) return;
     const targetSlideIndex = this.swiper.slides.findIndex(slide =>
       slide.getAttribute('data-hash') === hash
