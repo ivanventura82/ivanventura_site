@@ -1,4 +1,5 @@
 import gsap from 'gsap';
+import { MOTION } from './homeMotion.js';
 
 export default function installHomeReturn(owner) {
   const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -46,9 +47,11 @@ export default function installHomeReturn(owner) {
     };
     if(reduced()){finish();return;}
     // Install the hidden starting pose before lifting the first-paint guard.
-    gsap.set(lines,{autoAlpha:1,clipPath:'inset(100% 0% 0% 0%)',y:12,rotation:0});
+    gsap.set(lines,{autoAlpha:0,clearProps:'clipPath',y:MOTION.entryDistance,rotation:MOTION.entryRotation,transformOrigin:'0% 50%'});
     document.documentElement.classList.remove('home-return-pending');
-    gsap.to(lines,{clipPath:'inset(0% 0% 0% 0%)',y:0,duration:.62,stagger:.09,ease:'power3.out',onComplete:finish});
+    const introTimeline=gsap.timeline({onComplete:()=>{ if(owner.homeMotion?.timeline===introTimeline) owner.homeMotion.timeline=null; finish(); }});
+    if(owner.homeMotion) owner.homeMotion.timeline=introTimeline;
+    introTimeline.to(lines,{autoAlpha:1,y:0,rotation:0,duration:MOTION.entryDuration,stagger:MOTION.lineStagger,ease:'portfolio-in'});
   };
   document.addEventListener('HomeMotionReady',reveal,{once:true});
   const fallback=setTimeout(reveal,2500);
