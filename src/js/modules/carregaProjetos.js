@@ -72,7 +72,7 @@ export default class CarregaProjetos {
         }
     
         // Seleciona todos os slides exceto o slide1
-        const slidesParaRemover = Array.from(swiperWrapper.querySelectorAll('.swiper-slide:not([data-hash="slide1"])'));
+        const slidesParaRemover = Array.from(swiperWrapper.querySelectorAll(':scope > .swiper-slide:not([data-hash="slide1"])'));
     
         // Remove todos os slides exceto o slide1
         slidesParaRemover.forEach(slide => swiperWrapper.removeChild(slide));
