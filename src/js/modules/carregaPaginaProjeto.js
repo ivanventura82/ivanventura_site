@@ -67,7 +67,7 @@ export default class CarregaPaginaProjeto {
     atualizarMetaTags(projeto) {
         if (projeto) {
             // Atualiza o título da página usando a propriedade 'title' do projeto
-            document.title = `${projeto.title} - Arquitetura Ivan Ventura`;
+            document.title = `| ${projeto.title}`;
     
             // Localiza a tag meta 'description' e atualiza seu conteúdo com a propriedade 'description' do projeto
             const metaDescription = document.querySelector('meta[name="description"]');
