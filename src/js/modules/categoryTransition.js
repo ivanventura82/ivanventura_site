@@ -4,7 +4,41 @@ import CarregaProjetos from './carregaProjetos.js';
 import installProjectEntrance from './projectEntrance.js';
 
 // Category navigation keeps the current document and its persistent navigation.
+function shortenHandoff(timeline) {
+  if (!timeline) return;
+  const remaining = Math.max(0, timeline.duration() - timeline.time());
+  timeline.timeScale(Math.max(timeline.timeScale(), remaining / 0.12, 1));
+}
+
 export default async function transitionCategory(owner, category) {
+  owner.pendingCategory = category;
+  owner.pendingProjectHash = null;
+  if (owner.categoryRequestRunning) {
+    shortenHandoff(owner.categoryTimeline);
+    return;
+  }
+  owner.categoryRequestRunning = true;
+  try {
+    const swiper = owner.swiper;
+    if (!swiper || swiper.destroyed) return;
+    if (swiper.animating) {
+      await new Promise(resolve => {
+        swiper.once('transitionEnd', resolve);
+        shortenHandoff(owner.motion?.timeline);
+      });
+    }
+    while (owner.pendingCategory !== null && owner.pendingCategory !== undefined) {
+      const next = owner.pendingCategory;
+      owner.pendingCategory = null;
+      await performCategoryTransition(owner, next);
+    }
+  } finally {
+    owner.categoryRequestRunning = false;
+    owner.pendingCategory = null;
+  }
+}
+
+async function performCategoryTransition(owner, category) {
   if (owner.categoryBusy) return;
   const swiper = owner.swiper;
   if (!swiper || swiper.animating) return;
@@ -31,6 +65,9 @@ export default async function transitionCategory(owner, category) {
     cover.srcset = [720,1024,1920].map(w => `/img/${first.datahash}/${first.imagemhome}-${w}w.webp ${w}w`).join(',');
     cover.src = `/img/${first.datahash}/${first.imagemhome}.webp`;
     await waitForImage(cover);
+    // Superseded loading requests never replace the visible category.
+    if (owner.pendingCategory && owner.pendingCategory !== category) return;
+    owner.pendingCategory = null;
 
     owner.markActiveLink(category);
     if (owner.menuProjetos.isOpen) owner.menuProjetos.closeAfterSelection();
@@ -83,11 +120,13 @@ export default async function transitionCategory(owner, category) {
     if (!owner.motion.media.matches) {
       await new Promise(resolve => {
         timeline = gsap.timeline({onComplete:resolve});
+        owner.categoryTimeline = timeline;
         timeline.to(oldLines,{autoAlpha:0,y:-direction*18,rotation:-direction,duration:.24,stagger:.045,ease:'power2.in'},0);
         timeline.to(overlay,{clipPath:direction === 1 ? 'inset(0% 0% 100% 0%)' : 'inset(100% 0% 0% 0%)',duration:.72,ease:'portfolio-edge'},.10);
         timeline.to(overlay.querySelectorAll('.slide-background-img, .project-photo-window img'),{scale:1.18,duration:.82,ease:'portfolio-zoom'},.06);
         timeline.fromTo(photo,{scale:1.18},{scale:1.08,duration:.94,ease:'portfolio-zoom'},.06);
         timeline.fromTo(newLines,{autoAlpha:0,y:direction*22,rotation:direction*1.2},{autoAlpha:1,y:0,rotation:0,duration:.39,stagger:.065,ease:'portfolio-in'},.61);
+        if (owner.pendingCategory) shortenHandoff(timeline);
       });
     }
     if (!owner.categoryHistoryBound) {
@@ -105,7 +144,9 @@ export default async function transitionCategory(owner, category) {
   } finally {
     timeline?.kill(); overlay?.remove();
     if (wasEnabled && !swiper.destroyed) swiper.enable();
+    owner.categoryTimeline = null;
     owner.categoryBusy = false;
+    if (owner.pendingCategory === category) owner.pendingCategory = null;
   }
 }
 
