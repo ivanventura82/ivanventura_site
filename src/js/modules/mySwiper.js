@@ -567,10 +567,13 @@ export default class MySwiper {
   }
 
   installResponsiveWheel() {
-    if (this.responsiveWheelBound || !(this.isHome || this.projectMotion)) return;
+    if (this.responsiveWheelBound || !(this.isHome || this.projectMotion || this.isEstudioPage())) return;
     this.responsiveWheelBound = true;
     let accumulated = 0, lastEvent = 0, lastAccepted = -Infinity;
     this.swiper.el.addEventListener('wheel', event => {
+      // Preserve independently scrollable nested studio carousels.
+      const nestedSwiper = event.target.closest?.('.swiper')?.swiper;
+      if (nestedSwiper && nestedSwiper !== this.swiper && nestedSwiper.mousewheel?.enabled) return;
       if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY) || !event.deltaY) return;
       const direction = Math.sign(event.deltaY);
       // Let overflowing descriptions and menus scroll normally.
