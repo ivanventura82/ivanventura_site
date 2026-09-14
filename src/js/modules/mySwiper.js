@@ -602,8 +602,8 @@ export default class MySwiper {
       this.pendingWheelDirection = direction;
       const timeline = this.motion?.timeline;
       if (this.swiper.animating && timeline) {
-        const remaining = Math.max(0, timeline.duration() - timeline.time());
-        timeline.timeScale(Math.max(timeline.timeScale(), remaining / 0.12, 1));
+        // Increase gently per tick, preserving the wipe instead of rushing its remainder.
+        timeline.timeScale(Math.min(1.6, Math.max(1, timeline.timeScale()) + 0.12));
       } else this.flushWheelNavigation();
     }, {capture:true, passive:false});
   }
@@ -616,7 +616,7 @@ export default class MySwiper {
     if (target === this.swiper.activeIndex) return;
     this.swiper.slideTo(target, this.swiper.params.speed);
     const timeline = this.motion?.timeline;
-    if (this.wheelBurst && timeline) timeline.timeScale(Math.max(1, timeline.duration() / 0.35));
+    if (this.wheelBurst && timeline) timeline.timeScale(1.35);
   }
 
   navigateToSlide(hash) {
