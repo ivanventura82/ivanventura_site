@@ -76,6 +76,8 @@ async function performCategoryTransition(owner, category) {
     overlay.removeAttribute('id');
     overlay.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
     overlay.className = 'category-transition-cover';
+    // Preserve the photo shade without registering this temporary layer as a Swiper slide.
+    overlay.classList.toggle('com-imagem-de-fundo', previous.classList.contains('com-imagem-de-fundo'));
     overlay.setAttribute('aria-hidden', 'true'); overlay.inert = true;
     overlay.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;z-index:20;overflow:hidden;pointer-events:none;display:flex;align-items:center;justify-content:center;background:' + getComputedStyle(previous).backgroundColor;
     swiper.el.appendChild(overlay);
