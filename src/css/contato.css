@@ -38,7 +38,6 @@ body.editorial-motion .slide-content.container__contato {
   .container__contato .main__title > span { font-size:clamp(36px,8.6vw,62px); }
   .container__contato .contato { grid-template-columns:1fr; gap:24px; padding-bottom:12px; }
   }
-@media(prefers-reduced-motion:reduce) { 
 /* The actual five logo strokes, enlarged and moving independently. */
 .contact-logo-lines {
   position:absolute; right:-23%; top:-8%; width:110vw; height:110vh;
