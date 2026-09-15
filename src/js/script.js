@@ -1,3 +1,4 @@
+import installContactLiquid from './modules/contactLiquid.js';
 import MenuMobile from './modules/menu-mobile.js';
 import MenuProjetos from './modules/menu-projetos.js';
 import MySwiper from './modules/mySwiper.js';
@@ -44,6 +45,7 @@ const mySwiper = new MySwiper(menuProjetos);
 mySwiper.initialize();
 installProjectEntrance(mySwiper);
 installHomeReturn(mySwiper);
+installContactLiquid();
     
 const urlParams = new URLSearchParams(window.location.search);
 const categoriaInicial = urlParams.get('filter') || 'selecionado'; // Usa 'selecionado' como padrão, se não houver filtro
