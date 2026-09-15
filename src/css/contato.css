@@ -30,9 +30,6 @@ body.editorial-motion .slide-content.container__contato {
 }
 .container__contato .contato .contact-whatsapp:hover { background:#55534c; }
 .container__contato .contato .contact-phone { font-size:12px; color:#75736d; }
-.contact-orbit { position:absolute; right:6%; top:8%; width:min(49vw,650px); height:auto; aspect-ratio:1; color:#8e8a7f; opacity:.17; pointer-events:none; z-index:0; }
-.contact-orbit svg { width:100%; height:100%; animation:contact-orbit-turn 65s linear infinite; transform-origin:center; }
-@keyframes contact-orbit-turn { to { transform:rotate(360deg); } }
 @media(max-width:1050px) {
   .container__contato .contato { grid-template-columns:1fr 1fr; gap:26px 32px; }
 }
@@ -40,6 +37,29 @@ body.editorial-motion .slide-content.container__contato {
   body.editorial-motion .slide-content.container__contato { width:calc(100% - 56px); margin:0 28px; gap:30px; max-height:74vh; max-height:74dvh; }
   .container__contato .main__title > span { font-size:clamp(36px,8.6vw,62px); }
   .container__contato .contato { grid-template-columns:1fr; gap:24px; padding-bottom:12px; }
-  .contact-orbit { right:-22%; top:12%; width:85vw; opacity:.10; }
+  }
+@media(prefers-reduced-motion:reduce) { 
+/* The actual five logo strokes, enlarged and moving independently. */
+.contact-logo-lines {
+  position:absolute; right:-23%; top:-8%; width:110vw; height:110vh;
+  color:#8e8a7f; opacity:.23; pointer-events:none; z-index:0; overflow:visible;
 }
-@media(prefers-reduced-motion:reduce) { .contact-orbit svg { animation:none; } }
+.contact-logo-lines svg { width:100%; height:100%; overflow:visible; }
+.contact-logo-bar {
+  stroke:currentColor; stroke-width:.12; fill:none;
+  transform-box:fill-box; transform-origin:center;
+  animation:contact-logo-drift 26s ease-in-out infinite;
+}
+.contact-logo-bar.bar-1 { --dx:-3px; --dy:3px; --turn:-5deg; }
+.contact-logo-bar.bar-2 { --dx:-1px; --dy:-4px; --turn:4deg; }
+.contact-logo-bar.bar-3 { --dx:2px; --dy:3px; --turn:-3deg; }
+.contact-logo-bar.bar-4 { --dx:3px; --dy:-3px; --turn:5deg; }
+.contact-logo-bar.bar-5 { --dx:5px; --dy:2px; --turn:-4deg; }
+@keyframes contact-logo-drift {
+  0%,100% { transform:translate(var(--dx),var(--dy)) rotate(var(--turn)); }
+  45%,55% { transform:translate(0,0) rotate(0); }
+}
+@media(max-width:800px) {
+  .contact-logo-lines { right:-75%; top:0; width:185vw; height:85vh; opacity:.16; }
+}
+@media(prefers-reduced-motion:reduce) { .contact-logo-bar { animation:none; } }
