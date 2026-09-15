@@ -13,7 +13,7 @@ export default function installHomeReturn(owner) {
     const editorialTarget=/\/(estudio|contato)(\.html)?\/?$/.test(url.pathname);
     if(!isLogo && !editorialTarget)return;
     const destination=isLogo ? '/index.html?return=logo' : url.href;
-    const background=!isLogo && /\/estudio/.test(url.pathname) ? '#f8f8f8' : '#fff';
+    const background=isLogo ? '#fff' : /\/estudio/.test(url.pathname) ? '#f8f8f8' : '#f5f4f0';
     event.preventDefault();
     if(leaving || owner.categoryBusy)return;
     leaving=true;

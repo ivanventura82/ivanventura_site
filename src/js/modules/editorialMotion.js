@@ -31,7 +31,7 @@ export default class EditorialMotion extends HomeMotion {
     if (isTitle) {
       if (first) this.lines(slide).forEach((line,index)=>{
         this.timeline.fromTo(line,{autoAlpha:0,y:direction*MOTION.entryDistance,rotation:direction*MOTION.entryRotation,transformOrigin:'0% 50%',clearProps:'clipPath'},
-          {autoAlpha:1,y:0,rotation:0,duration:MOTION.entryDuration,ease:'portfolio-in'},.06+index*MOTION.lineStagger);
+          {autoAlpha:1,y:0,rotation:0,duration:MOTION.entryDuration,ease:'portfolio-in'},line.closest('.contato') ? .45 + [...line.parentElement.children].indexOf(line)*.09 : .06+index*MOTION.lineStagger);
       });
       return;
     }
