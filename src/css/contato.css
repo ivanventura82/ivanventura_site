@@ -18,7 +18,7 @@ body.editorial-motion .slide-content.container__contato {
 .container__contato .contato {
  width:100%; display:grid; grid-template-columns:1fr 1.6fr 1.4fr .8fr;
  align-items:start; gap:clamp(24px,3vw,48px); opacity:1; animation:none;
- padding:28px 0 8px; border-top:1px solid rgba(52,52,47,.18);
+ padding:28px 0 8px; border-top:0;
 }
 .container__contato .contato > div {
  display:flex; flex-direction:column; align-items:flex-start; gap:16px; min-width:0;
