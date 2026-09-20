@@ -70,8 +70,17 @@
   text-transform: capitalize;
 }
 
-.slide__title__link:hover * {
-  opacity: 0.6 !important;
+.link__title .slide__title__arrow {
+  transition: transform .3s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .link__title:hover .slide__title__arrow { transform: translateX(4px); }
+}
+.link__title:focus-visible .slide__title__arrow { transform: translateX(4px); }
+@media (prefers-reduced-motion: reduce) {
+  .link__title .slide__title__arrow { transition: none; }
+  .link__title:hover .slide__title__arrow,
+  .link__title:focus-visible .slide__title__arrow { transform: none; }
 }
 
 .subtitle__part2, .subtitle__part3 {
