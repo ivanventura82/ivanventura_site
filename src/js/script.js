@@ -4,7 +4,7 @@ import MenuProjetos from './modules/menu-projetos.js';
 import MySwiper from './modules/mySwiper.js';
 import installProjectEntrance from './modules/projectEntrance.js';
 import installHomeReturn from './modules/homeReturn.js';
-import HoverInteraction  from './modules/premios-content.js';
+import AwardsGallery from './modules/awardsGallery.js';
 import CarregaProjetos from './modules/carregaProjetos.js';
 import CarregaPaginaProjeto from './modules/carregaPaginaProjeto.js';
 
@@ -39,10 +39,11 @@ const elementsToAnimate = [
 const menuProjetos = new MenuProjetos('[data-menu-projetos="button"]', '[data-menu-projetos="list"]');
 menuProjetos.init();
 
-new HoverInteraction();
+
 
 const mySwiper = new MySwiper(menuProjetos);
 mySwiper.initialize();
+new AwardsGallery(mySwiper);
 installProjectEntrance(mySwiper);
 installHomeReturn(mySwiper);
 installContactLiquid();

@@ -8,7 +8,7 @@ export default class EditorialMotion extends HomeMotion {
   }
   get duration() { return 1600; }
   lines(slide) {
-    return slide ? [...slide.querySelectorAll('.main__title > span, .texto__ivan > div, .texto__ivan > h3, #foto__ivan, .premios__title, .premios, .studio > .mySwiper2, .estudio__onde, .contato > div')] : [];
+    return slide ? [...slide.querySelectorAll('.main__title > span, .texto__ivan > div, .texto__ivan > h3, #foto__ivan, .premios__title, .premios, .awards-list, .awards-viewer, .studio > .mySwiper2, .estudio__onde, .contato > div')] : [];
   }
   photos() { return []; }
   prepare(slide) {

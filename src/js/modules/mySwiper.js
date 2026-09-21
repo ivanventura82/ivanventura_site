@@ -571,6 +571,7 @@ export default class MySwiper {
     this.responsiveWheelBound = true;
     let accumulated = 0, lastEvent = 0, lastAccepted = -Infinity;
     this.swiper.el.addEventListener('wheel', event => {
+      if (this.awardsGallery?.wheel(event)) return;
       // Preserve independently scrollable nested studio carousels.
       const nestedSwiper = event.target.closest?.('.swiper')?.swiper;
       if (nestedSwiper && nestedSwiper !== this.swiper && nestedSwiper.mousewheel?.enabled) return;
