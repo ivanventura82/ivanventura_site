@@ -20,9 +20,10 @@ export default class AwardsGallery {
     this.media = matchMedia('(prefers-reduced-motion: reduce)');
     const root = this.slide.querySelector('.studio');
     root.classList.add('awards-editorial', 'swiper-no-swiping');
-    root.innerHTML = '<div class="awards-index"><h2 class="premios__title">Prêmios</h2><div class="awards-list" role="group" aria-label="Selecionar prêmio"></div></div><div class="awards-viewer"><div class="awards-stage" id="award-photo"></div><div class="awards-caption" aria-live="polite"><div><h3></h3><p></p></div><a class="awards-project">Ver projeto <img src="./img/logo-r.svg" alt=""></a></div><div class="awards-controls"><button type="button" class="awards-prev" aria-label="Prêmio anterior">←</button><span class="awards-counter"></span><button type="button" class="awards-next" aria-label="Próximo prêmio">→</button></div></div>';
+    root.innerHTML = '<div class="awards-index"><h2 class="premios__title">Prêmios</h2><div class="awards-list" role="group" aria-label="Selecionar prêmio"></div></div><div class="awards-viewer"><div class="awards-stage" id="award-photo"></div><div class="awards-caption" aria-live="polite"><div class="awards-placement"></div><div><h3></h3><p></p></div><a class="awards-project">Ver projeto <img src="./img/logo-r.svg" alt=""></a></div><div class="awards-controls"><button type="button" class="awards-prev" aria-label="Prêmio anterior">←</button><span class="awards-counter"></span><button type="button" class="awards-next" aria-label="Próximo prêmio">→</button></div></div>';
     this.root = root; this.list = root.querySelector('.awards-list'); this.stage = root.querySelector('.awards-stage');
     this.caption = root.querySelector('.awards-caption');
+    root.querySelector('.awards-index').append(this.caption);
     this.buttons = this.items.map((item, i) => {
       const b = document.createElement('button'); b.type = 'button'; b.className = 'awards-item';
       b.setAttribute('aria-controls', 'award-photo');
@@ -74,7 +75,8 @@ export default class AwardsGallery {
     const item = this.items[this.index];
     this.buttons.forEach((b,i) => { b.classList.toggle('is-selected',i===this.index); b.setAttribute('aria-pressed',String(i===this.index)); });
     this.caption.querySelector('h3').textContent = item.title;
-    this.caption.querySelector('p').textContent = item.year + ' · ' + item.result;
+    this.caption.querySelector('.awards-placement').textContent = item.result;
+    this.caption.querySelector('p').textContent = item.year;
     const link = this.caption.querySelector('a'); link.hidden = !item.href;
     if (item.href) link.setAttribute('href',item.href); else link.removeAttribute('href');
     this.root.querySelector('.awards-counter').textContent = String(this.index+1).padStart(2,'0') + ' / ' + String(this.items.length).padStart(2,'0');

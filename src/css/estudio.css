@@ -552,3 +552,52 @@ body.editorial-motion [data-hash="sobre"] .slide-content.studio {
   [data-hash="sobre"] .texto__ivan h3 { font-size:18px; line-height:1.5; padding-top:20px; }
   [data-hash="sobre"] #foto__ivan { max-width:362px; max-height:none; height:auto; justify-self:center; }
 }
+
+/* Unified studio headings and single-award typographic composition. */
+body.editorial-motion :is([data-hash="premios"],[data-hash="publicacoes"],[data-hash="sobre"]) > .slide-content-position {
+  box-sizing:border-box;justify-content:flex-start;padding-top:clamp(104px,16vh,168px);
+}
+body.editorial-motion :is([data-hash="premios"],[data-hash="publicacoes"],[data-hash="sobre"]) .slide-content.studio {
+  width:calc(100% - 160px);max-width:1440px;margin:0 auto;
+}
+body.editorial-motion :is([data-hash="premios"],[data-hash="publicacoes"]) .premios__title,
+body.editorial-motion [data-hash="sobre"] .profile-title {
+  font:400 clamp(40px,4.8vw,76px)/1.05 "Inter",sans-serif;letter-spacing:-.055em;color:#252520;margin:0;
+}
+body.editorial-motion [data-hash="sobre"] .profile-title {margin-bottom:30px;}
+body.editorial-motion [data-hash="premios"] .slide-content.awards-editorial {
+  grid-template-columns:minmax(0,.65fr) minmax(0,1.35fr);gap:clamp(32px,4vw,72px);
+}
+.awards-index .awards-list {display:none;}
+.awards-index .awards-caption {display:flex;flex-direction:column;gap:26px;margin:clamp(32px,6vh,70px) 0 0;}
+.awards-placement {font:400 clamp(28px,3.25vw,50px)/1.12 "Inter",sans-serif;letter-spacing:-.045em;color:#252520;max-width:12ch;}
+.awards-index .awards-caption h3 {font:400 clamp(20px,2.05vw,32px)/1.2 "Inter",sans-serif;letter-spacing:-.035em;}
+.awards-index .awards-caption p {font-size:14px;margin-top:16px;}
+.awards-index .awards-project {margin-top:6px;}
+.awards-viewer {padding-top:0;}
+.awards-stage {height:51vh;height:51dvh;max-height:590px;}
+.awards-controls {justify-content:space-between;margin-top:18px;}
+body.editorial-motion [data-hash="sobre"] .slide-content.studio {
+  max-height:calc(100dvh - clamp(104px,16vh,168px) - 90px);
+}
+@media(max-width:800px) {
+  body.editorial-motion :is([data-hash="premios"],[data-hash="publicacoes"],[data-hash="sobre"]) > .slide-content-position {padding-top:104px;}
+  body.editorial-motion :is([data-hash="premios"],[data-hash="publicacoes"],[data-hash="sobre"]) .slide-content.studio {width:calc(100% - 56px);margin:0 28px;}
+  body.editorial-motion :is([data-hash="premios"],[data-hash="publicacoes"]) .premios__title,
+  body.editorial-motion [data-hash="sobre"] .profile-title {font-size:40px;}
+  body.editorial-motion [data-hash="premios"] .slide-content.awards-editorial {gap:20px;}
+  .awards-index .awards-caption {margin-top:22px;gap:12px;}
+  .awards-placement {font-size:28px;max-width:none;}
+  .awards-index .awards-caption h3 {font-size:18px;}
+  .awards-index .awards-caption p {font-size:12px;margin-top:6px;}
+  .awards-index .awards-project {margin:0;}
+  .awards-stage {height:29vh;height:29dvh;}
+  .awards-controls {margin-top:8px;}
+  body.editorial-motion [data-hash="sobre"] .slide-content.studio {max-height:calc(100dvh - 194px);}
+}
+@media(max-height:650px) and (min-width:801px) {
+  body.editorial-motion :is([data-hash="premios"],[data-hash="publicacoes"],[data-hash="sobre"]) > .slide-content-position {padding-top:90px;}
+  .awards-index .awards-caption {margin-top:24px;gap:14px;}
+  .awards-placement {font-size:30px;}
+  .awards-index .awards-caption h3 {font-size:20px;}
+}
