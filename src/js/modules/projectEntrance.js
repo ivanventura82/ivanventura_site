@@ -9,6 +9,47 @@ const zoom = CustomEase.create('project-entry-zoom', MOTION.zoomCurve);
 export default function installProjectEntrance(owner) {
   const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
   let leaving = false, leaveTimeline = null, leavingSlide = null;
+  if (document.querySelector('a.awards-stage')) {
+    let awardCover = null, awardTimeline = null, awardLeaving = false;
+    const restoreAward = () => {
+      awardTimeline?.kill(); awardCover?.remove();
+      awardCover = null; awardLeaving = false;
+      gsap.set(document.querySelectorAll('.awards-caption,.awards-controls'), {clearProps:'opacity,visibility,transform'});
+      owner.swiper?.enable();
+    };
+    document.addEventListener('click', event => {
+      const link = event.target.closest('a.awards-stage[href]');
+      if (!link || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || reduced()) return;
+      const url = new URL(link.href, location.href);
+      if (url.origin !== location.origin || !url.pathname.endsWith('/projeto.html')) return;
+      if (awardLeaving) { event.preventDefault(); return; }
+      // Finish the current reveal so the photograph and its destination agree.
+      owner.awardsGallery?.timeline?.progress(1);
+      const photo = link.querySelector('.awards-photo:last-child img');
+      if (!photo?.complete || !photo.naturalWidth) return;
+      const id = url.searchParams.get('datahash');
+      try { sessionStorage.setItem(key, JSON.stringify({id,src:photo.currentSrc || photo.src,at:Date.now()})); }
+      catch (_) { return; }
+      event.preventDefault(); awardLeaving = true;
+      owner.swiper?.disable();
+      const rect = link.getBoundingClientRect();
+      awardCover = document.createElement('div');
+      awardCover.setAttribute('aria-hidden','true');
+      awardCover.style.cssText = 'position:fixed;z-index:10;overflow:hidden;pointer-events:none;background:#f5f4f0;';
+      const image = photo.cloneNode();
+      image.alt = ''; image.style.cssText='display:block;width:100%;height:100%;object-fit:cover;transform-origin:center;';
+      const shade = document.createElement('div');
+      shade.style.cssText='position:absolute;inset:0;background:rgba(0,0,0,.2);opacity:0;';
+      awardCover.append(image,shade); document.body.append(awardCover);
+      gsap.set(awardCover,{left:rect.left,top:rect.top,width:rect.width,height:rect.height});
+      awardTimeline = gsap.timeline({onComplete:()=>location.assign(url.href)});
+      awardTimeline.to(document.querySelectorAll('.awards-caption,.awards-controls'),{autoAlpha:0,y:-10,duration:.25,ease:'power2.in'},0);
+      awardTimeline.to(awardCover,{left:0,top:0,width:innerWidth,height:innerHeight,duration:.7,ease:zoom},0);
+      awardTimeline.to(image,{scale:1.10,duration:.7,ease:zoom},0);
+      awardTimeline.to(shade,{opacity:1,duration:.5,ease:'power1.inOut'},.15);
+    });
+    window.addEventListener('pageshow', () => { if (awardLeaving) restoreAward(); });
+  }
   if (document.body.id === 'index-page') {
     document.addEventListener('click', event => {
       const link = event.target.closest('a.link__title');
