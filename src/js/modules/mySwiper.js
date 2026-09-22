@@ -73,7 +73,7 @@ export default class MySwiper {
 
     if (menuLateral) {
       this.initializeMenuLateral(menuLateral);
-      menuLateral.style.display = 'none'; // Hide menu lateral initially
+      menuLateral.style.display = this.isEstudioPage() ? 'flex' : 'none';
     }
 
     // Collect slides and menu items
@@ -139,14 +139,7 @@ export default class MySwiper {
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
-          renderBullet: (index, className) => {
-            const slide = document.querySelectorAll('.mySwiper > .swiper-wrapper > .swiper-slide')[index];
-            const labels = {slide1:'Estúdio', escritorio:'Escritório', sobre:'Ivan Ventura', premios:'Prêmios', publicacoes:'Publicações'};
-            const label = this.isEstudioPage() && !this.isHome && labels[slide?.dataset.hash];
-            return label
-              ? '<span class="' + className + ' studio-section-bullet"><span class="studio-section-label">' + label + '</span></span>'
-              : '<span class="' + className + '"></span>';
-          },
+
         },
         on: {
           slideChangeTransitionStart: this.handleSlideChangeStart.bind(this),
@@ -276,7 +269,7 @@ export default class MySwiper {
   }
 
   setupEventListeners() {
-    if (this.isHome && !this.lateralClicksBound) {
+    if ((this.isHome || this.isEstudioPage()) && !this.lateralClicksBound) {
       this.lateralClicksBound = true;
       document.addEventListener('click', event => {
         const link = event.target.closest?.('.project-menu-item');
@@ -450,7 +443,7 @@ export default class MySwiper {
 
     if (!pagination || !menuLateral) return;
 
-    const deveExibir = currentSlideIndex > 0 || this.filtroAtivo;
+    const deveExibir = this.isEstudioPage() || currentSlideIndex > 0 || this.filtroAtivo;
     pagination.style.display = menuLateral.style.display = deveExibir ? 'flex' : 'none';
     pagination.style.opacity = deveExibir ? '1' : '0';
     if (this.filtroAtivo) {
@@ -640,7 +633,7 @@ export default class MySwiper {
     if (targetSlideIndex === -1) return;
     this.pendingProjectHash = null;
     if (targetSlideIndex === this.swiper.activeIndex) return;
-    const timeline = this.homeMotion?.timeline;
+    const timeline = (this.homeMotion || this.editorialMotion)?.timeline;
     if (this.swiper.animating && timeline) {
       // Latest choice wins; complete the current handoff within 120ms.
       this.pendingProjectHash = hash;
@@ -721,12 +714,12 @@ export default class MySwiper {
     }
 
     if (menuLateral) {
-      const displayStyle = currentSlideIndex >= 1 ? 'flex' : 'none';
+      const displayStyle = this.isEstudioPage() || currentSlideIndex >= 1 ? 'flex' : 'none';
       menuLateral.style.display = displayStyle;
     }
 
     if (pagination && menuLateral) {
-      const deveExibir = currentSlideIndex > 0 || this.filtroAtivo;
+      const deveExibir = this.isEstudioPage() || currentSlideIndex > 0 || this.filtroAtivo;
       pagination.style.display = deveExibir ? 'flex' : 'none';
       menuLateral.style.display = deveExibir ? 'flex' : 'none';
       // Ajusta a opacidade da paginação para 1 quando deve ser exibida, e para 0 quando não

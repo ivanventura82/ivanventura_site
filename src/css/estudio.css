@@ -610,22 +610,6 @@ body.editorial-motion [data-hash="sobre"] .slide-content.studio {
 .awards-controls .awards-prev:is(:hover,:focus-visible) img { transform:translateX(-4px) rotate(180deg); }
 @media(prefers-reduced-motion:reduce) { .awards-controls button img { transition:none; } }
 
-/* Reveal the studio section names when approaching the side navigation. */
-.studio-section-label { display:none; }
-@media (min-width:801px) {
-  .swiper-pagination:has(.studio-section-bullet) { overflow:visible; }
-  .swiper-pagination .studio-section-bullet { transition:width .3s ease,background-color .3s ease; }
-  .studio-section-label {
-    display:block;position:absolute;right:0;top:50%;transform:translate(8px,-50%);
-    white-space:nowrap;font:400 16px/1.2 "Inter",sans-serif;color:#62615d;
-    opacity:0;visibility:hidden;transition:opacity .3s ease,transform .3s ease,visibility .3s;
-  }
-  .swiper-pagination:has(.studio-section-bullet):is(:hover,:focus-within) { width:180px!important; }
-  .swiper-pagination:is(:hover,:focus-within) .studio-section-bullet { width:140px;background:transparent; }
-  .swiper-pagination:is(:hover,:focus-within) .studio-section-label { opacity:1;visibility:visible;transform:translate(0,-50%); }
-  .studio-section-bullet:is(:hover,:focus-visible,.swiper-pagination-bullet-active) .studio-section-label { color:#252520; }
-  .studio-section-bullet:focus-visible { outline:1px solid #62615d;outline-offset:9px; }
-}
-@media(prefers-reduced-motion:reduce) {
-  .swiper-pagination .studio-section-bullet,.studio-section-label { transition:none; }
-}
+/* Studio shares the project side menu; only the light-background text changes. */
+body.editorial-motion .studio-menu-lateral .project-menu-hover a { color:var(--text); }
+body.editorial-motion .studio-menu-lateral .project-menu-hover a.active { color:var(--textcontrast); }
