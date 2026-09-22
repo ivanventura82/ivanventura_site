@@ -21,7 +21,7 @@ export default function installProjectEntrance(owner) {
       const link = event.target.closest('a.awards-stage[href]');
       if (!link || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || reduced()) return;
       const url = new URL(link.href, location.href);
-      if (url.origin !== location.origin || !url.pathname.endsWith('/projeto.html')) return;
+      if (url.origin !== location.origin || !/^\/projeto(?:\.html)?\/?$/.test(url.pathname)) return;
       if (awardLeaving) { event.preventDefault(); return; }
       // Finish the current reveal so the photograph and its destination agree.
       owner.awardsGallery?.timeline?.progress(1);
@@ -57,7 +57,7 @@ export default function installProjectEntrance(owner) {
       const url = new URL(link.href, location.href);
       const slide = link.closest('.swiper-slide');
       const photo = slide?.querySelector('.slide-background-img');
-      if (url.origin !== location.origin || !url.pathname.endsWith('/projeto.html') || !photo) return;
+      if (url.origin !== location.origin || !/^\/projeto(?:\.html)?\/?$/.test(url.pathname) || !photo) return;
       if (leaving) { event.preventDefault(); return; }
       const id = url.searchParams.get('datahash');
       try { sessionStorage.setItem(key, JSON.stringify({ id, src: photo.currentSrc || photo.src, at: Date.now() })); }

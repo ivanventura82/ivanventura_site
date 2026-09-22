@@ -690,6 +690,7 @@ export default class MySwiper {
     // this.updateSlideTitlesAndSubtitles(currentSlideIndex, previousSlideIndex);
     this.updateProjectMenu(currentSlideIndex);
     this.updatePaginationAndMenuVisibility(this.swiper.realIndex);
+    this.slideUIManager?.updateUIForSlide(currentSlideIndex);
   }
 
   /**
