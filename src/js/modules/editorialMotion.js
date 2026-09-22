@@ -16,6 +16,7 @@ export default class EditorialMotion extends HomeMotion {
     gsap.set(this.lines(slide),{clearProps:'clipPath'});
   }
   enter(slide, immediate=false, direction=1, onFinish=null) {
+    try {
     const first = !this.activeSlide;
     const isTitle = !!slide?.querySelector('.main__title');
     this.settings = isTitle ? {...MOTION} : {...MOTION,entryDistance:6,exitDistance:6,entryRotation:0,exitRotation:0,lineStagger:.08,entryDuration:.6};
@@ -41,5 +42,12 @@ export default class EditorialMotion extends HomeMotion {
         {clipPath:'inset(0% 0% 0% 0%)',duration:.6,ease:'portfolio-in'},start);
       if (first) this.timeline.fromTo(line,{autoAlpha:0,y:6},{autoAlpha:1,y:0,duration:.6,ease:'portfolio-in'},start);
     });
+    } finally {
+      // Reveal only after GSAP has installed the starting pose in this same task.
+      if (slide) {
+        clearTimeout(window.editorialEntryFallback);
+        document.documentElement.classList.remove('editorial-entry-pending');
+      }
+    }
   }
 }

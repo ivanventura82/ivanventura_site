@@ -15,7 +15,17 @@
      <meta property="og:site_name" content="Ivan Ventura Arquitetura">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-    <script>document.documentElement.classList.add('js');</script>
+    <script>
+      document.documentElement.classList.add('js', 'editorial-entry-pending');
+      // Keep the page readable if the animation bundle cannot load.
+      window.editorialEntryFallback = setTimeout(function () {
+        document.documentElement.classList.remove('editorial-entry-pending');
+      }, 8000);
+    </script>
+    <style>
+      .editorial-entry-pending .mySwiper .main__title > span,
+      .editorial-entry-pending .mySwiper .contato > div { visibility: hidden !important; }
+    </style>
     <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
   </head>
 
