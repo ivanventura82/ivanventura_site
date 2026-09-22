@@ -601,3 +601,11 @@ body.editorial-motion [data-hash="sobre"] .slide-content.studio {
   .awards-placement {font-size:30px;}
   .awards-index .awards-caption h3 {font-size:20px;}
 }
+
+/* Brand arrows for award navigation. */
+.awards-controls button { display:grid;place-items:center;min-width:44px;min-height:44px; }
+.awards-controls button img { display:block;width:22px;height:22px;filter:brightness(0);transition:transform .3s ease; }
+.awards-controls .awards-prev img { transform:rotate(180deg); }
+.awards-controls .awards-next:is(:hover,:focus-visible) img { transform:translateX(4px); }
+.awards-controls .awards-prev:is(:hover,:focus-visible) img { transform:translateX(-4px) rotate(180deg); }
+@media(prefers-reduced-motion:reduce) { .awards-controls button img { transition:none; } }
