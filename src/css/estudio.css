@@ -636,3 +636,29 @@ a.awards-stage:focus-visible { outline:2px solid #77756e;outline-offset:4px; }
   body.editorial-motion [data-hash="sobre"] .profile-title { margin-bottom:24px; }
 }
 [data-hash="sobre"] .texto__ivan .profile-closing { color:#252520;font-weight:500; }
+
+/* Office gallery: project typography, quiet controls, uncropped portrait. */
+.office-section .office-heading {position:absolute;inset:0;z-index:3;pointer-events:none;transition:opacity .3s ease;}
+.office-section .office-heading .slide-content {margin-left:15.5vw;width:70vw;}
+.office-section .main__title span {color:#fff;}
+.office-section .office-location {color:#fff;font:400 clamp(20px,2vw,38px)/1.3 "Inter",sans-serif;margin:12px 0 0;}
+.office-section.office-photo-mode .office-heading {opacity:0;}
+.office-section .mySwiper3 {width:100%;height:100%;}
+.office-section .estudio::after {content:"";position:absolute;inset:0;background:rgba(35,38,38,.2);pointer-events:none;}
+.office-section .office-portrait {background:#e7e5df!important;}
+.office-section .office-portrait .slide-background-img {object-fit:contain!important;}
+.office-controls {position:absolute;left:50%;bottom:10vh;transform:translateX(-50%);display:flex;align-items:center;gap:18px;z-index:4;color:white;}
+.office-controls button {display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:12px;border:0;background:transparent;cursor:pointer;}
+.office-controls img {width:18px;height:18px;filter:brightness(0) invert(1);transition:translate .25s;}
+.office-prev img {transform:rotate(180deg);}
+.office-next:hover img {translate:3px 0;}
+.office-prev:hover img {translate:-3px 0;}
+.office-count {font:400 12px/1 "Inter",sans-serif;letter-spacing:.08em;min-width:52px;text-align:center;}
+.office-controls button:focus-visible {outline:1px solid white;outline-offset:2px;}
+@media(max-width:800px) {
+ .office-section .office-heading .slide-content {margin-left:8vw;width:80vw;}
+ .office-controls {bottom:12vh;}
+}
+@media(prefers-reduced-motion:reduce) {
+ .office-section .office-heading,.office-controls img {transition:none;}
+}

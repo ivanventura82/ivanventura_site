@@ -319,8 +319,8 @@ export default class MySwiper {
       const background = slide.style.backgroundImage;
       const match = background.match(/url\(["']?(.*?)["']?\)/);
       if (match) {
-        const image = new Image(); image.src = match[1]; image.alt = 'Escritório Ivan Ventura';
-        image.className = 'slide-background-img'; slide.appendChild(image);
+        const image = new Image(); image.src = match[1]; image.alt = slide.dataset.photoAlt || 'Escritório Ivan Ventura';
+        image.className = 'slide-background-img'; image.decoding = 'async'; slide.appendChild(image); slide.style.backgroundImage = 'none';
       }
     });
     this.swiper3 = new Swiper(container, {
@@ -330,11 +330,43 @@ export default class MySwiper {
       pagination:{el:container.querySelector('.swiper-pagination-2'),bulletClass:'custom-pagination-bullet-2',clickable:true},
       on:{
         init:swiper=>gallery.enter(swiper.slides[swiper.activeIndex],true),
-        slideChangeTransitionStart:swiper=>gallery.enter(swiper.slides[swiper.activeIndex],false,
-          swiper.activeIndex>=swiper.previousIndex?1:-1,()=>{if(swiper.animating)swiper.transitionEnd();})
+        slideChangeTransitionStart:swiper=>{
+          container.closest('.office-section')?.classList.toggle('office-photo-mode', swiper.activeIndex > 0);
+          const count = container.querySelector('.office-count');
+          if (count) count.textContent = String(swiper.activeIndex+1).padStart(2,'0')+' / '+String(swiper.slides.length).padStart(2,'0');
+          gallery.enter(swiper.slides[swiper.activeIndex],false,
+            swiper.activeIndex>=swiper.previousIndex?1:-1,()=>{
+              if(swiper.animating)swiper.transitionEnd();
+              if (this.officePending) { const direction=this.officePending; this.officePending=0; this.officeStep(direction); }
+            });
+        }
       }
     });
     this.swiper3.init();
+    this.officeStep = direction => {
+      if (this.swiper3.animating) { this.officePending=direction; gallery.timeline?.timeScale(1.35); return; }
+      const target=this.swiper3.activeIndex+direction;
+      if(target>=0 && target<this.swiper3.slides.length) this.swiper3.slideTo(target);
+    };
+    container.querySelector('.office-prev')?.addEventListener('click',()=>this.officeStep(-1));
+    container.querySelector('.office-next')?.addEventListener('click',()=>this.officeStep(1));
+    let lastWheel=-Infinity, accumulated=0, lastEvent=0;
+    this.officeWheel = event => {
+      const outer=this.swiper.slides[this.swiper.activeIndex];
+      if (!outer?.classList.contains('office-section') || !this.swiper.enabled || this.categoryBusy ||
+          event.ctrlKey || !event.deltaY || Math.abs(event.deltaX)>Math.abs(event.deltaY)) return false;
+      const direction=Math.sign(event.deltaY);
+      const atEdge=direction<0 ? this.swiper3.activeIndex===0 : this.swiper3.isEnd;
+      if(atEdge && !this.swiper3.animating && performance.now()-lastWheel>550) return false;
+      event.preventDefault(); event.stopImmediatePropagation();
+      if(this.swiper.animating) return true;
+      const now=performance.now();
+      if(now-lastEvent>180 || Math.sign(accumulated)!==direction) accumulated=0;
+      lastEvent=now;
+      accumulated+=event.deltaY*(event.deltaMode===1?16:event.deltaMode===2?innerHeight:1);
+      if(Math.abs(accumulated)<18 || now-lastWheel<180) return true;
+      accumulated=0; lastWheel=now; this.officeStep(direction); return true;
+    };
     gallery.media.addEventListener('change',()=>{
       this.swiper3.params.speed=gallery.media.matches?0:gallery.duration;
       gallery.enter(this.swiper3.slides[this.swiper3.activeIndex],true);
@@ -574,6 +606,7 @@ export default class MySwiper {
     this.responsiveWheelBound = true;
     let accumulated = 0, lastEvent = 0, lastAccepted = -Infinity;
     this.swiper.el.addEventListener('wheel', event => {
+      if (this.officeWheel?.(event)) return;
       if (this.awardsGallery?.wheel(event)) return;
       // Preserve independently scrollable nested studio carousels.
       const nestedSwiper = event.target.closest?.('.swiper')?.swiper;
