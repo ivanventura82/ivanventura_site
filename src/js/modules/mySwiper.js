@@ -139,6 +139,14 @@ export default class MySwiper {
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
+          renderBullet: (index, className) => {
+            const slide = document.querySelectorAll('.mySwiper > .swiper-wrapper > .swiper-slide')[index];
+            const labels = {slide1:'Estúdio', escritorio:'Escritório', sobre:'Ivan Ventura', premios:'Prêmios', publicacoes:'Publicações'};
+            const label = this.isEstudioPage() && !this.isHome && labels[slide?.dataset.hash];
+            return label
+              ? '<span class="' + className + ' studio-section-bullet"><span class="studio-section-label">' + label + '</span></span>'
+              : '<span class="' + className + '"></span>';
+          },
         },
         on: {
           slideChangeTransitionStart: this.handleSlideChangeStart.bind(this),
