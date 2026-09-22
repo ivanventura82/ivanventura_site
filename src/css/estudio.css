@@ -604,7 +604,7 @@ body.editorial-motion [data-hash="sobre"] .slide-content.studio {
 
 /* Brand arrows for award navigation. */
 .awards-controls button { display:grid;place-items:center;min-width:44px;min-height:44px; }
-.awards-controls button img { display:block;width:22px;height:22px;filter:brightness(0);transition:transform .3s ease; }
+.awards-controls button img { display:block;width:17.6px;height:17.6px;filter:brightness(0);opacity:.5;transition:transform .3s ease; }
 .awards-controls .awards-prev img { transform:rotate(180deg); }
 .awards-controls .awards-next:is(:hover,:focus-visible) img { transform:translateX(4px); }
 .awards-controls .awards-prev:is(:hover,:focus-visible) img { transform:translateX(-4px) rotate(180deg); }
@@ -613,3 +613,14 @@ body.editorial-motion [data-hash="sobre"] .slide-content.studio {
 /* Studio shares the project side menu; only the light-background text changes. */
 body.editorial-motion .studio-menu-lateral .project-menu-hover a { color:var(--text); }
 body.editorial-motion .studio-menu-lateral .project-menu-hover a.active { color:var(--textcontrast); }
+
+/* Keep the studio menu trigger beside its indicators, away from gallery controls. */
+@media(min-width:801px) {
+  body.editorial-motion .studio-menu-lateral {
+    top:50%;bottom:auto;height:160px;width:80px;transform:translateY(-50%);
+  }
+  body.editorial-motion .studio-menu-lateral:is(:hover,:focus-within) { width:260px; }
+}
+a.awards-stage { display:block; }
+a.awards-stage[href] { cursor:pointer; }
+a.awards-stage:focus-visible { outline:2px solid #77756e;outline-offset:4px; }
