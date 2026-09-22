@@ -1,3 +1,4 @@
+import installPaginationPreview from './paginationPreview.js';
 import Swiper from 'swiper';
 import transitionCategory from './categoryTransition.js';
 import { Navigation, Pagination, Scrollbar, Mousewheel, HashNavigation, Manipulation, Keyboard, A11y } from 'swiper/modules';
@@ -82,6 +83,7 @@ export default class MySwiper {
 
     // Setup filter links
     this.setupFilterLinks();
+    installPaginationPreview(this);
     if (this.editorialMotion) {
       document.querySelectorAll('.premios, .editorial-motion .slide-content').forEach(panel => {
         panel.addEventListener('wheel', event => {
