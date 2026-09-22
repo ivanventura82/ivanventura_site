@@ -228,3 +228,5 @@
     display: none;
   }
 }
+/* Match text-only home links and paragraph-wrapped links on inner pages. */
+.menu-principal .nav__button > p { margin:0; }
