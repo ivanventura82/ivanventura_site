@@ -80,10 +80,19 @@
 }
 .project-pagination-preview {
   position:fixed;z-index:1000;width:180px;padding:0;background:transparent;
-  border:0;box-shadow:none;pointer-events:none;opacity:0;visibility:hidden;
+  border:0;border-radius:0;box-shadow:none;pointer-events:none;cursor:pointer;font:inherit;text-align:left;opacity:0;visibility:hidden;
   transform:translateX(6px);transition:opacity .18s,transform .22s,visibility .18s;
 }
-.project-pagination-preview.is-visible {opacity:1;visibility:visible;transform:none;}
+.project-pagination-preview.is-visible {opacity:1;visibility:visible;transform:none;pointer-events:auto;}
+/* Invisible bridge keeps the preview open while crossing from the mark. */
+.project-pagination-preview::after {content:"";position:absolute;top:0;bottom:0;left:100%;width:22px;}
+.project-pagination-preview:focus-visible {outline:2px solid var(--textcontrast);outline-offset:4px;}
+.project-preview-text {position:relative;background:#fff!important;}
+.project-preview-page {position:absolute;left:0;top:0;width:1000px;height:600px;padding:95px 75px;box-sizing:border-box;transform:scale(.18);transform-origin:top left;color:#000;opacity:.24;font:16px/1.6 Arial,sans-serif;}
+.project-preview-page ul {display:flex;gap:28px;margin:0 0 45px;padding:0;list-style:none;}
+.project-preview-page li {flex:1;}
+.project-preview-page p {margin:0 0 18px;}
+.project-preview-heading {position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:12px;color:#111;font:400 25px/1.1 "Inter",sans-serif;letter-spacing:-1px;}
 .project-preview-media {height:108px;display:flex;gap:1px;overflow:hidden;background:transparent;}
 .project-preview-media img {min-width:0;flex:1;width:0;height:100%;object-fit:cover;}
 @media(max-width:800px) { .project-pagination-preview {display:none;} }
