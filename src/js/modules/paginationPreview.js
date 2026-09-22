@@ -15,6 +15,7 @@ export default function installPaginationPreview(owner) {
     if (!slide) return;
     active = bullet; preview.replaceChildren();
     const photos = [...slide.querySelectorAll('.slide-background-img,.project-photo-window img')].slice(0,2);
+    if (!photos.length) { hide(); return; }
     const media = document.createElement('div'); media.className = 'project-preview-media';
     if (photos.length) {
       photos.forEach(photo => {
@@ -23,16 +24,11 @@ export default function installPaginationPreview(owner) {
         img.addEventListener('error', () => { img.remove(); }, {once:true});
         media.appendChild(img);
       });
-    } else {
-      media.classList.add('project-preview-text');
-      media.textContent = slide.querySelector('.detalhes__project') ? 'Ficha técnica' : 'Sobre o projeto';
     }
-    const label = document.createElement('span');
-    label.textContent = photos.length ? (index === 0 ? 'Capa' : 'Imagem ' + (index+1)) : media.textContent;
-    preview.append(media,label);
+    preview.append(media);
     const rect = bullet.getBoundingClientRect();
     preview.style.right = Math.max(12,innerWidth-rect.left+18)+'px';
-    preview.style.top = Math.max(12,Math.min(innerHeight-154,rect.top-65))+'px';
+    preview.style.top = Math.max(12,Math.min(innerHeight-120,rect.top-53))+'px';
     preview.classList.add('is-visible');
   };
   pagination.addEventListener('pointerover', event => {
