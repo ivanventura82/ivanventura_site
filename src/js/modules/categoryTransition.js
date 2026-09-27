@@ -73,13 +73,22 @@ async function performCategoryTransition(owner, category) {
     if (owner.menuProjetos.isOpen) owner.menuProjetos.closeAfterSelection();
     const previous = swiper.slides[swiper.activeIndex];
     overlay = previous.cloneNode(true);
+    // Freeze the visible layout before changing the document's page theme.
+    const sourceNodes=[previous,...previous.querySelectorAll('*')];
+    const cloneNodes=[overlay,...overlay.querySelectorAll('*')];
+    sourceNodes.forEach((source,index)=>{
+      const style=getComputedStyle(source), clone=cloneNodes[index];
+      for(const property of style) clone.style.setProperty(property,style.getPropertyValue(property));
+      clone.style.animation='none'; clone.style.transition='none';
+      if(source instanceof HTMLCanvasElement) clone.getContext('2d')?.drawImage(source,0,0);
+    });
     overlay.removeAttribute('id');
     overlay.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
     overlay.className = 'category-transition-cover';
     // Preserve the photo shade without registering this temporary layer as a Swiper slide.
     overlay.classList.toggle('com-imagem-de-fundo', previous.classList.contains('com-imagem-de-fundo'));
     overlay.setAttribute('aria-hidden', 'true'); overlay.inert = true;
-    overlay.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;z-index:20;overflow:hidden;pointer-events:none;display:flex;align-items:center;justify-content:center;background:' + getComputedStyle(previous).backgroundColor;
+    Object.assign(overlay.style,{position:'absolute',inset:'0',width:'100%',height:'100%',zIndex:'20',overflow:'hidden',pointerEvents:'none',transform:'none',visibility:'visible'});
     swiper.el.appendChild(overlay);
     document.body.classList.add('category-navigation');
     const fromOtherPage = !owner.isHome;
@@ -94,6 +103,13 @@ async function performCategoryTransition(owner, category) {
       owner.swiper2?.destroy(true, true);
       owner.swiper3?.destroy(true, true);
       document.querySelector('.swiper-pagination')?.classList.remove('pagination-estudio');
+      if (!document.querySelector('.pagination')) {
+        const pagination=document.createElement('div');pagination.className='pagination';
+        pagination.innerHTML='<div class="swiper-pagination"></div>';swiper.el.appendChild(pagination);
+        swiper.params.pagination.el=pagination.firstElementChild;
+        swiper.pagination.init();swiper.pagination.render();swiper.pagination.update();
+        owner.initializePagination(pagination.firstElementChild,true);
+      }
       owner.homeMotion = new HomeMotion();
       owner.motion = owner.homeMotion;
       document.getElementById('botao-voltar')?.remove();
@@ -118,6 +134,7 @@ async function performCategoryTransition(owner, category) {
     loader.filtrarEExibirProjetos(category);
     owner.setFiltroAtivo(true);
     owner.markActiveLink(category);
+    owner.slideUIManager?.updateUIForSlide(swiper.activeIndex);
     document.title = 'Ivan Ventura Arquitetura';
     const incoming = swiper.slides[swiper.activeIndex];
     const photo = incoming.querySelector('.slide-background-img');
@@ -125,12 +142,12 @@ async function performCategoryTransition(owner, category) {
     photo.loading = 'eager';
     await waitForImage(photo);
     const newLines = owner.homeMotion.lines(incoming);
-    const oldLines = [...overlay.querySelectorAll('.main__title > span, .link__title > span, .slide__title__link, .bio__project, .detalhes__project')];
+    const oldLines = [...overlay.querySelectorAll('.main__title > span, .link__title > span, .slide__title__link, .bio__project, .detalhes__project, .profile-title, .premios__title, .texto__ivan > p, .contato > div, .awards-caption')];
     if (!owner.motion.media.matches) {
       await new Promise(resolve => {
         timeline = gsap.timeline({onComplete:resolve});
         owner.categoryTimeline = timeline;
-        timeline.to(oldLines,{autoAlpha:0,y:-direction*18,rotation:-direction,duration:.24,stagger:.045,ease:'power2.in'},0);
+        timeline.to(oldLines,{autoAlpha:0,y:-direction*18,rotation:(_,el)=>el.matches('.main__title > span,.link__title > span,.slide__title__link,.profile-title,.premios__title')?-direction:0,duration:.24,stagger:.045,ease:'power2.in'},0);
         timeline.to(overlay,{clipPath:direction === 1 ? 'inset(0% 0% 100% 0%)' : 'inset(100% 0% 0% 0%)',duration:.72,ease:'portfolio-edge'},.10);
         timeline.to(overlay.querySelectorAll('.slide-background-img, .project-photo-window img'),{scale:1.18,duration:.82,ease:'portfolio-zoom'},.06);
         timeline.fromTo(photo,{scale:1.18},{scale:1.08,duration:.94,ease:'portfolio-zoom'},.06);
@@ -167,3 +184,4 @@ async function waitForImage(image) {
     })]);
   } finally { clearTimeout(timeout); }
 }
+

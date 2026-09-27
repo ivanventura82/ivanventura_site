@@ -23,12 +23,13 @@ export default function installHomeReturn(owner) {
     owner.motion?.timeline?.progress(1);
     owner.swiper?.disable();
     const slide=owner.swiper?.slides[owner.swiper.activeIndex];
-    oldLines=slide ? [...slide.querySelectorAll('.main__title > span,.link__title > span,.slide__title__link,.bio__project,.detalhes__project,.contato,.texto__ivan,.premios__title')] : [];
+    oldLines=slide ? [...slide.querySelectorAll('.main__title > span,.link__title > span,.slide__title__link,.bio__project,.detalhes__project,.contato > div,.texto__ivan > p,.profile-title,.premios__title,.awards-caption')] : [];
     overlay=document.createElement('div');overlay.className='home-return-wipe';overlay.setAttribute('aria-hidden','true');
     overlay.style.cssText='position:fixed;inset:0;background:'+background+';z-index:2;pointer-events:none;clip-path:inset(100% 0 0 0)';
     document.body.appendChild(overlay);
     timeline=gsap.timeline({onComplete:()=>location.assign(destination)});
-    timeline.to(oldLines,{autoAlpha:0,y:isLogo?-12:-MOTION.exitDistance,rotation:isLogo?0:-MOTION.exitRotation,duration:isLogo?.22:MOTION.exitDuration,stagger:isLogo?.035:MOTION.lineStagger,ease:isLogo?'power2.in':'portfolio-out'},0);
+    timeline.to(oldLines,{autoAlpha:0,y:isLogo?-12:-MOTION.exitDistance,rotation:(_,element)=>!isLogo && element.matches('.main__title > span,.link__title > span,.slide__title__link,.profile-title,.premios__title') ? -MOTION.exitRotation : 0,duration:isLogo?.22:MOTION.exitDuration,stagger:isLogo?.035:MOTION.lineStagger,ease:isLogo?'power2.in':'portfolio-out'},0);
+    timeline.to(slide?.querySelectorAll('#foto__ivan, .office-section .slide-background-img, .awards-stage') || [],{autoAlpha:0,scale:1.035,duration:.5,ease:'portfolio-zoom'},.06);
     timeline.to(overlay,{clipPath:'inset(0% 0 0 0)',duration:isLogo?.48:.62,ease:isLogo?'power3.inOut':'portfolio-edge'},.08);
     timeline.call(()=>document.querySelectorAll('.menu-principal .white-color').forEach(el=>el.classList.remove('white-color')),null,.42);
   });
@@ -63,3 +64,4 @@ export default function installHomeReturn(owner) {
   document.addEventListener('HomeMotionReady',reveal,{once:true});
   const fallback=setTimeout(reveal,2500);
 }
+
