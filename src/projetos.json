@@ -1256,20 +1256,6 @@
       [
         "notredame2",
         "notredame3"
-      ],
-      [
-        "notredame4"
-      ],
-      [
-        "notredame5",
-        "notredame6"
-      ],
-      [
-        "notredame7"
-      ],
-      [
-        "notredame8",
-        "notredame9"
       ]
     ],
     "detalhes": [
@@ -1481,22 +1467,7 @@
     "imagem1": "fazendarestaurante1",
     "slides": [
       [
-        "fazendarestaurante2",
-        "fazendarestaurante3"
-      ],
-      [
-        "fazendarestaurante4"
-      ],
-      [
-        "fazendarestaurante5",
-        "fazendarestaurante6"
-      ],
-      [
-        "fazendarestaurante7"
-      ],
-      [
-        "fazendarestaurante8",
-        "fazendarestaurante9"
+        "fazendarestaurante2"
       ]
     ],
     "detalhes": ""
