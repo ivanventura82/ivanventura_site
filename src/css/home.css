@@ -171,6 +171,8 @@
 }
 
 .project-menu-hover  {
+  flex-shrink: 0;
+  width: 210px;
   display: flex;
   flex-flow: column;
   margin-right: 50px;
@@ -181,6 +183,7 @@
 }
 
 .project-menu-hover a {
+  white-space: nowrap;
   color: var(--bg);
   font: 1rem/1.2 "Inter", sans-serif;
   cursor: pointer;
