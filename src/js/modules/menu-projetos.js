@@ -76,13 +76,13 @@ export default class MenuProjetos {
       this.clearTimers();
       this.closeTimer = setTimeout(()=>{
         this.closeMenu();
-      },400);
+      },700);
     });
     region.addEventListener('focusin',()=>clearTimeout(this.closeTimer));
     region.addEventListener('focusout',event=>{
       if (!region.contains(event.relatedTarget)) {
         this.clearTimers();
-        this.closeTimer=setTimeout(()=>{if(!region.matches(':hover'))this.closeMenu();},400);
+        this.closeTimer=setTimeout(()=>{if(!region.matches(':hover'))this.closeMenu();},700);
       }
     });
     document.addEventListener('pointerdown', event=>{

@@ -627,10 +627,12 @@ body.editorial-motion .studio-menu-lateral .project-menu-hover a.active { color:
 
 /* Keep the studio menu trigger beside its indicators, away from gallery controls. */
 @media(min-width:801px) {
-  body.editorial-motion .studio-menu-lateral {
+  :is(#index-page .menu-lateral, body.editorial-motion .studio-menu-lateral) {
     top:50%;bottom:auto;height:160px;width:80px;transform:translateY(-50%);
   }
-  body.editorial-motion .studio-menu-lateral:is(:hover,:focus-within) { width:260px; }
+  :is(#index-page .menu-lateral, body.editorial-motion .studio-menu-lateral):is(:hover,:focus-within) { width:260px; }
+  #index-page .swiper-pagination.swiper-pagination-bullets.swiper-pagination-vertical { width:40px; }
+  #index-page .project-menu-hover:not(.show-element) { pointer-events:none; }
 }
 a.awards-stage { display:block; }
 a.awards-stage[href] { cursor:pointer; }

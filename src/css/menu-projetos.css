@@ -76,7 +76,7 @@
 }
 /* A little extra room around Projects without moving the navigation. */
 @media(hover:hover) and (pointer:fine) {
-  [data-menu-projetos="button"]::after { content:"";position:absolute;inset:-14px -16px -14px -8px; }
+  [data-menu-projetos="button"]::after { content:"";position:absolute;inset:calc(-10% - 16.8px) calc(-10% - 19.2px) calc(-10% - 16.8px) calc(-10% - 9.6px); }
 }
 .project-pagination-preview {
   position:fixed;z-index:1000;width:180px;padding:0;background:transparent;
