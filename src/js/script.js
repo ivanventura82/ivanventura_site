@@ -1,3 +1,4 @@
+import installLogoHover from './modules/logoHover.js';
 import installBrandCursor from './modules/brandCursor.js';
 import installContactLiquid from './modules/contactLiquid.js';
 import MenuMobile from './modules/menu-mobile.js';
@@ -49,6 +50,7 @@ installProjectEntrance(mySwiper);
 installHomeReturn(mySwiper);
 installContactLiquid();
 installBrandCursor();
+installLogoHover();
     
 const urlParams = new URLSearchParams(window.location.search);
 const categoriaInicial = urlParams.get('filter') || 'selecionado'; // Usa 'selecionado' como padrão, se não houver filtro
