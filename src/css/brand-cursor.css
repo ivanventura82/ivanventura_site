@@ -1,0 +1,17 @@
+#brand-cursor {
+  position:fixed;left:0;top:0;width:18.75px;height:18.75px;
+  z-index:2147483647;pointer-events:none;opacity:0;
+  mix-blend-mode:difference;will-change:transform;
+}
+#brand-cursor.is-visible {opacity:1;}
+#brand-cursor img {
+  display:block;width:100%;height:100%;pointer-events:none;
+  transform:translate(-50%,-50%) rotate(-135deg);
+  transition:transform .12s ease;
+}
+#brand-cursor.is-link img {transform:translate(-50%,-50%) rotate(-135deg) scale(1.12);}
+@media(hover:hover) and (pointer:fine) {
+  html.brand-cursor-active,html.brand-cursor-active * {cursor:none!important;}
+}
+@media(prefers-reduced-motion:reduce) {#brand-cursor img {transition:none;}}
+@media(hover:none),(pointer:coarse) {#brand-cursor {display:none;}}
