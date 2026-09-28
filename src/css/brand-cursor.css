@@ -6,12 +6,14 @@
 #brand-cursor.is-visible {opacity:1;}
 #brand-cursor img {
   display:block;width:100%;height:100%;pointer-events:none;
-  transform:translate(-50%,-50%) rotate(-135deg);
+  transform:translate(-99.419%,-46.309%) rotate(-135deg);
+  transform-origin:99.419% 46.309%;
   transition:transform .12s ease;
 }
-#brand-cursor.is-link img {transform:translate(-50%,-50%) rotate(-135deg) scale(1.12);}
+#brand-cursor.is-link img {transform:translate(-99.419%,-46.309%) rotate(-135deg) scale(1.12);}
 @media(hover:hover) and (pointer:fine) {
-  html.brand-cursor-active,html.brand-cursor-active * {cursor:none!important;}
+  html.brand-cursor-active,html.brand-cursor-active *,
+  html.brand-cursor-active *::before,html.brand-cursor-active *::after {cursor:none!important;}
 }
 @media(prefers-reduced-motion:reduce) {#brand-cursor img {transition:none;}}
 @media(hover:none),(pointer:coarse) {#brand-cursor {display:none;}}
