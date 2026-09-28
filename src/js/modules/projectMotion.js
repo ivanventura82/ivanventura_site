@@ -29,7 +29,7 @@ export default class ProjectMotion extends HomeMotion {
   prepare(slide) {
     super.prepare(slide);
     const blocks = this.textBlocks(slide);
-    if (blocks.length) gsap.set(blocks, { autoAlpha: 0, y: 0, clipPath: openClip });
+    if (blocks.length) gsap.set(blocks, { force3D: true, autoAlpha: 0, y: 0, clipPath: openClip });
   }
   enter(slide, immediate = false, direction = 1, onFinish = null) {
     const previous = this.activeSlide;

@@ -39,7 +39,7 @@ export default class HomeMotion {
     gsap.set(slide, { visibility: 'hidden', clipPath: 'inset(0% 0% 0% 0%)', zIndex: 0 });
     slide.inert = true;
     const lines = this.lines(slide);
-    if (lines.length) gsap.set(lines, { autoAlpha: 0, y: 0, rotation: 0, transformOrigin: '0% 50%' });
+    if (lines.length) gsap.set(lines, { force3D: true, autoAlpha: 0, y: 0, rotation: 0, transformOrigin: '0% 50%' });
     const photo = this.photos(slide);
     if (photo.length) gsap.set(photo, { scale: this.settings.restingScale, yPercent: 0 });
   }
@@ -52,6 +52,8 @@ export default class HomeMotion {
   }
   enter(slide, immediate = false, direction = 1, onFinish = null) {
     if (!slide) return;
+    // Keep text on the same rendering layer during and after motion.
+    gsap.set(this.lines(slide), { force3D: true });
     const previous = this.activeSlide;
     this.timeline?.kill();
     this.onFinish?.();

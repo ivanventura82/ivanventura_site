@@ -23,6 +23,7 @@ export default class EditorialMotion extends HomeMotion {
       super.enter(slide,immediate,direction,onFinish);
       if (!slide) return;
       const blocks=this.blocks(slide), portrait=slide.querySelector('#foto__ivan');
+      gsap.set(blocks, { force3D:true });
       if (this.media.matches || (immediate && !first)) {
         gsap.set([...blocks,...(portrait?[portrait]:[])],{autoAlpha:1,y:0,rotation:0,clearProps:'clipPath,scale'});
         return;
