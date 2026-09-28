@@ -43,6 +43,16 @@ export default class ProjectMotion extends HomeMotion {
     const start = this.settings.edgeDelay + this.settings.edgeDuration;
     const closedClip = direction === 1 ? 'inset(100% 0% 0% 0%)' : 'inset(0% 0% 100% 0%)';
     blocks.forEach((block, index) => {
+      // Long descriptions fade as a continuous reading block; blank lines do not pause a mask.
+      if (block.matches('p')) {
+        this.timeline.fromTo(block, {
+          autoAlpha: 0, clipPath: openClip, y: direction * 10,
+        }, {
+          autoAlpha: 1, clipPath: openClip, y: 0,
+          duration: .6, ease: textEase,
+        }, start + index * TEXT_WIPE.stagger);
+        return;
+      }
       this.timeline.fromTo(block, {
         autoAlpha: 1, clipPath: closedClip, y: direction * TEXT_WIPE.distance,
       }, {

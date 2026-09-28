@@ -46,3 +46,12 @@ body.editorial-motion .slide-content::-webkit-scrollbar { display:none; }
 body.editorial-motion .premios { max-height:60vh; }
 body.editorial-motion .mySwiper2 > .swiper-wrapper { transition-timing-function:cubic-bezier(.22,.75,.2,1); }
 .editorial-gallery .slide-background-img { width:100%; height:100%; object-fit:cover; }
+
+/* Breathing room inside the reading viewport preserves title and paragraph exits. */
+body.editorial-motion .mySwiper > .swiper-wrapper > .swiper-slide > .slide-content-position .slide-content.studio {
+  padding-top:40px;
+  padding-bottom:40px;
+  margin-top:-40px;
+  margin-bottom:-40px;
+  box-sizing:content-box;
+}
