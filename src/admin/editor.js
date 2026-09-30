@@ -1,5 +1,19 @@
 /* Authentication and repository permissions are enforced by GitHub, via Netlify OAuth. */
 if (window.CMS) {
+  // Root-relative upload URLs bypass Decap's repository asset resolver.
+  // Resolve uploads by filename so local, draft and published files use getAsset.
+  const repositoryAssetPath = value => typeof value === 'string' && value.startsWith('/uploads/')
+    ? value.slice('/uploads/'.length) : value;
+  const imageWidget = CMS.getWidget('image');
+  const RepositoryImageControl = createClass({
+    resolveAsset(value, ...args) {
+      return this.props.getAsset(repositoryAssetPath(value), ...args);
+    },
+    render() {
+      return h(imageWidget.control, {...this.props, getAsset:this.resolveAsset});
+    }
+  });
+  CMS.registerWidget('image', RepositoryImageControl, imageWidget.preview, imageWidget.schema);
   CMS.registerWidget('project-id', createClass({
     componentDidMount() {
       if (!this.props.value) this.props.onChange('p-' + crypto.randomUUID());
@@ -10,7 +24,7 @@ if (window.CMS) {
   CMS.registerPreviewTemplate('projetos', createClass({
     render() {
       const data = this.props.entry.get('data').toJS();
-      const asset = ref => ref ? String(this.props.getAsset(ref)) : '';
+      const asset = ref => ref ? String(this.props.getAsset(repositoryAssetPath(ref))) : '';
       const photo = (ref,key) => ref ? h('img',{key,src:asset(ref),alt:data.title || 'Foto do projeto',loading:'lazy'}) : null;
       const facts = [['Área',data['área'] ? data['área']+' m²' : ''],['Local',data.local],['Co-autor',data['co-autor']],['Ano',data.ano],['Estado',data.estado]];
       return h('article',{},
