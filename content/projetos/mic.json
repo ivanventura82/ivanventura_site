@@ -1,18 +1,5 @@
 {
-  "title": "Micasa 2.0",
-  "selecionado": true,
-  "categoria": "residencias",
-  "datahash": "mic",
-  "subtitulo1": "A casa",
-  "subtitulo2": "do arquiteto",
-  "description": "A casa em formato de 'U' organiza no térreo a sala de estar de um lado e a de jantar no outro, ligadas pela cozinha central, que se abre para um pátio no centro do 'U'. No pavimento superior, as suítes dos filhos ficam sobre o estar e a suíte do casal sobre o jantar, conectadas por um corredor-closet sobre a cozinha.",
-  "área": 170,
-  "local": "São Paulo | SP",
   "co-autor": "Estúdio Marion",
-  "ano": 2024,
-  "estado": "Em Construção",
-  "imagemhome": "/img/mic/mic-1920w.webp",
-  "imagem1": "/img/mic/mic1-1920w.webp",
   "slides": [
     {
       "foto": "/img/mic/mic-1920w.webp",
@@ -31,11 +18,24 @@
       "foto2": "/img/mic/mic7-1920w.webp"
     }
   ],
+  "ano": 2024,
+  "estado": "Em Construção",
+  "ordem": 10,
+  "local": "São Paulo | SP",
+  "área": 170,
+  "imagemhome": "/uploads/_08a3255-pano-edit-copyright-manuel-sa.jpg",
+  "categoria": "residencias",
+  "subtitulo1": "A casa",
+  "title": "Micasa 2.0",
   "detalhes": [
     {
       "titulo": "Construção",
       "valor": "Eng. Marcos Cordeiro"
     }
   ],
-  "ordem": 10
+  "datahash": "mic",
+  "subtitulo2": "do arquiteto",
+  "selecionado": true,
+  "description": "A casa em formato de 'U' organiza no térreo a sala de estar de um lado e a de jantar no outro, ligadas pela cozinha central, que se abre para um pátio no centro do 'U'. No pavimento superior, as suítes dos filhos ficam sobre o estar e a suíte do casal sobre o jantar, conectadas por um corredor-closet sobre a cozinha.",
+  "imagem1": "/img/mic/mic1-1920w.webp"
 }
