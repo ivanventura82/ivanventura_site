@@ -1,3 +1,5 @@
+// Decode the single escaping pass applied by prepare-content; keep output as text.
+const decodeProjectText = value => String(value ?? '').replace(/&(amp|lt|gt|quot|#39);/g, (_, entity) => ({amp:'&',lt:'<',gt:'>',quot:'"', '#39':"'"})[entity]);
 
 export default class CarregaPaginaProjeto {
     constructor(jsonURL, mySwiperInstance) {
@@ -67,7 +69,7 @@ export default class CarregaPaginaProjeto {
     atualizarMetaTags(projeto) {
         if (projeto) {
             // Atualiza o título da página usando a propriedade 'title' do projeto
-            document.title = projeto.title;
+            document.title = decodeProjectText(projeto.title);
     
             // Localiza a tag meta 'description' e atualiza seu conteúdo com a propriedade 'description' do projeto
             const metaDescription = document.querySelector('meta[name="description"]');
@@ -76,7 +78,7 @@ export default class CarregaPaginaProjeto {
                 const truncatedDescription = projeto.description.length > 144
                     ? projeto.description.substring(0, 141) + '...'  // Adiciona reticências para indicar que o texto foi cortado
                     : projeto.description;
-                metaDescription.setAttribute('content', truncatedDescription);
+                metaDescription.setAttribute('content', decodeProjectText(truncatedDescription));
             } else {
                 console.error("Elemento meta description não encontrado no DOM.");
             }
@@ -166,8 +168,9 @@ export default class CarregaPaginaProjeto {
             }
         });
     
+        const description = decodeProjectText(projeto.description);
         const descricao = document.createElement('p');
-        descricao.textContent = projeto.description || 'Descrição não disponível';
+        descricao.textContent = description || 'Descrição não disponível';
         descricao.style.display = 'block';
     
         const expandBtn = document.createElement('span');
@@ -194,11 +197,11 @@ export default class CarregaPaginaProjeto {
             const lineCount = boxHeight / lineHeight;
     
             if (lineCount > 10) {
-                descricao.textContent = projeto.description.substring(0, 380) + '...';
+                descricao.textContent = description.substring(0, 380) + '...';
                 expandBtn.style.display = 'flex';
     
                 expandBtn.addEventListener('click', function() {
-                    descricao.textContent = projeto.description;
+                    descricao.textContent = description;
                     ul.style.display = 'none';
                     expandBtn.style.display = 'none';
                     collapseBtn.style.display = 'flex';
@@ -206,7 +209,7 @@ export default class CarregaPaginaProjeto {
                 });
     
                 collapseBtn.addEventListener('click', function() {
-                    descricao.textContent = projeto.description.substring(0, 380) + '...';
+                    descricao.textContent = description.substring(0, 380) + '...';
                     ul.style.display = 'block';
                     expandBtn.style.display = 'flex';
                     collapseBtn.style.display = 'none';
