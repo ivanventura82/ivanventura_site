@@ -6,10 +6,14 @@ if (window.CMS) {
     ? value.slice('/uploads/'.length) : value;
   const imageWidget = CMS.getWidget('image');
   const RepositoryImageControl = createClass({
-    resolveAsset(value, ...args) {
-      return this.props.getAsset(repositoryAssetPath(value), ...args);
-    },
     render() {
+      // Decap re-renders thumbnails when getAsset changes after an upload loads.
+      // Preserve that signal instead of hiding it behind a permanently bound method.
+      if (this.assetResolver !== this.props.getAsset) {
+        this.assetResolver = this.props.getAsset;
+        const getAsset = this.props.getAsset;
+        this.resolveAsset = (value, ...args) => getAsset(repositoryAssetPath(value), ...args);
+      }
       return h(imageWidget.control, {...this.props, getAsset:this.resolveAsset});
     }
   });
