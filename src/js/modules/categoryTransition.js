@@ -80,6 +80,12 @@ async function performCategoryTransition(owner, category) {
       const style=getComputedStyle(source), clone=cloneNodes[index];
       for(const property of style) clone.style.setProperty(property,style.getPropertyValue(property));
       clone.style.animation='none'; clone.style.transition='none';
+      // A paragraph can span two CSS columns. Its computed pixel height is
+      // not a reusable layout constraint: copying it makes the clone rebalance.
+      if (source.matches('.profile-columns > p')) {
+        clone.style.height = clone.style.blockSize = 'auto';
+        clone.style.width = clone.style.inlineSize = 'auto';
+      }
       if(source instanceof HTMLCanvasElement) clone.getContext('2d')?.drawImage(source,0,0);
     });
     overlay.removeAttribute('id');
@@ -142,7 +148,7 @@ async function performCategoryTransition(owner, category) {
     photo.loading = 'eager';
     await waitForImage(photo);
     const newLines = owner.homeMotion.lines(incoming);
-    const oldLines = [...overlay.querySelectorAll('.main__title > span, .link__title > span, .slide__title__link, .bio__project, .detalhes__project, .profile-title, .premios__title, .texto__ivan > p, .contato > div, .awards-caption')];
+    const oldLines = [...overlay.querySelectorAll('.main__title > span, .link__title > span, .slide__title__link, .bio__project, .detalhes__project, .profile-title, .premios__title, .texto__ivan:not(.profile-columns) > p, .profile-columns, .contato > div, .awards-caption')];
     if (!owner.motion.media.matches) {
       await new Promise(resolve => {
         timeline = gsap.timeline({onComplete:resolve});
