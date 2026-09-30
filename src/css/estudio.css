@@ -628,7 +628,7 @@ body.editorial-motion .studio-menu-lateral .project-menu-hover a.active { color:
 /* Keep the studio menu trigger beside its indicators, away from gallery controls. */
 @media(min-width:801px) {
   :is(#index-page .menu-lateral, body.editorial-motion .studio-menu-lateral) {
-    top:50%;bottom:auto;height:160px;width:80px;transform:translateY(-50%);
+    top:50%;bottom:auto;height:auto;min-height:160px;width:100px;padding-block:24px;box-sizing:border-box;transform:translateY(-50%);
   }
   :is(#index-page .menu-lateral, body.editorial-motion .studio-menu-lateral):is(:hover,:focus-within) { width:260px; }
   #index-page .swiper-pagination.swiper-pagination-bullets.swiper-pagination-vertical { width:40px; }
@@ -674,4 +674,11 @@ a.awards-stage:focus-visible { outline:2px solid #77756e;outline-offset:4px; }
 }
 @media(prefers-reduced-motion:reduce) {
  .office-section .office-heading,.office-controls img {transition:none;}
+}
+
+/* Continuous desktop side-menu hit area through the right margin. */
+@media(min-width:801px) and (hover:hover) and (pointer:fine) {
+  :is(#index-page .menu-lateral, body.editorial-motion .studio-menu-lateral) .project-menu-hover a {
+    display:block;box-sizing:border-box;width:calc(100% + 46px);margin-right:-46px;padding-right:46px;text-align:right;
+  }
 }
