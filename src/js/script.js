@@ -1,3 +1,4 @@
+import mobileProject from './modules/mobileProject.js';
 import installLogoHover from './modules/logoHover.js';
 import installBrandCursor from './modules/brandCursor.js';
 import installContactLiquid from './modules/contactLiquid.js';
@@ -25,6 +26,10 @@ import "../css/contato.css";
 import "../css/home-motion.css";
 import "../css/project-motion.css";
 
+
+if(document.body.id === 'pagina-projeto' && matchMedia('(max-width: 800px), (hover: none) and (pointer: coarse)').matches) {
+ mobileProject();
+} else {
 const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]', '[data-menu="logo"]', '[data-menu="email"]', '[data-menu="instagram"]');
 menuMobile.init();
 
@@ -79,3 +84,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
+}
