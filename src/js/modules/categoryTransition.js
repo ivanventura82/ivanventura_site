@@ -82,9 +82,11 @@ async function performCategoryTransition(owner, category) {
       clone.style.animation='none'; clone.style.transition='none';
       // A paragraph can span two CSS columns. Its computed pixel height is
       // not a reusable layout constraint: copying it makes the clone rebalance.
-      if (source.matches('.profile-columns > p')) {
+      if (source.matches('.profile-columns, .profile-columns > p')) {
+        // Keep automatic column balancing. A rounded fixed container height
+        // can push the final lines into a third column in the transition clone.
         clone.style.height = clone.style.blockSize = 'auto';
-        clone.style.width = clone.style.inlineSize = 'auto';
+        if (source.matches('p')) clone.style.width = clone.style.inlineSize = 'auto';
       }
       if(source instanceof HTMLCanvasElement) clone.getContext('2d')?.drawImage(source,0,0);
     });
