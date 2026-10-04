@@ -68,18 +68,22 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      hash: true,
       template: './src/index.html',
       filename: 'index.html',
     }),
     new HtmlWebpackPlugin({
+      hash: true,
       template: './src/contato.html',
       filename: 'contato.html',
     }),
     new HtmlWebpackPlugin({
+      hash: true,
       template: './src/estudio.html',
       filename: 'estudio.html',
     }),
     new HtmlWebpackPlugin({
+      hash: true,
       template: './src/projeto.html',
       filename: 'projeto.html',
     }),
