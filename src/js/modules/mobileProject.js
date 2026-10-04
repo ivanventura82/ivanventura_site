@@ -23,7 +23,7 @@ mobileNavigation(root);
 root.querySelector('.eyebrow').textContent=title;
 root.querySelector('h1').textContent=decode(data.subtitulo1 || data.title);
 root.querySelector('.hero-copy p:last-child').textContent=decode(data.subtitulo2 || '');
-root.querySelector('.bar span').textContent=decode(data.local || data.ano || '');
+root.querySelector('.bar').remove();
 root.querySelector('#sobre h2').textContent='Sobre o projeto';
 root.querySelector('#sobre p').textContent=decode(data.description);
 root.querySelector('#sobre p').style.whiteSpace='pre-line';
@@ -56,7 +56,7 @@ const cover=root.querySelector('.hero img');cover.src=photos[0];cover.alt=title;
 for(let i=1;i<photos.length;i++){
  const b=document.createElement('button');b.className='photo';b.dataset.open=i;b.setAttribute('aria-label','Ampliar fotografia '+(i+1)+' — '+title);
  const img=document.createElement('img');img.src=photos[i].replace('-1920w','-1024w');img.alt=title+' — fotografia '+(i+1);img.loading='lazy';img.decoding='async';b.append(img);
- if(i===1){const hint=document.createElement('span');hint.textContent='Toque para ampliar ↗';b.append(hint);}$('#photos').append(b);
+ $('#photos').append(b);
 }
 photos.forEach((p,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Abrir fotografia '+(i+1));const img=document.createElement('img');img.src=p.replace('-1920w','-720w');img.alt='';img.loading='lazy';b.append(img);b.onclick=()=>{show(i);$('#thumbs').classList.remove('open');$('#toggle').setAttribute('aria-expanded','false');$('#toggle').focus();};$('#thumbs').append(b);});
 (data.detalhes||[]).forEach(d=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=decode(d.titulo);dd.textContent=decode(d.valor);$('#credits').append(dt,dd);});
