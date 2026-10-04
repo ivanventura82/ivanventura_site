@@ -26,6 +26,9 @@ root.querySelector('.hero-copy p:last-child').remove();
 const polish=document.createElement('style');
 polish.textContent='h1{max-width:100%;font-size:clamp(40px,9vw,72px);line-height:1.04;overflow-wrap:break-word}.facts div{align-content:start;align-self:start}.credits h2{font-size:26px;margin-bottom:24px}';
 root.append(polish);
+const landscapeStyle=document.createElement('style');
+landscapeStyle.textContent='@media(orientation:landscape){#viewer{width:100vw;height:100dvh;max-height:100dvh}#viewer .stage{inset:0}#viewer .stage img{width:100%;height:100%;object-fit:contain}#viewer .viewer-head{padding:env(safe-area-inset-top,0px) max(12px,env(safe-area-inset-right)) 0 max(12px,env(safe-area-inset-left));background:linear-gradient(#0006,transparent)}#viewer .viewer-foot{padding:0 max(12px,env(safe-area-inset-right)) env(safe-area-inset-bottom,0px) max(12px,env(safe-area-inset-left));background:linear-gradient(transparent,#0006);pointer-events:none}#viewer .viewer-foot button{pointer-events:auto}#viewer .hint{display:none}#viewer .thumbs{inset:54px 0 52px}}';
+root.append(landscapeStyle);
 const disclosure=root.querySelector('.credits'),credits=document.createElement('div'),creditsTitle=document.createElement('h2');
 credits.className='credits';creditsTitle.textContent='Ficha técnica';credits.append(creditsTitle,disclosure.querySelector('dl'));disclosure.replaceWith(credits);
 root.querySelector('footer').remove();
@@ -65,6 +68,28 @@ for(let i=1;i<photos.length;i++){
  $('#photos').append(b);
 }
 photos.forEach((p,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Abrir fotografia '+(i+1));const img=document.createElement('img');img.src=p.replace('-1920w','-720w');img.alt='';img.loading='lazy';b.append(img);b.onclick=()=>{show(i);$('#thumbs').classList.remove('open');$('#toggle').setAttribute('aria-expanded','false');$('#toggle').focus();};$('#thumbs').append(b);});
+// Remember the visible photograph before rotation changes the page geometry.
+const orientation=matchMedia('(orientation: landscape)');
+let visiblePhoto=null,openedByRotation=false,photoFrame=0;
+function rememberPhoto(){
+ if(viewer.open||orientation.matches)return;
+ const height=window.innerHeight,headerBottom=root.querySelector('header').getBoundingClientRect().bottom;
+ let nearest=Infinity;visiblePhoto=null;
+ root.querySelectorAll('main [data-open]').forEach(button=>{
+  const rect=button.getBoundingClientRect(),visible=Math.min(rect.bottom,height)-Math.max(rect.top,headerBottom);
+  if(visible<Math.min(rect.height,height-headerBottom)*.35)return;
+  const distance=Math.abs((rect.top+rect.bottom)/2-height/2);
+  if(distance<nearest){nearest=distance;visiblePhoto=button;}
+ });
+}
+window.addEventListener('scroll',()=>{if(photoFrame)return;photoFrame=requestAnimationFrame(()=>{photoFrame=0;rememberPhoto();});},{passive:true});
+orientation.addEventListener?.('change',event=>{
+ if(event.matches){if(!viewer.open&&visiblePhoto){openedByRotation=true;open(Number(visiblePhoto.dataset.open),visiblePhoto);}reset();}
+ else if(openedByRotation&&viewer.open){viewer.close();}
+ requestAnimationFrame(()=>{draw();rememberPhoto();});
+});
+viewer.addEventListener('close',()=>{openedByRotation=false;});
+requestAnimationFrame(rememberPhoto);
 (data.detalhes||[]).forEach(d=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=decode(d.titulo);dd.textContent=decode(d.valor);$('#credits').append(dt,dd);});
 if(!data.detalhes?.length)root.querySelector('.credits').hidden=true;
 } catch(error){root.innerHTML='<div style="padding:32px;font:18px Arial;line-height:1.6">Não foi possível abrir este projeto. <a href="">Tentar novamente</a> ou <a href="/index.html">voltar aos projetos</a>.</div>';console.error(error);}
