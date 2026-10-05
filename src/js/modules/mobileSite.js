@@ -25,7 +25,7 @@ export function mobileNavigation(root){
  });
  const quietStyle=el('style');quietStyle.textContent='.mobile-header{transition:opacity .3s ease}.mobile-header.is-idle{opacity:0;pointer-events:none}.mobile-header:focus-within,.mobile-header:has(details[open]){opacity:1;pointer-events:auto}@media(prefers-reduced-motion:reduce){.mobile-header{transition:none}}';root.append(quietStyle);
  let idleTimer;
- const wakeHeader=()=>{header.classList.remove('is-idle');clearTimeout(idleTimer);idleTimer=setTimeout(()=>{if(!header.querySelector('details').open)header.classList.add('is-idle');},1500);};
+ const wakeHeader=()=>{header.classList.remove('is-idle');clearTimeout(idleTimer);idleTimer=setTimeout(()=>{if(window.scrollY>24&&!header.querySelector('details').open)header.classList.add('is-idle');},1500);};
  window.addEventListener('scroll',wakeHeader,{passive:true});
  root.addEventListener('pointerdown',wakeHeader,{passive:true});
  header.querySelector('details').addEventListener('toggle',wakeHeader);
@@ -86,3 +86,4 @@ export default async function mobileSite(){
  }
  if(isStudio&&location.hash){const target=root.getElementById(location.hash.slice(1));if(target)requestAnimationFrame(()=>target.scrollIntoView());}
 }
+

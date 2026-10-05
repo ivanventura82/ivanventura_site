@@ -13,6 +13,10 @@ const motionStyle=document.createElement('style');motionStyle.textContent='.rail
 let gesture=null;
 mainTouchSetup();
 function mainTouchSetup(){const surface=root.querySelector('main');surface.addEventListener('touchstart',e=>{if(e.touches.length!==1){gesture=null;return;}const t=e.touches[0];const slides=[...surface.children];gesture={x:t.clientX,y:t.clientY,index:slides.findIndex(s=>s.getBoundingClientRect().top>=-s.clientHeight*.5)};},{passive:true});surface.addEventListener('touchend',e=>{if(!gesture)return;const t=e.changedTouches[0],dx=t.clientX-gesture.x,dy=t.clientY-gesture.y,g=gesture;gesture=null;if(Math.max(Math.abs(dx),Math.abs(dy))<35)return;const direction=(Math.abs(dy)>=Math.abs(dx)?dy:dx)<0?1:-1;const target=surface.children[Math.max(0,Math.min(surface.children.length-1,g.index+direction))];if(target)animateScroll(target.getBoundingClientRect().top+window.scrollY);},{passive:true});surface.addEventListener('touchcancel',()=>gesture=null,{passive:true});}
+const header=root.querySelector('header');let headerTimer;
+const headerStyle=document.createElement('style');headerStyle.textContent='header{transition:opacity .3s ease}header.is-idle{opacity:0;pointer-events:none}header.is-idle>*{pointer-events:none}header:has(:focus-visible){opacity:1}header:has(:focus-visible)>*{pointer-events:auto}';root.append(headerStyle);
+const wakeHeader=()=>{header.classList.remove('is-idle');clearTimeout(headerTimer);headerTimer=setTimeout(()=>{if(window.scrollY>24&&!root.querySelector('.sheet').open)header.classList.add('is-idle');},1400);};
+window.addEventListener('scroll',wakeHeader,{passive:true});window.addEventListener('pageshow',wakeHeader);root.addEventListener('pointerdown',wakeHeader,{passive:true});root.querySelector('.sheet').addEventListener('close',wakeHeader);wakeHeader();
 const categories=[['selecionado','Seleção'],['residencias','Residencial'],['comerciais','Comercial'],['institucionais','Institucional'],['edificios','Edifícios'],['interiores','Interiores'],['design','Design']];
 const main=root.querySelector('main'),rail=root.querySelector('.rail'),sheet=root.querySelector('.sheet');
 const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -31,4 +35,5 @@ function render(){
 try{const response=await fetch('/projetos.json');if(!response.ok)throw Error();projects=await response.json();if(!categories.some(c=>c[0]===current))current='selecionado';render();}catch{main.innerHTML='<p class="status">Não foi possível carregar. <a href="">Tentar novamente</a></p>';}
 
 }
+
 
