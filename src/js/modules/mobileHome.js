@@ -19,6 +19,12 @@ const layoutStyle=document.createElement('style');layoutStyle.textContent=`
 @media(orientation:landscape){.project-link{top:24dvh;bottom:28px;left:7vw;right:12vw}.project-link h1{font-size:clamp(34px,7.5dvh,60px);max-width:22ch}.project-meta{font-size:clamp(22px,5dvh,30px)}.slide{height:100dvh;min-height:0}}
 @media(prefers-reduced-motion:reduce){.slogan-line>span{transition:transform .6s cubic-bezier(.22,.68,.2,1),opacity .4s ease!important;transition-delay:calc(var(--line)*70ms)!important;transform:translateY(24px)}.slide.active .slogan-line>span{transform:none}}
 `;root.append(layoutStyle);
+
+const studioSubmenu=root.querySelector('.studio-links');
+const studioTitle=studioSubmenu.previousElementSibling;
+const studioLink=document.createElement('a');studioLink.href='/estudio.html';studioLink.className='studio-main-link';studioLink.textContent='Estúdio';studioTitle.replaceWith(studioLink);studioSubmenu.remove();
+root.querySelector('.close').innerHTML="<svg viewBox=\"0 0 28 36\" aria-hidden=\"true\" focusable=\"false\"><path fill=\"currentColor\" d=\"M2 0h4l20 36h-4zM22 0h4L6 36H2z\"/></svg>";
+const cleanMenu=document.createElement('style');cleanMenu.textContent='.categories{border:0;gap:0 18px;margin-bottom:30px}.categories button{border:0;background:none;min-height:44px;padding:8px 0}.sheet-head{margin-bottom:34px}.studio-main-link,.sheet .contact-link{font-size:32px;letter-spacing:-.04em;font-weight:400;line-height:1.15;margin:0 0 24px}.close{display:grid;place-items:center;padding:8px;background:none}.close svg{width:20px;height:27px;display:block}';root.append(cleanMenu);
 const motionStyle=document.createElement('style');motionStyle.textContent='.rail[hidden]{display:none}@media(prefers-reduced-motion:reduce){.project-link h1,.project-meta{transition:opacity .4s ease,transform .45s ease!important;transform:translateY(6px)}.slide.active .project-link h1,.slide.active .project-meta{transform:none}.cover{transform:none!important}}';root.append(motionStyle);
 let gesture=null;
 mainTouchSetup();
@@ -27,7 +33,7 @@ const header=root.querySelector('header');let headerTimer;
 const headerStyle=document.createElement('style');headerStyle.textContent='header{transition:opacity .3s ease}header.is-idle{opacity:0;pointer-events:none}header.is-idle>*{pointer-events:none}header:has(:focus-visible){opacity:1}header:has(:focus-visible)>*{pointer-events:auto}';root.append(headerStyle);
 const wakeHeader=()=>{header.classList.remove('is-idle');clearTimeout(headerTimer);headerTimer=setTimeout(()=>{if(window.scrollY>24&&!root.querySelector('.sheet').open)header.classList.add('is-idle');},1400);};
 window.addEventListener('scroll',wakeHeader,{passive:true});window.addEventListener('pageshow',wakeHeader);root.addEventListener('pointerdown',wakeHeader,{passive:true});root.querySelector('.sheet').addEventListener('close',wakeHeader);wakeHeader();
-const categories=[['selecionado','Seleção'],['residencias','Residencial'],['comerciais','Comercial'],['institucionais','Institucional'],['edificios','Edifícios'],['interiores','Interiores'],['design','Design']];
+const categories=[['selecionado','Selecionados'],['residencias','Residencial'],['comerciais','Comercial'],['institucionais','Institucional'],['edificios','Edifícios'],['interiores','Interiores'],['design','Design']];
 const main=root.querySelector('main'),rail=root.querySelector('.rail'),sheet=root.querySelector('.sheet');
 const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const decode=v=>String(v??'').replace(/&(amp|lt|gt|quot|#39);/g,(_,e)=>({amp:'&',lt:'<',gt:'>',quot:'"','#39':"'"})[e]);
