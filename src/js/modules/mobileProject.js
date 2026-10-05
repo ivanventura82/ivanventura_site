@@ -1,3 +1,4 @@
+import mobileScrub,{animateScroll} from './mobileScrub.js';
 import { mobileNavigation } from './mobileSite.js';
 // Mobile-only project experience. Desktop initialization remains unchanged.
 export default async function mobileProject() {
@@ -50,15 +51,15 @@ for(const [key,label] of [['área','Área'],['local','Local'],['co-autor','Coaut
 }
 root.querySelector('#viewer').setAttribute('aria-label','Galeria de fotos '+title);
 const $=s=>root.querySelector(s),viewer=$('#viewer'),stage=$('#stage'),large=$('#large');
-let photos=[],index=0,scale=1,x=0,y=0,lastTap=0,start=null,pinch=null,opener=null,savedScroll=0,bodyPosition='',bodyTop='',bodyWidth='',tapTimer;const points=new Map();
+let photoScrubber,pageScrubber;let photos=[],index=0,scale=1,x=0,y=0,lastTap=0,start=null,pinch=null,opener=null,savedScroll=0,bodyPosition='',bodyTop='',bodyWidth='',tapTimer;const points=new Map();
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,url=p=>p;
 function draw(){viewer.classList.toggle('is-zoomed',scale>1);const mx=Math.max(0,(large.clientWidth*scale-stage.clientWidth)/2),my=Math.max(0,(large.clientHeight*scale-stage.clientHeight)/2);x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y));large.style.transform=`translate3d(${x}px,${y}px,0) scale(${scale})`;}
 function reset(){scale=1;x=y=0;pinch=null;points.clear();draw();}
-function show(n){index=(n+photos.length)%photos.length;reset();$('#error').hidden=true;large.alt=`${title} — fotografia ${index+1}`;large.src=url(photos[index]);$('#count').textContent=`${String(index+1).padStart(2,'0')} / ${photos.length}`;$('#thumbs').querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-current',i===index));if(!reduced)large.animate([{opacity:.25},{opacity:1}],{duration:260,easing:'ease-out'});const next=new Image();next.src=url(photos[(index+1)%photos.length]);}
+function show(n){index=(n+photos.length)%photos.length;reset();photoScrubber?.active(index);$('#error').hidden=true;large.alt=`${title} — fotografia ${index+1}`;large.src=url(photos[index]);$('#count').textContent=`${String(index+1).padStart(2,'0')} / ${photos.length}`;$('#thumbs').querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-current',i===index));large.animate([{opacity:.25},{opacity:1}],{duration:260,easing:'ease-out'});const next=new Image();next.src=url(photos[(index+1)%photos.length]);}
 function fitViewer(){const viewport=window.visualViewport;viewer.style.setProperty('--photo-width',(viewport?.width||window.innerWidth)+'px');viewer.style.setProperty('--photo-height',(viewport?.height||window.innerHeight)+'px');viewer.style.setProperty('--photo-top',(viewport?.offsetTop||0)+'px');viewer.style.setProperty('--photo-left',(viewport?.offsetLeft||0)+'px');draw();}
 window.visualViewport?.addEventListener('resize',fitViewer);window.visualViewport?.addEventListener('scroll',fitViewer);window.addEventListener('resize',fitViewer);
-function open(n,el){if(!photos.length||viewer.open)return;opener=el;savedScroll=scrollY;bodyPosition=document.body.style.position;bodyTop=document.body.style.top;bodyWidth=document.body.style.width;viewer.classList.remove('controls-visible');viewer.setAttribute('tabindex','-1');root.querySelector('main').inert=true;root.querySelector('header').inert=true;viewer.show();fitViewer();show(n);viewer.focus({preventScroll:true});}
-viewer.addEventListener('close',()=>{clearTimeout(tapTimer);root.querySelector('main').inert=false;root.querySelector('header').inert=false;});
+function open(n,el){if(!photos.length||viewer.open)return;opener=el;savedScroll=scrollY;bodyPosition=document.body.style.position;bodyTop=document.body.style.top;bodyWidth=document.body.style.width;viewer.classList.remove('controls-visible');viewer.setAttribute('tabindex','-1');root.querySelector('main').inert=true;root.querySelector('header').inert=true;viewer.show();if(pageScrubber)pageScrubber.nav.hidden=true;fitViewer();show(n);viewer.focus({preventScroll:true});}
+viewer.addEventListener('close',()=>{clearTimeout(tapTimer);if(pageScrubber)pageScrubber.nav.hidden=false;root.querySelector('main').inert=false;root.querySelector('header').inert=false;});
 viewer.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();viewer.close();}});
 viewer.addEventListener('close',()=>{Object.assign(document.body.style,{position:bodyPosition,top:bodyTop,width:bodyWidth});window.scrollTo({top:savedScroll,behavior:'instant'});$('#thumbs').classList.remove('open');$('#toggle').setAttribute('aria-expanded','false');reset();opener?.focus({preventScroll:true});});
 $('#close').onclick=()=>viewer.close();$('#prev').onclick=()=>show(index-1);$('#next').onclick=()=>show(index+1);$('#retry').onclick=()=>show(index);
@@ -78,6 +79,11 @@ for(let i=1;i<photos.length;i++){
  $('#photos').append(b);
 }
 photos.forEach((p,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Abrir fotografia '+(i+1));const img=document.createElement('img');img.src=p.replace('-1920w','-720w');img.alt='';img.loading='lazy';b.append(img);b.onclick=()=>{show(i);$('#thumbs').classList.remove('open');$('#toggle').setAttribute('aria-expanded','false');$('#toggle').focus();};$('#thumbs').append(b);});
+const railItems=photos.map((src,i)=>({src:src.replace('-1920w','-720w'),label:'Fotografia '+(i+1)}));
+photoScrubber=mobileScrub(root,railItems,i=>show(i),{parent:viewer});
+pageScrubber=mobileScrub(root,railItems,i=>{const target=root.querySelector('main [data-open="'+i+'"]');if(target)animateScroll(target.getBoundingClientRect().top+window.scrollY);});
+const scrubStyle=document.createElement('style');scrubStyle.textContent='.scrub[hidden]{display:none}.scrub{color:#6b6c66}#viewer .scrub{color:#fff}';root.append(scrubStyle);
+const textMotion=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;entry.target.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:480,easing:'cubic-bezier(.2,.65,.3,1)'});textMotion.unobserve(entry.target);});},{threshold:.15});root.querySelectorAll('.hero-copy>* , .content h2, .content p, .facts>div').forEach(el=>textMotion.observe(el));
 // Remember the visible photograph before rotation changes the page geometry.
 const orientation=matchMedia('(orientation: landscape)');
 let visiblePhoto=null,openedByRotation=false,photoFrame=0;
@@ -104,3 +110,4 @@ requestAnimationFrame(rememberPhoto);
 if(!data.detalhes?.length)root.querySelector('.credits').hidden=true;
 } catch(error){root.innerHTML='<div style="padding:32px;font:18px Arial;line-height:1.6">Não foi possível abrir este projeto. <a href="">Tentar novamente</a> ou <a href="/index.html">voltar aos projetos</a>.</div>';console.error(error);}
 }
+
