@@ -1,3 +1,4 @@
+import mobileHome from './modules/mobileHome.js';
 import mobileSite from './modules/mobileSite.js';
 import mobileProject from './modules/mobileProject.js';
 import installLogoHover from './modules/logoHover.js';
@@ -30,6 +31,7 @@ import "../css/project-motion.css";
 
 if(matchMedia('(max-width: 800px), (hover: none) and (pointer: coarse)').matches || new URLSearchParams(location.search).get('mobile') === '1') {
  if(document.body.id === 'pagina-projeto') mobileProject();
+ else if(document.body.id === 'index-page') mobileHome();
  else mobileSite();
 } else {
 const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]', '[data-menu="logo"]', '[data-menu="email"]', '[data-menu="instagram"]');
