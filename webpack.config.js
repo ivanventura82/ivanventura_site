@@ -96,6 +96,7 @@ module.exports = {
         { from: '.generated/projetos.json', to: 'projetos.json' },
         { from: '.generated/img', to: 'img', noErrorOnMissing: true },
         { from: 'src/admin', to: 'admin' },
+        { from: 'src/preview-mobile', to: 'preview-mobile' },
       ],
     }),
   ],
