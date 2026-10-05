@@ -49,6 +49,13 @@ for(const [key,label] of [['área','Área'],['local','Local'],['co-autor','Coaut
  dt.textContent=label;dd.textContent=decode(data[key])+(key==='área'?' m²':'');item.append(dt,dd);root.querySelector('.facts').append(item);
 }
 root.querySelector('#viewer').setAttribute('aria-label','Galeria de fotos '+title);
+const fullBleed=document.createElement('style');fullBleed.textContent=`
+.hero{height:100dvh;min-height:0;max-height:none;width:100%;margin:0}.hero-copy{left:28px;right:40px;bottom:max(40px,env(safe-area-inset-bottom))}.hero-copy .eyebrow{font-size:clamp(25px,6.5vw,36px);line-height:1.15;letter-spacing:-.025em;margin-bottom:18px}.hero-copy h1{font-size:clamp(42px,11.5vw,74px);max-width:15ch;line-height:1.03}
+.gallery{padding:0;max-width:none;gap:12px;grid-template-columns:1fr}.gallery .photo{grid-column:auto}.mobile-header{position:fixed;top:0;left:0;right:0;width:100%;background:transparent;color:white}.mobile-header.on-photo .mark{filter:brightness(0) invert(1)}.mobile-header.on-photo .menu-orb{background:white}.mobile-header:not(.on-photo){background:#f5f4f0}.mobile-header .mobile-menu nav{color:#252520}
+#viewer .stage img{object-fit:cover}
+@media(orientation:landscape){.hero{height:100dvh;min-height:0;max-height:none}.hero-copy{left:7vw;bottom:26px}.hero-copy h1{font-size:clamp(34px,9dvh,62px);max-width:22ch}.hero-copy .eyebrow{font-size:clamp(24px,5.5dvh,32px);margin-bottom:10px}}
+`;root.append(fullBleed);
+const updatePhotoHeader=()=>{const header=root.querySelector('.mobile-header');header?.classList.toggle('on-photo',root.querySelector('.hero').getBoundingClientRect().bottom>header.offsetHeight);};window.addEventListener('scroll',updatePhotoHeader,{passive:true});window.addEventListener('resize',updatePhotoHeader);updatePhotoHeader();
 const $=s=>root.querySelector(s),viewer=$('#viewer'),stage=$('#stage'),large=$('#large');
 let changing=false,changeToken=0;let photos=[],index=0,scale=1,x=0,y=0,lastTap=0,start=null,pinch=null,opener=null,savedScroll=0,bodyPosition='',bodyTop='',bodyWidth='',tapTimer;const points=new Map();
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,url=p=>p;
@@ -127,5 +134,6 @@ requestAnimationFrame(rememberPhoto);
 if(!data.detalhes?.length)root.querySelector('.credits').hidden=true;
 } catch(error){root.innerHTML='<div style="padding:32px;font:18px Arial;line-height:1.6">Não foi possível abrir este projeto. <a href="">Tentar novamente</a> ou <a href="/index.html">voltar aos projetos</a>.</div>';console.error(error);}
 }
+
 
 
