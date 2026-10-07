@@ -12,8 +12,10 @@
   "ano": 2020,
   "estado": "Ideia",
   "imagemhome": "/img/wall/wall-1920w.webp",
-  "imagem1": "/img/wall/wall1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/wall/wall1-1920w.webp"
+    },
     {
       "foto": "/img/wall/wall-1920w.webp",
       "foto2": ""

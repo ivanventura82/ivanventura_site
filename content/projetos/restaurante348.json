@@ -12,8 +12,10 @@
   "ano": 2009,
   "estado": "Construído",
   "imagemhome": "/img/restaurante348/restaurante348-1920w.webp",
-  "imagem1": "/img/restaurante348/restaurante3481-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/restaurante348/restaurante3481-1920w.webp"
+    },
     {
       "foto": "/img/restaurante348/restaurante3482-1920w.webp",
       "foto2": "/img/restaurante348/restaurante3483-1920w.webp"

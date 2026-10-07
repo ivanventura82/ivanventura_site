@@ -12,8 +12,10 @@
   "ano": 2020,
   "estado": "Em Desenvolvimento",
   "imagemhome": "/img/teatrosescatalaia/teatrosescatalaia-1920w.webp",
-  "imagem1": "/img/teatrosescatalaia/teatrosescatalaia1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/teatrosescatalaia/teatrosescatalaia1-1920w.webp"
+    },
     {
       "foto": "/img/teatrosescatalaia/teatrosescatalaia-1920w.webp",
       "foto2": ""

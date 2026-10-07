@@ -12,8 +12,10 @@
   "ano": 2019,
   "estado": "Em Desenvolvimento",
   "imagemhome": "/img/rubik/rubik-1920w.webp",
-  "imagem1": "/img/rubik/rubik1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/rubik/rubik1-1920w.webp"
+    },
     {
       "foto": "/img/rubik/rubik-1920w.webp",
       "foto2": ""

@@ -12,8 +12,10 @@
   "ano": 2015,
   "estado": "Ideia",
   "imagemhome": "/img/museualvaraalto/museualvaraalto-1920w.webp",
-  "imagem1": "/img/museualvaraalto/museualvaraalto1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/museualvaraalto/museualvaraalto1-1920w.webp"
+    },
     {
       "foto": "/img/museualvaraalto/museualvaraalto-1920w.webp",
       "foto2": ""

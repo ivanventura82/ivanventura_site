@@ -12,8 +12,10 @@
   "ano": 2018,
   "estado": "Ideia",
   "imagemhome": "/img/expodubai/expodubai-1920w.webp",
-  "imagem1": "/img/expodubai/expodubai1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/expodubai/expodubai1-1920w.webp"
+    },
     {
       "foto": "/img/expodubai/expodubai-1920w.webp",
       "foto2": ""

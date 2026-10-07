@@ -12,8 +12,10 @@
   "ano": 2018,
   "estado": "Ideia",
   "imagemhome": "/img/fazendarestaurante/fazendarestaurante-1920w.webp",
-  "imagem1": "/img/fazendarestaurante/fazendarestaurante1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/fazendarestaurante/fazendarestaurante1-1920w.webp"
+    },
     {
       "foto": "/img/fazendarestaurante/fazendarestaurante2-1920w.webp",
       "foto2": ""

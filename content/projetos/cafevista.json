@@ -12,8 +12,10 @@
   "ano": 2019,
   "estado": "Ideia",
   "imagemhome": "/img/cafevista/cafevista-1920w.webp",
-  "imagem1": "/img/cafevista/cafevista1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/cafevista/cafevista1-1920w.webp"
+    },
     {
       "foto": "/img/cafevista/cafevista-1920w.webp",
       "foto2": ""

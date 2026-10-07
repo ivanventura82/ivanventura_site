@@ -12,8 +12,10 @@
   "ano": 2024,
   "estado": "Em Construção",
   "imagemhome": "/img/dnaitagua/dnaitagua-1920w.webp",
-  "imagem1": "/img/dnaitagua/dnaitagua1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/dnaitagua/dnaitagua1-1920w.webp"
+    },
     {
       "foto": "/img/dnaitagua/dnaitagua7-1920w.webp",
       "foto2": ""

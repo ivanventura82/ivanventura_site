@@ -12,8 +12,10 @@
   "ano": 2016,
   "estado": "Ideia",
   "imagemhome": "/img/casaa/casaa-1920w.webp",
-  "imagem1": "/img/casaa/casaa5-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/casaa/casaa5-1920w.webp"
+    },
     {
       "foto": "/img/casaa/casaa-1920w.webp",
       "foto2": ""

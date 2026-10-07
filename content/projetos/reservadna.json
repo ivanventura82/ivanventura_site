@@ -12,8 +12,10 @@
   "ano": 2013,
   "estado": "Construído",
   "imagemhome": "/img/reservadna/reservadna-1920w.webp",
-  "imagem1": "/img/reservadna/reservadna1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/reservadna/reservadna1-1920w.webp"
+    },
     {
       "foto": "/img/reservadna/reservadna-1920w.webp",
       "foto2": ""

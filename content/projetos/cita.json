@@ -12,8 +12,10 @@
   "ano": 2020,
   "estado": "Construído",
   "imagemhome": "/img/cita/cita-1920w.webp",
-  "imagem1": "/img/cita/cita1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/cita/cita1-1920w.webp"
+    },
     {
       "foto": "/img/cita/cita2-1920w.webp",
       "foto2": "/img/cita/cita3-1920w.webp"

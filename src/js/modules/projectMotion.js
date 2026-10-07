@@ -28,6 +28,7 @@ export default class ProjectMotion extends HomeMotion {
   }
   prepare(slide) {
     super.prepare(slide);
+    slide?.classList.remove('project-text-entering');
     const blocks = this.textBlocks(slide);
     if (blocks.length) gsap.set(blocks, { force3D: true, autoAlpha: 0, y: 0, clipPath: openClip });
   }
@@ -36,7 +37,12 @@ export default class ProjectMotion extends HomeMotion {
     const blocks = this.textBlocks(slide);
     const animate = !immediate && !this.media.matches && previous && previous !== slide;
     if (blocks.length) gsap.set(blocks, { autoAlpha: animate ? 0 : 1, y: 0, clipPath: openClip });
-    super.enter(slide, immediate, direction, onFinish);
+    // Transformed children must not temporarily enlarge the native scroll area.
+    slide.classList.toggle('project-text-entering', !!animate);
+    super.enter(slide, immediate, direction, () => {
+      slide.classList.remove('project-text-entering');
+      onFinish?.();
+    });
     if (!animate || !this.timeline || !blocks.length) return;
 
     // Both reading blocks fade continuously after the page reveal, metadata first.

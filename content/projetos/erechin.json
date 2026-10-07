@@ -12,8 +12,10 @@
   "ano": 2024,
   "estado": "Ideia",
   "imagemhome": "/img/erechin/erechin-1920w.webp",
-  "imagem1": "/img/erechin/erechin1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/erechin/erechin1-1920w.webp"
+    },
     {
       "foto": "/img/erechin/erechin-1920w.webp",
       "foto2": ""

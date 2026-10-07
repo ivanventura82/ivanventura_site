@@ -18,12 +18,33 @@ if (window.CMS) {
     }
   });
   CMS.registerWidget('image', RepositoryImageControl, imageWidget.preview, imageWidget.schema);
+  const projectSlug = title => String(title || '').normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '').toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 70).replace(/-+$/g, '');
   CMS.registerWidget('project-id', createClass({
-    componentDidMount() {
-      if (!this.props.value) this.props.onChange('p-' + crypto.randomUUID());
-    },
-    render() { return h('p', {style:{fontSize:14,color:'#555'}}, 'Endereço permanente gerado automaticamente.'); }
+    render() {
+      return h('p', {style:{fontSize:14,color:'#555',overflowWrap:'anywhere'}},
+        this.props.value
+          ? 'Endereço permanente: ' + this.props.value
+          : 'O endereço será criado a partir do nome do projeto ao salvar.');
+    }
   }));
+  CMS.registerEventListener({
+    name: 'preSave',
+    handler: async ({entry}) => {
+      const data = entry.get('data');
+      if (entry.get('collection') !== 'projetos' || data.get('datahash')) return data;
+      const base = projectSlug(data.get('title'));
+      if (!base) throw new Error('Informe um nome de projeto com letras ou números.');
+      const response = await fetch('/projetos.json', {cache:'no-store'});
+      if (!response.ok) throw new Error('Não foi possível conferir os endereços. Tente salvar novamente.');
+      const projects = await response.json();
+      const used = new Set(projects.map(project => project.datahash));
+      let id = base, suffix = 2;
+      while (used.has(id)) id = base + '-' + suffix++;
+      return data.set('datahash', id);
+    }
+  });
   CMS.registerPreviewStyle('/admin/preview.css');
   CMS.registerPreviewTemplate('projetos', createClass({
     render() {
@@ -35,7 +56,6 @@ if (window.CMS) {
         h('header',{},h('span',{},'IV / '+(data.categoria || 'Projeto')),h('span',{},'Pré-visualização do conteúdo')),
         h('section',{className:'cover'},photo(data.imagemhome,'cover'),h('div',{className:'caption'},h('h1',{},data.title || 'Novo projeto'),h('p',{},data.subtitulo1),h('p',{},data.subtitulo2))),
         h('section',{className:'bio'},h('dl',{},facts.filter(f=>f[1]).map(([label,value])=>h('div',{key:label},h('dt',{},label),h('dd',{},String(value))))),h('p',{className:'description'},data.description)),
-        data.imagem1 ? h('section',{className:'photos'},photo(data.imagem1,'first')) : null,
         ...(data.slides || []).map((slide,i)=>h('section',{key:i,className:'photos'},photo(slide.foto,'a'),photo(slide.foto2,'b'))),
         h('section',{className:'credits'},...(data.detalhes || []).map((detail,i)=>h('p',{key:i},h('strong',{},detail.titulo+' '),detail.valor)))
       );

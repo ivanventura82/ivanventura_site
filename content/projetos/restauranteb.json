@@ -12,8 +12,10 @@
   "ano": 2012,
   "estado": "Em Desenvolvimento",
   "imagemhome": "/img/restauranteb/restauranteb-1920w.webp",
-  "imagem1": "/img/restauranteb/restauranteb1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/restauranteb/restauranteb1-1920w.webp"
+    },
     {
       "foto": "/img/restauranteb/restauranteb-1920w.webp",
       "foto2": ""

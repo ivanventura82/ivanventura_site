@@ -12,8 +12,10 @@
   "ano": 2017,
   "estado": "Ideia",
   "imagemhome": "/img/condominiokerr455/condominiokerr455-1920w.webp",
-  "imagem1": "/img/condominiokerr455/condominiokerr4551-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/condominiokerr455/condominiokerr4551-1920w.webp"
+    },
     {
       "foto": "/img/condominiokerr455/condominiokerr455-1920w.webp",
       "foto2": ""

@@ -12,8 +12,10 @@
   "ano": 2015,
   "estado": "Ideia",
   "imagemhome": "/img/moradiaestudantil/moradiaestudantil-1920w.webp",
-  "imagem1": "/img/moradiaestudantil/moradiaestudantil1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/moradiaestudantil/moradiaestudantil1-1920w.webp"
+    },
     {
       "foto": "/img/moradiaestudantil/moradiaestudantil-1920w.webp",
       "foto2": ""

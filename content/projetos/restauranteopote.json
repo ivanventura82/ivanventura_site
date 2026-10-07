@@ -12,8 +12,10 @@
   "ano": 2013,
   "estado": "Construído",
   "imagemhome": "/img/restauranteopote/restauranteopote-1920w.webp",
-  "imagem1": "/img/restauranteopote/restauranteopote1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/restauranteopote/restauranteopote1-1920w.webp"
+    },
     {
       "foto": "/img/restauranteopote/restauranteopote-1920w.webp",
       "foto2": ""

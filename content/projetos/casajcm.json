@@ -12,8 +12,10 @@
   "ano": 2012,
   "estado": "Construído",
   "imagemhome": "/img/casajcm/casajcm-1920w.webp",
-  "imagem1": "/img/casajcm/casajcm1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/casajcm/casajcm1-1920w.webp"
+    },
     {
       "foto": "/img/casajcm/casajcm-1920w.webp",
       "foto2": ""

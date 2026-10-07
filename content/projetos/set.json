@@ -12,8 +12,10 @@
   "ano": 2021,
   "estado": "Em Construção",
   "imagemhome": "/img/set/set-1920w.webp",
-  "imagem1": "/img/set/set1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/set/set1-1920w.webp"
+    },
     {
       "foto": "/img/set/set2-1920w.webp",
       "foto2": ""

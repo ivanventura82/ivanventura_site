@@ -12,8 +12,10 @@
   "ano": 2009,
   "estado": "Construído",
   "imagemhome": "/img/l23/l23-1920w.webp",
-  "imagem1": "/img/l23/l231-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/l23/l231-1920w.webp"
+    },
     {
       "foto": "/img/l23/l23-1920w.webp",
       "foto2": ""

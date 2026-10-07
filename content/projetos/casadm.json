@@ -12,8 +12,10 @@
   "ano": 2016,
   "estado": "Construído",
   "imagemhome": "/img/casadm/casadm-1920w.webp",
-  "imagem1": "/img/casadm/casadm1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/casadm/casadm1-1920w.webp"
+    },
     {
       "foto": "/img/casadm/casadm2-1920w.webp",
       "foto2": ""

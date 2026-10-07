@@ -12,8 +12,10 @@
   "ano": 2015,
   "estado": "Construído",
   "imagemhome": "/img/apartamentokvp/apartamentokvp-1920w.webp",
-  "imagem1": "/img/apartamentokvp/apartamentokvp1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/apartamentokvp/apartamentokvp1-1920w.webp"
+    },
     {
       "foto": "/img/apartamentokvp/apartamentokvp-1920w.webp",
       "foto2": ""

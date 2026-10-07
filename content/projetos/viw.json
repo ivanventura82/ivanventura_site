@@ -12,8 +12,10 @@
   "ano": 2023,
   "estado": "Construído",
   "imagemhome": "/img/viw/viw-1920w.webp",
-  "imagem1": "/img/viw/viw1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/viw/viw1-1920w.webp"
+    },
     {
       "foto": "/img/viw/viw2-1920w.webp",
       "foto2": "/img/viw/viw3-1920w.webp"

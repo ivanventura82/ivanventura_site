@@ -12,8 +12,10 @@
   "ano": 2012,
   "estado": "Construído",
   "imagemhome": "/img/apartamentomk/apartamentomk-1920w.webp",
-  "imagem1": "/img/apartamentomk/apartamentomk1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/apartamentomk/apartamentomk1-1920w.webp"
+    },
     {
       "foto": "/img/apartamentomk/apartamentomk-1920w.webp",
       "foto2": ""

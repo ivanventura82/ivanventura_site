@@ -12,8 +12,10 @@
   "ano": 2003,
   "estado": "Ideia",
   "imagemhome": "/img/docol2003/docol2003-1920w.webp",
-  "imagem1": "/img/docol2003/docol20031-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/docol2003/docol20031-1920w.webp"
+    },
     {
       "foto": "/img/docol2003/docol20032-1920w.webp",
       "foto2": ""

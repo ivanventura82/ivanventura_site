@@ -12,8 +12,10 @@
   "ano": 2014,
   "estado": "Construído",
   "imagemhome": "/img/apartamentomyp/apartamentomyp-1920w.webp",
-  "imagem1": "/img/apartamentomyp/apartamentomyp1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/apartamentomyp/apartamentomyp1-1920w.webp"
+    },
     {
       "foto": "/img/apartamentomyp/apartamentomyp-1920w.webp",
       "foto2": ""

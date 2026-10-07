@@ -12,8 +12,10 @@
   "ano": 2009,
   "estado": "Ideia",
   "imagemhome": "/img/shoppingsustentavel/shoppingsustentavel-1920w.webp",
-  "imagem1": "/img/shoppingsustentavel/shoppingsustentavel1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/shoppingsustentavel/shoppingsustentavel1-1920w.webp"
+    },
     {
       "foto": "/img/shoppingsustentavel/shoppingsustentavel-1920w.webp",
       "foto2": ""

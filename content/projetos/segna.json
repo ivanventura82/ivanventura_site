@@ -12,8 +12,10 @@
   "ano": 2020,
   "estado": "Em Desenvolvimento",
   "imagemhome": "/img/segna/segna-1920w.webp",
-  "imagem1": "/img/segna/segna1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/segna/segna1-1920w.webp"
+    },
     {
       "foto": "/img/segna/segna2-1920w.webp",
       "foto2": "/img/segna/segna3-1920w.webp"

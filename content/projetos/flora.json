@@ -12,8 +12,10 @@
   "ano": 2021,
   "estado": "Em Desenvolvimento",
   "imagemhome": "/img/flora/flora-1920w.webp",
-  "imagem1": "/img/flora/flora1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/flora/flora1-1920w.webp"
+    },
     {
       "foto": "/img/flora/flora-1920w.webp",
       "foto2": ""

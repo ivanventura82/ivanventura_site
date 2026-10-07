@@ -12,8 +12,10 @@
   "ano": 2022,
   "estado": "Em Desenvolvimento",
   "imagemhome": "/img/templodocafe/templodocafe-1920w.webp",
-  "imagem1": "/img/templodocafe/templodocafe1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/templodocafe/templodocafe1-1920w.webp"
+    },
     {
       "foto": "/img/templodocafe/templodocafe-1920w.webp",
       "foto2": ""

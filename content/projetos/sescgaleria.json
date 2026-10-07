@@ -12,8 +12,10 @@
   "ano": 2025,
   "estado": "Ideia",
   "imagemhome": "/img/sescgaleria/sescgaleria-1920w.webp",
-  "imagem1": "/img/sescgaleria/sescgaleria1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/sescgaleria/sescgaleria1-1920w.webp"
+    },
     {
       "foto": "/img/sescgaleria/sescgaleria-1920w.webp",
       "foto2": ""

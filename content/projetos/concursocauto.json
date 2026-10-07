@@ -12,8 +12,10 @@
   "ano": 2018,
   "estado": "Ideia",
   "imagemhome": "/img/concursocauto/concursocauto-1920w.webp",
-  "imagem1": "/img/concursocauto/concursocauto1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/concursocauto/concursocauto1-1920w.webp"
+    },
     {
       "foto": "/img/concursocauto/concursocauto2-1920w.webp",
       "foto2": ""

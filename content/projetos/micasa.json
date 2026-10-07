@@ -12,8 +12,10 @@
   "ano": 2021,
   "estado": "Construído",
   "imagemhome": "/img/micasa/micasa-1920w.webp",
-  "imagem1": "/img/micasa/micasa1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/micasa/micasa1-1920w.webp"
+    },
     {
       "foto": "/img/micasa/micasa2-1920w.webp",
       "foto2": ""

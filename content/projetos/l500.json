@@ -12,8 +12,10 @@
   "ano": 2022,
   "estado": "Em Construção",
   "imagemhome": "/img/l500/l500-1920w.webp",
-  "imagem1": "/img/l500/l5001-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/l500/l5001-1920w.webp"
+    },
     {
       "foto": "/img/l500/l50016-1920w.webp",
       "foto2": ""

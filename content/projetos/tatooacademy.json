@@ -12,8 +12,10 @@
   "ano": 2016,
   "estado": "Ideia",
   "imagemhome": "/img/tatooacademy/tatooacademy-1920w.webp",
-  "imagem1": "/img/tatooacademy/tatooacademy1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/tatooacademy/tatooacademy1-1920w.webp"
+    },
     {
       "foto": "/img/tatooacademy/tatooacademy-1920w.webp",
       "foto2": ""

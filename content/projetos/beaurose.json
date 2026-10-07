@@ -12,8 +12,11 @@
   "ano": 2020,
   "estado": "Em Desenvolvimento",
   "imagemhome": "/img/beaurose/beaurose-1920w.webp",
-  "imagem1": "/img/beaurose/beaurose1-1920w.webp",
-  "slides": [],
+  "slides": [
+    {
+      "foto": "/img/beaurose/beaurose1-1920w.webp"
+    }
+  ],
   "detalhes": [],
   "ordem": 23
 }

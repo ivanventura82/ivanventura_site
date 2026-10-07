@@ -12,8 +12,10 @@
   "ano": 2021,
   "estado": "Em Desenvolvimento",
   "imagemhome": "/img/quadritone/quadritone-1920w.webp",
-  "imagem1": "/img/quadritone/quadritone1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/quadritone/quadritone1-1920w.webp"
+    },
     {
       "foto": "/img/quadritone/quadritone-1920w.webp",
       "foto2": ""

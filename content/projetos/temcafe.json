@@ -12,8 +12,10 @@
   "ano": 2014,
   "estado": "Construído",
   "imagemhome": "/img/temcafe/temcafe-1920w.webp",
-  "imagem1": "/img/temcafe/temcafe1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/temcafe/temcafe1-1920w.webp"
+    },
     {
       "foto": "/img/temcafe/temcafe2-1920w.webp",
       "foto2": "/img/temcafe/temcafe3-1920w.webp"

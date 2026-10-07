@@ -12,8 +12,10 @@
   "ano": 2009,
   "estado": "Em Desenvolvimento",
   "imagemhome": "/img/condominiodobosque/condominiodobosque-1920w.webp",
-  "imagem1": "/img/condominiodobosque/condominiodobosque1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/condominiodobosque/condominiodobosque1-1920w.webp"
+    },
     {
       "foto": "/img/condominiodobosque/condominiodobosque-1920w.webp",
       "foto2": ""

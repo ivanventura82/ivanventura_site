@@ -12,8 +12,10 @@
   "ano": 2012,
   "estado": "Em Desenvolvimento",
   "imagemhome": "/img/condominiobaleia/condominiobaleia-1920w.webp",
-  "imagem1": "/img/condominiobaleia/condominiobaleia1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/condominiobaleia/condominiobaleia1-1920w.webp"
+    },
     {
       "foto": "/img/condominiobaleia/condominiobaleia-1920w.webp",
       "foto2": ""

@@ -12,8 +12,10 @@
   "ano": 2019,
   "estado": "Construído",
   "imagemhome": "/img/anexo23/anexo23-1920w.webp",
-  "imagem1": "/img/anexo23/anexo231-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/anexo23/anexo231-1920w.webp"
+    },
     {
       "foto": "/img/anexo23/anexo232-1920w.webp",
       "foto2": ""

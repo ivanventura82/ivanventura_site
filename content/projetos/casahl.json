@@ -12,8 +12,10 @@
   "ano": 2015,
   "estado": "Ideia",
   "imagemhome": "/img/casahl/casahl-1920w.webp",
-  "imagem1": "/img/casahl/casahl1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/casahl/casahl1-1920w.webp"
+    },
     {
       "foto": "/img/casahl/casahl-1920w.webp",
       "foto2": ""

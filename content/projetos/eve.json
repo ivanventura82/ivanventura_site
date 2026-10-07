@@ -12,8 +12,11 @@
   "ano": 2019,
   "estado": "Em Desenvolvimento",
   "imagemhome": "/img/eve/eve-1920w.webp",
-  "imagem1": "/img/eve/eve1-1920w.webp",
-  "slides": [],
+  "slides": [
+    {
+      "foto": "/img/eve/eve1-1920w.webp"
+    }
+  ],
   "detalhes": [],
   "ordem": 26
 }

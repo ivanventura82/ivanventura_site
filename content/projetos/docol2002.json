@@ -12,8 +12,10 @@
   "ano": 2002,
   "estado": "Ideia",
   "imagemhome": "/img/docol2002/docol2002-1920w.webp",
-  "imagem1": "/img/docol2002/docol20021-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/docol2002/docol20021-1920w.webp"
+    },
     {
       "foto": "/img/docol2002/docol20022-1920w.webp",
       "foto2": ""

@@ -49,7 +49,6 @@ collections:
       - {label: Ano, name: ano, widget: string, required: false}
       - {label: Estado, name: estado, widget: string, required: false, hint: 'Por exemplo: Construído, Em Construção ou Ideia.'}
       - {label: Foto de capa, name: imagemhome, widget: image, hint: 'Escolha uma foto horizontal. Envie o arquivo grande; não precisa redimensionar.', media_library: {config: {allow_multiple: false}}}
-      - {label: Foto depois da descrição, name: imagem1, widget: image, required: false, media_library: {config: {allow_multiple: false}}}
       - label: Galeria
         label_singular: Página de fotos
         name: slides
@@ -57,7 +56,7 @@ collections:
         required: false
         collapsed: true
         summary: '{{fields.foto}}'
-        hint: 'Arraste as páginas para mudar a ordem. Cada página pode ter uma foto ou duas lado a lado.'
+        hint: 'As fotos aparecem depois da descrição. Arraste as páginas para mudar a ordem. Cada página pode ter uma foto ou duas lado a lado.'
         fields:
           - {label: Foto, name: foto, widget: image, media_library: {config: {allow_multiple: false}}}
           - {label: Segunda foto ao lado, name: foto2, widget: image, required: false, media_library: {config: {allow_multiple: false}}}
@@ -71,4 +70,4 @@ collections:
         fields:
           - {label: Função, name: titulo, widget: string}
           - {label: Nome ou informação, name: valor, widget: string}
-      - {label: Endereço do projeto, name: datahash, widget: project-id}
+      - {label: Endereço do projeto, name: datahash, widget: project-id, required: false}

@@ -12,8 +12,10 @@
   "ano": 2021,
   "estado": "Em Desenvolvimento",
   "imagemhome": "/img/eiros/eiros-1920w.webp",
-  "imagem1": "/img/eiros/eiros1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/eiros/eiros1-1920w.webp"
+    },
     {
       "foto": "/img/eiros/eiros-1920w.webp",
       "foto2": ""

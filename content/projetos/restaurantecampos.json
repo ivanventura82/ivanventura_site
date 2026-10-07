@@ -12,8 +12,10 @@
   "ano": 2011,
   "estado": "Ideia",
   "imagemhome": "/img/restaurantecampos/restaurantecampos-1920w.webp",
-  "imagem1": "/img/restaurantecampos/restaurantecampos1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/restaurantecampos/restaurantecampos1-1920w.webp"
+    },
     {
       "foto": "/img/restaurantecampos/restaurantecampos-1920w.webp",
       "foto2": ""

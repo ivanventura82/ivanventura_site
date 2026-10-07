@@ -20,3 +20,8 @@
 #pagina-projeto .white-color { animation:none; }
 #pagina-projeto .project-text-slide .slide-content-project { max-height:82vh; overflow-y:auto; overflow-x:hidden; scrollbar-width:none; overscroll-behavior:contain; }
 #pagina-projeto .project-text-slide .slide-content-project::-webkit-scrollbar { display:none; }
+
+/* Keep wheel input from scrolling the temporary overflow of the text reveal. */
+#pagina-projeto .project-text-slide.project-text-entering .slide-content-project {
+  overflow:clip;
+}

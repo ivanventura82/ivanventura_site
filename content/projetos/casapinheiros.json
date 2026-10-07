@@ -12,8 +12,10 @@
   "ano": 2012,
   "estado": "Construído",
   "imagemhome": "/img/casapinheiros/casapinheiros-1920w.webp",
-  "imagem1": "/img/casapinheiros/casapinheiros1-1920w.webp",
   "slides": [
+    {
+      "foto": "/img/casapinheiros/casapinheiros1-1920w.webp"
+    },
     {
       "foto": "/img/casapinheiros/casapinheiros-1920w.webp",
       "foto2": ""
