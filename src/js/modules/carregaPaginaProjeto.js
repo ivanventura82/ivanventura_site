@@ -41,7 +41,7 @@ export default class CarregaPaginaProjeto {
         const slideBio = this.criarSlideBio(projeto);
         swiperWrapper.appendChild(slideBio);
     
-        if (projeto.imagemhome && projeto.imagemhome !== projeto.imagem1 && !projeto.slides.some(slide => slide.includes(projeto.imagem1))) {
+        if (projeto.imagem1 && projeto.imagemhome !== projeto.imagem1 && !projeto.slides.some(slide => slide.includes(projeto.imagem1))) {
             swiperWrapper.appendChild(this.criarSlideSecundario(projeto, [projeto.imagem1]));
         }
         projeto.slides.forEach(slide => {
