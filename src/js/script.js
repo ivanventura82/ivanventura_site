@@ -29,6 +29,19 @@ import "../css/home-motion.css";
 import "../css/project-motion.css";
 
 
+// Keep previously shared Arena Resende links working after its address change.
+const projectAddress = new URL(window.location.href);
+let addressChanged = false;
+for (const key of ['datahash', 'hash']) {
+  if (projectAddress.searchParams.get(key) === 'p-4de80cf9-c38b-472d-85b7-6ce37877478c') {
+    projectAddress.searchParams.set(key, 'arena-resende');
+    addressChanged = true;
+  }
+}
+if (addressChanged) {
+  window.history.replaceState(window.history.state, '', projectAddress.href);
+}
+
 if(matchMedia('(max-width: 800px), (hover: none) and (pointer: coarse)').matches || new URLSearchParams(location.search).get('mobile') === '1') {
  if(document.body.id === 'pagina-projeto') mobileProject();
  else if(document.body.id === 'index-page') mobileHome();
