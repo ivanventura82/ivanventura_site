@@ -33,8 +33,8 @@
       "foto2": "/uploads/_08a3072-copyright-manuel-sa.jpg"
     },
     {
-      "foto": "/uploads/_08a3018-pano-copyright-manuel-sa.jpg",
-      "foto2": "/uploads/_08a3057-pano-copyright-manuel-sa.jpg"
+      "foto": "/uploads/_08a3057-pano-copyright-manuel-sa.jpg",
+      "foto2": "/uploads/_08a3018-pano-copyright-manuel-sa.jpg"
     }
   ],
   "ano": 2024,
@@ -47,6 +47,10 @@
   "subtitulo1": "A casa",
   "title": "Micasa 2.0",
   "detalhes": [
+    {
+      "titulo": "Fotos",
+      "valor": "Manuel Sá"
+    },
     {
       "titulo": "Construção",
       "valor": "Eng. Marcos Cordeiro"
