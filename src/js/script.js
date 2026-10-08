@@ -1,3 +1,4 @@
+import { projectId, projectPath, embeddedProject } from './modules/projectAddress.js';
 import mobileHome from './modules/mobileHome.js';
 import mobileSite from './modules/mobileSite.js';
 import mobileProject from './modules/mobileProject.js';
@@ -42,11 +43,23 @@ if (addressChanged) {
   window.history.replaceState(window.history.state, '', projectAddress.href);
 }
 
+// Canonicalize legacy URLs with extra query parameters not covered by hosting rules.
+if (document.body.id === 'pagina-projeto' && projectId() && !location.pathname.startsWith('/projetos/')) {
+  const canonical = new URL(projectPath(projectId()), location.origin);
+  const params = new URLSearchParams(location.search);
+  params.delete('datahash');
+  canonical.search = params.toString();
+  canonical.hash = location.hash;
+  location.replace(canonical.href);
+}
+
 if(matchMedia('(max-width: 800px), (hover: none) and (pointer: coarse)').matches || new URLSearchParams(location.search).get('mobile') === '1') {
  if(document.body.id === 'pagina-projeto') mobileProject();
  else if(document.body.id === 'index-page') mobileHome();
  else mobileSite();
 } else {
+// The same content is present in the delivered HTML; initialize the existing animation once.
+if (document.body.id === 'pagina-projeto' && embeddedProject()) document.querySelector('.swiper-wrapper').replaceChildren();
 const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]', '[data-menu="logo"]', '[data-menu="email"]', '[data-menu="instagram"]');
 menuMobile.init();
 
@@ -78,22 +91,22 @@ const urlParams = new URLSearchParams(window.location.search);
 const categoriaInicial = urlParams.get('filter') || 'selecionado'; // Usa 'selecionado' como padrão, se não houver filtro
 
 if (document.body.id === "index-page") {
-    const carregaProjetos = new CarregaProjetos('./projetos.json', mySwiper);
+    const carregaProjetos = new CarregaProjetos('/projetos.json', mySwiper);
     carregaProjetos.carregarProjetos(categoriaInicial); // Passa a categoriaInicial
     mySwiper.setCarregaProjetosInstance(carregaProjetos);
 }   
 
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const datahash = urlParams.get('datahash');
+    const datahash = projectId();
 
     if (document.body.id === "pagina-projeto") {
         // Captura o ID do projeto da URL
-        const projectId = urlParams.get('datahash'); // 'id' é o nome do parâmetro na URL
+        const requestedId = datahash; // 'id' é o nome do parâmetro na URL
 
         // Verifica se o projectId foi capturado corretamente
-        if (projectId) {
-            const carregaPaginaProjeto = new CarregaPaginaProjeto('./projetos.json', mySwiper);
+        if (requestedId) {
+            const carregaPaginaProjeto = new CarregaPaginaProjeto('/projetos.json', mySwiper);
             carregaPaginaProjeto.carregarConteudo(datahash); // Passa o projectId para carregar o conteúdo específico
         } else {
             console.error("ID do projeto não especificado na URL.");

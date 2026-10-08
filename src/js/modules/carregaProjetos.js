@@ -103,7 +103,7 @@ export default class CarregaProjetos {
             const slideContent = document.createElement('div');
             slideContent.className = 'slide-content';
             slideContent.innerHTML = `
-                <a class="link__title" href="/projeto.html?datahash=${projeto.datahash}">
+                <a class="link__title" href="/projetos/${projeto.datahash}/">
                     <span class="subtitle__part2">${projeto.subtitulo1}</span>
                     <span class="subtitle__part3">${projeto.subtitulo2}</span>
                     <div class="slide__title__link subtitle__part1">

@@ -1,3 +1,4 @@
+import { projectId } from './projectAddress.js';
 import gsap from 'gsap';
 import { CustomEase } from 'gsap/CustomEase';
 import { MOTION } from './homeMotion.js';
@@ -21,13 +22,13 @@ export default function installProjectEntrance(owner) {
       const link = event.target.closest('a.awards-stage[href]');
       if (!link || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || reduced()) return;
       const url = new URL(link.href, location.href);
-      if (url.origin !== location.origin || !/^\/projeto(?:\.html)?\/?$/.test(url.pathname)) return;
+      if (url.origin !== location.origin || !projectId(url)) return;
       if (awardLeaving) { event.preventDefault(); return; }
       // Finish the current reveal so the photograph and its destination agree.
       owner.awardsGallery?.timeline?.progress(1);
       const photo = link.querySelector('.awards-photo:last-child img');
       if (!photo?.complete || !photo.naturalWidth) return;
-      const id = url.searchParams.get('datahash');
+      const id = projectId(url);
       try { sessionStorage.setItem(key, JSON.stringify({id,src:photo.currentSrc || photo.src,at:Date.now()})); }
       catch (_) { return; }
       event.preventDefault(); awardLeaving = true;
@@ -57,9 +58,9 @@ export default function installProjectEntrance(owner) {
       const url = new URL(link.href, location.href);
       const slide = link.closest('.swiper-slide');
       const photo = slide?.querySelector('.slide-background-img');
-      if (url.origin !== location.origin || !/^\/projeto(?:\.html)?\/?$/.test(url.pathname) || !photo) return;
+      if (url.origin !== location.origin || !projectId(url) || !photo) return;
       if (leaving) { event.preventDefault(); return; }
-      const id = url.searchParams.get('datahash');
+      const id = projectId(url);
       try { sessionStorage.setItem(key, JSON.stringify({ id, src: photo.currentSrc || photo.src, at: Date.now() })); }
       catch (_) { return; }
       event.preventDefault();
@@ -87,7 +88,7 @@ export default function installProjectEntrance(owner) {
   if (document.body.id !== 'pagina-projeto') return;
   let record;
   try { record=JSON.parse(sessionStorage.getItem(key)); sessionStorage.removeItem(key); } catch (_) {}
-  if (!record || reduced() || Date.now()-record.at>15000 || record.id!==new URLSearchParams(location.search).get('datahash') || location.hash) return;
+  if (!record || reduced() || Date.now()-record.at>15000 || record.id!==projectId() || location.hash) return;
   let source;
   try { source=new URL(record.src,location.href); } catch (_) { return; }
   if (source.origin!==location.origin || !source.pathname.startsWith('/img/')) return;

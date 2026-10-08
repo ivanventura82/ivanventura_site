@@ -10,6 +10,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
+    publicPath: '/',
     assetModuleFilename: 'img/[name][ext]',
   },
   mode: 'development', // Modo de desenvolvimento

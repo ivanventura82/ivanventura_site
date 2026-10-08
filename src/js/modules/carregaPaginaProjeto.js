@@ -1,3 +1,4 @@
+import { embeddedProject } from './projectAddress.js';
 // Decode the single escaping pass applied by prepare-content; keep output as text.
 const decodeProjectText = value => String(value ?? '').replace(/&(amp|lt|gt|quot|#39);/g, (_, entity) => ({amp:'&',lt:'<',gt:'>',quot:'"', '#39':"'"})[entity]);
 
@@ -9,9 +10,13 @@ export default class CarregaPaginaProjeto {
 
     async carregarConteudo(datahash) {
     try {
-        const response = await fetch(this.jsonURL);
-        const data = await response.json();
-        const projeto = data.find(proj => proj.datahash === datahash);
+        let projeto = embeddedProject();
+        if (!projeto) {
+            const response = await fetch(this.jsonURL);
+            if (!response.ok) throw new Error('Projetos indisponíveis');
+            const data = await response.json();
+            projeto = data.find(proj => proj.datahash === datahash);
+        }
         if (projeto) {
             await this.processarProjeto(projeto);
             this.mySwiper.refreshProjectSlides(); // Prepara a galeria com o efeito compartilhado
@@ -69,7 +74,7 @@ export default class CarregaPaginaProjeto {
     atualizarMetaTags(projeto) {
         if (projeto) {
             // Atualiza o título da página usando a propriedade 'title' do projeto
-            document.title = decodeProjectText(projeto.title);
+            document.title = decodeProjectText(projeto.title) + ' | Ivan Ventura Arquitetura';
     
             // Localiza a tag meta 'description' e atualiza seu conteúdo com a propriedade 'description' do projeto
             const metaDescription = document.querySelector('meta[name="description"]');
@@ -111,11 +116,11 @@ export default class CarregaPaginaProjeto {
         backgroundImage.loading = "eager";
         backgroundImage.fetchPriority = "high";
         const cover = projeto.imagemhome || projeto.imagem1;
-        backgroundImage.src = `./img/${projeto.datahash}/${cover}.webp`;
+        backgroundImage.src = `/img/${projeto.datahash}/${cover}.webp`;
         backgroundImage.srcset = `
-            ./img/${projeto.datahash}/${cover}-720w.webp 720w,
-            ./img/${projeto.datahash}/${cover}-1024w.webp 1024w,
-            ./img/${projeto.datahash}/${cover}-1920w.webp 1920w
+            /img/${projeto.datahash}/${cover}-720w.webp 720w,
+            /img/${projeto.datahash}/${cover}-1024w.webp 1024w,
+            /img/${projeto.datahash}/${cover}-1920w.webp 1920w
         `;
         backgroundImage.sizes = "(max-width: 720px) 100vw, (max-width: 1024px) 100vw, 100vw";
 
@@ -266,13 +271,13 @@ export default class CarregaPaginaProjeto {
     }
     
     criarImagem(datahash, imgName) {
-        const basePath = `./img/${datahash}/${imgName}`;
+        const basePath = `/img/${datahash}/${imgName}`;
         const image = document.createElement('img');
         image.className = 'lazy';
         image.src = `${basePath}.webp`;
         image.srcset = `${basePath}-720w.webp 720w, ${basePath}-1024w.webp 1024w, ${basePath}-1920w.webp 1920w`;
         image.sizes = "100vw";
-        image.alt = `${imgName}`;
+        image.alt = `Fotografia do projeto ${document.title.split(' | ')[0]}`;
         image.loading = 'lazy';
         image.decoding = 'async';
         const window = document.createElement('div');
