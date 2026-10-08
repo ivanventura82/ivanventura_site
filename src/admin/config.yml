@@ -28,6 +28,7 @@ collections:
         field: categoria
     fields:
       - {label: Nome do projeto, name: title, widget: string}
+      - {label: Endereço permanente, name: datahash, widget: project-id, required: false}
       - label: Categoria
         name: categoria
         widget: select
@@ -70,4 +71,4 @@ collections:
         fields:
           - {label: Função, name: titulo, widget: string}
           - {label: Nome ou informação, name: valor, widget: string}
-      - {label: Endereço do projeto, name: datahash, widget: project-id, required: false}
+

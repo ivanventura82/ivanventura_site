@@ -30,24 +30,38 @@ if (window.CMS) {
     .replace(/[\u0300-\u036f]/g, '').toLowerCase()
     .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 70).replace(/-+$/g, '');
   CMS.registerWidget('project-id', createClass({
+    shouldComponentUpdate() { return true; },
     render() {
-      return h('p', {style:{fontSize:14,color:'#555',overflowWrap:'anywhere'}},
-        this.props.value
-          ? 'Endereço permanente: ' + this.props.value
-          : 'O endereço será criado a partir do nome do projeto ao salvar.');
+      const entry = this.props.entry;
+      const saved = Boolean(entry?.get('path') || entry?.get('slug'));
+      return h('div', {},
+        h('input', {
+          id: this.props.forID, type: 'text', value: this.props.value || '',
+          className: this.props.classNameWrapper, readOnly: saved,
+          placeholder: 'Ex.: arena-resende', autoCapitalize: 'none', spellCheck: false,
+          onChange: event => this.props.onChange(event.target.value),
+          onBlur: () => { if (!saved) this.props.onChange(projectSlug(this.props.value)); },
+          style: {width:'100%',padding:12,boxSizing:'border-box'}
+        }),
+        h('p', {style:{fontSize:13,color:'#555'}}, saved
+          ? 'Endereço fixado ao salvar, para preservar os links do projeto.'
+          : 'Escolha um endereço ou deixe em branco para usar o nome do projeto. Ex.: arena-resende.'));
     }
   }));
   CMS.registerEventListener({
     name: 'preSave',
     handler: async ({entry}) => {
       const data = entry.get('data');
-      if (entry.get('collection') !== 'projetos' || data.get('datahash')) return data;
-      const base = projectSlug(data.get('title'));
+      if (entry.get('collection') !== 'projetos') return data;
+      if ((entry.get('path') || entry.get('slug')) && data.get('datahash')) return data;
+      const manual = String(data.get('datahash') || '').trim();
+      const base = projectSlug(manual || data.get('title'));
       if (!base) throw new Error('Informe um nome de projeto com letras ou números.');
       const response = await fetch('/projetos.json', {cache:'no-store'});
       if (!response.ok) throw new Error('Não foi possível conferir os endereços. Tente salvar novamente.');
       const projects = await response.json();
       const used = new Set(projects.map(project => project.datahash));
+      if (manual && used.has(base)) throw new Error('Esse endereço já pertence a outro projeto. Escolha outro endereço.');
       let id = base, suffix = 2;
       while (used.has(id)) id = base + '-' + suffix++;
       return data.set('datahash', id);
@@ -72,3 +86,4 @@ if (window.CMS) {
   CMS.init();
   document.getElementById('loading').remove();
 }
+
