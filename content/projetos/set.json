@@ -1,40 +1,35 @@
 {
-  "title": "Set",
-  "selecionado": false,
-  "categoria": "edificios",
-  "datahash": "set",
-  "subtitulo1": "Iluminado e ventilado",
-  "subtitulo2": "naturalmente",
-  "description": "Iluminado e ventilado naturalmente, seguindo conceitos sustentáveis e inteligentes, o set praia grande é encantador logo ao primeiro olhar.\nA fachada contemporânea, com linhas finas e elegantes, revela conexão com a beleza do entorno. As deliciosas varandas estão prontas para fechamento com vidro, e da portaria para dentro são só facilidades.\nRecepção, academia, vestiários, lavandeira e máquinas de conveniência fazem do térreo um espaço que oferece muita praticidade para moradores e visitantes, de forma inovadora.",
-  "área": 3750,
-  "local": "Ubatuba | SP",
   "co-autor": "Yuri Vital",
-  "ano": 2021,
-  "estado": "Em Construção",
-  "imagemhome": "/img/set/set-1920w.webp",
   "slides": [
     {
-      "foto": "/img/set/set1-1920w.webp"
+      "foto": "/uploads/_08a0906-copyright-manuel-sa.jpg"
     },
     {
-      "foto": "/img/set/set2-1920w.webp",
+      "foto": "/uploads/_08a0948-copyright-manuel-sa.jpg",
+      "foto2": "/uploads/_08a0966-copyright-manuel-sa.jpg"
+    },
+    {
+      "foto": "/uploads/_08a0954-copyright-manuel-sa.jpg",
       "foto2": ""
     },
     {
-      "foto": "/img/set/set3-1920w.webp",
+      "foto": "/uploads/_08a0924-pano-copyright-manuel-sa.jpg",
       "foto2": ""
     },
     {
-      "foto": "/img/set/set4-1920w.webp",
+      "foto": "/uploads/dji_20250904135124_0181_d-copyright-manuel-sa.jpg",
       "foto2": ""
     },
     {
-      "foto": "/img/set/set5-1920w.webp",
+      "foto": "/uploads/dji_20250904135529_0226_d-copyright-manuel-sa.jpg",
       "foto2": ""
     },
     {
-      "foto": "/img/set/set6-1920w.webp",
-      "foto2": ""
+      "foto": "/uploads/dji_20250904135315_0193_d-pano-copyright-manuel-sa.jpg",
+      "foto2": "/uploads/dji_20250904135824_0247_d-pano-copyright-manuel-sa.jpg"
+    },
+    {
+      "foto": "/uploads/_08a0867-pano-copyright-manuel-sa.jpg"
     },
     {
       "foto": "/img/set/set7-1920w.webp",
@@ -47,12 +42,17 @@
     {
       "foto": "/img/set/set9-1920w.webp",
       "foto2": ""
-    },
-    {
-      "foto": "/img/set/set10-1920w.webp",
-      "foto2": ""
     }
   ],
+  "ano": 2021,
+  "estado": "Construído",
+  "ordem": 15,
+  "local": "Ubatuba | SP",
+  "área": 3750,
+  "imagemhome": "/uploads/_08a0879-pano-editar-copyright-manuel-sa.jpg",
+  "categoria": "edificios",
+  "subtitulo1": "Iluminado e ventilado",
+  "title": "Set",
   "detalhes": [
     {
       "titulo": "Construção",
@@ -65,7 +65,14 @@
     {
       "titulo": "Fundações",
       "valor": "Apoio Engenharia"
+    },
+    {
+      "titulo": "Fotos",
+      "valor": "Manuel Sá"
     }
   ],
-  "ordem": 15
+  "datahash": "set",
+  "subtitulo2": "naturalmente",
+  "selecionado": false,
+  "description": "Iluminado e ventilado naturalmente, seguindo conceitos sustentáveis e inteligentes, o set praia grande é encantador logo ao primeiro olhar.\nA fachada contemporânea, com linhas finas e elegantes, revela conexão com a beleza do entorno. As deliciosas varandas estão prontas para fechamento com vidro, e da portaria para dentro são só facilidades.\nRecepção, academia, vestiários, lavandeira e máquinas de conveniência fazem do térreo um espaço que oferece muita praticidade para moradores e visitantes, de forma inovadora."
 }
