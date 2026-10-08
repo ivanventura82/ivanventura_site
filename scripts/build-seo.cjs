@@ -57,7 +57,7 @@ async function build(root = ROOT) {
   function legacy(id,destination) {
     for(const from of ['/projeto.html','/projeto','/projeto/']) {
       redirects.push(`${from} datahash=${id} mobile=:mobile ${destination}?mobile=:mobile 301!`);
-      redirects.push(`${from} datahash=${id} ${destination} 301!`);
+      redirects.push(`${from} datahash=${id} ${destination}? 301!`);
     }
   }
   for(const p of projects) {
