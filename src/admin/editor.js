@@ -6,6 +6,14 @@ if (window.CMS) {
     ? value.slice('/uploads/'.length) : value;
   const imageWidget = CMS.getWidget('image');
   const RepositoryImageControl = createClass({
+    // Decap's outer Widget only forwards mediaPaths updates when the custom
+    // control exposes shouldComponentUpdate. Without this hook, selecting a
+    // second image can be swallowed before FileControl receives its controlID.
+    shouldComponentUpdate() { return true; },
+    getValidateValue() {
+      return this.imageControl?.getValidateValue?.() ?? this.props.value;
+    },
+    setImageControl(control) { this.imageControl = control; },
     render() {
       // Decap re-renders thumbnails when getAsset changes after an upload loads.
       // Preserve that signal instead of hiding it behind a permanently bound method.
@@ -14,7 +22,7 @@ if (window.CMS) {
         const getAsset = this.props.getAsset;
         this.resolveAsset = (value, ...args) => getAsset(repositoryAssetPath(value), ...args);
       }
-      return h(imageWidget.control, {...this.props, getAsset:this.resolveAsset});
+      return h(imageWidget.control, {...this.props, ref:this.setImageControl, getAsset:this.resolveAsset});
     }
   });
   CMS.registerWidget('image', RepositoryImageControl, imageWidget.preview, imageWidget.schema);
