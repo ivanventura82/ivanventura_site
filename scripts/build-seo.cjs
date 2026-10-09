@@ -9,6 +9,19 @@ const json = value => JSON.stringify(value).replace(/</g, '\\u003c').replace(/&/
 const projectPath = id => `/projetos/${id}/`;
 const summary = p => (decode(p.description).replace(/\s+/g, ' ').trim() || `${decode(p.title)}${p.local ? ' em '+decode(p.local) : ''}. Projeto de Ivan Ventura Arquitetura.`).slice(0,160);
 const cover = p => `/img/${p.datahash}/${p.imagemhome || p.imagem1}-1920w.webp`;
+const projectImages = p => [...new Set([p.imagemhome, p.imagem1, ...(p.slides || []).flat()].filter(Boolean))]
+  .map(name => `${ORIGIN}/img/${p.datahash}/${name}-1920w.webp`);
+
+function sitemap(urls, projects) {
+  const imagesByPath = new Map(projects.map(p => [projectPath(p.datahash), projectImages(p)]));
+  return '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' +
+    urls.map(u => {
+      const images = imagesByPath.get(u) || [];
+      if (images.length > 1000) throw Error(`Too many sitemap images for ${u}`);
+      return `  <url><loc>${escape(ORIGIN + u)}</loc>` + images.map(src => `<image:image><image:loc>${escape(src)}</image:loc></image:image>`).join('') + '</url>';
+    }).join('\n') + '\n</urlset>\n';
+}
 
 function metadata(html, {title,description,url,image,structured}) {
   html = html.replace(/<title>[\s\S]*?<\/title>/i, () => `<title>${escape(title)}</title>`)
@@ -83,11 +96,11 @@ async function build(root = ROOT) {
     html=html.replace(/(?:\.\/|\/)?projeto(?:\.html)?\?datahash=([a-z0-9-]+)/g,(_,id)=>projectPath(id));
     await fs.writeFile(path.join(dist,file),html);
   }
-  await fs.writeFile(path.join(dist,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls.map(u=>`  <url><loc>${escape(ORIGIN+u)}</loc></url>`).join('\n')+'\n</urlset>\n');
+  await fs.writeFile(path.join(dist,'sitemap.xml'),sitemap(urls,projects));
   await fs.writeFile(path.join(dist,'robots.txt'),`User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`);
   await fs.writeFile(path.join(dist,'_redirects'),redirects.join('\n')+'\n');
   await fs.writeFile(path.join(dist,'_headers'),'/admin/*\n  X-Robots-Tag: noindex\n/preview-mobile/*\n  X-Robots-Tag: noindex\n');
   console.log(`${projects.length} project pages generated with content, metadata, canonical URLs and sitemap.`);
 }
-module.exports={build,projectSlides,metadata};
+module.exports={build,projectSlides,metadata,sitemap,projectImages};
 if(require.main===module)build().catch(error=>{console.error(error);process.exitCode=1;});
