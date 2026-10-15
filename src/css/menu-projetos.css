@@ -97,3 +97,32 @@
 .project-preview-media img {min-width:0;flex:1;width:0;height:100%;object-fit:cover;}
 @media(max-width:800px) { .project-pagination-preview {display:none;} }
 @media(prefers-reduced-motion:reduce) { .project-pagination-preview {transition:none;} }
+
+/* After discovering Projects, keep its category strip available for hover.
+   visibility hides links from both pointer targeting and keyboard navigation;
+   the nav itself remains the hover target, without changing the visual layout. */
+@media (min-width: 801px) and (hover: hover) and (pointer: fine) {
+  .nav__menu__projetos-desktop.projects-discovered {
+    position: relative;
+    top: auto;
+    right: auto;
+  }
+  .nav__menu__projetos-desktop.projects-discovered::before {
+    content: "";
+    position: absolute;
+    inset: -18px -12px;
+  }
+  .js .projects-discovered [data-menu-projetos="list"] {
+    display: flex;
+    order: 1;
+    gap: 20px;
+    font: 1.25rem/1.2 "Inter", sans-serif;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .js .projects-discovered [data-menu-projetos="list"].active {
+    visibility: visible;
+    pointer-events: auto;
+    position: relative;
+  }
+}

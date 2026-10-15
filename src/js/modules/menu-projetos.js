@@ -7,6 +7,7 @@ export default class MenuProjetos {
     this.activeClass = 'active';
     this.events = events || ['click'];
     this.isOpen = false;
+    this.discoveryKey = 'ivan-project-menu-discovered-v1';
     this.openTimer = null;
     this.closeTimer = null;
     this.hoverMedia = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -24,8 +25,14 @@ export default class MenuProjetos {
     // Clicking confirms the hover opening instead of reversing it.
     if (!this.isOpen) this.openMenu();
   }
+  rememberDiscovery() {
+    const region = this.projetosButton.closest('nav') || this.projetosButton.parentElement;
+    region.classList.add('projects-discovered');
+    try { sessionStorage.setItem(this.discoveryKey, '1'); } catch (_) {}
+  }
   openMenu() {
     this.clearTimers();
+    this.rememberDiscovery();
     const items = this.projetosList.querySelectorAll('li');
     // Cancel a closing tween, including its pending completion callback.
     gsap.killTweensOf(items);
@@ -64,6 +71,9 @@ export default class MenuProjetos {
     if (!this.projetosButton || !this.projetosList || this.initialized) return this;
     this.initialized = true;
     this.addMenuMobileEvents();
+    try {
+      if (sessionStorage.getItem(this.discoveryKey) === '1') this.rememberDiscovery();
+    } catch (_) {}
     const region = this.projetosButton.closest('nav') || this.projetosButton.parentElement;
     region.addEventListener('pointerenter', event=>{
       if (!this.hoverMedia.matches || event.pointerType === 'touch') return;
