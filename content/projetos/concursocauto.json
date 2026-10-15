@@ -38,5 +38,8 @@
     }
   ],
   "detalhes": [],
-  "ordem": 34
+  "ordem": 34,
+  "premiado": true,
+  "premiacao": "Finalista",
+  "anoPremiacao": "2018"
 }

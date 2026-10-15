@@ -83,5 +83,8 @@
       "valor": "Practica Maquetes"
     }
   ],
-  "ordem": 17
+  "ordem": 17,
+  "premiado": true,
+  "premiacao": "1º Lugar",
+  "anoPremiacao": "2020"
 }

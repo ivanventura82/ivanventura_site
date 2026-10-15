@@ -27,5 +27,8 @@
       "valor": "Finalista em concurso internacional"
     }
   ],
-  "ordem": 24
+  "ordem": 24,
+  "premiado": true,
+  "premiacao": "Finalista",
+  "anoPremiacao": "2019"
 }

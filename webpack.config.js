@@ -80,7 +80,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       hash: true,
-      template: './src/estudio.html',
+      template: './.generated/estudio.html',
       filename: 'estudio.html',
     }),
     new HtmlWebpackPlugin({

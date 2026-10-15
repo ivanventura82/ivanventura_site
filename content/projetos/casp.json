@@ -107,5 +107,8 @@
       "valor": "Raquel Sanches"
     }
   ],
-  "ordem": 1
+  "ordem": 1,
+  "premiado": true,
+  "premiacao": "Menção Honrosa",
+  "anoPremiacao": "2024"
 }

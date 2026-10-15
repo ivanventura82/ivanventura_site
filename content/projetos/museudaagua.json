@@ -63,5 +63,8 @@
       "valor": "Dirk Mader"
     }
   ],
-  "ordem": 19
+  "ordem": 19,
+  "premiado": true,
+  "premiacao": "3º Lugar",
+  "anoPremiacao": "2020"
 }

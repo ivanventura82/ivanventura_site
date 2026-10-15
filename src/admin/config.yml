@@ -40,6 +40,9 @@ collections:
           - {label: Institucionais, value: institucionais}
           - {label: Design, value: design}
       - {label: Mostrar em Selecionados, name: selecionado, widget: boolean, default: false}
+      - {label: Projeto premiado, name: premiado, widget: boolean, default: false, required: false, hint: 'Ative para mostrar este projeto na seção Prêmios, com seu nome e foto de capa. Preencha a premiação e o ano abaixo.'}
+      - {label: Premiação, name: premiacao, widget: string, required: false, hint: 'Por exemplo: 1º Lugar, Menção Honrosa ou Finalista.'}
+      - {label: Ano da premiação, name: anoPremiacao, widget: string, required: false, pattern: ['^[0-9]{4}$', 'Informe o ano com quatro dígitos.'], hint: 'Pode ser diferente do ano do projeto. Os prêmios mais recentes aparecem primeiro.'}
       - {label: Ordem no portfólio, name: ordem, widget: number, value_type: int, default: 0, min: 0, hint: 'Números menores aparecem primeiro. Use 0 para colocar um novo projeto no início.'}
       - {label: Frase — primeira linha, name: subtitulo1, widget: string, required: false}
       - {label: Frase — segunda linha, name: subtitulo2, widget: string, required: false}

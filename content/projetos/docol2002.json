@@ -31,5 +31,8 @@
       "valor": "1° lugar em concurso nacional"
     }
   ],
-  "ordem": 65
+  "ordem": 65,
+  "premiado": true,
+  "premiacao": "1º Lugar",
+  "anoPremiacao": "2002"
 }

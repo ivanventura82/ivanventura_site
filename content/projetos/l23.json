@@ -71,5 +71,8 @@
       "valor": "Stf"
     }
   ],
-  "ordem": 58
+  "ordem": 58,
+  "premiado": true,
+  "premiacao": "Finalista",
+  "anoPremiacao": "2012"
 }

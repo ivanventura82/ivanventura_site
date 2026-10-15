@@ -59,5 +59,8 @@
       "valor": "Gustavo Lanfranchi"
     }
   ],
-  "ordem": 3
+  "ordem": 3,
+  "premiado": true,
+  "premiacao": "Menção Honrosa",
+  "anoPremiacao": "2024"
 }

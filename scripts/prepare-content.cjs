@@ -2,6 +2,7 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const sharp = require('sharp');
+const {renderStudio} = require('./render-awards.cjs');
 const ROOT = path.resolve(__dirname, '..');
 const CATEGORIES = ['institucionais','residencias','edificios','comerciais','design','interiores'];
 const W = [720, 1024, 1920];
@@ -67,12 +68,15 @@ async function prepare(root = ROOT) {
     }));
     // The public renderer inserts text into HTML; CMS content remains plain text.
     const escape = value => typeof value === 'string' ? value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;') : value;
-    for (const key of ['title','subtitulo1','subtitulo2','description','área','local','co-autor','ano','estado']) project[key] = escape(project[key] ?? '');
+    for (const key of ['title','subtitulo1','subtitulo2','description','área','local','co-autor','ano','estado','premiacao','anoPremiacao']) project[key] = escape(project[key] ?? '');
     project.detalhes = project.detalhes || [];
     assert(Array.isArray(project.detalhes), `${id}: ficha técnica inválida.`);
     project.detalhes = project.detalhes.map(d => ({titulo:escape(d.titulo || ''),valor:escape(d.valor || '')}));
     outputs.push(project);
   }
+  const studioTemplate = await fs.readFile(path.join(root,'src/estudio.html'),'utf8');
+  const awardProjects = records.map((record, i) => ({...record, imagemhome: outputs[i].imagemhome}));
+  await fs.writeFile(path.join(generated,'estudio.html'),renderStudio(studioTemplate, awardProjects));
   await fs.writeFile(path.join(generated,'projetos.json'),JSON.stringify(outputs,null,2)+'\n');
   console.log(`${outputs.length} projetos preparados; fotos originais excluídas do site público.`);
   return outputs;

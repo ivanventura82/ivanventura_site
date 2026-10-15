@@ -31,5 +31,8 @@
       "valor": "Finalista em concurso nacional"
     }
   ],
-  "ordem": 55
+  "ordem": 55,
+  "premiado": true,
+  "premiacao": "Finalista",
+  "anoPremiacao": "2012"
 }
