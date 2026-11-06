@@ -50,9 +50,9 @@ async function performCategoryTransition(owner, category) {
   const categories = [...new Set(links.map(a => a.dataset.filter))];
   const direction = categories.indexOf(category) >= categories.indexOf(oldCategory) ? 1 : -1;
   owner.markActiveLink(category);
-  let overlay, timeline, changed = false;
+  let overlay, timeline;
   try {
-    const loader = owner.carregaProjetosInstance || new CarregaProjetos('./projetos.json', owner);
+    const loader = owner.carregaProjetosInstance || new CarregaProjetos('/projetos.json', owner);
     if (!loader.todosProjetos.length) {
       const response = await fetch(loader.jsonURL, { signal: AbortSignal.timeout(12000) });
       if (!response.ok) throw new Error('Project list unavailable');
@@ -137,7 +137,6 @@ async function performCategoryTransition(owner, category) {
     owner.initialHash = '';
     const url = '/index.html?filter=' + encodeURIComponent(category);
     history.pushState({categoryTransition:true}, '', url);
-    changed = true;
     owner.currentCategory = category;
     loader.filtrarEExibirProjetos(category);
     owner.setFiltroAtivo(true);
@@ -173,8 +172,10 @@ async function performCategoryTransition(owner, category) {
     owner.currentCategory = category;
   } catch (error) {
     console.warn('Category transition could not complete', error);
-    if (changed) location.assign('/index.html?filter=' + encodeURIComponent(category));
-    else if (oldCategory) owner.markActiveLink(oldCategory);
+    // A failed image or animation must never swallow a category link.
+    const destination = owner.pendingCategory || category;
+    owner.pendingCategory = null;
+    location.assign('/index.html?filter=' + encodeURIComponent(destination));
   } finally {
     timeline?.kill(); overlay?.remove();
     if (wasEnabled && !swiper.destroyed) swiper.enable();
