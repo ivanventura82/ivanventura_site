@@ -55,3 +55,29 @@ body.editorial-motion .mySwiper > .swiper-wrapper > .swiper-slide > .slide-conte
   margin-bottom:-40px;
   box-sizing:content-box;
 }
+
+/* The opening exposes the existing project navigation as a quiet scroll cue. */
+@media (min-width: 801px) and (hover: hover) and (pointer: fine) {
+  #index-page.home-intro-navigation .swiper-pagination {
+    display: flex !important;
+    opacity: 1 !important;
+  }
+  #index-page.home-intro-navigation .menu-lateral { display: flex !important; }
+  #index-page.home-intro-navigation .project-menu-hover a { color: #72756e; }
+  #index-page.home-intro-navigation .swiper-pagination-bullet {
+    background: #a8aaa4;
+    animation: intro-navigation-reveal .8s ease 1.2s both;
+  }
+  #index-page.home-intro-navigation .swiper-pagination-bullet:nth-child(2) {
+    width: 34px;
+    background: #72756e;
+  }
+  #index-page.home-intro-navigation #botao-down { display: none !important; }
+}
+@keyframes intro-navigation-reveal {
+  from { opacity: 0; transform: scaleX(.35); }
+  to { opacity: 1; transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #index-page.home-intro-navigation .swiper-pagination-bullet { animation: none !important; }
+}
