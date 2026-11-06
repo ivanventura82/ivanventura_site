@@ -8,7 +8,8 @@
       "foto": "/uploads/e-ufc-acesso2-02_chuva-r00.jpg.jpeg"
     },
     {
-      "foto": "/uploads/e-ufc-ext-03_ia.jpeg"
+      "foto": "/uploads/e-ufc-ext-03_ia.jpeg",
+      "foto2": "/uploads/ufc-frontal-noturna-00-intertravado.jpg"
     },
     {
       "foto": "/uploads/i-ufc-teatro-00.png"
@@ -23,9 +24,6 @@
       "foto": "/uploads/i-ufc-exposição-02.jpg"
     },
     {
-      "foto": "/uploads/ufc-frontal-noturna-00-intertravado.jpg"
-    },
-    {
       "foto": "/uploads/i-ufc-anfiteatro-00.png"
     }
   ],
@@ -33,11 +31,11 @@
   "estado": "Em Desenvolvimento",
   "ordem": 1,
   "local": "Fortaleza | CE",
-  "área": "11000",
-  "anoPremiacao": "",
+  "área": "11.000",
+  "anoPremiacao": "2026",
   "premiado": true,
   "premiacao": "1º lugar em concurso nacional",
-  "imagemhome": "/uploads/imagem-top-r00.jpg.jpeg",
+  "imagemhome": "/uploads/imagem-top-r00.jpg-copiar.jpg",
   "categoria": "institucionais",
   "subtitulo1": "Entre a cidade ",
   "title": "CACE UFC",
