@@ -1,0 +1,66 @@
+{
+  "co-autor": "Yuri Vital",
+  "slides": [
+    {
+      "foto": "/uploads/e-ufc-acesso-01_paisagismo.jpg.jpeg"
+    },
+    {
+      "foto": "/uploads/e-ufc-acesso2-02_chuva-r00.jpg.jpeg"
+    },
+    {
+      "foto": "/uploads/e-ufc-ext-03_ia.jpeg"
+    },
+    {
+      "foto": "/uploads/i-ufc-teatro-00.png"
+    },
+    {
+      "foto": "/uploads/i-ufc-blackbox-00.png"
+    },
+    {
+      "foto": "/uploads/i-ufc-foyer-01.jpg"
+    },
+    {
+      "foto": "/uploads/i-ufc-exposição-02.jpg"
+    },
+    {
+      "foto": "/uploads/ufc-frontal-noturna-00-intertravado.jpg"
+    },
+    {
+      "foto": "/uploads/i-ufc-anfiteatro-00.png"
+    }
+  ],
+  "ano": "2026",
+  "estado": "Em Desenvolvimento",
+  "ordem": 1,
+  "local": "Fortaleza | CE",
+  "área": "11000",
+  "anoPremiacao": "",
+  "premiado": true,
+  "premiacao": "1º lugar em concurso nacional",
+  "imagemhome": "/uploads/imagem-top-r00.jpg.jpeg",
+  "categoria": "institucionais",
+  "subtitulo1": "Entre a cidade ",
+  "title": "CACE UFC",
+  "detalhes": [
+    {
+      "titulo": "Coordenação",
+      "valor": "Carlos Alcalde"
+    },
+    {
+      "titulo": "Acústica e cenotecnia",
+      "valor": "Gustavo Lanfranchi"
+    },
+    {
+      "titulo": "Estrutura",
+      "valor": "Dirk Mader"
+    },
+    {
+      "titulo": "Colaboração",
+      "valor": "Daniel Carvalho"
+    }
+  ],
+  "datahash": "caceufc",
+  "subtitulo2": "e o mar",
+  "selecionado": true,
+  "description": "O projeto nasce da memória do antigo Hotel São Pedro, na Praia de Iracema, retomando sua posição na paisagem para criar um novo espaço público dedicado à cultura e ao encontro.\nA Praça Sérvulo Esmeraldo, em homenagem ao artista cearense, conecta o edifício à cidade e à Igreja de São Pedro Apóstolo. Sobre ela, o cineteatro elevado cria uma ampla área coberta de convivência, enquanto percursos, terraços e mirantes revelam diferentes perspectivas de Fortaleza e do mar.\nA volumetria escalonada transforma os limites urbanísticos em expressão arquitetônica. Uma envoltória metálica permeável filtra a luz e confere unidade ao conjunto, que reúne espaços de apresentação, exposição, formação e convivência.\nEntre a cidade e o mar, a arquitetura transforma memória e paisagem em novas possibilidades de encontro."
+}
