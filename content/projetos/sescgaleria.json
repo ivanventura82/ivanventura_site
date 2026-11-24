@@ -1,17 +1,5 @@
 {
-  "title": "SESC Galeria",
-  "selecionado": true,
-  "categoria": "institucionais",
-  "datahash": "sescgaleria",
-  "subtitulo1": "revisitando",
-  "subtitulo2": "a história",
-  "description": "SESC Galeria – Deixar o edifício falar. A intervenção no Edifício João Brícola propõe uma síntese entre restauro e arquitetura contemporânea, respeitando o valor histórico sem recorrer à mimese. O projeto valoriza a estrutura existente como organismo vivo, capaz de integrar novas camadas de significado, reativando fachadas, abrindo vazios e criando percursos. A relação entre o antigo e o novo é marcada por equilíbrio, luz natural e continuidade urbana — uma arquitetura que transforma sem apagar, e permite ao edifício continuar a falar.",
-  "área": 13.5,
-  "local": "São Paulo | SP",
   "co-autor": "Augusto Longarine, Breno Quaioti, Daniel Carcavalli, Diego Pinheiro, Felipe Maia, João Souza, João Sommacal, Letícia Baldo, Luiz Sakata, Maria Dutra, Yuri Vital.",
-  "ano": 2025,
-  "estado": "Ideia",
-  "imagemhome": "/img/sescgaleria/sescgaleria-1920w.webp",
   "slides": [
     {
       "foto": "/img/sescgaleria/sescgaleria1-1920w.webp"
@@ -85,6 +73,18 @@
       "foto2": ""
     }
   ],
+  "ano": 2025,
+  "estado": "Ideia",
+  "ordem": 2,
+  "local": "São Paulo | SP",
+  "área": 13.5,
+  "anoPremiacao": "2025",
+  "premiado": true,
+  "premiacao": "3º lugar em concurso internacional",
+  "imagemhome": "/img/sescgaleria/sescgaleria-1920w.webp",
+  "categoria": "institucionais",
+  "subtitulo1": "revisitando",
+  "title": "SESC Galeria",
   "detalhes": [
     {
       "titulo": "Prêmio",
@@ -99,5 +99,8 @@
       "valor": "Bernardes Zanchetti |Cozinha Industrial|, Elaine Biella |Paisagismo|, Gustavo Lanfranchi |Cenotecnia|, Luís Almeida |Instalações|, Ocimar Fernandes |Bombeiro|, Pedro Paulino |Identidade Visual|, Dirk Mader e Ricardo Bozza |Estrutura|, Silvana Cambiaghi |Acessibilidade|"
     }
   ],
-  "ordem": 2
+  "datahash": "sescgaleria",
+  "subtitulo2": "a história",
+  "selecionado": true,
+  "description": "SESC Galeria – Deixar o edifício falar. A intervenção no Edifício João Brícola propõe uma síntese entre restauro e arquitetura contemporânea, respeitando o valor histórico sem recorrer à mimese. O projeto valoriza a estrutura existente como organismo vivo, capaz de integrar novas camadas de significado, reativando fachadas, abrindo vazios e criando percursos. A relação entre o antigo e o novo é marcada por equilíbrio, luz natural e continuidade urbana — uma arquitetura que transforma sem apagar, e permite ao edifício continuar a falar."
 }
